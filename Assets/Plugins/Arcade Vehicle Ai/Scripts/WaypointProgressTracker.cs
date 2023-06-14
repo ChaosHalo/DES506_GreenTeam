@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 
@@ -66,7 +66,8 @@ using UnityEngine;
             }
 
             Reset();
-        circuit = FindObjectOfType<WaypointCircuit>();
+            if(circuit == null)
+                circuit = FindObjectOfType<WaypointCircuit>();
         }
 
 

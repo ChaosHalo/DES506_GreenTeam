@@ -78,7 +78,7 @@ public class ArcadeAiVehicleController : MonoBehaviour
         Vector3 aimedDir = (aimedPoint - transform.position).normalized;
         Vector3 myDir = transform.forward;
         myDir.Normalize();
-        desiredTurning = Mathf.Abs(Vector3.Angle(myDir, Vector3.ProjectOnPlane( aimedDir,transform.up)));
+        desiredTurning = Mathf.Abs(Vector3.Angle(myDir, Vector3.ProjectOnPlane(aimedDir, transform.up)));
         //
 
         float reachedTargetDistance = 1f;
@@ -142,7 +142,7 @@ public class ArcadeAiVehicleController : MonoBehaviour
             }
 
         }
-        else 
+        else
         {
             if (carVelocity.z > 1f)
             {
@@ -247,7 +247,7 @@ public class ArcadeAiVehicleController : MonoBehaviour
         RearWheels[1].localRotation = rb.transform.localRotation;
 
         //Body
-        if (carVelocity.z > 1 )
+        if (carVelocity.z > 1)
         {
             BodyMesh.localRotation = Quaternion.Slerp(BodyMesh.localRotation, Quaternion.Euler(Mathf.Lerp(0, -5, carVelocity.z / MaxSpeed),
                                BodyMesh.localRotation.eulerAngles.y, Mathf.Clamp(desiredTurning * TurnAI, -BodyTilt, BodyTilt)), 0.05f);
