@@ -45,12 +45,12 @@ public class InputManager : MonoBehaviour
         RaycastHit hit;
 
         // is cursor over world grid? Snap to grid if true
-        if (Physics.Raycast(ray, out hit, 100, gridLayermask))
+        if (Physics.Raycast(ray, out hit, 2000, gridLayermask))
         {
             lastPosition = hit.point;
 
             // is cursor over placable grid? allow placement if true
-            isWithinPlacementBounds = Physics.Raycast(ray, out hit, 100, placeableLayermask) ? true : false;
+            isWithinPlacementBounds = Physics.Raycast(ray, out hit, 2000, placeableLayermask) ? true : false;
         }
 
         return lastPosition;

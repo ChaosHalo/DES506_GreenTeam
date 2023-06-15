@@ -69,7 +69,7 @@ public class PlacementSystem : MonoBehaviour
 
     private void StopPlacement()
     {
-        gridVisualisation.SetActive(false);
+       // gridVisualisation.SetActive(false);
 
         if (buildingState == null)
             return;
@@ -90,12 +90,15 @@ public class PlacementSystem : MonoBehaviour
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
 
         // adjust for object pivot point offset
-        mousePosition.x -= 0.5f;
-        mousePosition.z -= 0.5f;
+        mousePosition.x -= 50;
+        mousePosition.z -= 50;
 
         // snap if over placable grid
         // do not snap if outside of placable grid
         Vector3 newPreviewPosition = inputManager.isWithinPlacementBounds ? grid.CellToWorld(gridPosition) : mousePosition;
+
+
+
         buildingState.UpdateState(newPreviewPosition);
 
         // change validity indicator

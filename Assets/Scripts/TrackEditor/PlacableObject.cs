@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlacableObject : MonoBehaviour
 {
     private bool canScale = true;
-    private float scaleSpeed = 0.4f;
+    private float scaleSpeed = 1.0f;
 
     // scale presets
-    private float multiLarge = 1.3f;
-    private float multiSmall = 1.1f;
+    private float multiLarge = 1.1f;
+    private float multiSmall = 0.8f;
     private Vector3 scaleSmall;
     private Vector3 scaleLarge;
     private Vector3 scaleNext;
