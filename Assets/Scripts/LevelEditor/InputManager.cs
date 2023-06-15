@@ -12,14 +12,14 @@ public class InputManager : MonoBehaviour
     private Vector3 lastPosition;
 
     [SerializeField]
-    private LayerMask placementLayermask;
+    private LayerMask placeableLayermask;
 
     [SerializeField]
-    private LayerMask worldLayermask;
+    private LayerMask gridLayermask;
 
     public event Action OnTap, OnRelease, OnExit;
 
-    internal bool IsOverGrid { get; private set; }
+    internal bool canPlace { get; private set; }
 
 
     private void Update()
@@ -43,19 +43,14 @@ public class InputManager : MonoBehaviour
         mousePos.z = sceneCamera.nearClipPlane;
         Ray ray = sceneCamera.ScreenPointToRay(mousePos);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100, placementLayermask))
-        {
-            lastPosition = hit.point;
-            IsOverGrid = true;
-        }
-        else
-        {
-            IsOverGrid = false;
-        }
 
-        if (Physics.Raycast(ray, out hit, 100, worldLayermask))
+        // is cursor over world grid? Snap to grid if true
+        if (Physics.Raycast(ray, out hit, 100, gridLayermask))
         {
             lastPosition = hit.point;
+
+            // is cursor over placable grid? allow placement if true
+            canPlace = Physics.Raycast(ray, out hit, 100, placeableLayermask) ? true : false;
         }
 
         return lastPosition;

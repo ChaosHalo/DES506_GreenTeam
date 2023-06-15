@@ -35,10 +35,12 @@ public class PlacementSystem : MonoBehaviour
             return;
         }
 
+        // clear current indicator object
         Destroy(cellIndicator);
         cellIndicator = null;
         cellIndicator = Instantiate(database.objectsData[selectedObjectIndex].Prefab);
 
+        // enable visualisations
         gridVisualisation.SetActive(true);
         cellIndicator.SetActive(true);
         inputManager.OnRelease += PlaceStructure;
@@ -48,18 +50,18 @@ public class PlacementSystem : MonoBehaviour
     private void PlaceStructure()
     {
         if (inputManager.IsPointerOverUI())
-        {
             return;
-        }
-        if (!inputManager.IsOverGrid)
+        if (!inputManager.canPlace)
         {
+            StopPlacement();
             return;
         }
 
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        GameObject newStructure = Instantiate(database.objectsData[selectedObjectIndex].Prefab);
-        newStructure.transform.position = grid.CellToWorld(gridPosition);
+        GameObject newObject = Instantiate(database.objectsData[selectedObjectIndex].Prefab);
+        newObject.transform.position = grid.CellToWorld(gridPosition);
+        StopPlacement();
     }
 
     private void StopPlacement()
@@ -79,6 +81,13 @@ public class PlacementSystem : MonoBehaviour
 
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        cellIndicator.transform.position = grid.CellToWorld(gridPosition);
+
+        // adjust for object pivot point offset
+        mousePosition.x -= 0.5f;
+        mousePosition.z -= 0.5f;
+
+        // snap if over placable grid
+        // do not snap if outside of placable grid
+        cellIndicator.transform.position = inputManager.canPlace ? grid.CellToWorld(gridPosition) : mousePosition;
     }
 }
