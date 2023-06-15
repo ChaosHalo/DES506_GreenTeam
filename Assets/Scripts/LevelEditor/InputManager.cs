@@ -19,7 +19,7 @@ public class InputManager : MonoBehaviour
 
     public event Action OnTap, OnRelease, OnExit;
 
-    internal bool canPlace { get; private set; }
+    internal bool isWithinPlacementBounds { get; private set; }
 
 
     private void Update()
@@ -50,7 +50,7 @@ public class InputManager : MonoBehaviour
             lastPosition = hit.point;
 
             // is cursor over placable grid? allow placement if true
-            canPlace = Physics.Raycast(ray, out hit, 100, placeableLayermask) ? true : false;
+            isWithinPlacementBounds = Physics.Raycast(ray, out hit, 100, placeableLayermask) ? true : false;
         }
 
         return lastPosition;

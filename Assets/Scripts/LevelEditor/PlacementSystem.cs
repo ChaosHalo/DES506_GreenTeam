@@ -9,7 +9,8 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private InputManager inputManager;
     [SerializeField]
-    private GameObject cellIndicator;
+    private GameObject previewIndicator;
+    private MeshRenderer previewRenderer;
     [SerializeField]
     private Grid grid;
 
@@ -20,9 +21,16 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private GameObject gridVisualisation;
 
+    private GridData terrainData, trackData;
+
+    private List<GameObject> placedObjects = new();
+
+
     private void Start()
     {
         StopPlacement();
+        terrainData = new();
+        trackData = new();
     }
 
     public void StartPlacement(int ID)
@@ -35,14 +43,12 @@ public class PlacementSystem : MonoBehaviour
             return;
         }
 
-        // clear current indicator object
-        Destroy(cellIndicator);
-        cellIndicator = null;
-        cellIndicator = Instantiate(database.objectsData[selectedObjectIndex].Prefab);
+        // set new preview indicator
+        previewIndicator = Instantiate(database.objectsData[selectedObjectIndex].Prefab);
+        previewRenderer = previewIndicator.GetComponentInChildren<MeshRenderer>();
 
         // enable visualisations
         gridVisualisation.SetActive(true);
-        cellIndicator.SetActive(true);
         inputManager.OnRelease += PlaceStructure;
         inputManager.OnExit += StopPlacement;
     }
@@ -50,8 +56,11 @@ public class PlacementSystem : MonoBehaviour
     private void PlaceStructure()
     {
         if (inputManager.IsPointerOverUI())
+        {
+            StopPlacement();
             return;
-        if (!inputManager.canPlace)
+        }
+        if (inputManager.isWithinPlacementBounds == false)
         {
             StopPlacement();
             return;
@@ -59,16 +68,53 @@ public class PlacementSystem : MonoBehaviour
 
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+
+        bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
+
+        if (placementValidity == false)
+        {
+            StopPlacement();
+            return;
+        }
+
         GameObject newObject = Instantiate(database.objectsData[selectedObjectIndex].Prefab);
         newObject.transform.position = grid.CellToWorld(gridPosition);
+        newObject.GetComponentInChildren<PlacableObject>().StopScaling();
+        placedObjects.Add(newObject);
+
+        // assign datatype
+        //ObjectData.Type checkType = database.objectsData[selectedObjectIndex].objectType;
+        //GridData selectedData = terrainData;
+        //if (checkType == ObjectData.Type.Track)
+        //    selectedData = trackData;
+
+
+        GridData selectedData = database.objectsData[selectedObjectIndex].objectType == ObjectData.Type.Terrain ? terrainData : trackData;
+
+        selectedData.AddObjectAt(gridPosition,
+                                 database.objectsData[selectedObjectIndex].Size,
+                                 database.objectsData[selectedObjectIndex].ID,
+                                 ((int)database.objectsData[selectedObjectIndex].objectType),
+                                 placedObjects.Count - 1);
+
         StopPlacement();
+    }
+
+    private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
+    {
+        GridData selectedData = database.objectsData[selectedObjectIndex].objectType == ObjectData.Type.Terrain ? terrainData : trackData;
+
+        return selectedData.CanPlaceObejctAt(gridPosition, database.objectsData[selectedObjectIndex].Size);
     }
 
     private void StopPlacement()
     {
+        // clear current indicator object
+        Destroy(previewIndicator);
+        previewIndicator = null;
+
         selectedObjectIndex = -1;
         gridVisualisation.SetActive(false);
-        cellIndicator.SetActive(false);
         inputManager.OnRelease -= PlaceStructure;
         inputManager.OnExit -= StopPlacement;
     }
@@ -88,6 +134,15 @@ public class PlacementSystem : MonoBehaviour
 
         // snap if over placable grid
         // do not snap if outside of placable grid
-        cellIndicator.transform.position = inputManager.canPlace ? grid.CellToWorld(gridPosition) : mousePosition;
+        previewIndicator.transform.position = inputManager.isWithinPlacementBounds ? grid.CellToWorld(gridPosition) : mousePosition;
+
+
+        // change validity indicator
+        //if (previewRenderer)
+        //{
+        //    bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
+
+        //    previewRenderer.material.color = placementValidity ? Color.white : Color.red;
+        //}
     }
 }

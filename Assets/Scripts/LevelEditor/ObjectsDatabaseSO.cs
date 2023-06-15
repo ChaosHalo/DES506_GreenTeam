@@ -22,6 +22,11 @@ public class ObjectData
     [field: SerializeField]
     public Vector2Int Size { get; private set; } =  Vector2Int.one;
 
+    public enum Type{ Terrain, Track};
+
+    [field: SerializeField]
+    public Type objectType;
+
     [field: SerializeField]
     public GameObject Prefab { get; private set; }
 }

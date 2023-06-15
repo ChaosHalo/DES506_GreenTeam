@@ -999,7 +999,7 @@ GameObject:
   - component: {fileID: 876161303}
   - component: {fileID: 876161304}
   m_Layer: 0
-  m_Name: CellIndicator
+  m_Name: PreviewIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1118,7 +1118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputManager: {fileID: 807530367}
-  cellIndicator: {fileID: 1708012102}
+  previewIndicator: {fileID: 1708012102}
   grid: {fileID: 1593036956}
   database: {fileID: 11400000, guid: ef2a95800d6938b4cbce12240cdae11d, type: 2}
   gridVisualisation: {fileID: 367171357}
@@ -1289,7 +1289,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1708012103}
   m_Layer: 0
-  m_Name: ' CellIndicatorParent'
+  m_Name: PreviewIndicatorParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
