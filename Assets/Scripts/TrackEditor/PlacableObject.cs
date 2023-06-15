@@ -5,23 +5,27 @@ using UnityEngine;
 public class PlacableObject : MonoBehaviour
 {
     private bool canScale = true;
-    private float scaleSpeed = 1.0f;
+    private float scaleSpeed = 0.4f;
 
     // scale presets
-    private float scaleLarge = 1.2f;
-    private float scaleSmall = 1;
-    private float scaleNext;
+    private float multiLarge = 1.3f;
+    private float multiSmall = 1.1f;
+    private Vector3 scaleSmall;
+    private Vector3 scaleLarge;
+    private Vector3 scaleNext;
     private Vector3 scaleOriginal;
 
-    void Start()
+    private void Awake()
     {
         scaleOriginal = transform.localScale;
+        scaleSmall = scaleOriginal * multiSmall;
+        scaleLarge = scaleOriginal * multiLarge;
         scaleNext = scaleLarge;
     }
 
     void FixedUpdate()
     {
-       // UpdateScale();
+       UpdateScale();
     }
 
     internal virtual void UpdateScale()
@@ -29,17 +33,17 @@ public class PlacableObject : MonoBehaviour
         if (canScale == false)
             return;
 
-        transform.localScale = Vector3.MoveTowards(transform.localScale, scaleOriginal * scaleNext, scaleSpeed * Time.deltaTime);
+        transform.localScale = Vector3.MoveTowards(transform.localScale, scaleNext, scaleSpeed * Time.deltaTime);
 
-        if (transform.localScale * scaleNext == scaleOriginal * scaleLarge)
+        if (transform.localScale == scaleLarge)
             scaleNext = scaleSmall;
-        if (transform.localScale * scaleNext == scaleOriginal * scaleSmall)
+        if (transform.localScale == scaleSmall)
             scaleNext = scaleLarge;
     }
 
     internal void StopScaling()
     {
-        //canScale = false;
-        //transform.localScale = scaleOriginal;
+        canScale = false;
+        transform.localScale = scaleOriginal;
     }
 }
