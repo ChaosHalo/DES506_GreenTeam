@@ -200,12 +200,12 @@ PrefabInstance:
     - target: {fileID: 1903653338248287770, guid: ecfbbbd7527ec7b4daed9144b3d4804e,
         type: 3}
       propertyPath: turn
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1903653338248287770, guid: ecfbbbd7527ec7b4daed9144b3d4804e,
         type: 3}
       propertyPath: MaxSpeed
-      value: 50
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1903653338248287775, guid: ecfbbbd7527ec7b4daed9144b3d4804e,
         type: 3}
@@ -262,6 +262,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5129761818152956078, guid: ecfbbbd7527ec7b4daed9144b3d4804e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bb576e669e12d97479dccedb38ac9236, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: ecfbbbd7527ec7b4daed9144b3d4804e, type: 3}
@@ -767,6 +772,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5129761818152956078, guid: ecfbbbd7527ec7b4daed9144b3d4804e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ab655a425fae6c24bbc1c91e9d90d0d5, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: ecfbbbd7527ec7b4daed9144b3d4804e, type: 3}
