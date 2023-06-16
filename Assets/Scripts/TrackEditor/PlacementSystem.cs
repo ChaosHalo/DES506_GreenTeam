@@ -25,6 +25,9 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private PreviewSystem previewSystem;
 
+    [SerializeField]
+    private bool gridVisualAlwaysOn = false;
+
     IBuildingState buildingState;
 
 
@@ -38,7 +41,9 @@ public class PlacementSystem : MonoBehaviour
     public void StartPlacement(int ID)
     {
         StopPlacement();
-        gridVisualisation.SetActive(true);
+
+        if (gridVisualAlwaysOn == false)
+            gridVisualisation.SetActive(true);
 
         buildingState = new PlacementState(ID, grid, database, terrainData, trackData, objectPlacer, previewSystem);
 
@@ -69,7 +74,8 @@ public class PlacementSystem : MonoBehaviour
 
     private void StopPlacement()
     {
-       // gridVisualisation.SetActive(false);
+        if (gridVisualAlwaysOn == false)
+            gridVisualisation.SetActive(false);
 
         if (buildingState == null)
             return;
@@ -80,7 +86,6 @@ public class PlacementSystem : MonoBehaviour
         buildingState = null;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (buildingState == null)
