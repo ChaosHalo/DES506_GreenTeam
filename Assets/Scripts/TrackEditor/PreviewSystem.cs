@@ -76,4 +76,9 @@ public class PreviewSystem : MonoBehaviour
     {
         // temp
     }
+
+    internal Quaternion GetCurrentRotation()
+    {
+        return previewObject.transform.GetChild(1).localRotation;
+    }
 }
