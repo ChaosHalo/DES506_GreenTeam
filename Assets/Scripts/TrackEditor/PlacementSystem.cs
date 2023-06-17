@@ -51,13 +51,21 @@ public class PlacementSystem : MonoBehaviour
         inputManager.OnExit += StopPlacement;
     }
 
+    public void StartRemoving()
+    {
+        StopPlacement();
+
+        if (gridVisualAlwaysOn == false)
+            gridVisualisation.SetActive(true);
+
+        buildingState = new RemovingState(grid, terrainData, trackData, objectPlacer, previewSystem);
+
+        inputManager.OnRelease += PlaceStructure;
+        inputManager.OnExit += StopPlacement;
+    }
+
     private void PlaceStructure()
     {
-        if (inputManager.IsPointerOverUI())
-        {
-            StopPlacement();
-            return;
-        }
         if (inputManager.isWithinPlacementBounds == false)
         {
             StopPlacement();
@@ -102,16 +110,6 @@ public class PlacementSystem : MonoBehaviour
         // do not snap if outside of placable grid
         Vector3 newPreviewPosition = inputManager.isWithinPlacementBounds ? grid.CellToWorld(gridPosition) : mousePosition;
 
-
-
-        buildingState.UpdateState(newPreviewPosition);
-
-        // change validity indicator
-        //if (previewRenderer)
-        //{
-        //    bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
-
-        //    previewRenderer.material.color = placementValidity ? Color.white : Color.red;
-        //}
+        buildingState.UpdateState(newPreviewPosition, inputManager.isWithinPlacementBounds);
     }
 }

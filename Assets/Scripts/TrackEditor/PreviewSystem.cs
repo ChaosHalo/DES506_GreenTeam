@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,27 +6,74 @@ using UnityEngine;
 public class PreviewSystem : MonoBehaviour
 {
     [SerializeField]
-    private GameObject previewIndicator;
-    private MeshRenderer previewRenderer;
+    private float previewYOffset = 0.1f;
+
+    [SerializeField]
+    private GameObject previewObject;
+
+    [SerializeField]
+    private Material previewMaterialsPrefab;
+    private Material previewMaterialInstance;
 
 
-    public void SetNewPreviewIndicator(GameObject prefab)
+    private void Start()
+    {
+        previewMaterialInstance = new Material(previewMaterialsPrefab);
+    }
+
+    public void SetNewPreview(GameObject prefab, Vector2Int size)
     {
         // set new preview indicator
-        GameObject newObject = Instantiate(prefab);
-        previewIndicator = newObject;
-        previewRenderer = previewIndicator.GetComponentInChildren<MeshRenderer>();
+        previewObject = Instantiate(prefab);
+        PreparePreview(previewObject);
     }
 
-    public void ClearPreviewIndicator()
+    private void PreparePreview(GameObject previewObject)
     {
-        Destroy(previewIndicator);
-        previewIndicator = null;
+        Renderer[] renderers = previewObject.GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            Material[] materials = renderer.materials;
+            for (int i = 0; i < materials.Length; i++)
+            {
+                materials[i] = previewMaterialInstance;
+            }
+            renderer.materials = materials;
+        }
     }
 
-    public void UpdatePreviewIndicatorPosition(Vector3 position)
+    public void StopShowingPreview()
     {
-        if (previewIndicator)
-            previewIndicator.transform.position = position;
+        // check valid
+        if (previewObject == null)
+            return;
+
+        Destroy(previewObject);
+    }
+
+    public void UpdatePreview(Vector3 position, bool validity)
+    {
+        // check valid
+        if (previewObject == null)
+            return;
+
+        // position
+        previewObject.transform.position = new Vector3(position.x,
+                                                       position.y + previewYOffset,
+                                                       position.z);
+        ApplyFeedbackToPreview(validity);
+    }
+
+    private void ApplyFeedbackToPreview(bool validity)
+    {
+        // colour
+        Color c = validity ? Color.white : Color.red;
+        c.a = 0.5f;
+        previewMaterialInstance.color = c;
+    }
+
+    internal void StartShowingRemovePreview()
+    {
+        // temp
     }
 }
