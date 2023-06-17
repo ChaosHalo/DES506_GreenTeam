@@ -29,6 +29,9 @@ public class PlacementSystem : MonoBehaviour
     private ToggleButton toggleButton_Remove;
 
     [SerializeField]
+    private ToggleButton toggleButton_Rotate;
+
+    [SerializeField]
     private bool gridVisualAlwaysOn = false;
 
     IBuildingState buildingState;
@@ -48,7 +51,7 @@ public class PlacementSystem : MonoBehaviour
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new PlacementState(ID, grid, database, terrainData, trackData, objectPlacer, previewSystem, this);
+        buildingState = new PlaceState(ID, grid, database, terrainData, trackData, objectPlacer, previewSystem, this);
 
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
@@ -61,7 +64,20 @@ public class PlacementSystem : MonoBehaviour
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new RemovingState(grid, terrainData, trackData, objectPlacer, previewSystem, this, toggleButton_Remove);
+        buildingState = new RemoveState(grid, terrainData, trackData, objectPlacer, previewSystem, this, toggleButton_Remove);
+
+        inputManager.OnRelease += PerformAction;
+        inputManager.OnExit += EndCurrentState;
+    }
+
+    public void StartRotating()
+    {
+        EndCurrentState();
+
+        if (gridVisualAlwaysOn == false)
+            gridVisualisation.SetActive(true);
+
+        buildingState = new RotateState(grid, terrainData, trackData, objectPlacer, previewSystem, this, toggleButton_Rotate);
 
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
