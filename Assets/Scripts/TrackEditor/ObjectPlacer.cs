@@ -25,4 +25,21 @@ public class ObjectPlacer : MonoBehaviour
         Destroy(placedObjects[gameObjectIndex]);
         placedObjects[gameObjectIndex] = null;
     }
+
+    internal bool AreObjectsAvailable()
+    {
+        if (placedObjects.Count < 1)
+        {
+            return false;
+        }
+        else
+        {
+            for (int i = 0; i < placedObjects.Count; i++)
+            {
+                if (placedObjects[i] != null)
+                    return true;
+            }
+        }
+        return false;
+    }
 }

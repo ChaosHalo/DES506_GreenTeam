@@ -11,28 +11,43 @@ public class RemovingState : IBuildingState
     GridData trackData;
     ObjectPlacer objectPlacer;
     PreviewSystem previewSystem;
+    PlacementSystem placementSystem;
+    ToggleButton toggleButton;
 
     public RemovingState(Grid grid,
                          GridData terrainData,
                          GridData trackData,
                          ObjectPlacer objectPlacer,
-                         PreviewSystem previewSystem)
+                         PreviewSystem previewSystem,
+                         PlacementSystem placementSystem,
+                         ToggleButton toggleButton)
     {
         this.grid = grid;
         this.terrainData = terrainData;
         this.trackData = trackData;
         this.objectPlacer = objectPlacer;
         this.previewSystem = previewSystem;
+        this.placementSystem = placementSystem;
+        this.toggleButton = toggleButton;
 
         previewSystem.StartShowingRemovePreview();
+        toggleButton.ToggleButtons();
+
+        // immediately cancel remove state if no objects are avaiable to remove
+        if (objectPlacer.AreObjectsAvailable() == false)
+        {
+            placementSystem.EndCurrentState();
+            toggleButton.ResetButtons();
+        }
     }
 
     public void EndState()
     {
         previewSystem.StopShowingPreview();
+        toggleButton.ResetButtons();
     }
 
-    public void OnAction(Vector3Int gridPosition)
+    public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
         GridData selectedData = null;
 
@@ -61,6 +76,13 @@ public class RemovingState : IBuildingState
 
         Vector3 cellPosition = grid.CellToWorld(gridPosition);
         previewSystem.UpdatePreview(cellPosition, CheckIfSelectionIsValid(gridPosition));
+
+        // cancel remove state if no objects are left to remove
+        if (objectPlacer.AreObjectsAvailable() == false)
+        {
+            placementSystem.EndCurrentState();
+            toggleButton.ResetButtons();
+        }
     }
 
     private bool CheckIfSelectionIsValid(Vector3Int gridPosition)

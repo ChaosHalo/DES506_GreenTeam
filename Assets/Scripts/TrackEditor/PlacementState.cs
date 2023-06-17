@@ -1,3 +1,4 @@
+using MoreMountains.HighroadEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class PlacementState : IBuildingState
     GridData trackData;
     ObjectPlacer objectPlacer;
     PreviewSystem previewSystem;
+    PlacementSystem placementSystem;
 
 
     public PlacementState(int iD,
@@ -20,7 +22,8 @@ public class PlacementState : IBuildingState
                           GridData terrainData,
                           GridData trackData,
                           ObjectPlacer objectPlacer,
-                          PreviewSystem previewSystem)
+                          PreviewSystem previewSystem,
+                          PlacementSystem placementSystem)
     {
         ID = iD;
         this.grid = grid;
@@ -29,6 +32,7 @@ public class PlacementState : IBuildingState
         this.trackData = trackData;
         this.objectPlacer = objectPlacer;
         this.previewSystem = previewSystem;
+        this.placementSystem = placementSystem;
 
         previewSystem.StopShowingPreview();
 
@@ -50,13 +54,13 @@ public class PlacementState : IBuildingState
         previewSystem.StopShowingPreview();
     }
 
-    public void OnAction(Vector3Int gridPosition)
+    public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
         bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
 
-        if (placementValidity == false)
+        if (placementValidity == false || isWithinBounds == false)
         {
-            //StopPlacement();
+            placementSystem.EndCurrentState();
             return;
         }
 
@@ -72,6 +76,8 @@ public class PlacementState : IBuildingState
                                  index);
 
         previewSystem.UpdatePreview(grid.CellToWorld(gridPosition), false);
+
+        placementSystem.EndCurrentState();
     }
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)

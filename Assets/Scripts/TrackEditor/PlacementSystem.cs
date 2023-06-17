@@ -26,6 +26,9 @@ public class PlacementSystem : MonoBehaviour
     private PreviewSystem previewSystem;
 
     [SerializeField]
+    private ToggleButton toggleButton_Remove;
+
+    [SerializeField]
     private bool gridVisualAlwaysOn = false;
 
     IBuildingState buildingState;
@@ -33,54 +36,45 @@ public class PlacementSystem : MonoBehaviour
 
     private void Start()
     {
-        StopPlacement();
+        EndCurrentState();
         terrainData = new();
         trackData = new();
     }
 
     public void StartPlacement(int ID)
     {
-        StopPlacement();
+        EndCurrentState();
 
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new PlacementState(ID, grid, database, terrainData, trackData, objectPlacer, previewSystem);
+        buildingState = new PlacementState(ID, grid, database, terrainData, trackData, objectPlacer, previewSystem, this);
 
-        inputManager.OnRelease += PlaceStructure;
-        inputManager.OnExit += StopPlacement;
+        inputManager.OnRelease += PerformAction;
+        inputManager.OnExit += EndCurrentState;
     }
 
     public void StartRemoving()
     {
-        StopPlacement();
+        EndCurrentState();
 
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new RemovingState(grid, terrainData, trackData, objectPlacer, previewSystem);
+        buildingState = new RemovingState(grid, terrainData, trackData, objectPlacer, previewSystem, this, toggleButton_Remove);
 
-        inputManager.OnRelease += PlaceStructure;
-        inputManager.OnExit += StopPlacement;
+        inputManager.OnRelease += PerformAction;
+        inputManager.OnExit += EndCurrentState;
     }
 
-    private void PlaceStructure()
+    private void PerformAction()
     {
-        if (inputManager.isWithinPlacementBounds == false)
-        {
-            StopPlacement();
-            return;
-        }
-
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-
-        buildingState.OnAction(gridPosition);
-
-        StopPlacement();
+        buildingState.OnAction(gridPosition, inputManager.isWithinPlacementBounds);
     }
 
-    private void StopPlacement()
+    public void EndCurrentState()
     {
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(false);
@@ -88,9 +82,10 @@ public class PlacementSystem : MonoBehaviour
         if (buildingState == null)
             return;
 
+
         buildingState.EndState();
-        inputManager.OnRelease -= PlaceStructure;
-        inputManager.OnExit -= StopPlacement;
+        inputManager.OnRelease -= PerformAction;
+        inputManager.OnExit -= EndCurrentState;
         buildingState = null;
     }
 
