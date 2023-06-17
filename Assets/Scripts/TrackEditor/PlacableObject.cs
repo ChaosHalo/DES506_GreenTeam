@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlacableObject : MonoBehaviour
 {
     private bool canScale = true;
-    private float scaleSpeed = 0.6f;
+    private float scaleSpeed = 0.01f;
 
     // scale presets
     private float multiLarge = 1.2f;
