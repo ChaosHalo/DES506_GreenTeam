@@ -49,6 +49,6 @@ public class ObjectPlacer : MonoBehaviour
             return;
 
         GameObject objectToRotate = placedObjects[gameObjectIndex].transform.GetChild(1).gameObject;
-        objectToRotate.transform.localRotation = (0, 90, 0);
+        objectToRotate.transform.Rotate(0, 90, 0);
     }
 }
