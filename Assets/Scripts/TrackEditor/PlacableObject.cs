@@ -56,17 +56,13 @@ public class PlacableObject : MonoBehaviour
             // vertical
             if (lastMousePos.y > Input.mousePosition.y)
                 mouseVertical = 1;
-            else if (lastMousePos.y == Input.mousePosition.y)
-                mouseVertical = 0;
-            else
+            else if (lastMousePos.y < Input.mousePosition.y)
                 mouseVertical = -1;
 
             // horisontal
             if (lastMousePos.x > Input.mousePosition.x)
                 mouseHorisontal = 1;
-            else if (lastMousePos.x == Input.mousePosition.x)
-                mouseHorisontal = 0;
-            else
+            else if (lastMousePos.x < Input.mousePosition.x)
                 mouseHorisontal = -1;
 
             // update last pos
