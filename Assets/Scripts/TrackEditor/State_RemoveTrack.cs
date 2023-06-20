@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RemoveState : IBuildingState
+public class State_RemoveTrack : IBuildingState
 {
     private int gameObjectIndex = -1;
     Grid grid;
@@ -14,7 +14,7 @@ public class RemoveState : IBuildingState
     PlacementSystem placementSystem;
     UIManager uiManager;
 
-    public RemoveState(Grid grid,
+    public State_RemoveTrack(Grid grid,
                          GridData terrainData,
                          GridData trackData,
                          ObjectPlacer objectPlacer,

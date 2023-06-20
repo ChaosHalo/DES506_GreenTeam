@@ -5,8 +5,11 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    public ToggleButton toggleButton_Remove;
+    public CustomToggle toggleButton_Remove;
 
     [SerializeField]
-    public ToggleButton toggleButton_Rotate;
+    public CustomToggle toggleButton_Rotate;
+
+    [SerializeField]
+    public CustomToggle toggleTerrain;
 }

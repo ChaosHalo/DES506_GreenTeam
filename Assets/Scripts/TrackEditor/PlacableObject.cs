@@ -12,7 +12,9 @@ public class PlacableObject : MonoBehaviour
     [SerializeField]
     internal AutoRotate autoRotate;
 
+    [SerializeField]
     internal bool canScale = true;
+    [SerializeField]
     private float scaleSpeed = 0.01f;
 
     // scale presets
@@ -25,11 +27,11 @@ public class PlacableObject : MonoBehaviour
 
     private void Awake()
     {
-        scaleOriginal = transform.localScale;
+        scaleOriginal = transform.parent.localScale;
         scaleSmall = scaleOriginal * multiSmall;
-        scaleSmall.z = scaleOriginal.z;
+        scaleSmall.y = scaleOriginal.y;
         scaleLarge = scaleOriginal * multiLarge;
-        scaleLarge.z = scaleOriginal.z;
+        scaleLarge.y = scaleOriginal.y;
         scaleNext = scaleLarge;
 
         inputManager = FindObjectOfType<InputManager>();
@@ -45,17 +47,17 @@ public class PlacableObject : MonoBehaviour
         if (canScale == false)
             return;
 
-        transform.localScale = Vector3.MoveTowards(transform.localScale, scaleNext, scaleSpeed * Time.deltaTime);
+        transform.parent.localScale = Vector3.MoveTowards(transform.parent.localScale, scaleNext, scaleSpeed * Time.deltaTime);
 
-        if (transform.localScale == scaleLarge)
+        if (transform.parent.localScale == scaleLarge)
             scaleNext = scaleSmall;
-        if (transform.localScale == scaleSmall)
+        if (transform.parent.localScale == scaleSmall)
             scaleNext = scaleLarge;
     }
 
     internal void StopScaling()
     {
         canScale = false;
-        transform.localScale = scaleOriginal;
+        transform.parent.localScale = scaleOriginal;
     }
 }

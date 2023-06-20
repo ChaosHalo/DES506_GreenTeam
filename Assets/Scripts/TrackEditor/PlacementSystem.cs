@@ -48,7 +48,7 @@ public class PlacementSystem : MonoBehaviour
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new PlaceState(ID, grid, database, terrainData, trackData, objectPlacer, previewSystem, this);
+        buildingState = new State_PlaceTrack(ID, grid, database, terrainData, trackData, objectPlacer, previewSystem, this);
 
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
@@ -61,7 +61,7 @@ public class PlacementSystem : MonoBehaviour
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new RemoveState(grid, terrainData, trackData, objectPlacer, previewSystem, uiManager, this);
+        buildingState = new State_RemoveTrack(grid, terrainData, trackData, objectPlacer, previewSystem, uiManager, this);
 
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
@@ -74,7 +74,20 @@ public class PlacementSystem : MonoBehaviour
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new RotateState(grid, database, terrainData, trackData, objectPlacer, previewSystem, uiManager, this);
+        buildingState = new State_RotateTrack(grid, database, terrainData, trackData, objectPlacer, previewSystem, uiManager, this);
+
+        inputManager.OnRelease += PerformAction;
+        inputManager.OnExit += EndCurrentState;
+    }
+
+    public void StartTerrain(int ID)
+    {
+        EndCurrentState();
+
+        if (gridVisualAlwaysOn == false)
+            gridVisualisation.SetActive(true);
+
+        buildingState = new State_PlaceTerrain(ID, grid, database, terrainData, trackData, objectPlacer, previewSystem, this);
 
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;

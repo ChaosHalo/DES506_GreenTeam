@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateState : IBuildingState
+public class State_RotateTrack : IBuildingState
 {
     private int gameObjectIndex = -1;
     Grid grid;
@@ -15,7 +15,7 @@ public class RotateState : IBuildingState
     UIManager uiManager;
     PlacementSystem placementSystem;
 
-    public RotateState(Grid grid,
+    public State_RotateTrack(Grid grid,
                          ObjectsDatabaseSO database,
                          GridData terrainData,
                          GridData trackData,
@@ -35,6 +35,13 @@ public class RotateState : IBuildingState
 
         previewSystem.StartShowingRemovePreview();
         uiManager.toggleButton_Rotate.ToggleButtons();
+
+        // immediately cancel remove state if no objects are avaiable to remove
+        if (objectPlacer.AreObjectsAvailable() == false)
+        {
+            placementSystem.EndCurrentState();
+            uiManager.toggleButton_Rotate.ResetButtons();
+        }
     }
 
     public void EndState()

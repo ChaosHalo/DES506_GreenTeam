@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaceState : IBuildingState
+public class State_PlaceTrack : IBuildingState
 {
     private int selectedObjectIndex = -1;
     int ID;
@@ -16,7 +16,7 @@ public class PlaceState : IBuildingState
     PlacementSystem placementSystem;
 
 
-    public PlaceState(int iD,
+    public State_PlaceTrack(int iD,
                           Grid grid,
                           ObjectsDatabaseSO database,
                           GridData terrainData,
