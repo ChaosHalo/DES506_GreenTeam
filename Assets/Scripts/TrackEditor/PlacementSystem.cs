@@ -74,7 +74,7 @@ public class PlacementSystem : MonoBehaviour
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new RotateState(grid, terrainData, trackData, objectPlacer, previewSystem, uiManager, this);
+        buildingState = new RotateState(grid, database, terrainData, trackData, objectPlacer, previewSystem, uiManager, this);
 
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
@@ -108,9 +108,9 @@ public class PlacementSystem : MonoBehaviour
             return;
 
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
-        Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+        inputManager.gridCellPos = grid.WorldToCell(mousePosition);
         inputManager.mouseWorldPos = mousePosition;
-        inputManager.gridWorldPos=grid.CellToWorld(gridPosition);
+        inputManager.gridWorldPos=grid.CellToWorld(inputManager.gridCellPos);
 
         // adjust for object pivot point offset
         mousePosition.x -= 50;
@@ -118,7 +118,7 @@ public class PlacementSystem : MonoBehaviour
 
         // snap if over placable grid
         // do not snap if outside of placable grid
-        Vector3 newPreviewPosition = inputManager.isWithinPlacementBounds ? grid.CellToWorld(gridPosition) : mousePosition;
+        Vector3 newPreviewPosition = inputManager.isWithinPlacementBounds ? grid.CellToWorld(inputManager.gridCellPos) : mousePosition;
 
         buildingState.UpdateState(newPreviewPosition, inputManager.isWithinPlacementBounds);
     }

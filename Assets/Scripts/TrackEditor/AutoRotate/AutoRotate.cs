@@ -17,6 +17,9 @@ public class AutoRotate : MonoBehaviour
     internal bool connectionUp = false;
 
     [SerializeField]
+    private int rotationState = 0;
+    internal int GetRotationState() { return rotationState; }
+    [SerializeField]
     internal List<Vector3> rotations = new List<Vector3>();
 
     private void FixedUpdate()
@@ -67,23 +70,30 @@ public class AutoRotate : MonoBehaviour
 
     private void UpdatePlacementRotation()
     {
-        Vector3 newRotation = new(-1, -1, -1);
-        Vector3 nullRotation = new(-1, -1, -1);
-
-        newRotation = GetTrackRotation();
-
-        if (newRotation != nullRotation)
-            transform.parent.localRotation = Quaternion.Euler(newRotation);
+        SetRotationState(CalculateAutoRotationState());
     }
 
-    internal virtual Vector3 GetTrackRotation()
+    internal virtual int CalculateAutoRotationState()
     {
-        return new Vector3(-1, -1, -1);
+        return -1;
+    }
+
+    internal void SetRotationState(int state)
+    {
+        if (state == -1)
+            return;
+
+        rotationState = state;
+        transform.parent.localRotation = Quaternion.Euler(rotations[state]);
     }
 
     bool RayCastCheck(Vector3 direction)
     {
-        RaycastHit[] hits = Physics.RaycastAll(transform.parent.position + direction * 40, direction, 60);
+        Vector3 startPos = placableObject.inputManager.gridWorldPos;
+        startPos.x += 50;
+        startPos.z += 50;
+
+        RaycastHit[] hits = Physics.RaycastAll(startPos + direction * 40, direction, 60);
         foreach (RaycastHit hit in hits)
         {
             if (hit.collider != null)

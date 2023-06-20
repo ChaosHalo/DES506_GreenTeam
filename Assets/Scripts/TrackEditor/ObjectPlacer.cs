@@ -44,12 +44,23 @@ public class ObjectPlacer : MonoBehaviour
         return false;
     }
 
-    internal void RotateObjectAt(int gameObjectIndex)
+    // return new rotation state
+    internal int RotateObjectAt(int gameObjectIndex)
     {
         if (placedObjects.Count <= gameObjectIndex || placedObjects[gameObjectIndex] == null)
-            return;
+            return -1;
 
-        GameObject objectToRotate = placedObjects[gameObjectIndex].transform.GetChild(1).gameObject;
-        objectToRotate.transform.Rotate(0, 90, 0);
+        AutoRotate objectToRotate = placedObjects[gameObjectIndex].GetComponentInChildren<AutoRotate>();
+
+        if (objectToRotate == null)
+            return -1;
+
+        int newState = objectToRotate.GetRotationState();
+        newState++;
+        if (newState > 3)
+            newState = 0;
+
+        objectToRotate.SetRotationState(newState);
+        return newState;
     }
 }

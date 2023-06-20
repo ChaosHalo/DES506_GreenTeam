@@ -68,12 +68,12 @@ public class PlaceState : IBuildingState
 
 
         GridData selectedData = database.objectsData[selectedObjectIndex].objectType == ObjectData.Type.Terrain ? terrainData : trackData;
-
         selectedData.AddObjectAt(gridPosition,
                                  database.objectsData[selectedObjectIndex].Size,
                                  database.objectsData[selectedObjectIndex].ID,
                                  ((int)database.objectsData[selectedObjectIndex].objectType),
-                                 index);
+                                 index,
+                                 GetCurrentPreviewRotationState());
 
         previewSystem.UpdatePreview(grid.CellToWorld(gridPosition), false);
 
@@ -83,8 +83,15 @@ public class PlaceState : IBuildingState
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {
         GridData selectedData = database.objectsData[selectedObjectIndex].objectType == ObjectData.Type.Terrain ? terrainData : trackData;
+        return selectedData.CanPlaceObejctAt(gridPosition, database.objectsData[selectedObjectIndex].Size, GetCurrentPreviewRotationState());
+    }
 
-        return selectedData.CanPlaceObejctAt(gridPosition, database.objectsData[selectedObjectIndex].Size);
+    private int GetCurrentPreviewRotationState()
+    {
+        int rotationState = 0;
+        if (previewSystem.previewObjectRotation)
+            rotationState = previewSystem.previewObjectRotation.GetRotationState();
+        return rotationState;
     }
 
     public void UpdateState(Vector3 position, bool isWithinBounds)

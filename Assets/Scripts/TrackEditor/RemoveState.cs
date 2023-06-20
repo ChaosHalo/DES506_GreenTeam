@@ -51,7 +51,7 @@ public class RemoveState : IBuildingState
     {
         GridData selectedData = null;
 
-        if(trackData.CanPlaceObejctAt(gridPosition, Vector2Int.one) == false)
+        if(trackData.CanPlaceObejctAt(gridPosition, Vector2Int.one, 0) == false)
         {
             selectedData = trackData;
         }
@@ -87,7 +87,7 @@ public class RemoveState : IBuildingState
 
     private bool CheckIfSelectionIsValid(Vector3Int gridPosition)
     {
-        return !(trackData.CanPlaceObejctAt(gridPosition, Vector2Int.one) && terrainData.CanPlaceObejctAt(gridPosition, Vector2Int.one));
+        return !(trackData.CanPlaceObejctAt(gridPosition, Vector2Int.one, 0) && terrainData.CanPlaceObejctAt(gridPosition, Vector2Int.one, 0));
     }
 
     public void UpdateState(Vector3 position, bool isWithinBounds)

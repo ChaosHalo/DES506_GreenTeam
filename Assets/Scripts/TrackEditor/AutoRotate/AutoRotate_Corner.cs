@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class AutoRotate_Corner : AutoRotate
 {
-    internal override Vector3 GetTrackRotation()
+    internal override int CalculateAutoRotationState()
     {
-        Vector3 rot = new(-1, -1, -1);
+        int state = -1;
 
         //LEFT
         if (connectionLeft)
         {
             if (mouseInBottomHalf)
-                rot = rotations[0];
+                state = 3;
             else
-                rot = rotations[1];
+                state = 2;
         }
 
         // RIGHT
         if (connectionRight)
         {
             if (mouseInBottomHalf)
-                rot = rotations[3];
+                state = 0;
             else
-                rot = rotations[2];
+                state = 1;
         }
 
         // DOWN
@@ -31,14 +31,14 @@ public class AutoRotate_Corner : AutoRotate
         {
             // down-left corner
             if (connectionLeft && !connectionRight)
-                rot = rotations[1];
+                state = 2;
             // down-right corner
             else if (!connectionLeft && connectionRight)
-                rot = rotations[2];
+                state = 1;
             else if (mouseInRightHalf)
-                rot = rotations[2];
+                state = 1;
             else
-                rot = rotations[1];
+                state = 2;
         }
 
         // UP
@@ -46,16 +46,16 @@ public class AutoRotate_Corner : AutoRotate
         {
             // down-left corner
             if (connectionLeft && !connectionRight)
-                rot = rotations[0];
+                state = 3;
             // down-right corner
             else if (!connectionLeft && connectionRight)
-                rot = rotations[3];
+                state = 0;
             else if (mouseInRightHalf)
-                rot = rotations[3];
+                state = 0;
             else
-                rot = rotations[0];
+                state = 3;
         }
 
-        return rot;
+        return state;
     }
 }

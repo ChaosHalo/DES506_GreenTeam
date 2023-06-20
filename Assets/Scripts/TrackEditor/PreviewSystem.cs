@@ -12,6 +12,9 @@ public class PreviewSystem : MonoBehaviour
     private GameObject previewObject;
 
     [SerializeField]
+    internal AutoRotate previewObjectRotation;
+
+    [SerializeField]
     private Material previewMaterialsPrefab;
     private Material previewMaterialInstance;
 
@@ -25,6 +28,7 @@ public class PreviewSystem : MonoBehaviour
     {
         // set new preview indicator
         previewObject = Instantiate(prefab);
+        previewObjectRotation=previewObject.GetComponentInChildren<AutoRotate>();
         PreparePreview(previewObject);
     }
 

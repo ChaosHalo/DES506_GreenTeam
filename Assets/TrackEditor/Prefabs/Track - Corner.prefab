@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1193929985250286441}
   m_Layer: 0
-  m_Name: Track - Curve 1
+  m_Name: Track - Corner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -358,6 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputManager: {fileID: 0}
+  autoRotate: {fileID: 8558136299042716532}
 --- !u!114 &8558136299042716532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,11 +372,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placableObject: {fileID: 222286086215122413}
+  rotationState: 0
   rotations:
-  - {x: 0, y: -90, z: 0}
-  - {x: 0, y: 180, z: 0}
-  - {x: 0, y: 90, z: 0}
   - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 90, z: 0}
+  - {x: 0, y: 180, z: 0}
+  - {x: 0, y: -90, z: 0}
 --- !u!54 &6998280033111331199
 Rigidbody:
   m_ObjectHideFlags: 0

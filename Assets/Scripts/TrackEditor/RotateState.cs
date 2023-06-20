@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ public class RotateState : IBuildingState
 {
     private int gameObjectIndex = -1;
     Grid grid;
+    ObjectsDatabaseSO database;
     GridData terrainData;
     GridData trackData;
     ObjectPlacer objectPlacer;
@@ -14,6 +16,7 @@ public class RotateState : IBuildingState
     PlacementSystem placementSystem;
 
     public RotateState(Grid grid,
+                         ObjectsDatabaseSO database,
                          GridData terrainData,
                          GridData trackData,
                          ObjectPlacer objectPlacer,
@@ -22,6 +25,7 @@ public class RotateState : IBuildingState
                          PlacementSystem placementSystem)
     {
         this.grid = grid;
+        this.database = database;
         this.terrainData = terrainData;
         this.trackData = trackData;
         this.objectPlacer = objectPlacer;
@@ -43,14 +47,10 @@ public class RotateState : IBuildingState
     {
         GridData selectedData = null;
 
-        if (trackData.CanPlaceObejctAt(gridPosition, Vector2Int.one) == false)
+        if (trackData.CanPlaceObejctAt(gridPosition, Vector2Int.one, 0) == false)
         {
             selectedData = trackData;
         }
-        //else if(terrainData.CanPlaceObejctAt(gridPosition, Vector2Int.one) == false)
-        //{
-        //    selectedData = terrainData;
-        //}
 
         if (selectedData == null)
         {
@@ -63,7 +63,27 @@ public class RotateState : IBuildingState
         if (gameObjectIndex == -1)
             return;
 
-        objectPlacer.RotateObjectAt(gameObjectIndex);
+        int newRotationState = objectPlacer.RotateObjectAt(gameObjectIndex);
+        if (newRotationState != -1)
+        {
+            PlacementData existingData = selectedData.GetObjectDataAt(gridPosition);
+            selectedData.RemoveObjectAt(gridPosition);
+            selectedData.AddObjectAt(gridPosition,
+                                     existingData.Size,
+                                     existingData.ID,
+                                     existingData.objectType,
+                                     gameObjectIndex,
+                                     newRotationState);
+        }
+        //{
+        //    selectedData.RemoveObjectAt(gridPosition);
+        //    selectedData.AddObjectAt(gridPosition,
+        //                         database.objectsData[gameObjectIndex].Size,
+        //                         database.objectsData[gameObjectIndex].ID,
+        //                         ((int)database.objectsData[gameObjectIndex].objectType),
+        //                         gameObjectIndex,
+        //                         newRotationState);
+        //}
 
         Vector3 cellPosition = grid.CellToWorld(gridPosition);
         previewSystem.UpdatePreview(cellPosition, CheckIfSelectionIsValid(gridPosition));
@@ -71,7 +91,7 @@ public class RotateState : IBuildingState
 
     private bool CheckIfSelectionIsValid(Vector3Int gridPosition)
     {
-        return !(trackData.CanPlaceObejctAt(gridPosition, Vector2Int.one) && terrainData.CanPlaceObejctAt(gridPosition, Vector2Int.one));
+        return !(trackData.CanPlaceObejctAt(gridPosition, Vector2Int.one, 0) && terrainData.CanPlaceObejctAt(gridPosition, Vector2Int.one, 0));
     }
 
     public void UpdateState(Vector3 position, bool isWithinBounds)

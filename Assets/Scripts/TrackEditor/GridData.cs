@@ -11,10 +11,11 @@ public class GridData
                           Vector2Int objectSize,
                           int ID,
                           int type,
-                          int placedObjectIndex)
+                          int placedObjectIndex,
+                          int rotationState)
     {
-        List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
-        PlacementData data = new PlacementData(positionToOccupy, ID, type, placedObjectIndex);
+        List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize, rotationState);
+        PlacementData data = new PlacementData(positionToOccupy, ID, type, placedObjectIndex, rotationState, objectSize);
         foreach (var pos in positionToOccupy)
         {
             if (placedObjects.ContainsKey(pos))
@@ -23,22 +24,44 @@ public class GridData
         }
     }
 
-    private List<Vector3Int> CalculatePositions(Vector3Int gridPosition, Vector2Int objectSize)
+    private List<Vector3Int> CalculatePositions(Vector3Int gridPosition, Vector2Int objectSize, int rotationState)
     {
         List<Vector3Int> returnVal = new();
         for (int x = 0; x < objectSize.x; x++)
         {
             for (int y = 0; y < objectSize.y; y++)
             {
-                returnVal.Add(gridPosition + new Vector3Int(x, 0, y));
+                int newX = 0;
+                int newY = 0;
+
+                switch (rotationState)
+                {
+                    case 0:
+                        newX = x;
+                        newY = y;
+                        break;
+                    case 1:
+                        newX = y;
+                        newY = -x;
+                        break;
+                    case 2:
+                        newX = -x;
+                        newY = -y;
+                        break;
+                    case 3:
+                        newX = -y;
+                        newY = x;
+                        break;
+                }
+                returnVal.Add(gridPosition + new Vector3Int(newX, 0, newY));
             }
         }
         return returnVal;
     }
 
-    public bool CanPlaceObejctAt(Vector3Int gridPosition, Vector2Int objectSize)
+    public bool CanPlaceObejctAt(Vector3Int gridPosition, Vector2Int objectSize, int rotationState)
     {
-        List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize);
+        List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize, rotationState);
         foreach (var pos in positionToOccupy)
         {
             if (placedObjects.ContainsKey(pos))
@@ -62,6 +85,11 @@ public class GridData
             placedObjects.Remove(pos);
         }
     }
+
+    internal PlacementData GetObjectDataAt(Vector3Int gridPosition)
+    {
+        return placedObjects[gridPosition];
+    }
 }
 
 public class PlacementData
@@ -70,14 +98,18 @@ public class PlacementData
     public int ID { get; private set; }
     public int objectType { get; private set; }
     public int PlacedObjectIndex { get; private set; }
+    public int RotationState { get; private set; }
+    public Vector2Int Size { get; private set; }
 
 
-    public PlacementData(List<Vector3Int> occupiedPositions, int iD, int type, int placedObjectIndex)
+    public PlacementData(List<Vector3Int> occupiedPositions, int iD, int type, int placedObjectIndex, int rotationState, Vector2Int size)
     {
         this.occupiedPositions = occupiedPositions;
         ID = iD;
         objectType = type;
         PlacedObjectIndex = placedObjectIndex;
+        RotationState = rotationState;
+        Size = size;
     }
 
 

@@ -26,6 +26,9 @@ public class InputManager : MonoBehaviour
     public Vector3 gridWorldPos;
 
     [SerializeField]
+    public Vector3Int gridCellPos;
+
+    [SerializeField]
     public Vector3 mouseWorldPos;
 
 

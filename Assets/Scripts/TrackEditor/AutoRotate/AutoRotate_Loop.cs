@@ -1,36 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.MemoryProfiler;
 using UnityEngine;
 
-public class AutoRotate_Straight : AutoRotate
+public class AutoRotate_Loop : AutoRotate
 {
-    internal override Vector3 GetTrackRotation()
+    internal override int CalculateAutoRotationState()
     {
-        Vector3 rot = new(-1, -1, -1);
+        int state = -1;
 
         //LEFT
         if (connectionLeft)
         {
-            rot = rotations[0];
+            state = 2;
         }
 
         // RIGHT
         if (connectionRight)
         {
-            rot = rotations[1];
+            state = 0;
         }
 
         // UP
         if (connectionUp)
         {
-            rot = rotations[3];
+            state = 3;
         }
 
         // DOWN
         if (connectionDown)
         {
-            rot = rotations[2];
+            state = 1;
         }
 
 
@@ -76,16 +75,16 @@ public class AutoRotate_Straight : AutoRotate
 
                 // apply rotation in direction of shortest distance
                 if (shortestDistance == distanceToLeft)
-                    rot = rotations[0];
+                    state = 2;
                 else if (shortestDistance == distanceToRight)
-                    rot = rotations[1];
+                    state = 0;
                 else if (shortestDistance == distanceToUp)
-                    rot = rotations[2];
+                    state = 3;
                 else if (shortestDistance == distanceToDown)
-                    rot = rotations[3];
+                    state = 1;
             }
         }
 
-        return rot;
+        return state;
     }
 }

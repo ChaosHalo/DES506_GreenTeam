@@ -9,6 +9,8 @@ public class PlacableObject : MonoBehaviour
 {
     [SerializeField]
     internal InputManager inputManager;
+    [SerializeField]
+    internal AutoRotate autoRotate;
 
     internal bool canScale = true;
     private float scaleSpeed = 0.01f;
