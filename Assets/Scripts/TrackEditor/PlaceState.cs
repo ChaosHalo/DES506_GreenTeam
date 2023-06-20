@@ -40,7 +40,7 @@ public class PlaceState : IBuildingState
         if (selectedObjectIndex > -1)
         {
             // set new preview indicator
-            previewSystem.SetNewPreview(database.objectsData[selectedObjectIndex].Prefab, database.objectsData[selectedObjectIndex].Size);
+            previewSystem.SetNewPreview(database.objectsData[selectedObjectIndex].Prefab, database.objectsData[selectedObjectIndex].Size, placementSystem);
         }
         else
         {

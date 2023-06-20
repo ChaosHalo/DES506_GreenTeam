@@ -10,33 +10,33 @@ public class RotateState : IBuildingState
     GridData trackData;
     ObjectPlacer objectPlacer;
     PreviewSystem previewSystem;
+    UIManager uiManager;
     PlacementSystem placementSystem;
-    ToggleButton toggleButton;
 
     public RotateState(Grid grid,
                          GridData terrainData,
                          GridData trackData,
                          ObjectPlacer objectPlacer,
                          PreviewSystem previewSystem,
-                         PlacementSystem placementSystem,
-                         ToggleButton toggleButton)
+                         UIManager uIManager,
+                         PlacementSystem placementSystem)
     {
         this.grid = grid;
         this.terrainData = terrainData;
         this.trackData = trackData;
         this.objectPlacer = objectPlacer;
         this.previewSystem = previewSystem;
+        this.uiManager = uIManager;
         this.placementSystem = placementSystem;
-        this.toggleButton = toggleButton;
 
         previewSystem.StartShowingRemovePreview();
-        toggleButton.ToggleButtons();
+        uiManager.toggleButton_Rotate.ToggleButtons();
     }
 
     public void EndState()
     {
         previewSystem.StopShowingPreview();
-        toggleButton.ResetButtons();
+        uiManager.toggleButton_Rotate.ResetButtons();
     }
 
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)

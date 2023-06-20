@@ -21,7 +21,7 @@ public class PreviewSystem : MonoBehaviour
         previewMaterialInstance = new Material(previewMaterialsPrefab);
     }
 
-    public void SetNewPreview(GameObject prefab, Vector2Int size)
+    public void SetNewPreview(GameObject prefab, Vector2Int size, PlacementSystem placementSystem)
     {
         // set new preview indicator
         previewObject = Instantiate(prefab);

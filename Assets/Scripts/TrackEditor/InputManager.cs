@@ -22,6 +22,13 @@ public class InputManager : MonoBehaviour
     internal bool isWithinPlacementBounds { get; private set; }
 
 
+    [SerializeField]
+    public Vector3 gridWorldPos;
+
+    [SerializeField]
+    public Vector3 mouseWorldPos;
+
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -30,6 +37,8 @@ public class InputManager : MonoBehaviour
             OnRelease?.Invoke();
         if (Input.GetKeyDown(KeyCode.Escape))
             OnExit?.Invoke();
+
+        //Debug.Log(mouseWorldPos + " ::::: " + gridWorldPos);
     }
 
 

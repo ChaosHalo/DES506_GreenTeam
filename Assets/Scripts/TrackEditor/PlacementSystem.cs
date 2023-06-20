@@ -26,10 +26,7 @@ public class PlacementSystem : MonoBehaviour
     private PreviewSystem previewSystem;
 
     [SerializeField]
-    private ToggleButton toggleButton_Remove;
-
-    [SerializeField]
-    private ToggleButton toggleButton_Rotate;
+    private UIManager uiManager;
 
     [SerializeField]
     private bool gridVisualAlwaysOn = false;
@@ -64,7 +61,7 @@ public class PlacementSystem : MonoBehaviour
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new RemoveState(grid, terrainData, trackData, objectPlacer, previewSystem, this, toggleButton_Remove);
+        buildingState = new RemoveState(grid, terrainData, trackData, objectPlacer, previewSystem, uiManager, this);
 
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
@@ -77,7 +74,7 @@ public class PlacementSystem : MonoBehaviour
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new RotateState(grid, terrainData, trackData, objectPlacer, previewSystem, this, toggleButton_Rotate);
+        buildingState = new RotateState(grid, terrainData, trackData, objectPlacer, previewSystem, uiManager, this);
 
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
@@ -112,6 +109,8 @@ public class PlacementSystem : MonoBehaviour
 
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+        inputManager.mouseWorldPos = mousePosition;
+        inputManager.gridWorldPos=grid.CellToWorld(gridPosition);
 
         // adjust for object pivot point offset
         mousePosition.x -= 50;

@@ -12,39 +12,39 @@ public class RemoveState : IBuildingState
     ObjectPlacer objectPlacer;
     PreviewSystem previewSystem;
     PlacementSystem placementSystem;
-    ToggleButton toggleButton;
+    UIManager uiManager;
 
     public RemoveState(Grid grid,
                          GridData terrainData,
                          GridData trackData,
                          ObjectPlacer objectPlacer,
                          PreviewSystem previewSystem,
-                         PlacementSystem placementSystem,
-                         ToggleButton toggleButton)
+                         UIManager uiManager,
+                         PlacementSystem placementSystem)
     {
         this.grid = grid;
         this.terrainData = terrainData;
         this.trackData = trackData;
         this.objectPlacer = objectPlacer;
         this.previewSystem = previewSystem;
+        this.uiManager = uiManager;
         this.placementSystem = placementSystem;
-        this.toggleButton = toggleButton;
 
         previewSystem.StartShowingRemovePreview();
-        toggleButton.ToggleButtons();
+        uiManager.toggleButton_Remove.ToggleButtons();
 
         // immediately cancel remove state if no objects are avaiable to remove
         if (objectPlacer.AreObjectsAvailable() == false)
         {
             placementSystem.EndCurrentState();
-            toggleButton.ResetButtons();
+            uiManager.toggleButton_Remove.ResetButtons();
         }
     }
 
     public void EndState()
     {
         previewSystem.StopShowingPreview();
-        toggleButton.ResetButtons();
+        uiManager.toggleButton_Remove.ResetButtons();
     }
 
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
@@ -81,7 +81,7 @@ public class RemoveState : IBuildingState
         if (objectPlacer.AreObjectsAvailable() == false)
         {
             placementSystem.EndCurrentState();
-            toggleButton.ResetButtons();
+            uiManager.toggleButton_Remove.ResetButtons();
         }
     }
 
