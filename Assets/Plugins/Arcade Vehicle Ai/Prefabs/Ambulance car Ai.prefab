@@ -247,7 +247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1903653338160345961
 Transform:
   m_ObjectHideFlags: 0
@@ -255,8 +255,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903653338160345958}
-  m_LocalRotation: {x: -0.07666034, y: 0.29487205, z: -0.023740727, w: -0.9521607}
-  m_LocalPosition: {x: 3.4871063, y: 1, z: -5.090089}
+  m_LocalRotation: {x: -0.05674696, y: 0.7048261, z: -0.05674696, w: -0.7048261}
+  m_LocalPosition: {x: 6.169999, y: -0.29999995, z: -0.0000009536743}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -282,10 +282,10 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1903653338248287775}
-  m_Follow: {fileID: 1903653338248287775}
+  m_LookAt: {fileID: 543450651920981801}
+  m_Follow: {fileID: 543450651920981801}
   m_Lens:
-    FieldOfView: 80
+    FieldOfView: 70
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -333,9 +333,11 @@ GameObject:
   - component: {fileID: 1903653338248287768}
   - component: {fileID: 1903653338248287769}
   - component: {fileID: 5129761818152956078}
+  - component: {fileID: 1123858328}
+  - component: {fileID: 1123858329}
   m_Layer: 7
   m_Name: Ambulance car Ai
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -358,7 +360,7 @@ Transform:
   - {fileID: 1903653338160345961}
   - {fileID: 1903653338710834719}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1903653338248287772
 BoxCollider:
@@ -406,7 +408,7 @@ MonoBehaviour:
   drivableSurface:
     serializedVersion: 2
     m_Bits: 64
-  MaxSpeed: 100
+  MaxSpeed: 60
   accelaration: 15
   turn: 15
   rb: {fileID: 1903653339075488197}
@@ -728,7 +730,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: bb576e669e12d97479dccedb38ac9236, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -809,6 +811,51 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &1123858328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903653338248287766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f131dd35d296fca4e90efc4ed717e48b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  OffSet: {x: 0, y: 0, z: 0}
+  iconData: {fileID: 11400000, guid: 44a9a005006fac54c8333e0f70f69f37, type: 2}
+  ShowCircleArea: 0
+  CircleAreaRadius: 10
+  CircleAreaColor: {r: 1, g: 1, b: 1, a: 0.9}
+  isInteractable: 0
+  interacableAction: 0
+  InfoItem: This is a Bot
+  keepTextAlwaysFacingUp: 0
+  OffScreen: 1
+  opacityBasedDistance: 1
+  maxDistance: 250
+  iconFaceDirection: 0
+  DestroyWithObject: 0
+  BorderOffScreen: 0
+  RenderDelay: 0.5
+  m_Effect: 2
+  CustomIconPrefab: {fileID: 0}
+--- !u!114 &1123858329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903653338248287766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 416fa2120344d4e91902c7f8d5ebb7ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RankList: 
+  TimeForOneLapList: []
 --- !u!1 &1903653338370321294
 GameObject:
   m_ObjectHideFlags: 0
@@ -21251,6 +21298,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: f0226beb212d1f9408a44ce161cc2c8f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 66e3c465dba4a4977848b91945831047, type: 2}
     - target: {fileID: 919132149155446097, guid: f0226beb212d1f9408a44ce161cc2c8f,
         type: 3}
       propertyPath: m_Name
