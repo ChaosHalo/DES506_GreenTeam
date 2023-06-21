@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class ArcadeAiVehicleController : MonoBehaviour
 {
     public enum groundCheck { rayCast, sphereCaste };

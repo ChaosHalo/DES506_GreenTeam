@@ -22,7 +22,7 @@ namespace Lovatto.MiniMap
         {
             get
             {
-                if(_miniMapSize == null)
+                if (_miniMapSize == null)
                 {
                     _miniMapSize = GetComponentInChildren<bl_MiniMapSize>(true);
                 }
@@ -85,7 +85,7 @@ namespace Lovatto.MiniMap
             settings.Target = targetIcon.transform;
             settings.ItemEffect = ItemEffect.None;
             settings.Interactable = false;
-            
+
             targetIcon.SetIconSettings(settings);
         }
 
@@ -121,7 +121,7 @@ namespace Lovatto.MiniMap
         {
             get
             {
-                if(_minimap == null)
+                if (_minimap == null)
                 {
                     _minimap = GetComponentInParent<bl_MiniMap>();
                 }

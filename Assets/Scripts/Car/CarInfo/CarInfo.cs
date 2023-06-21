@@ -34,7 +34,14 @@ public class CarInfo : ICarInfo
     /// <value></value>
     [field: SerializeField]
     public float OffRoad { get; set; }
+    /// <summary>
+    /// 车辆出生点
+    /// </summary>
+    /// <value></value>
+    [field: SerializeField]
+    public GameObject StartPoint { get; set; }
     public List<int> Rank { get; }
     public List<float> TimeForOneLapList { get; }
+
 }
 

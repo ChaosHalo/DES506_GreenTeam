@@ -21,4 +21,5 @@ public interface ICarInfo
     /// </summary>
     /// <value></value>
     List<float> TimeForOneLapList { get; }
+    GameObject StartPoint { get; }
 }
