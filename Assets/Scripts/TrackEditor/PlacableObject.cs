@@ -11,6 +11,8 @@ public class PlacableObject : MonoBehaviour
     internal InputManager inputManager;
     [SerializeField]
     internal AutoRotate autoRotate;
+    [SerializeField]
+    private GameObject lockedIndicator;
 
     [SerializeField]
     internal bool canScale = true;
@@ -59,5 +61,11 @@ public class PlacableObject : MonoBehaviour
     {
         canScale = false;
         transform.parent.localScale = scaleOriginal;
+    }
+
+    internal void SetModifyable(bool canModify)
+    {
+        if (canModify == false)
+            lockedIndicator.SetActive(true);
     }
 }

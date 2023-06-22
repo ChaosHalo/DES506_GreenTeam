@@ -2,14 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlacementSystem : MonoBehaviour
 {
-
     [SerializeField]
     private InputManager inputManager;
+
     [SerializeField]
     private Grid grid;
+
+    [SerializeField]
+    private int gridSize = 10;
 
     [SerializeField]
     private ObjectsDatabaseSO database;
@@ -29,6 +33,9 @@ public class PlacementSystem : MonoBehaviour
     private UIManager uiManager;
 
     [SerializeField]
+    private CurrencyManager currencyManager;
+
+    [SerializeField]
     private bool gridVisualAlwaysOn = false;
 
     IBuildingState buildingState;
@@ -39,6 +46,15 @@ public class PlacementSystem : MonoBehaviour
         EndCurrentState();
         terrainData = new();
         trackData = new();
+        GenerateWorld();
+    }
+
+    public void GenerateWorld()
+    {
+        buildingState = new State_GenerateWorld(terrainData, trackData, database, grid, objectPlacer, 10);
+        inputManager.OnRelease += PerformAction;
+        inputManager.OnExit += EndCurrentState;
+        EndCurrentState();
     }
 
     public void StartPlacement(int ID)
@@ -48,7 +64,7 @@ public class PlacementSystem : MonoBehaviour
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new State_PlaceTrack(ID, grid, database, terrainData, trackData, objectPlacer, previewSystem, this);
+        buildingState = new State_PlaceTrack(ID, grid, database, terrainData, trackData, objectPlacer, previewSystem, this, currencyManager);
 
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
@@ -61,7 +77,7 @@ public class PlacementSystem : MonoBehaviour
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new State_RemoveTrack(grid, terrainData, trackData, objectPlacer, previewSystem, uiManager, this);
+        buildingState = new State_RemoveTrack(grid, terrainData, trackData, objectPlacer, previewSystem, uiManager, this, currencyManager);
 
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
@@ -87,7 +103,7 @@ public class PlacementSystem : MonoBehaviour
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new State_PlaceTerrain(ID, grid, database, terrainData, trackData, objectPlacer, previewSystem, this);
+        buildingState = new State_PlaceTerrain(ID, grid, database, terrainData, trackData, objectPlacer, previewSystem, this, currencyManager);
 
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
@@ -117,6 +133,10 @@ public class PlacementSystem : MonoBehaviour
 
     void Update()
     {
+        // TEMP - allow scene reload
+        if (Input.GetKeyDown(KeyCode.R))
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
         if (buildingState == null)
             return;
 

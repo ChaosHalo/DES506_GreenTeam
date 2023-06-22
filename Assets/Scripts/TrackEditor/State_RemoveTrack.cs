@@ -13,6 +13,7 @@ public class State_RemoveTrack : IBuildingState
     PreviewSystem previewSystem;
     PlacementSystem placementSystem;
     UIManager uiManager;
+    CurrencyManager currencyManager;
 
     public State_RemoveTrack(Grid grid,
                          GridData terrainData,
@@ -20,7 +21,8 @@ public class State_RemoveTrack : IBuildingState
                          ObjectPlacer objectPlacer,
                          PreviewSystem previewSystem,
                          UIManager uiManager,
-                         PlacementSystem placementSystem)
+                         PlacementSystem placementSystem,
+                         CurrencyManager currencyManager)
     {
         this.grid = grid;
         this.terrainData = terrainData;
@@ -29,6 +31,7 @@ public class State_RemoveTrack : IBuildingState
         this.previewSystem = previewSystem;
         this.uiManager = uiManager;
         this.placementSystem = placementSystem;
+        this.currencyManager = currencyManager;
 
         previewSystem.StartShowingRemovePreview();
         uiManager.toggleButton_Remove.ToggleButtons();
@@ -39,6 +42,7 @@ public class State_RemoveTrack : IBuildingState
             placementSystem.EndCurrentState();
             uiManager.toggleButton_Remove.ResetButtons();
         }
+
     }
 
     public void EndState()
@@ -55,10 +59,6 @@ public class State_RemoveTrack : IBuildingState
         {
             selectedData = trackData;
         }
-        //else if(terrainData.CanPlaceObejctAt(gridPosition, Vector2Int.one) == false)
-        //{
-        //    selectedData = terrainData;
-        //}
 
         if (selectedData == null)
         {
@@ -71,9 +71,21 @@ public class State_RemoveTrack : IBuildingState
         if (gameObjectIndex == -1)
             return;
 
+        // only allow actions for modifyable data
+        PlacementData existingData = selectedData.GetObjectDataAt(gridPosition);
+        if (existingData != null)
+            if (existingData.canModify == false)
+                return;
+
+
+        // remove object
         selectedData.RemoveObjectAt(gridPosition);
         objectPlacer.RemoveObjectAt(gameObjectIndex);
 
+        // refund currency
+        currencyManager.RefundCost(existingData.cost);
+
+        // update preview
         Vector3 cellPosition = grid.CellToWorld(gridPosition);
         previewSystem.UpdatePreview(cellPosition, CheckIfSelectionIsValid(gridPosition));
 

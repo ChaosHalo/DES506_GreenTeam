@@ -8,12 +8,14 @@ public class ObjectPlacer : MonoBehaviour
     [SerializeField]
     private List<GameObject> placedObjects = new();
 
-    public int PlaceObject(GameObject prefab, Vector3 position, Quaternion rotation)
+    public int PlaceObject(GameObject prefab, Vector3 position, Quaternion rotation, bool canModify)
     {
         GameObject newObject = Instantiate(prefab);
         newObject.transform.position = position;
         newObject.transform.GetChild(1).localRotation = rotation;
-        newObject.GetComponentInChildren<PlacableObject>().StopScaling();
+        PlacableObject placeableObject = newObject.GetComponentInChildren<PlacableObject>();
+        placeableObject.StopScaling();
+        placeableObject.SetModifyable(canModify);
         placedObjects.Add(newObject);
         return placedObjects.Count - 1;
     }

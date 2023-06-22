@@ -14,6 +14,7 @@ public class State_PlaceTrack : IBuildingState
     ObjectPlacer objectPlacer;
     PreviewSystem previewSystem;
     PlacementSystem placementSystem;
+    CurrencyManager currencyManager;
 
 
     public State_PlaceTrack(int iD,
@@ -23,7 +24,8 @@ public class State_PlaceTrack : IBuildingState
                           GridData trackData,
                           ObjectPlacer objectPlacer,
                           PreviewSystem previewSystem,
-                          PlacementSystem placementSystem)
+                          PlacementSystem placementSystem,
+                          CurrencyManager currencyManager)
     {
         ID = iD;
         this.grid = grid;
@@ -33,6 +35,7 @@ public class State_PlaceTrack : IBuildingState
         this.objectPlacer = objectPlacer;
         this.previewSystem = previewSystem;
         this.placementSystem = placementSystem;
+        this.currencyManager = currencyManager;
 
         previewSystem.StopShowingPreview();
 
@@ -46,6 +49,7 @@ public class State_PlaceTrack : IBuildingState
         {
             throw new System.Exception($"No object with ID {ID}");
         }
+
     }
 
     public void EndState()
@@ -56,27 +60,35 @@ public class State_PlaceTrack : IBuildingState
 
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
+        // check validity
         bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
-
         if (placementValidity == false || isWithinBounds == false)
         {
             placementSystem.EndCurrentState();
             return;
         }
 
-        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), previewSystem.GetCurrentRotation());
+        // check currency
+        if (currencyManager.MakePurchase(database.objectsData[selectedObjectIndex].cost) == false)
+        {
+            placementSystem.EndCurrentState();
+            return;
+        }
 
 
+        // place object
+        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), previewSystem.GetCurrentRotation(), true);
         GridData selectedData = database.objectsData[selectedObjectIndex].objectType == ObjectData.Type.Terrain ? terrainData : trackData;
         selectedData.AddObjectAt(gridPosition,
                                  database.objectsData[selectedObjectIndex].Size,
                                  database.objectsData[selectedObjectIndex].ID,
                                  ((int)database.objectsData[selectedObjectIndex].objectType),
                                  index,
-                                 GetCurrentPreviewRotationState());
+                                 GetCurrentPreviewRotationState(),
+                                 true,
+                                 database.objectsData[selectedObjectIndex].cost);
 
         previewSystem.UpdatePreview(grid.CellToWorld(gridPosition), false);
-
         placementSystem.EndCurrentState();
     }
 
@@ -97,7 +109,7 @@ public class State_PlaceTrack : IBuildingState
     public void UpdateState(Vector3 position, bool isWithinBounds)
     {
         bool placementValidity = false;
-        if(isWithinBounds)
+        if(isWithinBounds && currencyManager.CanAfford(database.objectsData[selectedObjectIndex].cost))
         {
             placementValidity = CheckPlacementValidity(grid.WorldToCell(position), selectedObjectIndex);
         }

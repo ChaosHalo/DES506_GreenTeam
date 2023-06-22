@@ -65,32 +65,39 @@ public class State_RotateTrack : IBuildingState
             return;
         }
 
+        // get index at selected position
         gameObjectIndex = selectedData.GetRepresentationIndex(gridPosition);
 
+        // make sure index is valid
         if (gameObjectIndex == -1)
             return;
 
+        // only allow actions for modifyable data
+        PlacementData existingData = selectedData.GetObjectDataAt(gridPosition);
+        if (existingData != null)
+            if (existingData.canModify == false)
+                return;
+
+        // get new rotation state
         int newRotationState = objectPlacer.RotateObjectAt(gameObjectIndex);
+
+        // make sure rotation state is valid
         if (newRotationState != -1)
         {
-            PlacementData existingData = selectedData.GetObjectDataAt(gridPosition);
+
+            // remove existing from database
             selectedData.RemoveObjectAt(gridPosition);
+
+            // re-add rotated
             selectedData.AddObjectAt(gridPosition,
                                      existingData.Size,
                                      existingData.ID,
                                      existingData.objectType,
                                      gameObjectIndex,
-                                     newRotationState);
+                                     newRotationState,
+                                     true,
+                                     existingData.cost);
         }
-        //{
-        //    selectedData.RemoveObjectAt(gridPosition);
-        //    selectedData.AddObjectAt(gridPosition,
-        //                         database.objectsData[gameObjectIndex].Size,
-        //                         database.objectsData[gameObjectIndex].ID,
-        //                         ((int)database.objectsData[gameObjectIndex].objectType),
-        //                         gameObjectIndex,
-        //                         newRotationState);
-        //}
 
         Vector3 cellPosition = grid.CellToWorld(gridPosition);
         previewSystem.UpdatePreview(cellPosition, CheckIfSelectionIsValid(gridPosition));

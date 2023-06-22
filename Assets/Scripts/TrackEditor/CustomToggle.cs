@@ -35,6 +35,7 @@ public class CustomToggle : MonoBehaviour
 
     public void ResetButtons()
     {
+        toggleState = State.FIRST;
         SetStates(true, false);
     }
 }

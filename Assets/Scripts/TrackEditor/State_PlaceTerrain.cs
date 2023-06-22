@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class State_PlaceTerrain : IBuildingState
 {
+    private int gameObjectIndex = -1;
     private int selectedObjectIndex = -1;
     int ID;
     Grid grid;
@@ -14,6 +15,7 @@ public class State_PlaceTerrain : IBuildingState
     ObjectPlacer objectPlacer;
     PreviewSystem previewSystem;
     PlacementSystem placementSystem;
+    CurrencyManager currencyManager;
 
 
     public State_PlaceTerrain(int iD,
@@ -23,7 +25,8 @@ public class State_PlaceTerrain : IBuildingState
                           GridData trackData,
                           ObjectPlacer objectPlacer,
                           PreviewSystem previewSystem,
-                          PlacementSystem placementSystem)
+                          PlacementSystem placementSystem,
+                          CurrencyManager currencyManager)
     {
         ID = iD;
         this.grid = grid;
@@ -33,6 +36,7 @@ public class State_PlaceTerrain : IBuildingState
         this.objectPlacer = objectPlacer;
         this.previewSystem = previewSystem;
         this.placementSystem = placementSystem;
+        this.currencyManager = currencyManager;
 
         previewSystem.StopShowingPreview();
 
@@ -46,6 +50,8 @@ public class State_PlaceTerrain : IBuildingState
         {
             throw new System.Exception($"No object with ID {ID}");
         }
+
+
     }
 
     public void EndState()
@@ -56,27 +62,55 @@ public class State_PlaceTerrain : IBuildingState
 
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
-        bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
-
-        if (placementValidity == false || isWithinBounds == false)
+        // check placement validity
+        if (isWithinBounds == false)
         {
             placementSystem.EndCurrentState();
             return;
         }
 
-        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), Quaternion.identity);
+        // check currency
+        if (currencyManager.MakePurchase(database.objectsData[selectedObjectIndex].cost) == false)
+        {
+            placementSystem.EndCurrentState();
+            return;
+        }
 
+        // object to place index
+        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), Quaternion.identity, true);
 
-        GridData selectedData = database.objectsData[selectedObjectIndex].objectType == ObjectData.Type.Terrain ? terrainData : trackData;
+        // chose data type
+        GridData selectedData = terrainData;
+
+        // check for existing data
+        PlacementData existingData = selectedData.GetObjectDataAt(gridPosition);
+
+        // get index at selected position
+        gameObjectIndex = selectedData.GetRepresentationIndex(gridPosition);
+
+        // remove existing object from database
+        if (existingData != null)
+        {
+            selectedData.RemoveObjectAt(gridPosition);
+        }
+
+        // remove existing object from world
+        if(gameObjectIndex != -1)
+        {
+            objectPlacer.RemoveObjectAt(gameObjectIndex);
+        }
+
+        // add new data
         selectedData.AddObjectAt(gridPosition,
                                  database.objectsData[selectedObjectIndex].Size,
                                  database.objectsData[selectedObjectIndex].ID,
                                  ((int)database.objectsData[selectedObjectIndex].objectType),
                                  index,
-                                 0);
+                                 0,
+                                 true,
+                                 database.objectsData[selectedObjectIndex].cost);
 
         previewSystem.UpdatePreview(grid.CellToWorld(gridPosition), false);
-
         placementSystem.EndCurrentState();
     }
 
@@ -88,11 +122,7 @@ public class State_PlaceTerrain : IBuildingState
 
     public void UpdateState(Vector3 position, bool isWithinBounds)
     {
-        bool placementValidity = false;
-        if (isWithinBounds)
-        {
-            placementValidity = CheckPlacementValidity(grid.WorldToCell(position), selectedObjectIndex);
-        }
-        previewSystem.UpdatePreview(position, placementValidity);
+        if (currencyManager.CanAfford(database.objectsData[selectedObjectIndex].cost))
+            previewSystem.UpdatePreview(position, isWithinBounds);
     }
 }
