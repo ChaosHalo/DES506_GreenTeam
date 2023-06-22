@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 游戏主流程
+/// </summary>
 public class MyGameManager : Singleton<MyGameManager>
 {
     public GameObject CarPrefab;
@@ -16,6 +19,15 @@ public class MyGameManager : Singleton<MyGameManager>
     {
         InitCars();
     }
+    
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+    /// <summary>
+    /// 初始化车辆
+    /// </summary>
     public void InitCars()
     {
         CarTotalNum = CarConfigList.Count;
@@ -41,10 +53,5 @@ public class MyGameManager : Singleton<MyGameManager>
         }
 
         return res;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

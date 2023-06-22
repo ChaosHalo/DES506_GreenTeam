@@ -7,8 +7,8 @@ public class CarManager : MonoBehaviour
 {
     public CarInfo CarInfo;
     public CarInfoScriptableObject CarInfoScriptableObject;
-    private List<int> RankList = new();
-    private List<float> TimeForOneLapList = new();
+    public List<int> RankList = new();
+    public List<float> TimeForOneLapList = new();
     private float oneLapTime;
     private float totalTime;
     private ArcadeAiVehicleController arcadeAiVehicleController;
