@@ -72,6 +72,21 @@ public class ObjectPlacer : MonoBehaviour
         return newState;
     }
 
+    // only use if state is guaranteed valid
+    internal void RotateObjectToState(int gameObjectIndex, int newState)
+    {
+        if (placedObjects.Count <= gameObjectIndex || placedObjects[gameObjectIndex] == null)
+            return;
+
+        AutoRotate objectToRotate = placedObjects[gameObjectIndex].GetComponentInChildren<AutoRotate>();
+
+        if (objectToRotate == null)
+            return;
+
+        objectToRotate.SetRotationState(newState);
+        UpdateTrackConnections();
+    }
+
     internal void UpdateTrackConnections()
     {
         foreach (GameObject obj in placedObjects)

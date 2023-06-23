@@ -44,8 +44,8 @@ public class PlacementSystem : MonoBehaviour
     private void Start()
     {
         EndCurrentState();
-        terrainData = new();
-        trackData = new();
+        terrainData = new(new(gridSize, gridSize));
+        trackData = new(new(gridSize, gridSize));
         GenerateWorld();
     }
 

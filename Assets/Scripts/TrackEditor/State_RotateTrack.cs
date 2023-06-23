@@ -52,55 +52,63 @@ public class State_RotateTrack : IBuildingState
 
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
-        GridData selectedData = null;
-
-        if (trackData.CanPlaceObejctAt(gridPosition, Vector2Int.one, 0) == false)
-        {
-            selectedData = trackData;
-        }
-
-        if (selectedData == null)
-        {
-            // play sound here
-            return;
-        }
-
         // get index at selected position
-        gameObjectIndex = selectedData.GetRepresentationIndex(gridPosition);
+        gameObjectIndex = trackData.GetRepresentationIndex(gridPosition);
 
         // make sure index is valid
         if (gameObjectIndex == -1)
             return;
 
         // only allow actions for modifyable data
-        PlacementData existingData = selectedData.GetObjectDataAt(gridPosition);
+        PlacementData existingData = trackData.GetObjectDataAt(gridPosition);
         if (existingData != null)
             if (existingData.canModify == false)
                 return;
 
-        // get new rotation state
-        int newRotationState = objectPlacer.RotateObjectAt(gameObjectIndex);
+        // remove existing from database
+        trackData.RemoveObjectAt(gridPosition);
 
-        // make sure rotation state is valid
-        if (newRotationState != -1)
+        // make list of valid rotation states
+        List<int> validRotationStates = new();
+        int originalState = existingData.RotationState;
+        int tempState = originalState;
+        int finalState = originalState;
+        validRotationStates.Add(originalState);
+        for (int i = 0; i < 3; i++)
         {
+            tempState++;
+            if (tempState > 3)
+                tempState = 0;
 
-            // remove existing from database
-            selectedData.RemoveObjectAt(gridPosition);
-
-            // re-add rotated
-            selectedData.AddObjectAt(existingData.originPosition,
-                                     existingData.Size,
-                                     existingData.ID,
-                                     existingData.objectType,
-                                     gameObjectIndex,
-                                     newRotationState,
-                                     true,
-                                     existingData.cost);
+            if (CheckPlacementValidity(gridPosition, tempState, existingData.Size) == true)
+                validRotationStates.Add(tempState);
         }
+
+        // other valid rotation states exist, pick next one in line
+        if (validRotationStates.Count > 1)
+            finalState = validRotationStates[1];
+
+        // rotate object in world
+        objectPlacer.RotateObjectToState(gameObjectIndex, finalState);
+
+        // re-add rotated
+        trackData.AddObjectAt(existingData.originPosition,
+                                 existingData.Size,
+                                 existingData.ID,
+                                 existingData.objectType,
+                                 gameObjectIndex,
+                                 finalState,
+                                 true,
+                                 existingData.cost);
+
 
         Vector3 cellPosition = grid.CellToWorld(gridPosition);
         previewSystem.UpdatePreview(cellPosition, CheckIfSelectionIsValid(gridPosition));
+    }
+
+    private bool CheckPlacementValidity(Vector3Int gridPosition, int newRotationState, Vector2Int size)
+    {
+        return trackData.CanPlaceObejctAt(gridPosition, size, newRotationState);
     }
 
     private bool CheckIfSelectionIsValid(Vector3Int gridPosition)

@@ -5,7 +5,13 @@ using UnityEngine;
 
 public class GridData
 {
+    public Vector2Int gridSize;
     Dictionary<Vector3Int, PlacementData> placedObjects = new();
+
+    public GridData(Vector2Int gridSize)
+    {
+        this.gridSize = gridSize;
+    }
 
     public void AddObjectAt(Vector3Int gridPosition,
                           Vector2Int objectSize,
@@ -67,6 +73,16 @@ public class GridData
         foreach (var pos in positionToOccupy)
         {
             if (placedObjects.ContainsKey(pos))
+                return false;
+
+            // is within grid?
+            if (pos.x < -gridSize.x / 2)
+                return false;
+            if (pos.x > gridSize.x / 2)
+                return false;
+            if (pos.z < -gridSize.y / 2)
+                return false;
+            if (pos.z > gridSize.y / 2)
                 return false;
         }
         return true;
