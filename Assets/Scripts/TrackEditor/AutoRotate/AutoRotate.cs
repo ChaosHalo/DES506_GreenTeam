@@ -42,7 +42,7 @@ public class AutoRotate : MonoBehaviour
         if (lastMousePos == Input.mousePosition)
             return;
 
-        RayCastChecks();
+        DoConnectivityRaycasts();
         UpdateMouseAxes();
         UpdatePlacementRotation();
 
@@ -50,16 +50,16 @@ public class AutoRotate : MonoBehaviour
         lastMousePos = Input.mousePosition;
     }
 
-    void RayCastChecks()
+    void DoConnectivityRaycasts()
     {
         Vector3 originPos = placableObject.inputManager.gridWorldPos;
         originPos.x += 50;
         originPos.z += 50;
 
-        connectionLeft = RayCastCheck(new(-1, 0, 0), originPos);
-        connectionRight = RayCastCheck(new(1, 0, 0), originPos);
-        connectionDown = RayCastCheck(new(0, 0, -1), originPos);
-        connectionUp = RayCastCheck(new(0, 0, 1), originPos);
+        connectionLeft = RayCastCheck(new(-1, 0, 0), originPos, 1);
+        connectionRight = RayCastCheck(new(1, 0, 0), originPos, 1);
+        connectionDown = RayCastCheck(new(0, 0, -1), originPos, 1);
+        connectionUp = RayCastCheck(new(0, 0, 1), originPos, 1);
     }
 
     private void UpdateMouseAxes()
@@ -138,13 +138,13 @@ public class AutoRotate : MonoBehaviour
         }
     }
 
-    internal bool RayCastCheck(Vector3 direction, Vector3 originPos)
+    internal bool RayCastCheck(Vector3 direction, Vector3 originPos, float distanceMulti)
     {
         // offset origin point in direction of check
         Vector3 originOffset = direction * 45;
 
         // adjust origin point and distance by connection distance multiplier
-        originOffset *= connectionDistanceMulti;
+        originOffset *= distanceMulti;
         float distance = 40;
 
         // do raycast
@@ -153,9 +153,13 @@ public class AutoRotate : MonoBehaviour
         {
             if (hit.collider != null)
             {
-                if (hit.transform.CompareTag("RotationHitbox"))
+                if (hit.transform != this.transform.parent)
                 {
-                    return true;
+                    if (hit.transform.CompareTag("RotationHitbox"))
+                    {
+                        Debug.Log(hit.transform + ":::::" + this.transform.parent);
+                        return true;
+                    }
                 }
             }
         }
@@ -168,7 +172,7 @@ public class AutoRotate : MonoBehaviour
 
         for (int i = 0; i < connectionDirectionsAdjusted.Count; i++)
         {
-            if (RayCastCheck(connectionDirectionsAdjusted[i], rayCastOrigin.transform.position) == false)
+            if (RayCastCheck(connectionDirectionsAdjusted[i], rayCastOrigin.transform.position, connectionDistanceMulti) == false)
             {
                 isConnected = false;
             }

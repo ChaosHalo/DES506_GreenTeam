@@ -45,20 +45,20 @@ public class GridData
                 switch (rotationState)
                 {
                     case 0:
-                        newX = x;
-                        newY = y;
-                        break;
-                    case 1:
-                        newX = y;
-                        newY = -x;
-                        break;
-                    case 2:
                         newX = -x;
                         newY = -y;
                         break;
-                    case 3:
+                    case 1:
                         newX = -y;
                         newY = x;
+                        break;
+                    case 2:
+                        newX = x;
+                        newY = y;
+                        break;
+                    case 3:
+                        newX = y;
+                        newY = -x;
                         break;
                 }
                 returnVal.Add(gridPosition + new Vector3Int(newX, 0, newY));
