@@ -81,8 +81,8 @@ public class PreviewSystem : MonoBehaviour
         // temp
     }
 
-    internal Quaternion GetCurrentRotation()
+    internal int GetCurrentRotationState()
     {
-        return previewObject.transform.GetChild(1).localRotation;
+        return previewObjectRotation.GetRotationState();
     }
 }

@@ -89,7 +89,7 @@ public class State_RotateTrack : IBuildingState
             selectedData.RemoveObjectAt(gridPosition);
 
             // re-add rotated
-            selectedData.AddObjectAt(gridPosition,
+            selectedData.AddObjectAt(existingData.originPosition,
                                      existingData.Size,
                                      existingData.ID,
                                      existingData.objectType,

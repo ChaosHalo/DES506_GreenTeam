@@ -77,7 +77,7 @@ public class State_PlaceTerrain : IBuildingState
         }
 
         // object to place index
-        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), Quaternion.identity, true);
+        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.Type.Terrain);
 
         // chose data type
         GridData selectedData = terrainData;

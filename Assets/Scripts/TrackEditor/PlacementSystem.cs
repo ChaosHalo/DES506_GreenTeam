@@ -124,7 +124,6 @@ public class PlacementSystem : MonoBehaviour
         if (buildingState == null)
             return;
 
-
         buildingState.EndState();
         inputManager.OnRelease -= PerformAction;
         inputManager.OnExit -= EndCurrentState;

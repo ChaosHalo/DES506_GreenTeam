@@ -77,7 +77,7 @@ public class State_PlaceTrack : IBuildingState
 
 
         // place object
-        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), previewSystem.GetCurrentRotation(), true);
+        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), previewSystem.GetCurrentRotationState(), true, ObjectData.Type.Track);
         GridData selectedData = database.objectsData[selectedObjectIndex].objectType == ObjectData.Type.Terrain ? terrainData : trackData;
         selectedData.AddObjectAt(gridPosition,
                                  database.objectsData[selectedObjectIndex].Size,

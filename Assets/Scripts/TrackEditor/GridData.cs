@@ -17,7 +17,7 @@ public class GridData
                           int cost)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize, rotationState);
-        PlacementData data = new PlacementData(positionToOccupy, ID, type, placedObjectIndex, rotationState, objectSize, canModify, cost);
+        PlacementData data = new PlacementData(positionToOccupy, gridPosition, ID, type, placedObjectIndex, rotationState, objectSize, canModify, cost);
         foreach (var pos in positionToOccupy)
         {
             if (placedObjects.ContainsKey(pos))
@@ -100,6 +100,7 @@ public class GridData
 public class PlacementData
 {
     public List<Vector3Int> occupiedPositions;
+    public Vector3Int originPosition;
     public int ID { get; private set; }
     public int objectType { get; private set; }
     public int PlacedObjectIndex { get; private set; }
@@ -109,9 +110,10 @@ public class PlacementData
     public int cost { get; private set; }
 
 
-    public PlacementData(List<Vector3Int> occupiedPositions, int iD, int type, int placedObjectIndex, int rotationState, Vector2Int size, bool canModify, int cost)
+    public PlacementData(List<Vector3Int> occupiedPositions, Vector3Int originPosition, int iD, int type, int placedObjectIndex, int rotationState, Vector2Int size, bool canModify, int cost)
     {
         this.occupiedPositions = occupiedPositions;
+        this.originPosition = originPosition;
         ID = iD;
         objectType = type;
         PlacedObjectIndex = placedObjectIndex;

@@ -1,3 +1,4 @@
+using MoreMountains.Tools;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class AutoRotate : MonoBehaviour
     internal Vector3 lastMousePos = Vector3.zero;
     internal Vector3 mouseWorldPos = Vector3.zero;
     internal Vector3 gridWorldPos = Vector3.zero;
-    internal bool connectionLeft =false;
+    internal bool connectionLeft = false;
     internal bool connectionRight = false;
     internal bool connectionDown = false;
     internal bool connectionUp = false;
@@ -21,6 +22,18 @@ public class AutoRotate : MonoBehaviour
     internal int GetRotationState() { return rotationState; }
     [SerializeField]
     internal List<Vector3> rotations = new List<Vector3>();
+    [SerializeField]
+    private List<Vector3> connectionDirections = new();
+    private List<Vector3> connectionDirectionsAdjusted = new();
+    [SerializeField]
+    private float connectionDistanceMulti = 1;
+    [SerializeField]
+    private GameObject rayCastOrigin;
+
+    private void Awake()
+    {
+        AdjustConnectionDirectionsForRotationState(rotationState);
+    }
 
     private void FixedUpdate()
     {
@@ -39,10 +52,14 @@ public class AutoRotate : MonoBehaviour
 
     void RayCastChecks()
     {
-        connectionLeft = RayCastCheck(new(-1, 0, 0));
-        connectionRight = RayCastCheck(new(1, 0, 0));
-        connectionDown = RayCastCheck(new(0, 0, -1));
-        connectionUp = RayCastCheck(new(0, 0, 1));
+        Vector3 originPos = placableObject.inputManager.gridWorldPos;
+        originPos.x += 50;
+        originPos.z += 50;
+
+        connectionLeft = RayCastCheck(new(-1, 0, 0), originPos);
+        connectionRight = RayCastCheck(new(1, 0, 0), originPos);
+        connectionDown = RayCastCheck(new(0, 0, -1), originPos);
+        connectionUp = RayCastCheck(new(0, 0, 1), originPos);
     }
 
     private void UpdateMouseAxes()
@@ -85,15 +102,53 @@ public class AutoRotate : MonoBehaviour
 
         rotationState = state;
         transform.parent.localRotation = Quaternion.Euler(rotations[state]);
+        AdjustConnectionDirectionsForRotationState(state);
+
     }
 
-    bool RayCastCheck(Vector3 direction)
+    private void AdjustConnectionDirectionsForRotationState(int state)
     {
-        Vector3 startPos = placableObject.inputManager.gridWorldPos;
-        startPos.x += 50;
-        startPos.z += 50;
+        connectionDirectionsAdjusted.Clear();
+        foreach (Vector3 direction in connectionDirections)
+        {
+            float newX = 0;
+            float newZ = 0;
 
-        RaycastHit[] hits = Physics.RaycastAll(startPos + direction * 40, direction, 60);
+            switch (state)
+            {
+                case 0:
+                    newX = direction.x;
+                    newZ = direction.z;
+                    break;
+                case 1:
+                    newX = direction.z;
+                    newZ = -direction.x;
+                    break;
+                case 2:
+                    newX = -direction.x;
+                    newZ = -direction.z;
+                    break;
+                case 3:
+                    newX = -direction.z;
+                    newZ = direction.x;
+                    break;
+            }
+
+            connectionDirectionsAdjusted.Add(new(newX, 0, newZ));
+        }
+    }
+
+    internal bool RayCastCheck(Vector3 direction, Vector3 originPos)
+    {
+        // offset origin point in direction of check
+        Vector3 originOffset = direction * 45;
+
+        // adjust origin point and distance by connection distance multiplier
+        originOffset *= connectionDistanceMulti;
+        float distance = 40;
+
+        // do raycast
+        RaycastHit[] hits = Physics.RaycastAll(originPos + originOffset, direction, distance);
         foreach (RaycastHit hit in hits)
         {
             if (hit.collider != null)
@@ -105,6 +160,21 @@ public class AutoRotate : MonoBehaviour
             }
         }
         return false;
+    }
+
+    internal bool CheckForConnections()
+    {
+        bool isConnected = true;
+
+        for (int i = 0; i < connectionDirectionsAdjusted.Count; i++)
+        {
+            if (RayCastCheck(connectionDirectionsAdjusted[i], rayCastOrigin.transform.position) == false)
+            {
+                isConnected = false;
+            }
+        }
+
+        return isConnected;
     }
 
 }
