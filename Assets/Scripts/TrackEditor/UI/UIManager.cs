@@ -20,6 +20,6 @@ public class UIManager : MonoBehaviour
 
     internal void UpdateCurrency(int currency)
     {
-        currencyText.text = currency.ToString();
+        currencyText.text = "£"+currency.ToString();
     }
 }

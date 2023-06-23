@@ -53,33 +53,26 @@ public class State_RemoveTrack : IBuildingState
 
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
-        GridData selectedData = null;
-
-        if(trackData.CanPlaceObejctAt(gridPosition, Vector2Int.one, 0) == false)
-        {
-            selectedData = trackData;
-        }
-
-        if (selectedData == null)
-        {
-            // play sound here
+        // no object exists here
+        if(trackData.CanPlaceObejctAt(gridPosition, Vector2Int.one, 0) == true)
             return;
-        }
 
-        gameObjectIndex = selectedData.GetRepresentationIndex(gridPosition);
-
+        // is game object index valid?
+        gameObjectIndex = trackData.GetRepresentationIndex(gridPosition);
         if (gameObjectIndex == -1)
             return;
 
-        // only allow actions for modifyable data
-        PlacementData existingData = selectedData.GetObjectDataAt(gridPosition);
-        if (existingData != null)
-            if (existingData.canModify == false)
-                return;
+        // does data exist?
+        PlacementData existingData = trackData.GetObjectDataAt(gridPosition);
+        if (existingData == null)
+            return;
 
+        // can data be modified?
+        if (existingData.canModify == false)
+            return;
 
         // remove object
-        selectedData.RemoveObjectAt(gridPosition);
+        trackData.RemoveObjectAt(gridPosition);
         objectPlacer.RemoveObjectAt(gameObjectIndex);
 
         // refund currency

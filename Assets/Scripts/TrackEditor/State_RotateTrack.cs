@@ -80,7 +80,7 @@ public class State_RotateTrack : IBuildingState
             if (tempState > 3)
                 tempState = 0;
 
-            if (CheckPlacementValidity(gridPosition, tempState, existingData.Size) == true)
+            if (CheckPlacementValidity(existingData.originPosition, tempState, existingData.Size) == true)
                 validRotationStates.Add(tempState);
         }
 
