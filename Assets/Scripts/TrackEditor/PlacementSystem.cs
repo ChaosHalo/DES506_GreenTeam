@@ -132,10 +132,6 @@ public class PlacementSystem : MonoBehaviour
 
     void Update()
     {
-        // TEMP - allow scene reload
-        if (Input.GetKeyDown(KeyCode.R))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
         if (buildingState == null)
             return;
 
@@ -153,5 +149,22 @@ public class PlacementSystem : MonoBehaviour
         Vector3 newPreviewPosition = inputManager.isWithinPlacementBounds ? grid.CellToWorld(inputManager.gridCellPos) : mousePosition;
 
         buildingState.UpdateState(newPreviewPosition, inputManager.isWithinPlacementBounds);
+    }
+
+
+
+
+
+
+
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
