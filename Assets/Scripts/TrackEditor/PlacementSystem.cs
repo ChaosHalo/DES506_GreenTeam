@@ -36,6 +36,9 @@ public class PlacementSystem : MonoBehaviour
     private CurrencyManager currencyManager;
 
     [SerializeField]
+    private CameraManager cameraManager;
+
+    [SerializeField]
     private bool gridVisualAlwaysOn = false;
 
     IBuildingState buildingState;
@@ -133,7 +136,10 @@ public class PlacementSystem : MonoBehaviour
     void Update()
     {
         if (buildingState == null)
+        {
+            cameraManager.UpdatePosition();
             return;
+        }
 
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         inputManager.gridCellPos = grid.WorldToCell(mousePosition);
