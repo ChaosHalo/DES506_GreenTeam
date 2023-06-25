@@ -379,7 +379,6 @@ namespace MoreMountains.HighroadEngine
                         // test mode, we find the prefab with a resources load
                         prefab = Resources.Load("vehicles/" + item.VehicleName) as GameObject;
                     }
-
                     // we first instantiate car for this player. 
                     // the car name value is used to load the prefab from Resources/Vehicles folder.
                     GameObject newPlayer = Instantiate(

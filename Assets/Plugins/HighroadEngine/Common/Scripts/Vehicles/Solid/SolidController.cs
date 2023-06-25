@@ -16,53 +16,53 @@ namespace MoreMountains.HighroadEngine
 	/// </summary>
 	public class SolidController : BaseController 
 	{
-		/// The engine's power
+		/// 引擎的动力
 		public float EngineForce = 1000;
 		[Header("Vehicule Physics")]
-		/// Point of gravity of the car is set below. This helps the Unity Physics with car stability
-		public Vector3 CenterOfMass = new Vector3(0, -1, 0); 
-		[Range(0.0f,5f)]
-		/// The distance to the ground at which we consider the car is grounded
+		/// 车辆的重心位置设置在下方。这有助于Unity物理系统保持车辆的稳定性
+		public Vector3 CenterOfMass = new Vector3(0, -1, 0);
+		[Range(0.0f, 5f)]
+		/// 认为车辆与地面接触的距离
 		public float GroundDistance = 1f;
-		[Range(1,10)]
-		/// the penalty applied when going offroad
+		[Range(1, 10)]
+		/// 离开道路时的惩罚系数
 		public float OffroadPenaltyFactor = 2f;
-		/// the wheel's grip force. The higher the value, the less the car will slide when turning
+		/// 轮胎的抓地力。数值越高，车辆在转弯时滑动越少
 		public float CarGrip = 10f;
-		/// The speed above which the vehicle is considered as going full throttle. The vehicle's speed can be higher than that
+		/// 车辆被认为处于全油门状态的速度阈值。车辆的速度可以高于该阈值
 		public float FullThrottleVelocity = 30;
-		[Range(0.0f,5f)]
-		/// The minimum required speed for the vehicle to turn
+		[Range(0.0f, 5f)]
+		/// 车辆进行转向所需的最小速度
 		public float MinimalTurningSpeed = 1f;
-		[Range(-5.0f,5f)]
-		/// The height at which forward force will be applied
+		[Range(-5.0f, 5f)]
+		/// 施加前进力的高度
 		public float ForwardForceHeight = 1f;
-		/// Additional torque force based on speed
+		/// 基于速度的额外扭矩力
 		public AnimationCurve TorqueCurve;
-		/// Rotation force when going backward
+		/// 后退时的旋转力
 		public AnimationCurve BackwardForceCurve;
-		[Range(0.0f,1f)]
-		/// Grip factor multiplier. The higher that value, the more this vehicle will stick to the road, even at high speeds
+		[Range(0.0f, 1f)]
+		/// 抓地力系数的倍数。数值越高，车辆越能够在高速下保持与地面的附着力
 		public float GripSpeedFactor = 0.02f;
-		[Range(0,200)]
-		/// The vehicle's maximum grip value. 
+		[Range(0, 200)]
+		/// 车辆的最大抓地力值
 		public int MaxGripValue = 100;
 
 		[Header("Suspension System")]
-		/// The size of the wheel
+		/// 车轮的尺寸
 		public float RadiusWheel = 0.5f;
-		/// Spring
+		/// 弹簧常数
 		public float SpringConstant = 20000f;
-		/// Damper
+		/// 阻尼常数
 		public float DamperConstant = 2000f;
-		/// The length of the suspension spring when resting
+		/// 当悬挂处于静止状态时，弹簧的长度
 		public float RestLength = 0.5f;
-		/// The horizontal rotation force that will angle the car left or right to simulate spring compression when turning
+		/// 转向时模拟弹簧压缩的水平旋转力，用于将车辆左右倾斜
 		public float SpringTorqueForce = 1000f;
-		/// An event triggered when the vehicle collides with something
+		/// 当车辆与其他物体发生碰撞时触发的事件
 		public UnityAction<Collision> OnCollisionEnterWithOther;
-        /// An event triggered when the vehicle is respawned
-        public UnityAction OnRespawn;
+		/// 当车辆重新生成时触发的事件
+		public UnityAction OnRespawn;
 
 		protected float _springForce = 0f;
 		protected float _damperForce = 0f;
@@ -72,57 +72,57 @@ namespace MoreMountains.HighroadEngine
 		protected GameObject _groundGameObject;
 		protected LayerMask _noLayerMask = ~0;
 
-		/// Gears enum. Car can be forward driving or backward driving (reverse)
-		public enum Gears {forward, reverse}
-		/// The current gear value
-		public Gears CurrentGear {get; protected set;}
-		/// Current engine force value used by wheels
-		public Vector3 CurrentEngineForceValue { get; protected set;}
-		/// Gets a value indicating whether this car is offroad.
-		public virtual bool IsOffRoad 
-		{ 
+		/// 车辆的档位枚举。可以向前行驶或向后行驶（倒车）
+		public enum Gears { forward, reverse }
+		/// 当前档位值
+		public Gears CurrentGear { get; protected set; }
+		/// 轮胎使用的当前引擎力值
+		public Vector3 CurrentEngineForceValue { get; protected set; }
+		/// 获取一个值，该值指示此车辆是否离开了道路。
+		public virtual bool IsOffRoad
+		{
 			get { return (_groundGameObject != null && _groundGameObject.tag == "OffRoad"); }
 		}
 		/// <summary>
-		/// Gets the normalized speed.
+		/// 获取规范化的速度。
 		/// </summary>
-		/// <value>The normalized speed.</value>
-		public virtual float NormalizedSpeed 
+		/// <value>规范化的速度。</value>
+		public virtual float NormalizedSpeed
 		{
 			get { return Mathf.InverseLerp(0f, FullThrottleVelocity, Mathf.Abs(Speed)); }
 		}
 		/// <summary>
-		/// Returns true if vehicle is going forward
+		/// 如果车辆向前行驶，则返回true。
 		/// </summary>
-		/// <value><c>true</c> if forward; otherwise, <c>false</c>.</value>
-		public virtual bool Forward 
+		/// <value><c>true</c> 表示向前行驶，否则为 <c>false</c>。</value>
+		public virtual bool Forward
 		{
 			get { return transform.InverseTransformDirection(_rigidbody.velocity).z > 0; }
 		}
 		/// <summary>
-		/// Returns true if vehicle is braking
+		/// 如果车辆正在刹车，则返回true。
 		/// </summary>
-		/// <value><c>true</c> if braking; otherwise, <c>false</c>.</value>
-		public virtual bool Braking 
+		/// <value><c>true</c> 表示正在刹车，否则为 <c>false</c>。</value>
+		public virtual bool Braking
 		{
 			get { return Forward && (CurrentGasPedalAmount < 0); }
 		}
 		/// <summary>
-		/// Returns the current angle of the car to the horizon.
-		/// Used, for example, to disable AI's direction when the vehicle goes over a certain angle.
-		/// allows for easier loop handling
+		/// 返回车辆与水平面之间的角度。
+		/// 用于禁用AI的方向控制，当车辆超过一定角度时。
+		/// 允许更容易处理翻转
 		/// </summary>
-		/// <value>The horizontal angle.</value>
+		/// <value>水平角度。</value>
 		public virtual float HorizontalAngle
 		{
 			get { return Vector3.Dot(Vector3.up, transform.up); }
 		}
 
 		/// <summary>
-		/// Gets the forward normalized speed.
-		/// Used to evaluate the engine's power
+		/// 获取前进的规范化速度。
+		/// 用于评估引擎的动力
 		/// </summary>
-		/// <value>The forward normalized speed.</value>
+		/// <value>前进的规范化速度。</value>
 		public virtual float ForwardNormalizedSpeed
 		{
 			get
@@ -132,8 +132,8 @@ namespace MoreMountains.HighroadEngine
 			}
 		}
 
-		/// The current lateral speed value of the vehicle
-		public virtual float SlideSpeed {get; protected set;}
+		/// 车辆的当前侧向速度值
+		public virtual float SlideSpeed { get; protected set; }
 
 		/// <summary>
 		/// Physics initialization

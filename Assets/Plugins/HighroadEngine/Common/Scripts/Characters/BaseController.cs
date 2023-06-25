@@ -15,13 +15,17 @@ namespace MoreMountains.HighroadEngine
 	{
 		[Header("Bonus")]
 		/// the force applied when the vehicle is in a boost zone
+		/// 当车辆处于助推区时所施加的力
 		public float BoostForce = 1f; 
-		/// The temporary value of rigidbody.drag when the vehicle is inside a loop zone. This allows for better movement inside the loop.
+		/// The temporary value of rigidbody.drag when the vehicle is inside a loop zone. This allows for better movement inside the loop. 
+		/// <summary>
+		/// 当车辆在一个循环区域内时，rigidbody.drag的临时值。这允许在循环区内更好地移动。
+		/// </summary>
 		public float RigidBodyDragInLoop = 1f;
 
-		[Header("Engine")]
+		[Header("Engine"),Tooltip("转弯力度，越大越容易转弯")]
 		/// the speed at which the car steers 
-		public float SteeringSpeed = 100f; 
+		public float SteeringSpeed = 100f;
 		/// Set this to true if you want the vehicle to accelerate forever 
 		public bool AutoForward = false;
 
@@ -35,7 +39,7 @@ namespace MoreMountains.HighroadEngine
 		protected float _defaultDrag;
 		protected int _controllerId = -1;
 		/// Ẁhen > 0, vehicle has finished the race. This is it final rank
-		protected int _finisherPosition = 0; 
+		public int _finisherPosition = 0; 
 
 		/// <summary>
 		/// Returns the current lap.
