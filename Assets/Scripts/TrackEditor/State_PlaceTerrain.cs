@@ -50,8 +50,6 @@ public class State_PlaceTerrain : IBuildingState
         {
             throw new System.Exception($"No object with ID {ID}");
         }
-
-
     }
 
     public void EndState()
@@ -116,13 +114,17 @@ public class State_PlaceTerrain : IBuildingState
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {
-        GridData selectedData = database.objectsData[selectedObjectIndex].objectType == ObjectData.Type.Terrain ? terrainData : trackData;
-        return selectedData.CanPlaceObejctAt(gridPosition, database.objectsData[selectedObjectIndex].Size, 0);
+        //return terrainData.CanPlaceObejctAt(gridPosition, database.objectsData[selectedObjectIndex].Size, 0);
+        return true;
     }
 
     public void UpdateState(Vector3 position, bool isWithinBounds)
     {
-        if (currencyManager.CanAfford(database.objectsData[selectedObjectIndex].cost))
-            previewSystem.UpdatePreview(position, isWithinBounds);
+        bool placementValidity = false;
+
+        if (isWithinBounds && currencyManager.CanAfford(database.objectsData[selectedObjectIndex].cost))
+            placementValidity = true;
+
+        previewSystem.UpdatePreview(position, placementValidity);
     }
 }

@@ -49,7 +49,6 @@ public class State_PlaceTrack : IBuildingState
         {
             throw new System.Exception($"No object with ID {ID}");
         }
-
     }
 
     public void EndState()
