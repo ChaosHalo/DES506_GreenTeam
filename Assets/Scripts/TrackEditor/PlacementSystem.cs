@@ -41,7 +41,7 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private bool gridVisualAlwaysOn = false;
 
-    IBuildingState buildingState;
+    internal IBuildingState buildingState;
 
 
     private void Start()
@@ -136,10 +136,7 @@ public class PlacementSystem : MonoBehaviour
     void Update()
     {
         if (buildingState == null)
-        {
-            cameraManager.UpdatePosition();
             return;
-        }
 
         Vector3 mousePosition = inputManager.GetSelectedMapPosition();
         inputManager.gridCellPos = grid.WorldToCell(mousePosition);
