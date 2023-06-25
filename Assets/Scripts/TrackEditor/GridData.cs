@@ -76,9 +76,9 @@ public class GridData
                 return false;
 
             // is within grid?
-            if (pos.x < -gridSize.x / 2)
+            if (pos.x+1 < -gridSize.x / 2)
                 return false;
-            if (pos.x > gridSize.x / 2)
+            if (pos.x+1 > gridSize.x / 2)
                 return false;
             if (pos.z < -gridSize.y / 2)
                 return false;
