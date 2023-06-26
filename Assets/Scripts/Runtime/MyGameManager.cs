@@ -1,6 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MoreMountains.HighroadEngine;
 
 /// <summary>
 /// 游戏主流程
@@ -14,10 +15,17 @@ public class MyGameManager : Singleton<MyGameManager>
     public int Rank = 1;
     // 车辆总数
     public int CarTotalNum;
+    private RaceManager raceManager;
+    public override void Awake()
+    {
+        base.Awake();
+        raceManager = FindObjectOfType<RaceManager>();
+        InitData();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        InitCars();
+        //InitCars();
     }
     
     // Update is called once per frame
@@ -25,18 +33,11 @@ public class MyGameManager : Singleton<MyGameManager>
     {
 
     }
-    /// <summary>
-    /// 初始化车辆
-    /// </summary>
-    public void InitCars()
+    public void InitData()
     {
-        CarTotalNum = CarConfigList.Count;
-        Quaternion rotation = Quaternion.Euler(0f, -90f, 0f);
-        foreach (var carInfoScriptableObject in CarConfigList)
+        foreach (GameObject i in raceManager.TestBotPlayers)
         {
-            GameObject car = Instantiate(CarPrefab, carInfoScriptableObject.CarInfo.StartPoint.transform.position, rotation);
-            car.GetComponent<CarManager>().CarInfoScriptableObject = carInfoScriptableObject;
-
+            i.GetComponent<CarManager>().InitData();
         }
     }
     /// <summary>

@@ -1,8 +1,8 @@
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using System.Runtime.InteropServices.WindowsRuntime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using MoreMountains.HighroadEngine;
 public class CarManager : MonoBehaviour
 {
     public CarInfo CarInfo;
@@ -11,21 +11,25 @@ public class CarManager : MonoBehaviour
     public List<float> TimeForOneLapList = new();
     private float oneLapTime;
     private float totalTime;
-    private ArcadeAiVehicleController arcadeAiVehicleController;
+    private VehicleInformation vehicleInformation;
+
+    private void Awake()
+    {
+        InitData();
+    }
     private void Start()
     {
-        CarInfo = CarInfoScriptableObject.Init();
-        arcadeAiVehicleController = GetComponent<ArcadeAiVehicleController>();
-        InitData();
+        
     }
     private void Update()
     {
         Timer();
     }
-    private void InitData()
+    public void InitData()
     {
-        arcadeAiVehicleController.MaxSpeed = CarInfo.TopSpeed;
-        arcadeAiVehicleController.accelaration = CarInfo.Acceleration;
+        CarInfo = CarInfoScriptableObject.Init();
+        vehicleInformation = GetComponent<VehicleInformation>();
+        vehicleInformation.LobbyName = CarInfo.Name;
     }
     /// <summary>
     /// 计时器
@@ -38,7 +42,7 @@ public class CarManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // 一圈结束
-        if (other.CompareTag("EndLine"))
+        if (other.CompareTag("Checkpoint"))
         {
             OnOneLapEnd();
         }

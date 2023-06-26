@@ -1867,9 +1867,9 @@ GameObject:
   - component: {fileID: 4168222474323959449}
   - component: {fileID: 4168620319936427301}
   - component: {fileID: 4168305122019000497}
-  - component: {fileID: 2297857732099270463}
+  - component: {fileID: 7609090298054076925}
   m_Layer: 0
-  m_Name: Car
+  m_Name: F1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1896,6 +1896,7 @@ Transform:
   - {fileID: 4061965055261932687}
   - {fileID: 8835587356368881416}
   - {fileID: 7247017547244536394}
+  - {fileID: 122220963769174525}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -2.2510002, z: 0}
@@ -2107,7 +2108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517e366c652644e06a308ac8f13ceb8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LobbyName: Emily
+  LobbyName: F1
   lobbySprite: {fileID: 0}
 --- !u!114 &4168305122019000497
 MonoBehaviour:
@@ -2127,7 +2128,7 @@ MonoBehaviour:
   MinimalCrashSpeed: 2
   EngineMaxPitch: 5.5
   SpeedFactor: 0.1
---- !u!114 &2297857732099270463
+--- !u!114 &7609090298054076925
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2136,19 +2137,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 4056022515747808193}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 416fa2120344d4e91902c7f8d5ebb7ab, type: 3}
+  m_Script: {fileID: 11500000, guid: f131dd35d296fca4e90efc4ed717e48b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CarInfo:
-    <Name>k__BackingField: 
-    <TopSpeed>k__BackingField: 0
-    <Acceleration>k__BackingField: 0
-    <Handling>k__BackingField: 0
-    <OffRoad>k__BackingField: 0
-    <StartPoint>k__BackingField: {fileID: 0}
-  CarInfoScriptableObject: {fileID: 0}
-  RankList: 
-  TimeForOneLapList: []
+  Target: {fileID: 0}
+  OffSet: {x: 0, y: 0, z: 0}
+  iconData: {fileID: 11400000, guid: 44a9a005006fac54c8333e0f70f69f37, type: 2}
+  ShowCircleArea: 0
+  CircleAreaRadius: 10
+  CircleAreaColor: {r: 1, g: 1, b: 1, a: 0.9}
+  isInteractable: 0
+  interacableAction: 0
+  InfoItem: This is a Bot
+  keepTextAlwaysFacingUp: 0
+  OffScreen: 1
+  opacityBasedDistance: 1
+  maxDistance: 99999
+  iconFaceDirection: 0
+  DestroyWithObject: 0
+  BorderOffScreen: 0
+  RenderDelay: 0.5
+  m_Effect: 2
+  CustomIconPrefab: {fileID: 0}
 --- !u!1 &4056077304818578723
 GameObject:
   m_ObjectHideFlags: 0
@@ -15814,6 +15824,103 @@ Transform:
   m_Father: {fileID: 4062232925689085565}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &448264486163066390
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 4062232925689085565}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.32
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+        type: 3}
+      propertyPath: m_Name
+      value: Formula_1_car_base_model
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 10ea5dc260cd3304c955ebb5a3dd905f, type: 3}
+--- !u!4 &122220963769174525 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 10ea5dc260cd3304c955ebb5a3dd905f,
+    type: 3}
+  m_PrefabInstance: {fileID: 448264486163066390}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9013099913830047971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15901,6 +16008,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Muscle_car_grebox
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f0226beb212d1f9408a44ce161cc2c8f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

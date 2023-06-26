@@ -8,8 +8,8 @@ namespace MoreMountains.HighroadEngine
 	/// </summary>
 	public class VehicleInformation : MonoBehaviour 
 	{
-		/// the name used in the lobby screen
-		public string LobbyName;
+        /// the name used in the lobby screen
+        public string LobbyName;
 
 		/// the sprite used in the lobby screen
 		public Sprite lobbySprite;

@@ -24,11 +24,14 @@ namespace MoreMountains.HighroadEngine
 		[Range(0.0f, 5f)]
 		/// 认为车辆与地面接触的距离
 		public float GroundDistance = 1f;
-		[Range(1, 10)]
+
+		[Range(0, 10)]
 		/// 离开道路时的惩罚系数
 		public float OffroadPenaltyFactor = 2f;
+
 		/// 轮胎的抓地力。数值越高，车辆在转弯时滑动越少
 		public float CarGrip = 10f;
+
 		/// 车辆被认为处于全油门状态的速度阈值。车辆的速度可以高于该阈值
 		public float FullThrottleVelocity = 30;
 		[Range(0.0f, 5f)]
