@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.HighroadEngine;
-
+using UnityEngine.SceneManagement;
 /// <summary>
 /// 游戏主流程
 /// </summary>
 public class MyGameManager : Singleton<MyGameManager>
 {
+
     public FactorsBaseObject FactorsBaseObject;
     private RaceManager raceManager;
     public override void Awake()
@@ -25,7 +26,13 @@ public class MyGameManager : Singleton<MyGameManager>
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
+            // 使用索引重新加载当前场景
+            SceneManager.LoadScene(currentSceneIndex);
+        }
     }
     /// <summary>
     /// 数据初始化
