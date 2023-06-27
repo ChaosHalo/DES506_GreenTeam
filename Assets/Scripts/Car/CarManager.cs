@@ -12,14 +12,14 @@ public class CarManager : MonoBehaviour
     private float oneLapTime;
     private float totalTime;
     private VehicleInformation vehicleInformation;
-
+    private SolidController solidController;
     private void Awake()
     {
         InitData();
     }
     private void Start()
     {
-        
+
     }
     private void Update()
     {
@@ -27,9 +27,18 @@ public class CarManager : MonoBehaviour
     }
     public void InitData()
     {
-        CarInfo = CarInfoScriptableObject.Init();
+        CarInfo = CarInfoScriptableObject.GetCarInfo();
+        Car car = new(MyGameManager.instance.FactorsBaseObject, CarInfo);
+        // 设置车辆名称信息
         vehicleInformation = GetComponent<VehicleInformation>();
         vehicleInformation.LobbyName = CarInfo.Name;
+        // 设置车辆实际数值
+        solidController = GetComponent<SolidController>();
+        solidController.EngineForce = car.Acceleration;
+        solidController.FullThrottleVelocity = car.TopSpeed;
+        solidController.CarGrip = car.Handling;
+
+
     }
     /// <summary>
     /// 计时器
@@ -53,7 +62,7 @@ public class CarManager : MonoBehaviour
     private void OnOneLapEnd()
     {
         TimeForOneLapList.Add(Mathf.Round(oneLapTime * 1000) / 1000f);
-        RankList.Add(MyGameManager.instance.GetRank(true));
+
         oneLapTime = 0;
     }
     /// <summary>

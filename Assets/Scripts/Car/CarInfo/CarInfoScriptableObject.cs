@@ -6,7 +6,7 @@ using UnityEngine;
 public class CarInfoScriptableObject : ScriptableObject
 {
     public CarInfo CarInfo;
-    public CarInfo Init()
+    public CarInfo GetCarInfo()
     {
         return CarInfo;
     }

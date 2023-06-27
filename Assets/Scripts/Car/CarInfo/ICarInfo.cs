@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 车辆属性值
+/// </summary>
 public interface ICarInfo
 {
     string Name { get; }
-    float TopSpeed { get; }
-    float Acceleration { get; }
-    float Handling { get; }
-    float OffRoad { get; }
+    int TopSpeed { get; }
+    int Acceleration { get; }
+    int Handling { get; }
+    int OffRoad { get; }
     // 运行数据列表
 
     /// <summary>
@@ -21,5 +24,14 @@ public interface ICarInfo
     /// </summary>
     /// <value></value>
     List<float> TimeForOneLapList { get; }
-    GameObject StartPoint { get; }
+}
+/// <summary>
+/// 车辆实际值
+/// </summary>
+public interface ICarReality
+{
+    float TopSpeed { get; }
+    float Acceleration { get; }
+    float Handling { get; }
+    float OffRoad { get; }
 }

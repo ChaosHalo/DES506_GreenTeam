@@ -8,13 +8,7 @@ using MoreMountains.HighroadEngine;
 /// </summary>
 public class MyGameManager : Singleton<MyGameManager>
 {
-    public GameObject CarPrefab;
-    public List<CarInfoScriptableObject> CarConfigList;
-    private List<Transform> startPoints;
-    // 当前车辆名次
-    public int Rank = 1;
-    // 车辆总数
-    public int CarTotalNum;
+    public FactorsBaseObject FactorsBaseObject;
     private RaceManager raceManager;
     public override void Awake()
     {
@@ -27,32 +21,20 @@ public class MyGameManager : Singleton<MyGameManager>
     {
         //InitCars();
     }
-    
+
     // Update is called once per frame
     void Update()
     {
 
     }
+    /// <summary>
+    /// 数据初始化
+    /// </summary>
     public void InitData()
     {
         foreach (GameObject i in raceManager.TestBotPlayers)
         {
             i.GetComponent<CarManager>().InitData();
         }
-    }
-    /// <summary>
-    /// 获取排名
-    /// </summary>
-    /// <returns></returns>
-    public int GetRank(bool update = false)
-    {
-        int res = Rank;
-        if (update)
-        {
-            Rank++;
-            if (Rank > CarTotalNum) Rank = 1;
-        }
-
-        return res;
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.760801, g: 0.8485872, b: 0.92552775, a: 1}
+  m_IndirectSpecularColor: {r: 0.76079136, g: 0.8485984, b: 0.92565244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1413,7 +1413,7 @@ GameObject:
   - component: {fileID: 509817112}
   - component: {fileID: 509817111}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1431,10 +1431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d34a31ed147644448615c5e2887f04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CarPrefab: {fileID: 0}
-  CarConfigList: []
-  Rank: 1
-  CarTotalNum: 0
+  FactorsBaseObject: {fileID: 11400000, guid: 893838ebe701a4a7e9aced5777a580c2, type: 2}
 --- !u!4 &509817112
 Transform:
   m_ObjectHideFlags: 0
