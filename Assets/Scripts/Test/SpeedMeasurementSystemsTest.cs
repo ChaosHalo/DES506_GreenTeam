@@ -35,6 +35,10 @@ public class SpeedMeasurementSystemsTest : MonoBehaviour
     {
         return Mathf.Abs(info1.Time - info2.Time);
     }
+    private float GetAcceleration(Info info1, Info info2)
+    {
+        return Mathf.Abs(info1.Speed - info2.Speed) / GetTimeDif(info1, info2);
+    }
     private void CheckMatch()
     {
         for(int i = 0; i < Infos.Count; i++)
@@ -60,7 +64,8 @@ public class SpeedMeasurementSystemsTest : MonoBehaviour
             "\nCar Speed1: " + info1.Speed.ToString("F2") +
             "\nCar Speed2: " + info2.Speed.ToString("F2") +
             "\nDistance: " + GetDis(info1, info2).ToString("F2") +
-            "\nTime: " + GetTimeDif(info1, info2).ToString("F2")
+            "\nTime: " + GetTimeDif(info1, info2).ToString("F2") +
+            "\nAcceleration" + GetAcceleration(info1, info2).ToString("F2")
             );
     }
 }
