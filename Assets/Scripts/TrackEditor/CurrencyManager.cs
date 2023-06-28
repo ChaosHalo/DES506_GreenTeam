@@ -10,6 +10,11 @@ public class CurrencyManager : MonoBehaviour
     [SerializeField]
     private UIManager uiManager;
 
+    private void Start()
+    {
+        uiManager.UpdateCurrency(currency);
+    }
+
     // return true if enough currency to make purchase
     internal bool MakePurchase(int cost)
     {

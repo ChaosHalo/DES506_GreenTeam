@@ -36,16 +36,19 @@ public class PlacementSystem : MonoBehaviour
     private CurrencyManager currencyManager;
 
     [SerializeField]
+    private CameraManager cameraManager;
+
+    [SerializeField]
     private bool gridVisualAlwaysOn = false;
 
-    IBuildingState buildingState;
+    internal IBuildingState buildingState;
 
 
     private void Start()
     {
         EndCurrentState();
-        terrainData = new();
-        trackData = new();
+        terrainData = new(new(gridSize, gridSize));
+        trackData = new(new(gridSize, gridSize));
         GenerateWorld();
     }
 
@@ -124,7 +127,6 @@ public class PlacementSystem : MonoBehaviour
         if (buildingState == null)
             return;
 
-
         buildingState.EndState();
         inputManager.OnRelease -= PerformAction;
         inputManager.OnExit -= EndCurrentState;
@@ -133,10 +135,6 @@ public class PlacementSystem : MonoBehaviour
 
     void Update()
     {
-        // TEMP - allow scene reload
-        if (Input.GetKeyDown(KeyCode.R))
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
         if (buildingState == null)
             return;
 
@@ -154,5 +152,22 @@ public class PlacementSystem : MonoBehaviour
         Vector3 newPreviewPosition = inputManager.isWithinPlacementBounds ? grid.CellToWorld(inputManager.gridCellPos) : mousePosition;
 
         buildingState.UpdateState(newPreviewPosition, inputManager.isWithinPlacementBounds);
+    }
+
+
+
+
+
+
+
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

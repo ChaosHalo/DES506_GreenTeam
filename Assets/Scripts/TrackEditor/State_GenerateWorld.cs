@@ -50,7 +50,7 @@ public class State_GenerateWorld : IBuildingState
                 Vector3Int gridPosition = new(x, 0, y);
 
                 // place world object (index 3 = grass)
-                int index = objectPlacer.PlaceObject(database.objectsData[ID].Prefab, grid.CellToWorld(gridPosition), Quaternion.identity, true);
+                int index = objectPlacer.PlaceObject(database.objectsData[ID].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.Type.Terrain);
 
                 // place database object
                 selectedData.AddObjectAt(gridPosition, size, ID, type, index, rotationState, true, database.objectsData[ID].cost);
@@ -84,7 +84,7 @@ public class State_GenerateWorld : IBuildingState
             Vector3Int gridPosition = GetRandomPosition(halfX, halfY);
 
             // place world object (index 3 = grass)
-            int index = objectPlacer.PlaceObject(database.objectsData[IDs[i]].Prefab, grid.CellToWorld(gridPosition), Quaternion.Euler(rotations[rotationState]), false);
+            int index = objectPlacer.PlaceObject(database.objectsData[IDs[i]].Prefab, grid.CellToWorld(gridPosition), rotationState, false, ObjectData.Type.Track);
 
             // place database object
             selectedData.AddObjectAt(gridPosition, database.objectsData[IDs[i]].Size, IDs[i], type, index, rotationState, false, database.objectsData[IDs[i]].cost);

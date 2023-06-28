@@ -5,7 +5,13 @@ using UnityEngine;
 
 public class GridData
 {
+    public Vector2Int gridSize;
     Dictionary<Vector3Int, PlacementData> placedObjects = new();
+
+    public GridData(Vector2Int gridSize)
+    {
+        this.gridSize = gridSize;
+    }
 
     public void AddObjectAt(Vector3Int gridPosition,
                           Vector2Int objectSize,
@@ -17,7 +23,7 @@ public class GridData
                           int cost)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize, rotationState);
-        PlacementData data = new PlacementData(positionToOccupy, ID, type, placedObjectIndex, rotationState, objectSize, canModify, cost);
+        PlacementData data = new PlacementData(positionToOccupy, gridPosition, ID, type, placedObjectIndex, rotationState, objectSize, canModify, cost);
         foreach (var pos in positionToOccupy)
         {
             if (placedObjects.ContainsKey(pos))
@@ -39,20 +45,20 @@ public class GridData
                 switch (rotationState)
                 {
                     case 0:
-                        newX = x;
-                        newY = y;
-                        break;
-                    case 1:
-                        newX = y;
-                        newY = -x;
-                        break;
-                    case 2:
                         newX = -x;
                         newY = -y;
                         break;
-                    case 3:
+                    case 1:
                         newX = -y;
                         newY = x;
+                        break;
+                    case 2:
+                        newX = x;
+                        newY = y;
+                        break;
+                    case 3:
+                        newX = y;
+                        newY = -x;
                         break;
                 }
                 returnVal.Add(gridPosition + new Vector3Int(newX, 0, newY));
@@ -67,6 +73,16 @@ public class GridData
         foreach (var pos in positionToOccupy)
         {
             if (placedObjects.ContainsKey(pos))
+                return false;
+
+            // is within grid?
+            if (pos.x+1 < -gridSize.x / 2)
+                return false;
+            if (pos.x+1 > gridSize.x / 2)
+                return false;
+            if (pos.z < -gridSize.y / 2)
+                return false;
+            if (pos.z > gridSize.y / 2)
                 return false;
         }
         return true;
@@ -100,6 +116,7 @@ public class GridData
 public class PlacementData
 {
     public List<Vector3Int> occupiedPositions;
+    public Vector3Int originPosition;
     public int ID { get; private set; }
     public int objectType { get; private set; }
     public int PlacedObjectIndex { get; private set; }
@@ -109,9 +126,10 @@ public class PlacementData
     public int cost { get; private set; }
 
 
-    public PlacementData(List<Vector3Int> occupiedPositions, int iD, int type, int placedObjectIndex, int rotationState, Vector2Int size, bool canModify, int cost)
+    public PlacementData(List<Vector3Int> occupiedPositions, Vector3Int originPosition, int iD, int type, int placedObjectIndex, int rotationState, Vector2Int size, bool canModify, int cost)
     {
         this.occupiedPositions = occupiedPositions;
+        this.originPosition = originPosition;
         ID = iD;
         objectType = type;
         PlacedObjectIndex = placedObjectIndex;

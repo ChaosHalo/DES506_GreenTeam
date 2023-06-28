@@ -16,6 +16,6 @@ public class PieceButton : MonoBehaviour
 
     private void Start()
     {
-        costText.text = database.objectsData[ID].cost.ToString();
+        costText.text = "£"+database.objectsData[ID].cost.ToString();
     }
 }
