@@ -170,7 +170,7 @@ namespace MoreMountains.HighroadEngine
             {
                 _isNetworkMode = true;
 
-                if (OnlineLobbyProxy.Instance != null) _lobbyManager = OnlineLobbyProxy.Instance; 
+                if (OnlineLobbyProxy.Instance != null) _lobbyManager = OnlineLobbyProxy.Instance;
 
                 // in network, all cameras can be used in single mode
                 _cameraControllersAvailable = CameraControllers;
@@ -647,6 +647,7 @@ namespace MoreMountains.HighroadEngine
         /// </summary>
         public virtual void ReturnToMenu()
         {
+
             if (_testMode)
             {
                 Debug.LogWarning("In Test Mode, you can't quit current scene.");

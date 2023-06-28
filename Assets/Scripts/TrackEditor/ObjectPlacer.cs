@@ -6,7 +6,7 @@ using UnityEngine;
 public class ObjectPlacer : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> placedObjects = new();
+    public List<GameObject> placedObjects = new();
 
     public int PlaceObject(GameObject prefab, Vector3 position, int rotationState, bool canModify, ObjectData.Type type)
     {
@@ -16,7 +16,7 @@ public class ObjectPlacer : MonoBehaviour
         placeableObject.StopScaling();
         placeableObject.SetModifyable(canModify);
         placeableObject.objectType = type;
-        if(placeableObject.autoRotate)
+        if (placeableObject.autoRotate)
             placeableObject.autoRotate.SetRotationState(rotationState);
         placedObjects.Add(newObject);
         UpdateTrackConnections();
