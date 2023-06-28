@@ -39,6 +39,10 @@ public class PlacementSystem : MonoBehaviour
     private CameraManager cameraManager;
 
     [SerializeField]
+    private PerlinNoise perlinNoise;
+
+
+    [SerializeField]
     private bool gridVisualAlwaysOn = false;
 
     internal IBuildingState buildingState;
@@ -54,7 +58,7 @@ public class PlacementSystem : MonoBehaviour
 
     public void GenerateWorld()
     {
-        buildingState = new State_GenerateWorld(terrainData, trackData, database, grid, objectPlacer, 10);
+        buildingState = new State_GenerateWorld(terrainData, trackData, database, grid, objectPlacer, perlinNoise, 10);
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
         EndCurrentState();

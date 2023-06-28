@@ -10,6 +10,7 @@ public class State_GenerateWorld : IBuildingState
     ObjectPlacer objectPlacer;
     Grid grid;
     ObjectsDatabaseSO database;
+    PerlinNoise perlinNoise;
     int gridSize;
 
     // generate pre-placed track pieces within these bounds
@@ -19,7 +20,7 @@ public class State_GenerateWorld : IBuildingState
     // store used track positions
     List<Vector3Int> availablePositions = new();
 
-    public State_GenerateWorld(GridData terrainData, GridData trackData, ObjectsDatabaseSO database, Grid grid, ObjectPlacer objectPlacer, int gridSize)
+    public State_GenerateWorld(GridData terrainData, GridData trackData, ObjectsDatabaseSO database, Grid grid, ObjectPlacer objectPlacer, PerlinNoise perlinNoise, int gridSize)
     {
         this.terrainData = terrainData;
         this.trackData = trackData;
@@ -27,6 +28,7 @@ public class State_GenerateWorld : IBuildingState
         this.gridSize = gridSize;
         this.database = database;
         this.grid = grid;
+        this.perlinNoise = perlinNoise;
 
         GenerateTerrain();
         GenerateTrack();
@@ -43,11 +45,14 @@ public class State_GenerateWorld : IBuildingState
 
         int halfGrid = gridSize / 2;
 
-        for (int x = -halfGrid; x < halfGrid; x++)
+        for (int x = 0; x < gridSize; x++)
         {
-            for (int y = -halfGrid; y < halfGrid; y++)
+            for (int y = 0; y < gridSize; y++)
             {
-                Vector3Int gridPosition = new(x, 0, y);
+                Vector3Int gridPosition = new(x -halfGrid, 0, y-halfGrid);
+
+                // get tile type from perlin noise
+                ID = perlinNoise.GetTileID(y, x);
 
                 // place world object (index 3 = grass)
                 int index = objectPlacer.PlaceObject(database.objectsData[ID].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.Type.Terrain);

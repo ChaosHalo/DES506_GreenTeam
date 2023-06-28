@@ -200,8 +200,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5134661}
-  m_LocalRotation: {x: 0.38268355, y: 9.1536945e-11, z: -3.7915865e-11, w: 0.9238795}
-  m_LocalPosition: {x: -0.00000009808306, y: 549.97485, z: -749.9746}
+  m_LocalRotation: {x: 0.38268355, y: 2.2e-44, z: -1e-44, w: 0.9238795}
+  m_LocalPosition: {x: -2.4727e-41, y: 549.97485, z: -749.9746}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -528,6 +528,7 @@ Transform:
   - {fileID: 1981636473}
   - {fileID: 373773601}
   - {fileID: 584168193}
+  - {fileID: 865431557}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3767,6 +3768,51 @@ MonoBehaviour:
   database: {fileID: 11400000, guid: ef2a95800d6938b4cbce12240cdae11d, type: 2}
   costText: {fileID: 1762829647}
   ID: 1
+--- !u!1 &865431556
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 865431557}
+  - component: {fileID: 865431558}
+  m_Layer: 0
+  m_Name: PerlinNoise
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &865431557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865431556}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 60657939}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &865431558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865431556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b379a9d8120dc3c408bba4934b2a979e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generationType: 0
 --- !u!1 &907506411
 GameObject:
   m_ObjectHideFlags: 0
@@ -3820,7 +3866,8 @@ MonoBehaviour:
   previewSystem: {fileID: 149261015}
   uiManager: {fileID: 1981636472}
   currencyManager: {fileID: 373773600}
-  cameraManager: {fileID: 0}
+  cameraManager: {fileID: 584168194}
+  perlinNoise: {fileID: 865431558}
   gridVisualAlwaysOn: 0
 --- !u!1 &959804617
 GameObject:
@@ -4987,8 +5034,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444816078}
-  m_LocalRotation: {x: 0.38268355, y: 9.1536945e-11, z: -3.7915865e-11, w: 0.9238795}
-  m_LocalPosition: {x: -0.00000009808306, y: 549.97485, z: -749.9746}
+  m_LocalRotation: {x: 0.38268355, y: 2.2e-44, z: -1e-44, w: 0.9238795}
+  m_LocalPosition: {x: -2.4727e-41, y: 549.97485, z: -749.9746}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
