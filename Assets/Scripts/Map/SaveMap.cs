@@ -23,7 +23,7 @@ public class SaveMap : MonoBehaviour
         }
         SaveGameObject(map);
 
-        SceneManager.LoadScene("Main");
+        MyGameManager.instance.gameState.OnAction();
     }
     private void SaveGameObject(GameObject objectToSave)
     {

@@ -8,8 +8,8 @@ public class MainUIManager : MonoBehaviour
     {
         if (MyGameManager.instance.Map != null)
         {
-            Destroy(MyGameManager.instance.Map);
+            //Destroy(MyGameManager.instance.Map);
         }
-        SceneManager.LoadScene("TrackEditor");
+        MyGameManager.instance.GetSceneManager().LoadNewScene(2);
     }
 }
