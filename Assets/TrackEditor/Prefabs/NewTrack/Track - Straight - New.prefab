@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 2196496505597866443}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6256211025148671758
 MonoBehaviour:
@@ -118,6 +118,18 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 6889442942763003922}
     m_Modifications:
+    - target: {fileID: 1052072775455041046, guid: 979dea84d5578714c9e73807d45a60e6,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -8089829111391698034, guid: 83132f4a830fdf540aa780979d7dcfb4,
+        type: 3}
+    - target: {fileID: 2989618108862010076, guid: 979dea84d5578714c9e73807d45a60e6,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -7684862730248065037, guid: 83132f4a830fdf540aa780979d7dcfb4,
+        type: 3}
     - target: {fileID: 3638272588849099529, guid: 979dea84d5578714c9e73807d45a60e6,
         type: 3}
       propertyPath: m_Layer
@@ -127,6 +139,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Track - Straight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081590572812346027, guid: 979dea84d5578714c9e73807d45a60e6,
+        type: 3}
+      propertyPath: rotations.Array.data[0].y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5081590572812346027, guid: 979dea84d5578714c9e73807d45a60e6,
+        type: 3}
+      propertyPath: rotations.Array.data[2].y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8608012520798776349, guid: 979dea84d5578714c9e73807d45a60e6,
         type: 3}
