@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +16,6 @@ public class PieceButton : MonoBehaviour
 
     private void Start()
     {
-        costText.text = "£"+database.objectsData[ID].cost.ToString();
+        costText.text = database.objectsData[ID].cost.ToString();
     }
 }

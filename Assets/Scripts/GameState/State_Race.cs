@@ -53,7 +53,6 @@ public class State_Race : IGameState
         LoadAIWayPoints();
     }
 
-
     private GameObject LoadMap(string name)
     {
         GameObject loadedPrefab = Resources.Load<GameObject>("SaveMap/" + name);
@@ -84,7 +83,7 @@ public class State_Race : IGameState
     private void LoadStartPoints()
     {
         StartPieceInfo startPieceInfo = MyGameManager.instance.GetStartPieceInfoObject();
-        if (startPieceInfo.StartPoints.Count == 0)
+        if (startPieceInfo == null  )
         {
             Debug.LogError("Failed to load map : Non-existent StartPoints");
             return;

@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3587560145046287831
 MonoBehaviour:
@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d34a31ed147644448615c5e2887f04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rank: 1
-  CarTotalNum: 0
+  FactorsBaseObject: {fileID: 11400000, guid: 893838ebe701a4a7e9aced5777a580c2, type: 2}
+  Map: {fileID: 0}
+  litMaterial: {fileID: 2100000, guid: 69f63e1412178461e9aad59ac350a22e, type: 2}

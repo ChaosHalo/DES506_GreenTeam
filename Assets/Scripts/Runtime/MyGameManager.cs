@@ -70,7 +70,15 @@ public class MyGameManager : MonoBehaviour
 
     internal StartPieceInfo GetStartPieceInfoObject()
     {
-        return FindObjectOfType<StartPieceInfo>();
+        try
+        {
+            return FindObjectOfType<StartPieceInfo>();
+        }
+        catch
+        {
+            Debug.LogError("non-startPieceInfo find");
+            return null;
+        }
     }
     internal CustomSceneManager GetSceneManager()
     {

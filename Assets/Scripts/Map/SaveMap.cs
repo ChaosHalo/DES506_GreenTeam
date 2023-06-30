@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -22,7 +22,6 @@ public class SaveMap : MonoBehaviour
             obj.transform.parent = map.transform;
         }
         SaveGameObject(map);
-
         MyGameManager.instance.gameState.OnAction();
     }
     private void SaveGameObject(GameObject objectToSave)
