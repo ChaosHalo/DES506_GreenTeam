@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +20,6 @@ public class UIManager : MonoBehaviour
 
     internal void UpdateCurrency(int currency)
     {
-        currencyText.text = "£"+currency.ToString();
+        currencyText.text = currency.ToString();
     }
 }
