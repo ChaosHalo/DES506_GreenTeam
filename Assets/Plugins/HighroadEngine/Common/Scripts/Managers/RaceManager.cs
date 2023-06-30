@@ -130,7 +130,7 @@ namespace MoreMountains.HighroadEngine
         /// <summary>
         /// We initialize the race.
         /// </summary>
-        public virtual void Start()
+        public void StartRace()
         {
             _isPlaying = false;
 

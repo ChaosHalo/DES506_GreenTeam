@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class CustomSceneManager : MonoBehaviour
 {
+    [SerializeField] internal GameObject buildObjects;
+    [SerializeField] internal GameObject raceObjects;
     [SerializeField] private float splashDuration = 1.5f;
 
     internal IEnumerator RunSplashScreen()
@@ -16,11 +18,11 @@ public class CustomSceneManager : MonoBehaviour
     public void LoadNewScene(int index)
     {
         SceneManager.LoadScene(index);
-        MyGameManager.instance.SetNewState(index);
+        MyGameManager.instance.SetNewState(index, true);
     }
 
-    public void TEMPloadscene(int index)
+    public void ChangeToState(int index)
     {
-        SceneManager.LoadScene(index);
+        MyGameManager.instance.SetNewState(index, false);
     }
 }

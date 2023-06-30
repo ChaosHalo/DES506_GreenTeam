@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class State_Build : IGameState
 {
-    public State_Build()
-    {
-    }
+    private GameObject buildObjects = null;
+    SaveMap saveMap;
 
-    public void StartState() { }
-    public void EndState() { }
+    public State_Build() { }
+
+    public void StartState()
+    {
+        // enable current state objects
+        buildObjects = MyGameManager.instance.GetSceneManager().buildObjects;
+        if (buildObjects != null)
+            buildObjects.SetActive(true);
+
+        // assign refs
+        saveMap = MyGameManager.instance.GetSaveMap();
+
+    }
+    public void EndState()
+    {
+        saveMap.OnSaveMap();
+
+        if (buildObjects != null)
+            buildObjects.SetActive(false);
+    }
     public void OnAction()
     {
         MyGameManager.instance.GetSceneManager().LoadNewScene(3);
