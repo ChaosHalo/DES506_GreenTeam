@@ -29,7 +29,6 @@ public class State_Build : IGameState
     }
     public void OnAction()
     {
-        MyGameManager.instance.GetSceneManager().LoadNewScene(3);
     }
     public void UpdateState() { }
 }

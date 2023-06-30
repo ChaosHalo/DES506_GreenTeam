@@ -118,18 +118,15 @@ public class MyGameManager : MonoBehaviour
         switch (index)
         {
             case 0:
-                gameState = new State_Splash();
-                break;
-            case 1:
                 gameState = new State_CheckRacers();
                 break;
-            case 2:
+            case 1:
                 gameState = new State_Build();
                 break;
-            case 3:
+            case 2:
                 gameState = new State_Race();
                 break;
-            case 4:
+            case 3:
                 gameState = new State_SeasonEnd();
                 break;
         }

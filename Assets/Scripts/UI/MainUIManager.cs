@@ -10,6 +10,6 @@ public class MainUIManager : MonoBehaviour
         {
             //Destroy(MyGameManager.instance.Map);
         }
-        MyGameManager.instance.GetSceneManager().LoadNewScene(2);
+        MyGameManager.instance.GetSceneManager().ChangeToState(CustomSceneManager.Index.BUILD);
     }
 }

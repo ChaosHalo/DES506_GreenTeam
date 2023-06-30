@@ -12,7 +12,7 @@ public class State_CheckRacers : IGameState
     public void EndState() { }
     public void OnAction() 
     {
-        MyGameManager.instance.GetSceneManager().LoadNewScene(2);
+        MyGameManager.instance.GetSceneManager().LoadNewScene(CustomSceneManager.Index.BUILD);
     }
     public void UpdateState() { }
 }

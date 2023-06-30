@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,20 +10,22 @@ public class CustomSceneManager : MonoBehaviour
     [SerializeField] internal GameObject raceObjects;
     [SerializeField] private float splashDuration = 1.5f;
 
-    internal IEnumerator RunSplashScreen()
+     public enum Index { CHECK_RACERS = 0, BUILD = 1, RACE = 2};
+ public Index sceneIndex;
+
+    public void LoadNewScene(Index index)
     {
-        yield return new WaitForSeconds(splashDuration);
-        LoadNewScene(1);
+        SceneManager.LoadScene((int)index);
+        MyGameManager.instance.SetNewState((int)index, true);
     }
 
-    public void LoadNewScene(int index)
+    public void ChangeToState(Index index)
     {
-        SceneManager.LoadScene(index);
-        MyGameManager.instance.SetNewState(index, true);
+        MyGameManager.instance.SetNewState((int)index, false);
     }
 
-    public void ChangeToState(int index)
-    {
-        MyGameManager.instance.SetNewState(index, false);
-    }
+    public void LoadNewScene_Build() => LoadNewScene(Index.BUILD);
+    public void LoadNewScene_CheckRacers() => LoadNewScene(Index.CHECK_RACERS);
+    public void ChangeToState_Race() => ChangeToState(Index.RACE);
+    public void ChangeToState_Build() => ChangeToState(Index.BUILD);
 }

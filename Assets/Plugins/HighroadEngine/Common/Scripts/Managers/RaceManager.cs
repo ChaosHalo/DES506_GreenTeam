@@ -590,6 +590,16 @@ namespace MoreMountains.HighroadEngine
                                 ShowFinalRanking(playersRank);
                             }
                         }
+
+
+                        // TEMP for debug
+                        // force race end
+                        if (Input.GetKeyDown(KeyCode.F))
+                        {
+                            OnDisableControlForPlayers();
+                            _isPlaying = false;
+                            ShowFinalRanking(playersRank);
+                        }
                     }
                 }
             }
