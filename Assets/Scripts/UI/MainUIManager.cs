@@ -11,5 +11,6 @@ public class MainUIManager : MonoBehaviour
             //Destroy(MyGameManager.instance.Map);
         }
         MyGameManager.instance.GetSceneManager().ChangeToState(CustomSceneManager.Index.BUILD);
+        FindObjectOfType<CurrencyManager>().AddWinCurrency();
     }
 }
