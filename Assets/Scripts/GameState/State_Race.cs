@@ -83,14 +83,17 @@ public class State_Race : IGameState
         }
         Vector3 direction = startPieceInfo.InitialOrientation;
         float angle = Vector3.Angle(Vector3.forward, direction);
-
-        float dot = Vector3.Dot(Vector3.right, direction);
+        if (Vector3.Cross(Vector3.forward, direction).y < 0)
+        {
+            angle = 360 - angle;
+        }
+        /*float dot = Vector3.Dot(Vector3.right, direction);
         float signedAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
 
         if (signedAngle > 180)
         {
             angle = 360 - angle;
-        }
+        }*/
 
         angle = Mathf.Round(angle / 90f) * 90f;
         raceManager.StartAngleDegree = (int)angle;

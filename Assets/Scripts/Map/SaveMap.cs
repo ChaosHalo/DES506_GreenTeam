@@ -14,10 +14,10 @@ public class SaveMap : MonoBehaviour
         // 去空
         List<GameObject> pieces = objectPlacer.placedObjects.Where(o => o != null).ToList();
         // 只筛选轨道
-        List<GameObject> Tracks = pieces.Where(o => !o.name.Contains("Terrain")).ToList();
+        //List<GameObject> Tracks = pieces.Where(o => !o.name.Contains("Terrain")).ToList();
 
         // 将列表中的每个GameObject设置为父物体的子物体
-        foreach (GameObject obj in Tracks)
+        foreach (GameObject obj in pieces)
         {
             obj.transform.parent = map.transform;
         }
