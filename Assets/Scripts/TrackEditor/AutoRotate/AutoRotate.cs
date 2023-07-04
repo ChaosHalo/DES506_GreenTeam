@@ -153,11 +153,11 @@ public class AutoRotate : MonoBehaviour
         {
             if (hit.collider != null)
             {
+                // ignore hits on itself
                 if (hit.transform != this.transform.parent)
                 {
                     if (hit.transform.CompareTag("RotationHitbox"))
                     {
-                        Debug.Log(hit.transform + ":::::" + this.transform.parent);
                         return true;
                     }
                 }

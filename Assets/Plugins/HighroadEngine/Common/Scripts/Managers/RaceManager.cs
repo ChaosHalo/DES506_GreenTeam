@@ -130,7 +130,7 @@ namespace MoreMountains.HighroadEngine
         /// <summary>
         /// We initialize the race.
         /// </summary>
-        public virtual void Start()
+        public void StartRace()
         {
             _isPlaying = false;
 
@@ -589,6 +589,16 @@ namespace MoreMountains.HighroadEngine
                                 _isPlaying = false;
                                 ShowFinalRanking(playersRank);
                             }
+                        }
+
+
+                        // TEMP for debug
+                        // force race end
+                        if (Input.GetKeyDown(KeyCode.F))
+                        {
+                            OnDisableControlForPlayers();
+                            _isPlaying = false;
+                            ShowFinalRanking(playersRank);
                         }
                     }
                 }

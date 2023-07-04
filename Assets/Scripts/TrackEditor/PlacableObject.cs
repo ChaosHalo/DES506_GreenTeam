@@ -71,9 +71,9 @@ public class PlacableObject : MonoBehaviour
         originalMaterialInstance=renderer.material;
         renderer.material = connectionMaterialInstance;
        // Color c = new(0.1f, 0.1f, 0.1f);
-        Color c = Color.red;
-        c.a = 0.75f;
-        connectionMaterialInstance.color = c;
+       // Color c = Color.red;
+       // c.a = 0.75f;
+       // connectionMaterialInstance.color = c;
         UpdateConnectionState();
         //Renderer[] renderers = GetComponentsInChildren<Renderer>();
         //foreach (Renderer renderer in renderers)

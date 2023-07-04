@@ -93,7 +93,7 @@ Transform:
   m_Children:
   - {fileID: 3623263377422575151}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7946660073939243782
 MonoBehaviour:
@@ -118,6 +118,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 20722101165394534}
     m_Modifications:
+    - target: {fileID: 222286086215122413, guid: 4391fcdd52bb599409b7837dc4eb83a8,
+        type: 3}
+      propertyPath: connectionMaterialPrefab
+      value: 
+      objectReference: {fileID: 2100000, guid: 1cd10d4334d5bba49854e32ea3d313c7, type: 2}
     - target: {fileID: 1193929985250286441, guid: 4391fcdd52bb599409b7837dc4eb83a8,
         type: 3}
       propertyPath: m_RootOrder
@@ -173,11 +178,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1418719254436499832, guid: 4391fcdd52bb599409b7837dc4eb83a8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1418719254436499832, guid: 4391fcdd52bb599409b7837dc4eb83a8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1cd10d4334d5bba49854e32ea3d313c7, type: 2}
     - target: {fileID: 2581595302482626361, guid: 4391fcdd52bb599409b7837dc4eb83a8,
         type: 3}
       propertyPath: m_Name
       value: Track - Corner
       objectReference: {fileID: 0}
+    - target: {fileID: 4337401037215878504, guid: 4391fcdd52bb599409b7837dc4eb83a8,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 1611362953391388763, guid: 54395a999286769419a4dc0a2c20d0ff,
+        type: 3}
+    - target: {fileID: 4337401037215878505, guid: 4391fcdd52bb599409b7837dc4eb83a8,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -7684862730248065037, guid: 42c7f68d50f7b5c47a8635feb8089ae1,
+        type: 3}
     - target: {fileID: 4337401037215878506, guid: 4391fcdd52bb599409b7837dc4eb83a8,
         type: 3}
       propertyPath: m_Layer

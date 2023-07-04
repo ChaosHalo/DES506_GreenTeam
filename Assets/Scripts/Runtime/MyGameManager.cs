@@ -15,6 +15,13 @@ public class MyGameManager : MonoBehaviour
     public IGameState gameState;
     public Material litMaterial;
 
+    // build / race scene objects
+    [SerializeField] internal GameObject buildObjects;
+    [SerializeField] internal GameObject raceObjects;
+
+    // has new scene been loaded for game state?
+    bool gamestateNewScene = false;
+
     // singleton instance
     internal static MyGameManager instance;
 
@@ -38,7 +45,7 @@ public class MyGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetNewState(SceneManager.GetActiveScene().buildIndex);
+        SetNewState(SceneManager.GetActiveScene().buildIndex, false);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -59,13 +66,11 @@ public class MyGameManager : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(gameState!=null)
+        if(gameState!=null && gamestateNewScene == true)
+        {
+            gamestateNewScene=false;
             gameState.StartState();
-    }
-
-    internal void InstantiateMapObject(GameObject loadedPrefab)
-    {
-        Instantiate(loadedPrefab);
+        }
     }
 
     internal StartPieceInfo GetStartPieceInfoObject()
@@ -88,14 +93,20 @@ public class MyGameManager : MonoBehaviour
     {
         return FindObjectOfType<RaceManager>();
     }
+    internal SaveMap GetSaveMap()
+    {
+        return FindObjectOfType<SaveMap>();
+    }
 
     internal MapPieceWayPoints[] GetMapPieceWayPointsObjects()
     {
        return FindObjectsOfType<MapPieceWayPoints>();
     }
 
-    internal void SetNewState(int index)
+    internal void SetNewState(int index, bool loadNewScene)
     {
+        gamestateNewScene = true;
+
         // clear old state
         if(gameState !=null)
         {
@@ -107,27 +118,35 @@ public class MyGameManager : MonoBehaviour
         switch (index)
         {
             case 0:
-                gameState = new State_Splash();
-                break;
-            case 1:
                 gameState = new State_CheckRacers();
                 break;
-            case 2:
+            case 1:
                 gameState = new State_Build();
                 break;
-            case 3:
+            case 2:
                 gameState = new State_Race();
                 break;
-            case 4:
+            case 3:
                 gameState = new State_SeasonEnd();
                 break;
         }
 
+        // manually start new state if new level has not been loaded (otherwise automatically starts on level load)
+        if (loadNewScene == false)
+            if (gameState != null)
+                gameState.StartState();
+
+        // debug print current state
         Debug.Log("Changing state to: "+gameState);
     }
 
     public void OnContinuePress()
     {
         gameState.OnAction();
+    }
+
+    internal GameObject GetObjectWithTag(string tag)
+    {
+        return GameObject.FindGameObjectWithTag(tag);
     }
 }

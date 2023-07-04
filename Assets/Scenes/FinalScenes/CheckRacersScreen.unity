@@ -660,6 +660,8 @@ MonoBehaviour:
   FactorsBaseObject: {fileID: 11400000, guid: 893838ebe701a4a7e9aced5777a580c2, type: 2}
   Map: {fileID: 0}
   litMaterial: {fileID: 2100000, guid: 69f63e1412178461e9aad59ac350a22e, type: 2}
+  buildObjects: {fileID: 0}
+  raceObjects: {fileID: 0}
 --- !u!4 &1359345417
 Transform:
   m_ObjectHideFlags: 0
@@ -704,7 +706,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7beac9f466dfc984da0f0908e7992083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildObjects: {fileID: 0}
+  raceObjects: {fileID: 0}
   splashDuration: 1.5
+  sceneIndex: 0
 --- !u!4 &1838999190
 Transform:
   m_ObjectHideFlags: 0
@@ -806,8 +811,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1838999189}
         m_TargetAssemblyTypeName: CustomSceneManager, Assembly-CSharp
-        m_MethodName: LoadNewScene
-        m_Mode: 3
+        m_MethodName: LoadNewScene_Build
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

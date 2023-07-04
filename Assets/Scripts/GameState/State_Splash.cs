@@ -12,7 +12,7 @@ public class State_Splash : IGameState
 
     public void StartState() 
     {
-        MyGameManager.instance.GetSceneManager().StartCoroutine(MyGameManager.instance.GetSceneManager().RunSplashScreen());
+        //MyGameManager.instance.GetSceneManager().StartCoroutine(MyGameManager.instance.GetSceneManager().RunSplashScreen());
     }
     public void EndState() { }
     public void OnAction() { }
