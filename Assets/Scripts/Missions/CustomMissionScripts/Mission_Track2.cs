@@ -9,7 +9,7 @@ public class Mission_Track2 : Mission
     {
         return "Use a " + trackType.ToString() + " track piece";
     }
-    public override bool IsReached() 
+    public override bool IsGoalReached() 
     {
         return goalInt >= var1 ? true : false;
     }

@@ -9,7 +9,7 @@ public class Mission_Track6 : Mission
     {
         return "Use the " + terrainType.ToString() + " terrain type";
     }
-    public override bool IsReached()
+    public override bool IsGoalReached()
     {
         return goalInt > var1 ? true : false;
     }

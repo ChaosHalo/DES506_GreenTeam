@@ -15022,15 +15022,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e78404a60cadc24c805d5cbfb705d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allMissions:
-  - {fileID: 11400000, guid: b70081af6f15de0478be1d7a83b82922, type: 2}
-  - {fileID: 11400000, guid: 79018d33cdcc6dd41af14dab240de529, type: 2}
-  - {fileID: 11400000, guid: 611264c70067d444a86719365942962a, type: 2}
-  - {fileID: 11400000, guid: 6e2359262df61f9458ad6af8fc995c7e, type: 2}
-  - {fileID: 11400000, guid: 3f598c73de1858a4999de156ff693ecd, type: 2}
-  - {fileID: 11400000, guid: 232a451d190b59249b61536df3716ab8, type: 2}
-  - {fileID: 11400000, guid: 86843d0fd83a79a4a919a2ca0aa1e170, type: 2}
-  - {fileID: 11400000, guid: 99ccd8aea8c331d4797309c0eabf3936, type: 2}
+  missionPool:
+  - mission: {fileID: 11400000, guid: b70081af6f15de0478be1d7a83b82922, type: 2}
+    grouping: 5
+  - mission: {fileID: 11400000, guid: 79018d33cdcc6dd41af14dab240de529, type: 2}
+    grouping: 5
+  - mission: {fileID: 11400000, guid: 611264c70067d444a86719365942962a, type: 2}
+    grouping: 6
+  - mission: {fileID: 11400000, guid: 6e2359262df61f9458ad6af8fc995c7e, type: 2}
+    grouping: 6
+  - mission: {fileID: 11400000, guid: 3f598c73de1858a4999de156ff693ecd, type: 2}
+    grouping: 7
+  - mission: {fileID: 11400000, guid: 232a451d190b59249b61536df3716ab8, type: 2}
+    grouping: 7
+  - mission: {fileID: 11400000, guid: 86843d0fd83a79a4a919a2ca0aa1e170, type: 2}
+    grouping: 8
+  - mission: {fileID: 11400000, guid: 99ccd8aea8c331d4797309c0eabf3936, type: 2}
+    grouping: 8
   currentMissions:
   - {fileID: 0}
   - {fileID: 0}

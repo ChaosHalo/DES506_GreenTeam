@@ -1,11 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
+
+[System.Serializable]
+public struct MissionGrouping
+{
+    [SerializeField]
+    public Mission mission;
+    [SerializeField]
+    public int grouping;
+}
 
 public class MissionManager : MonoBehaviour
 {
-    [Header("All Possible Missions")]
-    public List<Mission> allMissions = new List<Mission>();
+    [Header("Mission Pool")]
+    public List<MissionGrouping> missionPool = new List<MissionGrouping>();
 
     [Header("Current Missions")]
     public Mission[] currentMissions = new Mission[3];
@@ -13,8 +23,14 @@ public class MissionManager : MonoBehaviour
     [Header("UI")]
     public MissionUI missionUI;
 
+    private CurrencyManager currencyManager;
+
+    private List<MissionGrouping> availableMissions = new List<MissionGrouping>();
+
+
     private void Start()
     {
+        availableMissions.AddRange(missionPool);
         InitialiseMissions();
     }
 
@@ -22,6 +38,11 @@ public class MissionManager : MonoBehaviour
     {
         if (missionUI == null)
             missionUI = FindObjectOfType<MissionUI>();
+        if (currencyManager == null)
+            currencyManager = FindObjectOfType<CurrencyManager>();
+
+        if (Input.GetKeyDown(KeyCode.T))
+            CHeckMissionCompletion();
     }
 
     private void InitialiseMissions()
@@ -35,20 +56,52 @@ public class MissionManager : MonoBehaviour
         }
     }
 
+    public void CHeckMissionCompletion()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            if (currentMissions[i] != null)
+            {
+                if (currentMissions[i].IsGoalReached())
+                {
+                    Debug.Log("Completed Mission: "+ currentMissions[i].description);
+
+                    if (currencyManager != null)
+                        currencyManager.AddMissionCurrency(currentMissions[i].rewardCurrency);
+
+                    RerollMission(i);
+                }
+            }
+        }
+    }
+
     public void CreateNewMission(int index)
     {
-        currentMissions[index] = Instantiate(allMissions[Random.Range(0, allMissions.Count)]);
+        currentMissions[index] = Instantiate(availableMissions[Random.Range(0, availableMissions.Count)].mission);
         currentMissions[index].InitialiseMission();
         currentMissions[index].index = index;
+        OnAddGrouping(currentMissions[index].grouping);
     }
 
     public void RerollMission(int index)
     {
+        int rerolledGrouping = currentMissions[index].grouping;
         currentMissions[index] = null;
         CreateNewMission(index);
+        OnRemoveGrouping(rerolledGrouping);
     }
 
+    private void OnAddGrouping(int grouping)
+    {
+        availableMissions.RemoveAll(item => item.grouping==grouping);
+    }
 
+    private void OnRemoveGrouping(int grouping)
+    {
+        foreach(MissionGrouping item in missionPool)
+            if(item.grouping==grouping)
+                availableMissions.Add(item);
+    }
 
 
 

@@ -9,7 +9,7 @@ public class Mission_Track5 : Mission
     {
         return "Use " + var1 + " terrain types";
     }
-    public override bool IsReached()
+    public override bool IsGoalReached()
     {
         int typesUsed = 0;
 

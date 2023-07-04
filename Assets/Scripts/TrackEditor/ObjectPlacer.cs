@@ -34,7 +34,7 @@ public class ObjectPlacer : MonoBehaviour
         UpdateTrackConnections();
 
         // EVENTS
-        if (placedByUser)
+        if (placedByUser == true)
         {
             if (objectType == ObjectData.ObjectType.Track)
             {

@@ -93,7 +93,7 @@ public class Mission : ScriptableObject
     }
 
     public virtual string GetDescriptionText() { return "NONE"; }
-    public virtual bool IsReached() { return false; }
+    public virtual bool IsGoalReached() { return false; }
     public virtual Mission.Difficulty GetDifficulty() { return Mission.Difficulty.EASY; }
 
     public Color GetDifficultyColour()

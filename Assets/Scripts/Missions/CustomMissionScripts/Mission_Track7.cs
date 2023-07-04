@@ -18,12 +18,17 @@ public class Mission_Track7 : Mission
             finalResult *= 100;
             var1 = finalResult;
         }
+
+        // set variables
+        missionDifficulty = GetDifficulty();
+        description = GetDescriptionText();
+        rewardCurrency = CalculateReward();
     }
     public override string GetDescriptionText()
     {
         return "Spend less than " + var1 + " currency";
     }
-    public override bool IsReached()
+    public override bool IsGoalReached()
     {
         return goalInt < var1 ? true : false;
     }

@@ -9,7 +9,7 @@ public class Mission_Track3 : Mission
     {
         return "Use less than " + var1 + " total track pieces";
     }
-    public override bool IsReached()
+    public override bool IsGoalReached()
     {
         return goalInt < var1 ? true : false;
     }
