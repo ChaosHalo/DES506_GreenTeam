@@ -76,8 +76,8 @@ public class State_PlaceTrack : IBuildingState
 
 
         // place object
-        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), previewSystem.GetCurrentRotationState(), true, ObjectData.Type.Track);
-        GridData selectedData = database.objectsData[selectedObjectIndex].objectType == ObjectData.Type.Terrain ? terrainData : trackData;
+        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), previewSystem.GetCurrentRotationState(), true, ObjectData.ObjectType.Track, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, true);
+        GridData selectedData = database.objectsData[selectedObjectIndex].objectType == ObjectData.ObjectType.Terrain ? terrainData : trackData;
         selectedData.AddObjectAt(gridPosition,
                                  database.objectsData[selectedObjectIndex].Size,
                                  database.objectsData[selectedObjectIndex].ID,
@@ -93,7 +93,7 @@ public class State_PlaceTrack : IBuildingState
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {
-        GridData selectedData = database.objectsData[selectedObjectIndex].objectType == ObjectData.Type.Terrain ? terrainData : trackData;
+        GridData selectedData = database.objectsData[selectedObjectIndex].objectType == ObjectData.ObjectType.Terrain ? terrainData : trackData;
         return selectedData.CanPlaceObejctAt(gridPosition, database.objectsData[selectedObjectIndex].Size, GetCurrentPreviewRotationState());
     }
 

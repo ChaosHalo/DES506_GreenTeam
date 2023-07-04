@@ -9,8 +9,8 @@ public class CustomSceneManager : MonoBehaviour
     [SerializeField] internal GameObject raceObjects;
     [SerializeField] private float splashDuration = 1.5f;
 
-     public enum Index { CHECK_RACERS = 0, BUILD = 1, RACE = 2};
- public Index sceneIndex;
+    public enum Index { CHECK_RACERS = 0, BUILD = 1, RACE = 2 };
+    public Index sceneIndex;
 
     public void LoadNewScene(Index index)
     {

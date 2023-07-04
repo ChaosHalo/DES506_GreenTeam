@@ -38,7 +38,7 @@ public class State_GenerateWorld : IBuildingState
     private void GenerateTerrain()
     {
         int ID = 3; // 3 = grass
-        int type = (int)ObjectData.Type.Terrain;
+        int type = (int)ObjectData.ObjectType.Terrain;
         int rotationState = 0;
         GridData selectedData = terrainData;
         Vector2Int size = new(1, 1);
@@ -55,7 +55,7 @@ public class State_GenerateWorld : IBuildingState
                 ID = perlinNoise.GetTileID(y, x);
 
                 // place world object (index 3 = grass)
-                int index = objectPlacer.PlaceObject(database.objectsData[ID].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.Type.Terrain);
+                int index = objectPlacer.PlaceObject(database.objectsData[ID].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, false);
 
                 // place database object
                 selectedData.AddObjectAt(gridPosition, size, ID, type, index, rotationState, true, database.objectsData[ID].cost);
@@ -66,7 +66,7 @@ public class State_GenerateWorld : IBuildingState
     private void GenerateTrack()
     {
         List<int> IDs = new List<int>() { 0, 1, 8 }; // track pieces to place
-        int type = (int)ObjectData.Type.Track;
+        int type = (int)ObjectData.ObjectType.Track;
         GridData selectedData = trackData;
 
         int halfX = generationBoundsX / 2;
@@ -89,7 +89,7 @@ public class State_GenerateWorld : IBuildingState
             Vector3Int gridPosition = GetRandomPosition(halfX, halfY);
 
             // place world object (index 3 = grass)
-            int index = objectPlacer.PlaceObject(database.objectsData[IDs[i]].Prefab, grid.CellToWorld(gridPosition), rotationState, false, ObjectData.Type.Track);
+            int index = objectPlacer.PlaceObject(database.objectsData[IDs[i]].Prefab, grid.CellToWorld(gridPosition), rotationState, false, ObjectData.ObjectType.Track, database.objectsData[IDs[i]].trackType, database.objectsData[IDs[i]].terrainType, false);
 
             // place database object
             selectedData.AddObjectAt(gridPosition, database.objectsData[IDs[i]].Size, IDs[i], type, index, rotationState, false, database.objectsData[IDs[i]].cost);

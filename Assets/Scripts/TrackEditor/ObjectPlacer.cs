@@ -8,18 +8,60 @@ public class ObjectPlacer : MonoBehaviour
     [SerializeField]
     public List<GameObject> placedObjects = new();
 
-    public int PlaceObject(GameObject prefab, Vector3 position, int rotationState, bool canModify, ObjectData.Type type)
+    [Header("Events")]
+    public MissionEvent onPlaceTrack;
+    public MissionEvent onPlaceTrackStraight;
+    public MissionEvent onPlaceTrackCurve;
+    public MissionEvent onPlaceTrackLoop;
+    public MissionEvent onPlaceTerrainGrass;
+    public MissionEvent onPlaceTerrainDesert;
+    public MissionEvent onPlaceTerrainSnow;
+    public MissionEvent onPlaceTerrainSea;
+    public MissionEvent onPlaceTerrainMountain;
+    public MissionEvent OnSpendCurrency;
+
+    public int PlaceObject(GameObject prefab, Vector3 position, int rotationState, bool canModify, ObjectData.ObjectType objectType, ObjectData.TrackType trackType, ObjectData.TerrainType terrainType, bool placedByUser)
     {
         GameObject newObject = Instantiate(prefab);
         newObject.transform.position = position;
         PlacableObject placeableObject = newObject.GetComponentInChildren<PlacableObject>();
         placeableObject.StopScaling();
         placeableObject.SetModifyable(canModify);
-        placeableObject.objectType = type;
+        placeableObject.objectType = objectType;
         if (placeableObject.autoRotate)
             placeableObject.autoRotate.SetRotationState(rotationState);
         placedObjects.Add(newObject);
         UpdateTrackConnections();
+
+        // EVENTS
+        if (placedByUser)
+        {
+            if (objectType == ObjectData.ObjectType.Track)
+            {
+                onPlaceTrack.Raise();
+                if (trackType == ObjectData.TrackType.Straight)
+                    onPlaceTrackStraight.Raise();
+                if (trackType == ObjectData.TrackType.Curve)
+                    onPlaceTrackCurve.Raise();
+                if (trackType == ObjectData.TrackType.Loop)
+                    onPlaceTrackLoop.Raise();
+            }
+            if (objectType == ObjectData.ObjectType.Terrain)
+            {
+                if (terrainType == ObjectData.TerrainType.Grass)
+                    onPlaceTerrainGrass.Raise();
+                if (terrainType == ObjectData.TerrainType.Desert)
+                    onPlaceTerrainDesert.Raise();
+                if (terrainType == ObjectData.TerrainType.Snow)
+                    onPlaceTerrainSnow.Raise();
+                if (terrainType == ObjectData.TerrainType.Sea)
+                    onPlaceTerrainSea.Raise();
+                if (terrainType == ObjectData.TerrainType.Mountain)
+                    onPlaceTerrainMountain.Raise();
+            }
+        }
+
+
         return placedObjects.Count - 1;
     }
 

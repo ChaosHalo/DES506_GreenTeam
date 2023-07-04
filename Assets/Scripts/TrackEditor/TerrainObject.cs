@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class TerrainObject : MonoBehaviour
 {
-    internal enum Type { GRASS, DESERT, SNOW, SEA, MOUNTAIN}
+    public enum Type { NONE, Grass, Desert, Snow, Sea, Mountain}
 
     [SerializeField]
-    private Type terrainType;
-    internal Type GetTerrainType() { return terrainType; }
+    public Type terrainType;
+    public Type GetTerrainType() { return terrainType; }
 }

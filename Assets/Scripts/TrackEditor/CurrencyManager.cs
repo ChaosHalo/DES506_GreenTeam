@@ -5,6 +5,7 @@ using UnityEngine;
 public class CurrencyManager : MonoBehaviour
 {
     private int currencyCurrent=0;
+    public int GetPlayerCurrency() { return currencyCurrent; }
 
     [SerializeField]
     private int currencyStart = 2000;
@@ -14,6 +15,9 @@ public class CurrencyManager : MonoBehaviour
 
     [SerializeField]
     private UIManager uiManager;
+
+    [Header("Events")]
+    public MissionEvent onSpendCurrency;
 
     private void Start()
     {
@@ -32,6 +36,7 @@ public class CurrencyManager : MonoBehaviour
         {
             currencyCurrent -= cost;
             uiManager.UpdateCurrency(currencyCurrent);
+            onSpendCurrency.Raise(this, -cost);
             return true;
         }
 
@@ -44,7 +49,7 @@ public class CurrencyManager : MonoBehaviour
         // don't allow negative cost
         if (cost < 0) return false;
 
-        if (currencyCurrent - cost > 0)
+        if (currencyCurrent - cost >= 0)
             return true;
         else
             return false;
@@ -57,6 +62,7 @@ public class CurrencyManager : MonoBehaviour
 
         currencyCurrent += cost;
         uiManager.UpdateCurrency(currencyCurrent);
+        onSpendCurrency.Raise(this, cost);
     }
 
     internal void AddWinCurrency()
