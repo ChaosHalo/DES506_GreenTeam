@@ -25,17 +25,14 @@ public class MissionUI : MonoBehaviour
     private Text rewardText;
 
 
-    private void Update()
+    public void CustomUpdate()
     {
         if(missionManager==null)
             missionManager=GameObject.FindObjectOfType<MissionManager>();
-    }
 
-    private void FixedUpdate()
-    {
         if (missionManager != null)
         {
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 missionTexts[i].text = missionManager.currentMissions[i].GetDescriptionText();
                 missionDifficultyIndicators[i].color = missionManager.currentMissions[i].GetDifficultyColour();

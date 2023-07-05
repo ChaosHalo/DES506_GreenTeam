@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 [System.Serializable]
 public struct MissionGrouping
@@ -27,13 +26,6 @@ public class MissionManager : MonoBehaviour
 
     private List<MissionGrouping> availableMissions = new List<MissionGrouping>();
 
-
-    private void Start()
-    {
-        availableMissions.AddRange(missionPool);
-        InitialiseMissions();
-    }
-
     private void Update()
     {
         if (missionUI == null)
@@ -45,8 +37,9 @@ public class MissionManager : MonoBehaviour
             CheckForCompletedMissions();
     }
 
-    private void InitialiseMissions()
+    public void InitialiseMissions()
     {
+        availableMissions.AddRange(missionPool);
         for (int i = 0; i < 3; i++)
         {
             if (currentMissions[i] == null)
