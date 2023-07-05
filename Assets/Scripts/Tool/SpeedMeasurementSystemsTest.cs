@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.HighroadEngine;
+using UnityEngine.SceneManagement;
 public class SpeedMeasurementSystemsTest : MonoBehaviour
 {
     public SpeedMeasurementPoint p1;
     public SpeedMeasurementPoint p2;
-
+    public RaceManager SingleRaceManager;
     public struct Info
     {
         public string Name;
@@ -19,13 +20,20 @@ public class SpeedMeasurementSystemsTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SingleRaceManager.StartRace();
     }
 
     // Update is called once per frame
     void Update()
     {
         CheckMatch();
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+            // 使用索引重新加载当前场景
+            SceneManager.LoadScene(currentSceneIndex);
+        }
     }
     private float GetDis(Info info1, Info info2)
     {
