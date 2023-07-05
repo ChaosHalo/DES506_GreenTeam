@@ -24,6 +24,7 @@ public class MissionManager : MonoBehaviour
 
     private CurrencyManager currencyManager;
 
+    [SerializeField]
     private List<MissionGrouping> availableMissions = new List<MissionGrouping>();
 
     private void Update()
@@ -39,7 +40,9 @@ public class MissionManager : MonoBehaviour
 
     public void InitialiseMissions()
     {
-        availableMissions.AddRange(missionPool);
+        if(availableMissions.Count == 0)
+            availableMissions.AddRange(missionPool);
+
         for (int i = 0; i < 3; i++)
         {
             if (currentMissions[i] == null)
@@ -102,8 +105,8 @@ public class MissionManager : MonoBehaviour
 
     private void OnRemoveGrouping(int grouping)
     {
-        foreach(MissionGrouping item in missionPool)
-            if(item.grouping==grouping)
+        foreach (MissionGrouping item in missionPool)
+            if (item.grouping == grouping)
                 availableMissions.Add(item);
     }
 

@@ -7,7 +7,7 @@ public class Mission_Track6 : Mission
 {
     public override string GetDescriptionText()
     {
-        return "Use the <b>" + terrainType.ToString() + "</b> terrain type";
+        return "Place the <b>" + terrainType.ToString() + "</b> terrain type";
     }
     public override bool IsGoalReached()
     {

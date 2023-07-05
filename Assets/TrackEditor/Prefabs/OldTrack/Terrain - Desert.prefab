@@ -225,7 +225,6 @@ GameObject:
   - component: {fileID: 6819990853552917455}
   - component: {fileID: 6819990853552917454}
   - component: {fileID: 6819990853552917453}
-  - component: {fileID: 6819990853552917452}
   - component: {fileID: 1613101607245610465}
   - component: {fileID: 8525483969852767837}
   - component: {fileID: 2876804725464821673}
@@ -301,20 +300,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6819990853552917452
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6819990853552917451}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &1613101607245610465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,8 +341,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6819990853552917451}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 1, z: 10}
-  m_Center: {x: 0, y: -0.1, z: 0}
+  m_Size: {x: 10, y: 100, z: 10}
+  m_Center: {x: 0, y: 50, z: 0}

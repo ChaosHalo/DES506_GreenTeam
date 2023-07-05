@@ -7,7 +7,7 @@ public class Mission_Track1 : Mission
 {
     public override string GetDescriptionText() 
     {
-        return "Use " + var1 + " <b>"+ trackType.ToString() + "</b> track pieces";
+        return "Place <b>" + var1 + " "+ trackType.ToString() + "</b> track pieces";
     }
     public override bool IsGoalReached() 
     {

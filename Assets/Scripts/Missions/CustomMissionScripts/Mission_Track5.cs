@@ -11,7 +11,7 @@ public class Mission_Track5 : Mission
         if (var1 == 1)
             pluralString = "type";
 
-        return "Use <b>" + var1 + "</b> terrain " + pluralString;
+        return "Place <b>" + var1 + " terrain</b> " + pluralString;
     }
     public override bool IsGoalReached()
     {

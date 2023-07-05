@@ -21,7 +21,7 @@ public class Mission_Track8 : Mission
     }
     public override string GetDescriptionText()
     {
-        return "Spend <b>more</b> than " + var1 + " currency";
+        return "Spend <b>more than " + var1 + "</b> currency this round";
     }
     public override bool IsGoalReached()
     {

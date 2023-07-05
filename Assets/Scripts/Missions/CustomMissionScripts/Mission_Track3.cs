@@ -7,7 +7,7 @@ public class Mission_Track3 : Mission
 {
     public override string GetDescriptionText()
     {
-        return "Use <b>less</b> than " + var1 + " total track pieces";
+        return "Place <b>less</b> than <b>" + var1 + " track pieces</b> total";
     }
     public override bool IsGoalReached()
     {

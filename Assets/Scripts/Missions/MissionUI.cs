@@ -34,8 +34,10 @@ public class MissionUI : MonoBehaviour
         {
             for (int i = 0; i < 3; i++)
             {
-                missionTexts[i].text = missionManager.currentMissions[i].GetDescriptionText();
-                missionDifficultyIndicators[i].color = missionManager.currentMissions[i].GetDifficultyColour();
+                if (missionTexts[i].text != null)
+                    missionTexts[i].text = missionManager.currentMissions[i].GetDescriptionText();
+                if (missionDifficultyIndicators[i] != null)
+                    missionDifficultyIndicators[i].color = missionManager.currentMissions[i].GetDifficultyColour();
             }
         }
     }
