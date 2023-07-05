@@ -7,7 +7,11 @@ public class Mission_Track5 : Mission
 {
     public override string GetDescriptionText()
     {
-        return "Use " + var1 + " terrain types";
+        string pluralString = "types";
+        if (var1 == 1)
+            pluralString = "type";
+
+        return "Use <b>" + var1 + "</b> terrain " + pluralString;
     }
     public override bool IsGoalReached()
     {

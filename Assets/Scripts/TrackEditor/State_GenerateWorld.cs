@@ -14,7 +14,7 @@ public class State_GenerateWorld : IBuildingState
     int gridSize;
 
     // generate pre-placed track pieces within these bounds
-    int generationBoundsX = 6;
+    int generationBoundsX = 4;
     int generationBoundsY = 4;
 
     // store used track positions

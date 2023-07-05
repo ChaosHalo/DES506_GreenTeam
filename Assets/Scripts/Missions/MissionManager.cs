@@ -42,7 +42,7 @@ public class MissionManager : MonoBehaviour
             currencyManager = FindObjectOfType<CurrencyManager>();
 
         if (Input.GetKeyDown(KeyCode.T))
-            CHeckMissionCompletion();
+            CheckForCompletedMissions();
     }
 
     private void InitialiseMissions()
@@ -56,8 +56,12 @@ public class MissionManager : MonoBehaviour
         }
     }
 
-    public void CHeckMissionCompletion()
+    public void CheckForCompletedMissions()
     {
+        List<string> descriptions = new List<string>();
+        List<int> rewards = new List<int>();
+        List<Color> colours = new List<Color>();
+
         for (int i = 0; i < 3; i++)
         {
             if (currentMissions[i] != null)
@@ -69,10 +73,17 @@ public class MissionManager : MonoBehaviour
                     if (currencyManager != null)
                         currencyManager.AddMissionCurrency(currentMissions[i].rewardCurrency);
 
+                    descriptions.Add(currentMissions[i].description);
+                    rewards.Add(currentMissions[i].rewardCurrency);
+                    colours.Add(currentMissions[i].GetDifficultyColour());
+
                     RerollMission(i);
                 }
             }
         }
+
+        if(missionUI != null) 
+            missionUI.ShowCompletedMissions(descriptions, rewards, colours);
     }
 
     public void CreateNewMission(int index)

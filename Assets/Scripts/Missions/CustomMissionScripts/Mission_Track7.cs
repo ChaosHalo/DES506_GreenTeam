@@ -9,15 +9,10 @@ public class Mission_Track7 : Mission
     {
         base.InitialiseMission();
 
-        CurrencyManager currencyManager = FindObjectOfType<CurrencyManager>();
-        if(currencyManager != null)
-        {
-            int minRoll = var1_min;
-            int maxRoll = (int)(currencyManager.GetPlayerCurrency() * 0.75f);
-            int finalResult = UnityEngine.Random.Range(minRoll, maxRoll) / 100;
-            finalResult *= 100;
-            var1 = finalResult;
-        }
+        int minRoll = var1_min;
+        int maxRoll = (int)(MyGameManager.instance.GetCurrencyManager().GetPlayerCurrency() * 0.75f);
+        int finalResult = Random.Range(minRoll, maxRoll) / 100;
+        var1 = finalResult * 100;
 
         // set variables
         missionDifficulty = GetDifficulty();
@@ -26,10 +21,11 @@ public class Mission_Track7 : Mission
     }
     public override string GetDescriptionText()
     {
-        return "Spend less than " + var1 + " currency";
+        return "Spend <b>less</b> than " + var1 + " currency";
     }
     public override bool IsGoalReached()
     {
+        Debug.Log(goalInt);
         return goalInt < var1 ? true : false;
     }
     public override Mission.Difficulty GetDifficulty()

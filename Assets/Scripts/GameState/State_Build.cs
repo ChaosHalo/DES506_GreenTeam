@@ -19,6 +19,7 @@ public class State_Build : IGameState
         // assign refs
         saveMap = MyGameManager.instance.GetSaveMap();
 
+        MyGameManager.instance.GetMissionManager().CheckForCompletedMissions();
     }
     public void EndState()
     {

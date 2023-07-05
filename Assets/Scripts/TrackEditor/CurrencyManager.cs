@@ -19,7 +19,7 @@ public class CurrencyManager : MonoBehaviour
     [Header("Events")]
     public MissionEvent onSpendCurrency;
 
-    private void Start()
+    private void Awake()
     {
         currencyCurrent = currencyStart;
         uiManager.UpdateCurrency(currencyCurrent);
@@ -36,7 +36,7 @@ public class CurrencyManager : MonoBehaviour
         {
             currencyCurrent -= cost;
             uiManager.UpdateCurrency(currencyCurrent);
-            onSpendCurrency.Raise(this, -cost);
+            onSpendCurrency.Raise(this, cost);
             return true;
         }
 
@@ -62,7 +62,7 @@ public class CurrencyManager : MonoBehaviour
 
         currencyCurrent += cost;
         uiManager.UpdateCurrency(currencyCurrent);
-        onSpendCurrency.Raise(this, cost);
+        onSpendCurrency.Raise(this, -cost);
     }
 
     internal void AddWinCurrency()

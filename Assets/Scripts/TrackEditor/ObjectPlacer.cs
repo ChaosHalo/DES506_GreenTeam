@@ -143,4 +143,27 @@ public class ObjectPlacer : MonoBehaviour
             }
         }
     }
+
+    internal bool IsTrackFullyConnected()
+    {
+        foreach (GameObject obj in placedObjects)
+        {
+            if (obj != null)
+            {
+                PlacableObject placableObject = obj.GetComponentInChildren<PlacableObject>();
+                if (placableObject != null)
+                {
+                    if (placableObject.objectType == ObjectData.ObjectType.Track)
+                    {
+                        if (placableObject.GetConnectedStatus() == false)
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
 }
