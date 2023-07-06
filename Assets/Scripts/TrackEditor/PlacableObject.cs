@@ -30,6 +30,8 @@ public class PlacableObject : MonoBehaviour
 
     internal ObjectData.ObjectType objectType;
 
+    private bool isPlaced = false;
+
 
     // scale presets
     private float multiLarge = 1.2f;
@@ -125,5 +127,17 @@ public class PlacableObject : MonoBehaviour
         {
             renderer.material = isConnected ? originalMaterialInstance : connectionMaterialInstance;
         }
+    }
+
+    internal void SetIsPlaced(bool b)
+    {
+        isPlaced = b;
+
+        if (objectType == ObjectData.ObjectType.Track)
+            if (isPlaced == true)
+                transform.tag = "Ground";
+
+        if (objectType == ObjectData.ObjectType.Terrain)
+            GetComponentInChildren<TerrainObject>().GenerateObjects();
     }
 }

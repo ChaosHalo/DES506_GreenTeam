@@ -31,6 +31,7 @@ public class ObjectPlacer : MonoBehaviour
         placeableObject.objectType = objectType;
         if (placeableObject.autoRotate)
             placeableObject.autoRotate.SetRotationState(rotationState);
+        placeableObject.SetIsPlaced(true);
         placedObjects.Add(newObject);
         UpdateTrackConnections();
 
