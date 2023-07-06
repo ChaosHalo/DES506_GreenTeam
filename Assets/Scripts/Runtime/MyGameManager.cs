@@ -73,43 +73,6 @@ public class MyGameManager : MonoBehaviour
         }
     }
 
-    internal StartPieceInfo GetStartPieceInfoObject()
-    {
-        try
-        {
-            return FindObjectOfType<StartPieceInfo>();
-        }
-        catch
-        {
-            Debug.LogError("non-startPieceInfo find");
-            return null;
-        }
-    }
-    internal CustomSceneManager GetSceneManager()
-    {
-        return FindObjectOfType<CustomSceneManager>();
-    }
-    internal RaceManager GetRaceManager()
-    {
-        return FindObjectOfType<RaceManager>();
-    }
-    internal SaveMap GetSaveMap()
-    {
-        return FindObjectOfType<SaveMap>();
-    }
-
-    internal ObjectPlacer GetObjectPlacer()
-    {
-        return FindObjectOfType<ObjectPlacer>();
-    }
-
-    internal MissionManager GetMissionManager() { return FindObjectOfType<MissionManager>(); }
-    internal CurrencyManager GetCurrencyManager() { return FindObjectOfType<CurrencyManager>(); }
-
-    internal MapPieceWayPoints[] GetMapPieceWayPointsObjects()
-    {
-       return FindObjectsOfType<MapPieceWayPoints>();
-    }
 
     internal void SetNewState(int index, bool loadNewScene)
     {
@@ -153,8 +116,29 @@ public class MyGameManager : MonoBehaviour
         gameState.OnAction();
     }
 
-    internal GameObject GetObjectWithTag(string tag)
+
+
+
+    #region GET / SET
+    internal StartPieceInfo GetStartPieceInfoObject()
     {
-        return GameObject.FindGameObjectWithTag(tag);
+        try
+        {
+            return FindObjectOfType<StartPieceInfo>();
+        }
+        catch
+        {
+            Debug.LogError("non-startPieceInfo find");
+            return null;
+        }
     }
+    internal GameObject GetObjectWithTag(string tag) { return GameObject.FindGameObjectWithTag(tag); }
+    internal CustomSceneManager GetSceneManager() { return FindObjectOfType<CustomSceneManager>(); }
+    internal RaceManager GetRaceManager() { return FindObjectOfType<RaceManager>(); }
+    internal SaveMap GetSaveMap() { return FindObjectOfType<SaveMap>(); }
+    internal ObjectPlacer GetObjectPlacer() { return FindObjectOfType<ObjectPlacer>(); }
+    internal MissionManager GetMissionManager() { return FindObjectOfType<MissionManager>(); }
+    internal CurrencyManager GetCurrencyManager() { return FindObjectOfType<CurrencyManager>(); }
+    internal MapPieceWayPoints[] GetMapPieceWayPointsObjects() { return FindObjectsOfType<MapPieceWayPoints>(); }
+    #endregion
 }

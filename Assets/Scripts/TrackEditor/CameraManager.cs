@@ -44,7 +44,7 @@ public class CameraManager : MonoBehaviour
         if (componentBase == null)
             componentBase = virtualCamera.GetCinemachineComponent(CinemachineCore.Stage.Body);
 
-        if (placementSystem.buildingState == null)
+       // if (placementSystem.buildingState == null)
         {
             UpdateCameraZoom();
             UpdateCameraPan();

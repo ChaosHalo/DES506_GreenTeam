@@ -24,6 +24,8 @@ public class MissionUI : MonoBehaviour
     [SerializeField]
     private Text rewardText;
 
+    bool isMissionCompelteUIOpen = false;
+
 
     public void CustomUpdate()
     {
@@ -40,6 +42,13 @@ public class MissionUI : MonoBehaviour
                     missionDifficultyIndicators[i].color = missionManager.currentMissions[i].GetDifficultyColour();
             }
         }
+    }
+
+    private void Update()
+    {
+        if(isMissionCompelteUIOpen==true)
+            if (Input.GetMouseButton(0))
+                completedMissionUI.SetActive(false);
     }
 
     public void ShowCompletedMissions(List<string> descriptions, List<int> rewards, List<Color> colours)
@@ -68,7 +77,9 @@ public class MissionUI : MonoBehaviour
 
     private IEnumerator HideUIAfterDuration()
     {
+        isMissionCompelteUIOpen = true;
         yield return new WaitForSeconds(hideDuration);
         completedMissionUI.SetActive(false);
+        isMissionCompelteUIOpen = false;
     }
 }

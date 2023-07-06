@@ -28,7 +28,7 @@ public class Mission_Track5 : Mission
         if (varExtra5 > 0)
             typesUsed++;
 
-        return typesUsed > var1 ? true: false;
+        return typesUsed >= var1 ? true: false;
     }
     public override Mission.Difficulty GetDifficulty()
     {
