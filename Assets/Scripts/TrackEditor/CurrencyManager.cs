@@ -67,6 +67,8 @@ public class CurrencyManager : MonoBehaviour
 
     internal void AddWinCurrency()
     {
+        currencyCurrent += currencyWin;
+        uiManager.UpdateCurrency(currencyCurrent);
     }
 
     internal void AddMissionCurrency(int amount)

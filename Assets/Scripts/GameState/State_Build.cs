@@ -34,6 +34,10 @@ public class State_Build : IGameState
     }
     public void UpdateState()
     {
-        MyGameManager.instance.GetMissionManager().missionUI.CustomUpdate();
+        MissionManager missionManager = MyGameManager.instance.GetMissionManager();
+
+        if(missionManager!=null)
+            if(missionManager.missionUI!= null)
+                missionManager.missionUI.CustomUpdate();
     }
 }

@@ -4288,7 +4288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currencyStart: 2000
-  currencyWin: 1000
+  currencyWin: 500
   uiManager: {fileID: 1981636472}
   onSpendCurrency: {fileID: 11400000, guid: 363aeadf69b1b6b429c099664a5efa1e, type: 2}
 --- !u!4 &373773601
@@ -16643,6 +16643,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   missionUI: {fileID: 0}
+  availableMissions: []
 --- !u!114 &1989633833
 MonoBehaviour:
   m_ObjectHideFlags: 0
