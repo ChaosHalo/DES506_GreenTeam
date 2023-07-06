@@ -19,6 +19,8 @@ public class State_Build : IGameState
         // assign refs
         saveMap = MyGameManager.instance.GetSaveMap();
 
+        MyGameManager.instance.GetMissionManager().InitialiseMissions();
+        MyGameManager.instance.GetMissionManager().CheckForCompletedMissions();
     }
     public void EndState()
     {
@@ -30,5 +32,8 @@ public class State_Build : IGameState
     public void OnAction()
     {
     }
-    public void UpdateState() { }
+    public void UpdateState()
+    {
+        MyGameManager.instance.GetMissionManager().missionUI.CustomUpdate();
+    }
 }

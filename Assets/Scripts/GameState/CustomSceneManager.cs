@@ -9,8 +9,8 @@ public class CustomSceneManager : MonoBehaviour
     [SerializeField] internal GameObject raceObjects;
     [SerializeField] private float splashDuration = 1.5f;
 
-     public enum Index { CHECK_RACERS = 0, BUILD = 1, RACE = 2};
- public Index sceneIndex;
+    public enum Index { CHECK_RACERS = 0, BUILD = 1, RACE = 2 };
+    public Index sceneIndex;
 
     public void LoadNewScene(Index index)
     {
@@ -25,6 +25,17 @@ public class CustomSceneManager : MonoBehaviour
 
     public void LoadNewScene_Build() => LoadNewScene(Index.BUILD);
     public void LoadNewScene_CheckRacers() => LoadNewScene(Index.CHECK_RACERS);
-    public void ChangeToState_Race() => ChangeToState(Index.RACE);
+    public void ChangeToState_Race()
+    {
+        if (MyGameManager.instance.GetObjectPlacer().IsTrackFullyConnected())
+        {
+            Debug.Log("Track fully connected");
+            ChangeToState(Index.RACE);
+        }
+        else
+        {
+            Debug.Log("Track not connected");
+        }
+    }
     public void ChangeToState_Build() => ChangeToState(Index.BUILD);
 }
