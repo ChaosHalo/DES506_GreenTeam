@@ -1,3 +1,4 @@
+using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -284,15 +285,69 @@ public class MissionManager : MonoBehaviour
     #region MISSION_EVENT_CURRENCY
     public void Event_SpendCurrency(Component sender, object data)
     {
+        List<string> eligibleMissions = new() { "Track7", "Track8" };
+
         for (int i = 0; i < 3; i++)
         {
             if (currentMissions[i] != null)
             {
-                if (currentMissions[i].title == "Track7" || currentMissions[i].title == "Track8")
+                foreach (string missionName in eligibleMissions)
                 {
-                    if(data is int)
+                    if (currentMissions[i].title == missionName)
                     {
-                        currentMissions[i].goalInt += (int)data;
+                        if (data is int)
+                        {
+                            currentMissions[i].goalInt += (int)data;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #endregion
+
+    #region RACE
+    public void Event_RaceEndTime(Component sender, object data)
+    {
+        List<string> eligibleMissions = new() { "Race2", "Race3" };
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (currentMissions[i] != null)
+            {
+                foreach (string missionName in eligibleMissions)
+                {
+                    if (currentMissions[i].title == missionName)
+                    {
+                        if (data is double)
+                        {
+                            currentMissions[i].goalDouble = (double)data;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public void Event_RaceEndCarInfo(Component sender, object data)
+    {
+        List<string> eligibleMissions = new() { "Race1", "Race4", "Race5", "Race6" };
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (currentMissions[i] != null)
+            {
+                foreach(string missionName in eligibleMissions)
+                {
+                    if (currentMissions[i].title == missionName)
+                    {
+                        if (sender != null)
+                        {
+                            CarInfoSerach carInfoSerach = sender as CarInfoSerach;
+                            if (carInfoSerach != null)
+                            {
+                                currentMissions[i].carInfoSerach = carInfoSerach;
+                            }
+                        }
                     }
                 }
             }

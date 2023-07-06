@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Lovatto.MiniMap;
+using Missions;
 public class MainUIManager : MonoBehaviour
 {
+    [Header("Events")]
+    public MissionEvent onRaceEndTime;
+    public MissionEvent onRaceEndCarInfo;
+
     public void TryAgain()
     {
         ClearAllCars();
@@ -12,9 +17,18 @@ public class MainUIManager : MonoBehaviour
         {
             //Destroy(MyGameManager.instance.Map);
         }
+
+        // events
+        double raceTime = MyGameManager.instance.GetRaceManager().GetRaceTime();
+        onRaceEndTime.Raise(this, raceTime);
+        onRaceEndCarInfo.Raise(MyGameManager.instance.GetCarInfoSerach(), null);
+
+        // change state
         MyGameManager.instance.GetSceneManager().ChangeToState(CustomSceneManager.Index.BUILD);
+
+        // win currency
         FindObjectOfType<CurrencyManager>().AddWinCurrency();
-        
+
     }
     void ClearAllCars()
     {

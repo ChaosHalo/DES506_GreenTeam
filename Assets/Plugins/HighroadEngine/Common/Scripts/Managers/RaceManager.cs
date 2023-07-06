@@ -627,13 +627,17 @@ namespace MoreMountains.HighroadEngine
         {
             // Show final ranking & controls to end
             string finalRank = "--- finished in " + System.Math.Round(_currentGameTime, 2) + " secs. ---";
-
             for (int i = 0; i < playersRank.Count; i++)
             {
                 finalRank += "\r\n" + playersRank[i].name;
             }
 
             OnShowEndGameScreen(finalRank);
+        }
+
+        public double GetRaceTime()
+        {
+            return System.Math.Round(_currentGameTime, 2);
         }
 
         /// <summary>

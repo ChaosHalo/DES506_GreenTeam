@@ -29,6 +29,10 @@ public class State_Race : IGameState
         InitData();
         InitMap();
         raceManager.StartRace();
+
+        // init carInfoSearch
+        CarInfoSerach carInfoSerach = MyGameManager.instance.GetCarInfoSerach();
+        carInfoSerach.SetupCarManagers();
     }
     public void EndState()
     {
@@ -99,7 +103,7 @@ public class State_Race : IGameState
         raceManager.StartAngleDegree = (int)angle;
 
         // 输出角度
-        Debug.Log("Angle: " + angle);
+        //Debug.Log("Angle: " + angle);
     }
 
     private void LoadCheckPoints()

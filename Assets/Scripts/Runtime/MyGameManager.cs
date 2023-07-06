@@ -132,6 +132,7 @@ public class MyGameManager : MonoBehaviour
             return null;
         }
     }
+    internal CarInfoSerach GetCarInfoSerach() { return FindObjectOfType<CarInfoSerach>(); }
     internal GameObject GetObjectWithTag(string tag) { return GameObject.FindGameObjectWithTag(tag); }
     internal CustomSceneManager GetSceneManager() { return FindObjectOfType<CustomSceneManager>(); }
     internal RaceManager GetRaceManager() { return FindObjectOfType<RaceManager>(); }

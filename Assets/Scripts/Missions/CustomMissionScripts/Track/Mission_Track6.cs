@@ -11,7 +11,7 @@ public class Mission_Track6 : Mission
     }
     public override bool IsGoalReached()
     {
-        return goalInt >= var1 ? true : false;
+        return goalInt >= int1 ? true : false;
     }
     public override Mission.Difficulty GetDifficulty()
     {

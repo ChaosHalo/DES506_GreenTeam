@@ -6,18 +6,12 @@ using System;
 
 public class CarInfoSerach : Singleton<CarInfoSerach>, ICarInfoSearch
 {
-    public List<CarManager> _carManagers;
+    public List<CarManager> carManagers = new();
 
-    public List<CarManager> carManagers
+    public void SetupCarManagers()
     {
-        get
-        {
-            if (_carManagers == null || _carManagers.Count == 0)
-            {
-                _carManagers = new List<CarManager>(FindObjectsOfType<CarManager>());
-            }
-            return _carManagers;
-        }
+        carManagers.Clear();
+        carManagers.AddRange(FindObjectsOfType<CarManager>());
     }
 
     private void Start()
@@ -29,7 +23,7 @@ public class CarInfoSerach : Singleton<CarInfoSerach>, ICarInfoSearch
     /// </summary>
     /// <param name="place"></param>
     /// <returns></returns>
-    private CarManager GetCarManager(int place, int lapIndex)
+    public CarManager GetCarManager(int place, int lapIndex)
     {
         foreach (var i in carManagers)
         {
@@ -46,7 +40,7 @@ public class CarInfoSerach : Singleton<CarInfoSerach>, ICarInfoSearch
     /// </summary>
     /// <param name="carName"></param>
     /// <returns></returns>
-    private CarManager GetCarManager(string carName)
+    public CarManager GetCarManager(string carName)
     {
         foreach (var i in carManagers)
         {
@@ -77,7 +71,7 @@ public class CarInfoSerach : Singleton<CarInfoSerach>, ICarInfoSearch
         {
             throw new Exception("CarManager not found.");
         }
-        return first.TimeForOneLapList[lapIndex - 1] - next.TimeForOneLapList[lapIndex - 1];
+        return first.TimeForOneLapList.Last() - next.TimeForOneLapList.Last();
     }
 
     public float GetLapTime(string carName, int lapIndex)
@@ -95,7 +89,7 @@ public class CarInfoSerach : Singleton<CarInfoSerach>, ICarInfoSearch
         CarManager car = GetCarManager(carName);
         try
         {
-            return car.RankList[lapIndex - 1];
+            return car.RankList.Last();
         }
         catch
         {
@@ -111,8 +105,8 @@ public class CarInfoSerach : Singleton<CarInfoSerach>, ICarInfoSearch
         {
             throw new Exception("CarManager not found.");
         }
-        int firstPlace = first.RankList[lapIndex - 1];
-        int nextPlace = next.RankList[lapIndex - 1];
+        int firstPlace = first.RankList.Last();
+        int nextPlace = next.RankList.Last();
         return firstPlace > nextPlace;
     }
 }

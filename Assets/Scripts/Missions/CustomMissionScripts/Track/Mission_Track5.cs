@@ -8,10 +8,10 @@ public class Mission_Track5 : Mission
     public override string GetDescriptionText()
     {
         string pluralString = "types";
-        if (var1 == 1)
+        if (int1 == 1)
             pluralString = "type";
 
-        return "Place <b>" + var1 + " terrain</b> " + pluralString;
+        return "Place <b>" + int1 + " terrain</b> " + pluralString;
     }
     public override bool IsGoalReached()
     {
@@ -28,13 +28,13 @@ public class Mission_Track5 : Mission
         if (varExtra5 > 0)
             typesUsed++;
 
-        return typesUsed >= var1 ? true: false;
+        return typesUsed >= int1 ? true: false;
     }
     public override Mission.Difficulty GetDifficulty()
     {
-        if (var1 <= 1)
+        if (int1 <= 1)
             return Mission.Difficulty.EASY;
-        else if (var1 <= 3)
+        else if (int1 <= 3)
             return Mission.Difficulty.MEDIUM;
         else
             return Mission.Difficulty.HARD;

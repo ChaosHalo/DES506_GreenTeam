@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -23,26 +24,37 @@ public class Mission : ScriptableObject
 
     #region GOAL
     [Header("GOAL")]
-    internal int var1;
+    internal int int1;
     [Header("Integer Variable 1")]
-    public int var1_min;
-    public int var1_max;
+    public int int1_min;
+    public int int1_max;
 
-    internal int var2;
+    internal int int2;
     [Header("Integer Variable 2")]
-    public int var2_min;
-    public int var2_max;
+    public int int2_min;
+    public int int2_max;
 
-    internal float var3;
+    internal int int3;
+    [Header("Integer Variable 3")]
+    public int int3_min;
+    public int int3_max;
+
+    internal float float1;
     [Header("Float Variable 1")]
-    public float var3_min;
-    public float var3_max;
+    public float float1_min;
+    public float float1_max;
 
     internal int varExtra1=0;
     internal int varExtra2=0;
     internal int varExtra3=0;
     internal int varExtra4=0;
     internal int varExtra5=0;
+
+    internal string name1;
+    internal string name2;
+    List<string> allNames = new List<string>() { "Peter", "Mik", "Felicia", "Billy" };
+
+    internal CarInfoSerach carInfoSerach = null;
 
     [Header("Goal Track Piece Type")]
     public ObjectData.TrackType trackType;
@@ -52,14 +64,23 @@ public class Mission : ScriptableObject
 
     internal int goalInt;
     internal float goalFloat;
+    internal double goalDouble;
     #endregion
 
     public virtual void InitialiseMission()
     {
         // randomise variables
-        var1 = UnityEngine.Random.Range(var1_min, var1_max+1);
-        var2 = UnityEngine.Random.Range(var2_min, var2_max+1);
-        var3 = UnityEngine.Random.Range(var3_min, var3_max);
+        int1 = UnityEngine.Random.Range(int1_min, int1_max+1);
+        int2 = UnityEngine.Random.Range(int2_min, int2_max+1);
+        int3 = UnityEngine.Random.Range(int3_min, int3_max + 1);
+        float1 = UnityEngine.Random.Range(float1_min, float1_max);
+
+        // randomise names
+        int i = UnityEngine.Random.Range(0, allNames.Count);
+        name1 = allNames[i];
+        allNames.RemoveAt(i);
+        i = UnityEngine.Random.Range(0, allNames.Count);
+        name2 = allNames[i];
 
         // randomise track & terrain
         trackType = (ObjectData.TrackType)UnityEngine.Random.Range(1, (int)Enum.GetValues(typeof(ObjectData.TrackType)).Cast<ObjectData.TrackType>().Max());

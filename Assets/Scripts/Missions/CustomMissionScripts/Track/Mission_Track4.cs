@@ -7,17 +7,17 @@ public class Mission_Track4 : Mission
 {
     public override string GetDescriptionText()
     {
-        return "Place <b>more</b> than <b>" + var1 + " track pieces</b> total";
+        return "Place <b>more</b> than <b>" + int1 + " track pieces</b> total";
     }
     public override bool IsGoalReached()
     {
-        return goalInt > var1 ? true : false;
+        return goalInt > int1 ? true : false;
     }
     public override Mission.Difficulty GetDifficulty()
     {
-        if (var1 <= 40)
+        if (int1 <= 40)
             return Mission.Difficulty.EASY;
-        else if (var1 <= 55)
+        else if (int1 <= 55)
             return Mission.Difficulty.MEDIUM;
         else
             return Mission.Difficulty.HARD;
