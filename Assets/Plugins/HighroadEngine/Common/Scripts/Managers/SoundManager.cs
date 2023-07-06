@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
+using System.Collections.Generic;
 
 namespace MoreMountains.HighroadEngine
 {	
@@ -20,8 +21,8 @@ namespace MoreMountains.HighroadEngine
 		[Range(0,1)]
 		public float SfxVolume=1f;
 
-	    protected AudioSource _backgroundMusic;	
-			
+	    protected AudioSource _backgroundMusic;
+		public List<GameObject> TempAudio = new();
 		/// <summary>
 		/// Plays a background music.
 		/// Only one background music can be active at a time.

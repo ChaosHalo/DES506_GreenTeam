@@ -56,7 +56,8 @@ namespace MoreMountains.HighroadEngine
 			{
 				return;
 			}
-			_engineSound.pitch = Mathf.Min(EngineMaxPitch, Mathf.Max(_engineSoundPitch, _engineSoundPitch * _controller.Speed * SpeedFactor));
+			if (_controller.Speed < 1) _engineSound.pitch = 0;
+			else _engineSound.pitch = Mathf.Min(EngineMaxPitch, Mathf.Max(_engineSoundPitch, _engineSoundPitch * _controller.Speed * SpeedFactor));
 		}
 
 		public override void OnVehicleCollisionEnter(Collision other)

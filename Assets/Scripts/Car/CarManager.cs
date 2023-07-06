@@ -37,9 +37,8 @@ public class CarManager : MonoBehaviour
         solidController.EngineForce = car.Acceleration;
         solidController.FullThrottleVelocity = car.TopSpeed;
         solidController.CarGrip = car.Handling;
-
-
     }
+
     /// <summary>
     /// 计时器
     /// </summary>
@@ -50,11 +49,11 @@ public class CarManager : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        // 一圈结束
+        /*// 一圈结束
         if (other.CompareTag("Checkpoint"))
         {
             OnOneLapEnd();
-        }
+        }*/
     }
     /// <summary>
     /// 一圈结束事件

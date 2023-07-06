@@ -1943,10 +1943,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CarInfo:
     <Name>k__BackingField: Darren
-    <TopSpeed>k__BackingField: 1
-    <Acceleration>k__BackingField: 1
-    <Handling>k__BackingField: 1
-    <OffRoad>k__BackingField: 1
+    <TopSpeed>k__BackingField: 5
+    <Acceleration>k__BackingField: 5
+    <Handling>k__BackingField: 5
+    <OffRoad>k__BackingField: 5
   CarInfoScriptableObject: {fileID: 11400000, guid: 893776463a8804dfd92bdb198b039069,
     type: 2}
   RankList: 
@@ -1968,12 +1968,12 @@ MonoBehaviour:
   SteeringSpeed: 10000
   AutoForward: 0
   _finisherPosition: 0
-  EngineForce: 1000
+  EngineForce: 1444.4445
   CenterOfMass: {x: 0, y: -1, z: 0}
   GroundDistance: 2
   OffroadPenaltyFactor: 1
-  CarGrip: 40
-  FullThrottleVelocity: 90
+  CarGrip: 57.77778
+  FullThrottleVelocity: 130
   MinimalTurningSpeed: 1
   ForwardForceHeight: 0.5
   TorqueCurve:
@@ -2116,17 +2116,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4056022515747808193}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ab980b94cbbdd0f4e8226f4212843b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EngineSound: {fileID: 8300000, guid: 26fb1e2169c7d5546b9f29329093262d, type: 3}
-  CrashSound: {fileID: 8300000, guid: bbea8de494fe50243910481da8e0292f, type: 3}
-  EngineVolume: 0.5
+  EngineSound: {fileID: 8300000, guid: ed9b90b808c12da4cba023a07feff591, type: 3}
+  CrashSound: {fileID: 8300000, guid: f471a7ba8e887ef4fba0b3bcb9624da8, type: 3}
+  EngineVolume: 0.1
   MinimalCrashSpeed: 2
   EngineMaxPitch: 5.5
-  SpeedFactor: 0.1
+  SpeedFactor: 0.01
 --- !u!114 &4775938815491979320
 MonoBehaviour:
   m_ObjectHideFlags: 0
