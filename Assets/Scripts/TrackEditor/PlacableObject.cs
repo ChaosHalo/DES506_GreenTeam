@@ -135,7 +135,7 @@ public class PlacableObject : MonoBehaviour
 
         if (objectType == ObjectData.ObjectType.Track)
             if (isPlaced == true)
-                transform.tag = "Ground";
+                transform.tag = "RaceTrackSurface";
 
         if (objectType == ObjectData.ObjectType.Terrain)
             GetComponentInChildren<TerrainObject>().GenerateObjects();

@@ -9,7 +9,7 @@ public class ClutterObject : MonoBehaviour
     public GameObject meshObject;
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Ground"))
+        if (other.CompareTag("RaceTrackSurface"))
         {
             isCovered = true;
         }
