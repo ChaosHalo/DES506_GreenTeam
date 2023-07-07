@@ -54,7 +54,12 @@ public class MyGameManager : MonoBehaviour
     {
         if(gameState != null)
             gameState.UpdateState();
+        ReLoadScene();
+    }
 
+#if UNITY_EDITOR
+    void ReLoadScene()
+    {
         if (Input.GetKeyDown(KeyCode.P))
         {
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -63,7 +68,7 @@ public class MyGameManager : MonoBehaviour
             SceneManager.LoadScene(currentSceneIndex);
         }
     }
-
+#endif
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if(gameState!=null && gamestateNewScene == true)

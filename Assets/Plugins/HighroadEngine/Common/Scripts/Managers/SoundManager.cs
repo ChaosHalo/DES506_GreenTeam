@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using MoreMountains.Tools;
+using System.Collections.Generic;
 
 namespace MoreMountains.HighroadEngine
 {	
@@ -20,8 +21,8 @@ namespace MoreMountains.HighroadEngine
 		[Range(0,1)]
 		public float SfxVolume=1f;
 
-	    protected AudioSource _backgroundMusic;	
-			
+	    protected AudioSource _backgroundMusic;
+		public List<GameObject> TempAudio = new();
 		/// <summary>
 		/// Plays a background music.
 		/// Only one background music can be active at a time.
@@ -66,12 +67,14 @@ namespace MoreMountains.HighroadEngine
 		/// <param name="Sfx">The sound clip you want to play.</param>
 		/// <param name="Location">The location of the sound.</param>
 		/// <param name="Volume">The volume of the sound.</param>
-		public virtual AudioSource PlaySound(AudioClip sfx, Vector3 location, bool shouldDestroyAfterPlay=true)
+		public virtual AudioSource PlaySound(AudioClip sfx, Vector3 location, Transform parent, bool shouldDestroyAfterPlay=true)
 		{
 			if (!SfxOn)
 				return null;
 			// we create a temporary game object to host our audio source
 			GameObject temporaryAudioHost = new GameObject("TempAudio");
+			// 设定父物体
+			temporaryAudioHost.transform.parent = parent;
 			// we set the temp audio's position
 			temporaryAudioHost.transform.position = location;
 			// we add an audio source to that host
@@ -80,6 +83,8 @@ namespace MoreMountains.HighroadEngine
 			audioSource.clip = sfx; 
 			// we set the audio source volume to the one in parameters
 			audioSource.volume = SfxVolume;
+			// 设定近大远小效果
+			audioSource.spatialBlend = 1;
 			// we start playing the sound
 			audioSource.Play(); 
 			// we destroy the host after the clip has played
@@ -98,12 +103,14 @@ namespace MoreMountains.HighroadEngine
 		/// <param name="Sfx">The sound clip you want to play.</param>
 		/// <param name="Location">The location of the sound.</param>
 		/// <param name="Volume">The volume of the sound.</param>
-		public virtual AudioSource PlayLoop(AudioClip Sfx, Vector3 Location)
+		public virtual AudioSource PlayLoop(AudioClip Sfx, Vector3 Location, Transform parent)
 		{
 			if (!SfxOn)
 				return null;
 			// we create a temporary game object to host our audio source
 			GameObject temporaryAudioHost = new GameObject("TempAudio");
+			// 设定父物体
+			temporaryAudioHost.transform.parent = parent;
 			// we set the temp audio's position
 			temporaryAudioHost.transform.position = Location;
 			// we add an audio source to that host
@@ -114,6 +121,8 @@ namespace MoreMountains.HighroadEngine
 			audioSource.volume = SfxVolume;
 			// we set it to loop
 			audioSource.loop=true;
+			// 设定近大远小效果
+			audioSource.spatialBlend = 1;
 			// we start playing the sound
 			audioSource.Play(); 
 			// we return the audiosource reference
