@@ -1831,6 +1831,7 @@ MonoBehaviour:
   SfxOn: 1
   MusicVolume: 0.3
   SfxVolume: 1
+  TempAudio: []
 --- !u!1001 &135666124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14346,6 +14347,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: fd6ee48057b93ab4da04fb3f34820bfa,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ea7630ec5a3e844bafbe1168168767c, type: 2}
     - target: {fileID: 919132149155446097, guid: fd6ee48057b93ab4da04fb3f34820bfa,
         type: 3}
       propertyPath: m_Name
@@ -17116,7 +17122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fde5f14164044205a9766a456c07473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carManagers: []
 --- !u!1 &1993868652
 GameObject:
   m_ObjectHideFlags: 2
@@ -18036,7 +18041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2077400559
 Transform:
   m_ObjectHideFlags: 0

@@ -60,7 +60,7 @@ public class Mission_Race4 : Mission
         if (carInfoSerach == null)
             return false;
 
-        return carInfoSerach.GetGapTime(varExtra5, int3, 0) >= int1 ? true : false;
+        return carInfoSerach.GetGapTime(varExtra5, int3) >= int1 ? true : false;
     }
     public override Mission.Difficulty GetDifficulty()
     {
