@@ -32,7 +32,7 @@ public class State_Race : IGameState
 
         // init carInfoSearch
         CarInfoSerach carInfoSerach = MyGameManager.instance.GetCarInfoSerach();
-        carInfoSerach.SetupCarManagers();
+        //carInfoSerach.SetupCarManagers();
     }
     public void EndState()
     {

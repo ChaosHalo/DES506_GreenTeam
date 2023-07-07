@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1831,6 +1831,7 @@ MonoBehaviour:
   SfxOn: 1
   MusicVolume: 0.3
   SfxVolume: 1
+  TempAudio: []
 --- !u!1001 &135666124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14350,7 +14351,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 785341bd976f4b146a763ec838d62c8f, type: 2}
+      objectReference: {fileID: 2100000, guid: 6ea7630ec5a3e844bafbe1168168767c, type: 2}
     - target: {fileID: 919132149155446097, guid: fd6ee48057b93ab4da04fb3f34820bfa,
         type: 3}
       propertyPath: m_Name
@@ -17121,7 +17122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fde5f14164044205a9766a456c07473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carManagers: []
 --- !u!1 &1993868652
 GameObject:
   m_ObjectHideFlags: 2

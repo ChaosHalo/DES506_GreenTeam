@@ -14,7 +14,7 @@ public class Mission_Race6 : Mission
         if (carInfoSerach == null)
             return false;
 
-        return carInfoSerach.IsFinishAfter(name1, name2, 0) ? true : false;
+        return carInfoSerach.IsFinishAfter(name1, name2) ? true : false;
     }
     public override Mission.Difficulty GetDifficulty()
     {

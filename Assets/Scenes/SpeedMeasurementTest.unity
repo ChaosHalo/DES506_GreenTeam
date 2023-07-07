@@ -1560,7 +1560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &509817111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1576,6 +1576,8 @@ MonoBehaviour:
   FactorsBaseObject: {fileID: 11400000, guid: 893838ebe701a4a7e9aced5777a580c2, type: 2}
   Map: {fileID: 0}
   litMaterial: {fileID: 0}
+  buildObjects: {fileID: 0}
+  raceObjects: {fileID: 0}
 --- !u!4 &509817112
 Transform:
   m_ObjectHideFlags: 0
@@ -2555,6 +2557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p1: {fileID: 1848186591}
   p2: {fileID: 2000437832}
+  SingleRaceManager: {fileID: 1820583282}
 --- !u!4 &747872319
 Transform:
   m_ObjectHideFlags: 0
@@ -6897,7 +6900,7 @@ PrefabInstance:
     - target: {fileID: 3938525164843070333, guid: c59824b1baaab024baef512b0f388e1b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 341.6
+      value: 341.9
       objectReference: {fileID: 0}
     - target: {fileID: 3938525164843070333, guid: c59824b1baaab024baef512b0f388e1b,
         type: 3}
@@ -6907,7 +6910,7 @@ PrefabInstance:
     - target: {fileID: 3938525164843070333, guid: c59824b1baaab024baef512b0f388e1b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 49.4
+      value: 98.5
       objectReference: {fileID: 0}
     - target: {fileID: 3938525164843070333, guid: c59824b1baaab024baef512b0f388e1b,
         type: 3}

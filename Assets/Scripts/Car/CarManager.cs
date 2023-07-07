@@ -7,19 +7,20 @@ public class CarManager : MonoBehaviour
 {
     public CarInfo CarInfo;
     public CarInfoScriptableObject CarInfoScriptableObject;
-    public List<int> RankList = new();
-    public List<float> TimeForOneLapList = new();
     private float oneLapTime;
     private float totalTime;
     private VehicleInformation vehicleInformation;
     private SolidController solidController;
+
+    public float FinalTime;
+    private bool IsTimerRunning;
     private void Awake()
     {
         InitData();
     }
     private void Start()
     {
-
+        
     }
     private void Update()
     {
@@ -27,6 +28,10 @@ public class CarManager : MonoBehaviour
     }
     public void InitData()
     {
+        FinalTime = 0;
+        oneLapTime = 0;
+        StartTimer();
+
         CarInfo = CarInfoScriptableObject.GetCarInfo();
         Car car = new(MyGameManager.instance.FactorsBaseObject, CarInfo);
         // 设置车辆名称信息
@@ -37,23 +42,31 @@ public class CarManager : MonoBehaviour
         solidController.EngineForce = car.Acceleration;
         solidController.FullThrottleVelocity = car.TopSpeed;
         solidController.CarGrip = car.Handling;
-
-
     }
+    private void StartTimer() => IsTimerRunning = false;
+    private void StopTimer() => IsTimerRunning = true;
     /// <summary>
     /// 计时器
     /// </summary>
     private void Timer()
     {
-        oneLapTime += Time.deltaTime;
-        totalTime += Time.deltaTime;
+        if (!IsTimerRunning)
+        {
+            oneLapTime += Time.deltaTime;
+            totalTime += Time.deltaTime;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
         // 一圈结束
-        if (other.CompareTag("Checkpoint"))
+        if (other.CompareTag(GlobalConstants.CHECKPOINT))
         {
             OnOneLapEnd();
+        }
+        // 出界
+        if (other.CompareTag(GlobalConstants.BOUNDARIES))
+        {
+            solidController.Respawn();
         }
     }
     /// <summary>
@@ -61,9 +74,9 @@ public class CarManager : MonoBehaviour
     /// </summary>
     private void OnOneLapEnd()
     {
-        TimeForOneLapList.Add(Mathf.Round(oneLapTime * 1000) / 1000f);
-
+        FinalTime = (Mathf.Round(oneLapTime * 1000) / 1000f);
         oneLapTime = 0;
+        StopTimer();
     }
     /// <summary>
     /// 运行完成事件
