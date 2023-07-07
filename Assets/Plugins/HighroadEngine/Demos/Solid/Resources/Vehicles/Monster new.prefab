@@ -1808,7 +1808,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4056017837106256019}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -1.16, y: -0.57, z: 2.01}
+  m_LocalPosition: {x: -1.16, y: 0.12, z: 2.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1868,7 +1868,7 @@ GameObject:
   - component: {fileID: 4168620319936427301}
   - component: {fileID: 4168305122019000497}
   - component: {fileID: 7609090298054076925}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Monster new
   m_TagString: Car
   m_Icon: {fileID: 0}
@@ -1929,7 +1929,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.1270177, y: 1.545976, z: 6.130262}
-  m_Center: {x: -0.058976773, y: 0.19424754, z: 0.18499993}
+  m_Center: {x: -0.058976773, y: 0.77, z: 0.18499993}
 --- !u!114 &1518421901058744109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1950,8 +1950,7 @@ MonoBehaviour:
     <OffRoad>k__BackingField: 1
   CarInfoScriptableObject: {fileID: 11400000, guid: a4d4bd9eab8984a1faa0423b29fecab6,
     type: 2}
-  RankList: 
-  TimeForOneLapList: []
+  FinalTime: 0
 --- !u!114 &4168269826279685327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2043,7 +2042,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  GripSpeedFactor: 0.309
+  GripSpeedFactor: 0.02
   MaxGripValue: 100
   RadiusWheel: 0.43
   SpringConstant: 500000
@@ -12698,7 +12697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4053647660575505611
 Transform:
   m_ObjectHideFlags: 0
@@ -12751,7 +12750,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4056282757826530341}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.16, y: -0.57, z: 2.01}
+  m_LocalPosition: {x: 1.16, y: 0.12, z: 2.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14137,7 +14136,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4056472675756976903}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -1.3, y: -0.57, z: -1.64}
+  m_LocalPosition: {x: -1.3, y: 0.12, z: -1.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14485,7 +14484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4056513185315122053}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3, y: -0.57, z: -1.64}
+  m_LocalPosition: {x: 1.3, y: 0.12, z: -1.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
