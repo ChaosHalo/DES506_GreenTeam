@@ -11,6 +11,7 @@ public class State_GenerateWorld : IBuildingState
     Grid grid;
     ObjectsDatabaseSO database;
     PerlinNoise perlinNoise;
+    PlacementSystem placementSystem;
     int gridSize;
 
     // generate pre-placed track pieces within these bounds
@@ -20,7 +21,12 @@ public class State_GenerateWorld : IBuildingState
     // store used track positions
     List<Vector3Int> availablePositions = new();
 
-    public State_GenerateWorld(GridData terrainData, GridData trackData, ObjectsDatabaseSO database, Grid grid, ObjectPlacer objectPlacer, PerlinNoise perlinNoise, int gridSize)
+    float curTime = 0;
+    float delayTime = 1f;
+    bool placedTrack = false;
+
+
+    public State_GenerateWorld(GridData terrainData, GridData trackData, ObjectsDatabaseSO database, Grid grid, ObjectPlacer objectPlacer, PerlinNoise perlinNoise, int gridSize, PlacementSystem placementSystem)
     {
         this.terrainData = terrainData;
         this.trackData = trackData;
@@ -29,10 +35,10 @@ public class State_GenerateWorld : IBuildingState
         this.database = database;
         this.grid = grid;
         this.perlinNoise = perlinNoise;
+        this.placementSystem = placementSystem;
 
         GenerateTerrain();
-        GenerateTrack();
-        EndState();
+        placementSystem.isGenerating = true;
     }
 
     private void GenerateTerrain()
@@ -65,8 +71,8 @@ public class State_GenerateWorld : IBuildingState
 
     private void GenerateTrack()
     {
-        //List<int> IDs = new List<int>() { 0, 1, 8 }; // track pieces to place
-        List<int> IDs = new List<int>() { 8 }; // track pieces to place
+        List<int> IDs = new List<int>() { 0, 1, 8 }; // track pieces to place
+        //List<int> IDs = new List<int>() { 8 }; // track pieces to place
         int type = (int)ObjectData.ObjectType.Track;
         GridData selectedData = trackData;
 
@@ -95,6 +101,7 @@ public class State_GenerateWorld : IBuildingState
             // place database object
             selectedData.AddObjectAt(gridPosition, database.objectsData[IDs[i]].Size, IDs[i], type, index, rotationState, false, database.objectsData[IDs[i]].cost);
         }
+        placementSystem.EndCurrentState();
     }
 
     private void GenerateUnusedPositions(int halfX, int halfY)
@@ -135,7 +142,21 @@ public class State_GenerateWorld : IBuildingState
         return newPos;
     }
 
-    public void EndState() { }
+    public void EndState() 
+    {
+        placementSystem.isGenerating = false;
+    }
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds) { }
-    public void UpdateState(Vector3 gridPosition, bool isWithinBounds) { }
+    public void UpdateState(Vector3 gridPosition, bool isWithinBounds) 
+    {
+        curTime += Time.deltaTime;
+        if (curTime >= delayTime)
+        {
+            if(placedTrack==false)
+            {
+                placedTrack = true;
+                GenerateTrack();
+            }
+        }
+    }
 }

@@ -71,7 +71,7 @@ public class PlacableObject : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         UpdateScale();
 
@@ -81,7 +81,7 @@ public class PlacableObject : MonoBehaviour
         if (isFalling == true)
         {
             transform.parent.localPosition = Vector3.Lerp(transform.parent.localPosition, placedPos, Time.deltaTime * fallAnimSpeed);
-            if (Vector3.Distance(transform.parent.localPosition, placedPos) < 5)
+            if (Vector3.Distance(transform.parent.localPosition, placedPos) < 0.5f)
             {
                 isFalling = false;
                 transform.parent.localPosition = placedPos;
@@ -113,15 +113,15 @@ public class PlacableObject : MonoBehaviour
 
     internal virtual void UpdateScale()
     {
-        if (canScale == false)
-            return;
+        //if (canScale == false)
+        //    return;
 
-        transform.parent.localScale = Vector3.MoveTowards(transform.parent.localScale, scaleNext, scaleSpeed * Time.deltaTime);
+        //transform.parent.localScale = Vector3.MoveTowards(transform.parent.localScale, scaleNext, scaleSpeed * Time.deltaTime);
 
-        if (transform.parent.localScale == scaleLarge)
-            scaleNext = scaleSmall;
-        if (transform.parent.localScale == scaleSmall)
-            scaleNext = scaleLarge;
+        //if (transform.parent.localScale == scaleLarge)
+        //    scaleNext = scaleSmall;
+        //if (transform.parent.localScale == scaleSmall)
+        //    scaleNext = scaleLarge;
     }
 
     internal void StopScaling()
@@ -170,9 +170,9 @@ public class PlacableObject : MonoBehaviour
         isDeleted = true;
     }
 
-    internal void OnPlace()
+    internal void OnPlace(int verticalOffset)
     {
-        placedPos = new Vector3(transform.parent.localPosition.x, transform.parent.localPosition.y - 100, transform.parent.localPosition.z);
+        placedPos = new Vector3(transform.parent.localPosition.x, transform.parent.localPosition.y - verticalOffset, transform.parent.localPosition.z);
         isFalling = true;
     }
 }

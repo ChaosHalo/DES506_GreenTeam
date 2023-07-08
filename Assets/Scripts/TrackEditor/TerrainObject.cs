@@ -31,6 +31,7 @@ public class TerrainObject : MonoBehaviour
             GameObject newObject = Instantiate(objectPrefabs[Random.Range(0, objectPrefabs.Count)]);
             newObject.transform.position = GetNewPosition();
             newObject.transform.parent = transform;
+            newObject.transform.Rotate(new(0, 0, Random.Range(0, 360)));
             instantiatedObjects.Add( newObject );
         }
     }

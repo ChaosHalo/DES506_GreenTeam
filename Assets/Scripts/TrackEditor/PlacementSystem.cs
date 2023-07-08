@@ -41,11 +41,12 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private PerlinNoise perlinNoise;
 
-
     [SerializeField]
     private bool gridVisualAlwaysOn = false;
 
     internal IBuildingState buildingState;
+
+    internal bool isGenerating = false;
 
 
     private void Start()
@@ -58,14 +59,16 @@ public class PlacementSystem : MonoBehaviour
 
     public void GenerateWorld()
     {
-        buildingState = new State_GenerateWorld(terrainData, trackData, database, grid, objectPlacer, perlinNoise, 10);
+        buildingState = new State_GenerateWorld(terrainData, trackData, database, grid, objectPlacer, perlinNoise, 10, this);
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
-        EndCurrentState();
     }
 
     public void StartPlacement(int ID)
     {
+        if (isGenerating==true)
+            return;
+
         EndCurrentState();
 
         if (gridVisualAlwaysOn == false)
@@ -79,6 +82,9 @@ public class PlacementSystem : MonoBehaviour
 
     public void StartRemoving()
     {
+        if (isGenerating == true)
+            return;
+
         EndCurrentState();
 
         if (gridVisualAlwaysOn == false)
@@ -92,6 +98,9 @@ public class PlacementSystem : MonoBehaviour
 
     public void StartRotating()
     {
+        if (isGenerating == true)
+            return;
+
         EndCurrentState();
 
         if (gridVisualAlwaysOn == false)
@@ -105,6 +114,9 @@ public class PlacementSystem : MonoBehaviour
 
     public void StartTerrain(int ID)
     {
+        if (isGenerating == true)
+            return;
+
         EndCurrentState();
 
         if (gridVisualAlwaysOn == false)

@@ -36,13 +36,11 @@ public class ObjectPlacer : MonoBehaviour
         placeableObject.SetIsPlaced(true);
         placedObjects.Add(newObject);
 
+        int verticalOffset = 100;
+
         // EVENTS
         if (placedByUser == true)
         {
-            Vector3 trackYOffset = new Vector3(position.x, position.y + 100, position.z);
-            newObject.transform.position = trackYOffset;
-            placeableObject.OnPlace();
-
             if (objectType == ObjectData.ObjectType.Track)
             {
                 onPlaceTrack.Raise();
@@ -67,6 +65,14 @@ public class ObjectPlacer : MonoBehaviour
                     onPlaceTerrainMountain.Raise();
             }
         }
+        else
+        {
+            verticalOffset = UnityEngine.Random.Range(300, 500);
+        }
+
+        Vector3 trackYOffset = new Vector3(position.x, position.y + verticalOffset, position.z);
+        newObject.transform.position = trackYOffset;
+        placeableObject.OnPlace(verticalOffset);
 
         return placedObjects.Count - 1;
     }
