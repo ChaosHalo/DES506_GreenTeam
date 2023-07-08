@@ -102,7 +102,7 @@ public class CameraManager : MonoBehaviour
 
         // camera is panning if mouse down does not equal mouse current
         float panDistance = Vector3.Distance(mouseDown, Input.mousePosition);
-        isPanning = panDistance > 1;
+        isPanning = panDistance > 5;
     }
 
     private void ClampAndSetCameraPosition()

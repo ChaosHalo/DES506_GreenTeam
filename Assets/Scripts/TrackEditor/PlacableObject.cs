@@ -13,6 +13,8 @@ public class PlacableObject : MonoBehaviour
     private GameObject lockedIndicator;
     [SerializeField]
     private GameObject unconnectedIndicator;
+    [SerializeField]
+    internal ObjectPlacer objectPlacer;
 
     [SerializeField]
     private Material connectionMaterialPrefab;
@@ -23,7 +25,7 @@ public class PlacableObject : MonoBehaviour
     [SerializeField]
     internal bool canScale = true;
     [SerializeField]
-    private float scaleSpeed = 0.01f;
+    private float scaleSpeed = 0.005f;
     [SerializeField]
     private bool isConnected = false;
     internal bool GetConnectedStatus() { return isConnected; }
@@ -31,6 +33,11 @@ public class PlacableObject : MonoBehaviour
     internal ObjectData.ObjectType objectType;
 
     private bool isPlaced = false;
+    private bool isDeleted = false;
+    private float deleteAnimSpeed = 12.5f;
+    private Vector3 placedPos;
+    private bool isFalling = false;
+    [SerializeField] private float fallAnimSpeed = 12.5f;
 
 
     // scale presets
@@ -67,6 +74,20 @@ public class PlacableObject : MonoBehaviour
     private void FixedUpdate()
     {
         UpdateScale();
+
+        if (isDeleted)
+            transform.parent.localScale = Vector3.Lerp(transform.parent.localScale, Vector3.zero, Time.deltaTime * deleteAnimSpeed);
+
+        if (isFalling == true)
+        {
+            transform.parent.localPosition = Vector3.Lerp(transform.parent.localPosition, placedPos, Time.deltaTime * fallAnimSpeed);
+            if (Vector3.Distance(transform.parent.localPosition, placedPos) < 5)
+            {
+                isFalling = false;
+                transform.parent.localPosition = placedPos;
+                objectPlacer.UpdateTrackConnections();
+            }
+        }
     }
 
     private void PrepareConnectionMaterial()
@@ -139,5 +160,19 @@ public class PlacableObject : MonoBehaviour
 
         if (objectType == ObjectData.ObjectType.Terrain)
             GetComponentInChildren<TerrainObject>().GenerateObjects();
+    }
+
+    internal void OnDelete()
+    {
+        BoxCollider[] allColliders =GetComponentsInParent<BoxCollider>();
+        foreach (BoxCollider collider in allColliders)
+            collider.enabled = false;
+        isDeleted = true;
+    }
+
+    internal void OnPlace()
+    {
+        placedPos = new Vector3(transform.parent.localPosition.x, transform.parent.localPosition.y - 100, transform.parent.localPosition.z);
+        isFalling = true;
     }
 }

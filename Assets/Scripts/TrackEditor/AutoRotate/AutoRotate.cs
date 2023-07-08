@@ -30,6 +30,10 @@ public class AutoRotate : MonoBehaviour
     [SerializeField]
     private GameObject rayCastOrigin;
 
+    private Quaternion nextRotation;
+    private float rotateSpeed = 2000;
+    private bool isRotating = false;
+
     private void Awake()
     {
         AdjustConnectionDirectionsForRotationState(rotationState);
@@ -48,6 +52,20 @@ public class AutoRotate : MonoBehaviour
 
         // update last pos
         lastMousePos = Input.mousePosition;
+    }
+
+    private void Update()
+    {
+        transform.parent.localRotation = Quaternion.RotateTowards(transform.parent.localRotation, nextRotation, Time.deltaTime * rotateSpeed);
+
+        if (isRotating)
+        {
+            if (transform.parent.localRotation == nextRotation)
+            {
+                isRotating = false;
+                placableObject.objectPlacer.UpdateTrackConnections();
+            }
+        }
     }
 
     void DoConnectivityRaycasts()
@@ -87,7 +105,7 @@ public class AutoRotate : MonoBehaviour
 
     private void UpdatePlacementRotation()
     {
-        SetRotationState(CalculateAutoRotationState());
+        SetRotationState(CalculateAutoRotationState(), true);
     }
 
     internal virtual int CalculateAutoRotationState()
@@ -95,15 +113,18 @@ public class AutoRotate : MonoBehaviour
         return -1;
     }
 
-    internal void SetRotationState(int state)
+    internal void SetRotationState(int state, bool instantRotate)
     {
         if (state == -1)
             return;
 
         rotationState = state;
-        transform.parent.localRotation = Quaternion.Euler(rotations[state]);
+        nextRotation = Quaternion.Euler(rotations[state]);
+        if (instantRotate)
+            transform.parent.localRotation = nextRotation;
+        else
+            isRotating = true;
         AdjustConnectionDirectionsForRotationState(state);
-
     }
 
     private void AdjustConnectionDirectionsForRotationState(int state)

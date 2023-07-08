@@ -590,12 +590,13 @@ MonoBehaviour:
   autoRotate: {fileID: 3425875489169571709}
   lockedIndicator: {fileID: 1720792757644816868}
   unconnectedIndicator: {fileID: 6557167181541780791}
+  objectPlacer: {fileID: 0}
   connectionMaterialPrefab: {fileID: 2100000, guid: 1cd10d4334d5bba49854e32ea3d313c7,
     type: 2}
   canScale: 1
   scaleSpeed: 100
   isConnected: 0
-  meshObject: {fileID: 0}
+  fallAnimSpeed: 17.5
 --- !u!114 &3425875489169571709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -611,9 +612,9 @@ MonoBehaviour:
   placableObject: {fileID: 5545595114345770577}
   rotationState: 0
   rotations:
-  - {x: 0, y: 180, z: 0}
-  - {x: 0, y: 90, z: 0}
   - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 90, z: 0}
+  - {x: 0, y: 180, z: 0}
   - {x: 0, y: -90, z: 0}
   connectionDirections:
   - {x: 1, y: 0, z: 0}

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Missions;
+using static CustomSceneManager;
 
 public class ObjectPlacer : MonoBehaviour
 {
@@ -29,15 +30,19 @@ public class ObjectPlacer : MonoBehaviour
         placeableObject.StopScaling();
         placeableObject.SetModifyable(canModify);
         placeableObject.objectType = objectType;
+        placeableObject.objectPlacer = this;
         if (placeableObject.autoRotate)
-            placeableObject.autoRotate.SetRotationState(rotationState);
+            placeableObject.autoRotate.SetRotationState(rotationState, true);
         placeableObject.SetIsPlaced(true);
         placedObjects.Add(newObject);
-        UpdateTrackConnections();
 
         // EVENTS
         if (placedByUser == true)
         {
+            Vector3 trackYOffset = new Vector3(position.x, position.y + 100, position.z);
+            newObject.transform.position = trackYOffset;
+            placeableObject.OnPlace();
+
             if (objectType == ObjectData.ObjectType.Track)
             {
                 onPlaceTrack.Raise();
@@ -63,7 +68,6 @@ public class ObjectPlacer : MonoBehaviour
             }
         }
 
-
         return placedObjects.Count - 1;
     }
 
@@ -72,10 +76,23 @@ public class ObjectPlacer : MonoBehaviour
         if (placedObjects.Count <= gameObjectIndex || placedObjects[gameObjectIndex] == null)
             return;
 
-        Destroy(placedObjects[gameObjectIndex]);
-        placedObjects[gameObjectIndex] = null;
+        PlacableObject placableObject = placedObjects[gameObjectIndex].GetComponentInChildren<PlacableObject>();
+        placableObject.OnDelete();
 
-        Invoke("UpdateTrackConnections", 0.01f);
+        if(placableObject.objectType==ObjectData.ObjectType.Track)
+        StartCoroutine(DeleteAfterDelay(gameObjectIndex, 0.2f));
+        if (placableObject.objectType == ObjectData.ObjectType.Terrain)
+            StartCoroutine(DeleteAfterDelay(gameObjectIndex, 0));
+    }
+
+    private IEnumerator DeleteAfterDelay(int index, float delay)
+    {
+        yield return new WaitForSeconds(delay/2f);
+        UpdateTrackConnections();
+        yield return new WaitForSeconds(delay / 2f);
+
+        Destroy(placedObjects[index]);
+        placedObjects[index] = null;
     }
 
     internal bool AreObjectsAvailable()
@@ -111,8 +128,8 @@ public class ObjectPlacer : MonoBehaviour
         if (newState > 3)
             newState = 0;
 
-        objectToRotate.SetRotationState(newState);
-        UpdateTrackConnections();
+        objectToRotate.SetRotationState(newState, false);
+       // UpdateTrackConnections();
         return newState;
     }
 
@@ -127,8 +144,8 @@ public class ObjectPlacer : MonoBehaviour
         if (objectToRotate == null)
             return;
 
-        objectToRotate.SetRotationState(newState);
-        UpdateTrackConnections();
+        objectToRotate.SetRotationState(newState, false);
+       // UpdateTrackConnections();
     }
 
     internal void UpdateTrackConnections()
