@@ -28,7 +28,10 @@ public class PlacableObject : MonoBehaviour
     private bool isConnected = false;
     internal bool GetConnectedStatus() { return isConnected; }
 
-    internal ObjectData.Type objectType;
+    internal ObjectData.ObjectType objectType;
+
+    private bool isPlaced = false;
+
 
     // scale presets
     private float multiLarge = 1.2f;
@@ -53,7 +56,7 @@ public class PlacableObject : MonoBehaviour
 
     private void Start()
     {
-        if (objectType == ObjectData.Type.Track)
+        if (objectType == ObjectData.ObjectType.Track)
         {
             connectionMaterialInstance = new Material(connectionMaterialPrefab);
             PrepareConnectionMaterial();
@@ -71,9 +74,9 @@ public class PlacableObject : MonoBehaviour
         originalMaterialInstance=renderer.material;
         renderer.material = connectionMaterialInstance;
        // Color c = new(0.1f, 0.1f, 0.1f);
-        Color c = Color.red;
-        c.a = 0.75f;
-        connectionMaterialInstance.color = c;
+       // Color c = Color.red;
+       // c.a = 0.75f;
+       // connectionMaterialInstance.color = c;
         UpdateConnectionState();
         //Renderer[] renderers = GetComponentsInChildren<Renderer>();
         //foreach (Renderer renderer in renderers)
@@ -114,7 +117,7 @@ public class PlacableObject : MonoBehaviour
 
     internal void UpdateConnectionState()
     {
-        if (objectType == ObjectData.Type.Terrain)
+        if (objectType == ObjectData.ObjectType.Terrain)
             return;
 
         isConnected = autoRotate.CheckForConnections();
@@ -124,5 +127,17 @@ public class PlacableObject : MonoBehaviour
         {
             renderer.material = isConnected ? originalMaterialInstance : connectionMaterialInstance;
         }
+    }
+
+    internal void SetIsPlaced(bool b)
+    {
+        isPlaced = b;
+
+        if (objectType == ObjectData.ObjectType.Track)
+            if (isPlaced == true)
+                transform.tag = "RaceTrackSurface";
+
+        if (objectType == ObjectData.ObjectType.Terrain)
+            GetComponentInChildren<TerrainObject>().GenerateObjects();
     }
 }

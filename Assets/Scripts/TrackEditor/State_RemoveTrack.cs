@@ -14,6 +14,7 @@ public class State_RemoveTrack : IBuildingState
     PlacementSystem placementSystem;
     UIManager uiManager;
     CurrencyManager currencyManager;
+    CameraManager cameraManager;
 
     public State_RemoveTrack(Grid grid,
                          GridData terrainData,
@@ -22,7 +23,8 @@ public class State_RemoveTrack : IBuildingState
                          PreviewSystem previewSystem,
                          UIManager uiManager,
                          PlacementSystem placementSystem,
-                         CurrencyManager currencyManager)
+                         CurrencyManager currencyManager,
+                         CameraManager cameraManager)
     {
         this.grid = grid;
         this.terrainData = terrainData;
@@ -32,6 +34,7 @@ public class State_RemoveTrack : IBuildingState
         this.uiManager = uiManager;
         this.placementSystem = placementSystem;
         this.currencyManager = currencyManager;
+        this.cameraManager = cameraManager;
 
         previewSystem.StartShowingRemovePreview();
         uiManager.toggleButton_Remove.ToggleButtons();
@@ -53,8 +56,12 @@ public class State_RemoveTrack : IBuildingState
 
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
+        // don't allow action if camera is panning
+        if (cameraManager.isPanning == true)
+            return;
+
         // no object exists here
-        if(trackData.CanPlaceObejctAt(gridPosition, Vector2Int.one, 0) == true)
+        if (trackData.CanPlaceObejctAt(gridPosition, Vector2Int.one, 0) == true)
             return;
 
         // is game object index valid?

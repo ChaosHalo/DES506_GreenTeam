@@ -14,28 +14,29 @@ public class SaveMap : MonoBehaviour
         // 去空
         List<GameObject> pieces = objectPlacer.placedObjects.Where(o => o != null).ToList();
         // 只筛选轨道
-        List<GameObject> Tracks = pieces.Where(o => !o.name.Contains("Terrain")).ToList();
+        //List<GameObject> Tracks = pieces.Where(o => !o.name.Contains("Terrain")).ToList();
 
         // 将列表中的每个GameObject设置为父物体的子物体
-        foreach (GameObject obj in Tracks)
+        foreach (GameObject obj in pieces)
         {
             obj.transform.parent = map.transform;
         }
-        SaveGameObject(map);
-        MyGameManager.instance.gameState.OnAction();
-    }
-    private void SaveGameObject(GameObject objectToSave)
-    {
-        // 创建一个新的Prefab Asset
-        GameObject prefab = PrefabUtility.SaveAsPrefabAsset(objectToSave, "Assets/Resources/SaveMap/Map.prefab");
 
-        if (prefab != null)
-        {
-            Debug.Log("GameObject saved as prefab: " + prefab.name);
-        }
-        else
-        {
-            Debug.LogError("Failed to save GameObject as prefab.");
-        }
+        MyGameManager.instance.Map = map;
+        //SaveGameObject(map);
     }
+    //private void SaveGameObject(GameObject objectToSave)
+    //{
+    //    // 创建一个新的Prefab Asset
+    //    GameObject prefab = PrefabUtility.SaveAsPrefabAsset(objectToSave, "Assets/Resources/SaveMap/Map.prefab");
+
+    //    if (prefab != null)
+    //    {
+    //        Debug.Log("GameObject saved as prefab: " + prefab.name);
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("Failed to save GameObject as prefab.");
+    //    }
+    //}
 }

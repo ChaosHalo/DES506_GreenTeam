@@ -35,7 +35,7 @@ namespace MoreMountains.HighroadEngine
 				_soundManager = FindObjectOfType<SoundManager>();
 				if (_soundManager != null)
 				{
-					_engineSound = _soundManager.PlayLoop(EngineSound, transform.position);
+					_engineSound = _soundManager.PlayLoop(EngineSound, transform.position, transform);
 
 					if (_engineSound != null)
 					{
@@ -56,7 +56,8 @@ namespace MoreMountains.HighroadEngine
 			{
 				return;
 			}
-			_engineSound.pitch = Mathf.Min(EngineMaxPitch, Mathf.Max(_engineSoundPitch, _engineSoundPitch * _controller.Speed * SpeedFactor));
+			if (_controller.Speed < 1) _engineSound.pitch = 0;
+			else _engineSound.pitch = Mathf.Min(EngineMaxPitch, Mathf.Max(_engineSoundPitch, _engineSoundPitch * _controller.Speed * SpeedFactor));
 		}
 
 		public override void OnVehicleCollisionEnter(Collision other)
@@ -69,7 +70,7 @@ namespace MoreMountains.HighroadEngine
 					{
 						if (other.relativeVelocity.magnitude >= MinimalCrashSpeed) 
 						{
-							_soundManager.PlaySound(CrashSound, transform.position, true);
+							_soundManager.PlaySound(CrashSound, transform.position, transform, true);
 						}
 					}
 				}

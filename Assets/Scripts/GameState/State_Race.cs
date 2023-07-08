@@ -6,22 +6,39 @@ using UnityEngine;
 
 public class State_Race : IGameState
 {
+    private GameObject raceObjects = null;
     RaceManager raceManager;
     Material litMaterial;
 
     public State_Race()
     {
-        litMaterial = MyGameManager.instance.litMaterial;
     }
 
     public void StartState()
     {
-        raceManager = MyGameManager.instance.GetRaceManager();
+        // enable current state objects
+        raceObjects = MyGameManager.instance.GetSceneManager().raceObjects;
+        if (raceObjects != null)
+            raceObjects.SetActive(true);
 
+        // assign refs
+        raceManager = MyGameManager.instance.GetRaceManager();
+        litMaterial = MyGameManager.instance.litMaterial;
+
+        // init race stuff
         InitData();
         InitMap();
+        raceManager.StartRace();
+
+        // init carInfoSearch
+        CarInfoSerach carInfoSerach = MyGameManager.instance.GetCarInfoSerach();
+        //carInfoSerach.SetupCarManagers();
     }
-    public void EndState() { }
+    public void EndState()
+    {
+        if (raceObjects != null)
+            raceObjects.SetActive(false);
+    }
     public void OnAction() { }
     public void UpdateState() { }
 
@@ -36,10 +53,6 @@ public class State_Race : IGameState
     }
     public void InitMap()
     {
-        // 加载地图
-        MyGameManager.instance.Map = LoadMap("Map");
-        // 设置RaceManager
-
         // 设置车辆出生点
         LoadStartPoints();
 
@@ -51,33 +64,6 @@ public class State_Race : IGameState
 
         // 设置AI WayPoint
         LoadAIWayPoints();
-    }
-
-    private GameObject LoadMap(string name)
-    {
-        GameObject loadedPrefab = Resources.Load<GameObject>("SaveMap/" + name);
-
-        if (loadedPrefab != null)
-        {
-            // 修复材质缺失问题
-            MeshRenderer[] ms = loadedPrefab.GetComponentsInChildren<MeshRenderer>();
-            foreach (MeshRenderer m in ms)
-            {
-                if (m.sharedMaterial == null)
-                {
-                    m.sharedMaterial = litMaterial;
-                }
-            }
-
-            MyGameManager.instance.InstantiateMapObject(loadedPrefab);
-            Debug.Log("Prefab loaded: " + name);
-            Debug.Log("Map loaded successfully");
-        }
-        else
-        {
-            Debug.LogError("Failed to load prefab: " + name);
-        }
-        return loadedPrefab;
     }
 
     private void LoadStartPoints()
@@ -101,20 +87,23 @@ public class State_Race : IGameState
         }
         Vector3 direction = startPieceInfo.InitialOrientation;
         float angle = Vector3.Angle(Vector3.forward, direction);
-
-        float dot = Vector3.Dot(Vector3.right, direction);
+        if (Vector3.Cross(Vector3.forward, direction).y < 0)
+        {
+            angle = 360 - angle;
+        }
+        /*float dot = Vector3.Dot(Vector3.right, direction);
         float signedAngle = Mathf.Acos(dot) * Mathf.Rad2Deg;
 
         if (signedAngle > 180)
         {
             angle = 360 - angle;
-        }
+        }*/
 
         angle = Mathf.Round(angle / 90f) * 90f;
         raceManager.StartAngleDegree = (int)angle;
 
         // 输出角度
-        Debug.Log("Angle: " + angle);
+        //Debug.Log("Angle: " + angle);
     }
 
     private void LoadCheckPoints()
@@ -143,6 +132,8 @@ public class State_Race : IGameState
 
         // 获取全部导航点
         MapPieceWayPoints[] mapPieceWayPoints = MyGameManager.instance.GetMapPieceWayPointsObjects();
+
+        Debug.Log("Map Piece Waypoints: " + mapPieceWayPoints.Length);
 
         List<Vector3> wayPoints = new();
         foreach (var mapPieceWayPoint in mapPieceWayPoints)

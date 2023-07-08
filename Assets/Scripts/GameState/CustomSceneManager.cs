@@ -5,22 +5,36 @@ using UnityEngine.SceneManagement;
 
 public class CustomSceneManager : MonoBehaviour
 {
-    [SerializeField] private float splashDuration = 1.5f;
+    [SerializeField] internal GameObject buildObjects;
+    [SerializeField] internal GameObject raceObjects;
 
-    internal IEnumerator RunSplashScreen()
+    public enum Index { CHECK_RACERS = 0, BUILD = 1, RACE = 2 };
+    public Index sceneIndex;
+
+    public void LoadNewScene(Index index)
     {
-        yield return new WaitForSeconds(splashDuration);
-        LoadNewScene(1);
+        SceneManager.LoadScene((int)index);
+        MyGameManager.instance.SetNewState((int)index, true);
     }
 
-    public void LoadNewScene(int index)
+    public void ChangeToState(Index index)
     {
-        SceneManager.LoadScene(index);
-        MyGameManager.instance.SetNewState(index);
+        MyGameManager.instance.SetNewState((int)index, false);
     }
 
-    public void TEMPloadscene(int index)
+    public void LoadNewScene_Build() => LoadNewScene(Index.BUILD);
+    public void LoadNewScene_CheckRacers() => LoadNewScene(Index.CHECK_RACERS);
+    public void ChangeToState_Race()
     {
-        SceneManager.LoadScene(index);
+        if (MyGameManager.instance.GetObjectPlacer().IsTrackFullyConnected())
+        {
+            Debug.Log("Track fully connected");
+            ChangeToState(Index.RACE);
+        }
+        else
+        {
+            Debug.Log("Track not connected");
+        }
     }
+    public void ChangeToState_Build() => ChangeToState(Index.BUILD);
 }

@@ -14,6 +14,7 @@ public class State_RotateTrack : IBuildingState
     PreviewSystem previewSystem;
     UIManager uiManager;
     PlacementSystem placementSystem;
+    CameraManager cameraManager;
 
     public State_RotateTrack(Grid grid,
                          ObjectsDatabaseSO database,
@@ -22,7 +23,8 @@ public class State_RotateTrack : IBuildingState
                          ObjectPlacer objectPlacer,
                          PreviewSystem previewSystem,
                          UIManager uIManager,
-                         PlacementSystem placementSystem)
+                         PlacementSystem placementSystem,
+                         CameraManager cameraManager)
     {
         this.grid = grid;
         this.database = database;
@@ -32,6 +34,7 @@ public class State_RotateTrack : IBuildingState
         this.previewSystem = previewSystem;
         this.uiManager = uIManager;
         this.placementSystem = placementSystem;
+        this.cameraManager = cameraManager;
 
         previewSystem.StartShowingRemovePreview();
         uiManager.toggleButton_Rotate.ToggleButtons();
@@ -42,6 +45,7 @@ public class State_RotateTrack : IBuildingState
             placementSystem.EndCurrentState();
             uiManager.toggleButton_Rotate.ResetButtons();
         }
+
     }
 
     public void EndState()
@@ -52,6 +56,10 @@ public class State_RotateTrack : IBuildingState
 
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
+        // don't allow action if camera is panning
+        if (cameraManager.isPanning == true)
+            return;
+
         // get index at selected position
         gameObjectIndex = trackData.GetRepresentationIndex(gridPosition);
 

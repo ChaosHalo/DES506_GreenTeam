@@ -30,6 +30,8 @@ public class CameraManager : MonoBehaviour
     private Vector3 anchorCurPos;
     private Vector3 camPos;
 
+    internal bool isPanning = false;
+
     private void Start()
     {
         anchorOriginalPos= anchor.transform.position;
@@ -44,7 +46,7 @@ public class CameraManager : MonoBehaviour
         if (componentBase == null)
             componentBase = virtualCamera.GetCinemachineComponent(CinemachineCore.Stage.Body);
 
-        if (placementSystem.buildingState == null)
+       // if (placementSystem.buildingState == null)
         {
             UpdateCameraZoom();
             UpdateCameraPan();
@@ -97,6 +99,10 @@ public class CameraManager : MonoBehaviour
             anchorCurPos.z += mouseDistanceY * scalingValue;
             ClampAndSetCameraPosition();
         }
+
+        // camera is panning if mouse down does not equal mouse current
+        float panDistance = Vector3.Distance(mouseDown, Input.mousePosition);
+        isPanning = panDistance > 1;
     }
 
     private void ClampAndSetCameraPosition()

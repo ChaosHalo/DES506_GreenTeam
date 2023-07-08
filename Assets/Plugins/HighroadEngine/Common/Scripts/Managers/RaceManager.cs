@@ -130,7 +130,7 @@ namespace MoreMountains.HighroadEngine
         /// <summary>
         /// We initialize the race.
         /// </summary>
-        public virtual void Start()
+        public void StartRace()
         {
             _isPlaying = false;
 
@@ -590,6 +590,16 @@ namespace MoreMountains.HighroadEngine
                                 ShowFinalRanking(playersRank);
                             }
                         }
+
+
+                        // TEMP for debug
+                        // force race end
+                        if (Input.GetKeyDown(KeyCode.F))
+                        {
+                            OnDisableControlForPlayers();
+                            _isPlaying = false;
+                            ShowFinalRanking(playersRank);
+                        }
                     }
                 }
             }
@@ -617,13 +627,17 @@ namespace MoreMountains.HighroadEngine
         {
             // Show final ranking & controls to end
             string finalRank = "--- finished in " + System.Math.Round(_currentGameTime, 2) + " secs. ---";
-
             for (int i = 0; i < playersRank.Count; i++)
             {
                 finalRank += "\r\n" + playersRank[i].name;
             }
 
             OnShowEndGameScreen(finalRank);
+        }
+
+        public double GetRaceTime()
+        {
+            return System.Math.Round(_currentGameTime, 2);
         }
 
         /// <summary>
