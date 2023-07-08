@@ -54,7 +54,9 @@ public class MyGameManager : MonoBehaviour
     {
         if(gameState != null)
             gameState.UpdateState();
-        ReLoadScene();
+
+        // commented this out because was preventing build
+        //ReLoadScene();
     }
 
 #if UNITY_EDITOR

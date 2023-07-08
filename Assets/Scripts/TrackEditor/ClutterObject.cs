@@ -4,21 +4,36 @@ using UnityEngine;
 
 public class ClutterObject : MonoBehaviour
 {
-    bool isCovered = false;
+    bool showMesh = true;
 
-    public GameObject meshObject;
+    GameObject meshObject;
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("RaceTrackSurface"))
         {
-            isCovered = true;
+            showMesh = false;
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("RaceTrackSurface"))
+        {
+            showMesh = true;
+        }
+    }
+
+    private void Start()
+    {
+        meshObject=transform.GetChild(0).gameObject;
     }
 
     private void FixedUpdate()
     {
-        if(meshObject !=null)
-        meshObject.SetActive(!isCovered);
-        isCovered = false;
+        showMesh = true;
+    }
+
+    private void Update()
+    {
+        meshObject.SetActive(showMesh);
     }
 }
