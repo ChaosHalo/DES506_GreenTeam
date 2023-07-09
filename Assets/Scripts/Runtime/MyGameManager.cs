@@ -147,6 +147,6 @@ public class MyGameManager : MonoBehaviour
     internal ObjectPlacer GetObjectPlacer() { return FindObjectOfType<ObjectPlacer>(); }
     internal MissionManager GetMissionManager() { return FindObjectOfType<MissionManager>(); }
     internal CurrencyManager GetCurrencyManager() { return FindObjectOfType<CurrencyManager>(); }
-    internal MapPieceWayPoints[] GetMapPieceWayPointsObjects() { return FindObjectsOfType<MapPieceWayPoints>(); }
+    internal MapPieceInfo[] GetMapPieceWayPointsObjects() { return FindObjectsOfType<MapPieceInfo>(); }
     #endregion
 }

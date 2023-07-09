@@ -66,8 +66,28 @@ public class CarManager : MonoBehaviour
         // 出界
         if (other.CompareTag(GlobalConstants.BOUNDARIES))
         {
-            solidController.Respawn();
+            //solidController.Respawn();
+            Respawn();
         }
+    }
+    private void Respawn()
+    {
+        MapPieceInfo[] mapPieceInfos = FindObjectsOfType<MapPieceInfo>();
+        Vector3 respawnPos = new Vector3(0, 0, 0);
+        float minDis = float.MaxValue;
+        foreach(var i in mapPieceInfos)
+        {
+            foreach(var j in i.RespawnPoints)
+            {
+                var tempDis = Vector3.Distance(transform.position, j.position);
+                if(tempDis < minDis)
+                {
+                    minDis = tempDis;
+                    respawnPos = j.position;
+                }
+            }
+        }
+        transform.position = respawnPos;
     }
     /// <summary>
     /// 一圈结束事件

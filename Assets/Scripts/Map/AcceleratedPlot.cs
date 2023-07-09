@@ -46,7 +46,8 @@ public class AcceleratedPlot : MonoBehaviour
                 SetGravity(other.gameObject, true);
                 SetCarData(originCarDatas[carName], s);
                 originCarDatas.Remove(carName);
-                SetCarCollision(false);
+                EnableCarCollisions(other.gameObject);
+                
             }
         }
     }
@@ -66,7 +67,7 @@ public class AcceleratedPlot : MonoBehaviour
     {
         SolidController s = other.GetComponent<SolidController>();
         string carName = s.GetComponent<CarManager>().CarInfo.Name;
-        SetCarCollision(true);
+        DisableCarCollisions(other.gameObject);
         CarData originCarData = new CarData();
         originCarData.TopSpeed = s.FullThrottleVelocity;
         originCarData.EngineForce = s.EngineForce;
@@ -86,9 +87,27 @@ public class AcceleratedPlot : MonoBehaviour
         Debug.Log("加速模式");
         SetCarData(accCarData, s);
     }
-    private void SetCarCollision(bool activeIgnore)
+    /// <summary>
+    /// 开启该车与其他车的碰撞
+    /// </summary>
+    /// <param name="gameObject"></param>
+    private void EnableCarCollisions(GameObject gameObject)
     {
-        //Physics.IgnoreLayerCollision(LayerMask.NameToLayer(GlobalConstants.CARMASKNAME), LayerMask.NameToLayer(GlobalConstants.CARMASKNAME), activeIgnore);
+        foreach(var i in MyGameManager.instance.GetRaceManager().TestBotPlayers)
+        {
+            CollisionController.EnableCollisionBetweenGameObjects(gameObject, i);
+        }
+    }
+    /// <summary>
+    /// 关闭该车与其他车的碰撞
+    /// </summary>
+    /// <param name="gameObject"></param>
+    private void DisableCarCollisions(GameObject gameObject)
+    {
+        foreach (var i in MyGameManager.instance.GetRaceManager().TestBotPlayers)
+        {
+            CollisionController.DisableCollisionBetweenGameObjects(gameObject, i);
+        }
     }
     private void SetGravity(GameObject gameObject,bool active)
     {
