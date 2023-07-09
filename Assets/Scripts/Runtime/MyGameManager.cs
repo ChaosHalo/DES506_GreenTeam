@@ -148,5 +148,7 @@ public class MyGameManager : MonoBehaviour
     internal MissionManager GetMissionManager() { return FindObjectOfType<MissionManager>(); }
     internal CurrencyManager GetCurrencyManager() { return FindObjectOfType<CurrencyManager>(); }
     internal MapPieceWayPoints[] GetMapPieceWayPointsObjects() { return FindObjectsOfType<MapPieceWayPoints>(); }
+    internal CameraManager GetCameraManager() { return FindObjectOfType<CameraManager>(); }
+
     #endregion
 }

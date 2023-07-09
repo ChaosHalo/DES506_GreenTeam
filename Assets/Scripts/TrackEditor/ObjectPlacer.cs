@@ -67,12 +67,16 @@ public class ObjectPlacer : MonoBehaviour
         }
         else
         {
-            verticalOffset = UnityEngine.Random.Range(300, 500);
+            if (objectType == ObjectData.ObjectType.Terrain)
+                verticalOffset = UnityEngine.Random.Range(300, 500);
+            if (objectType == ObjectData.ObjectType.Track)
+                verticalOffset = 100;
         }
 
-        Vector3 trackYOffset = new Vector3(position.x, position.y + verticalOffset, position.z);
-        newObject.transform.position = trackYOffset;
-        placeableObject.OnPlace(verticalOffset);
+        //Vector3 trackYOffset = new Vector3(position.x, position.y + verticalOffset, position.z);
+        //newObject.transform.position = trackYOffset;
+        placeableObject.verticalOffset = verticalOffset;
+        placeableObject.TriggerFallAnim(placedByUser);
 
         return placedObjects.Count - 1;
     }
@@ -190,5 +194,13 @@ public class ObjectPlacer : MonoBehaviour
         }
 
         return true;
+    }
+
+
+    internal void TriggerFaillAnimations()
+    {
+        foreach (GameObject obj in placedObjects)
+            if(obj!= null)
+                obj.GetComponentInChildren<PlacableObject>().TriggerFallAnim(false);
     }
 }

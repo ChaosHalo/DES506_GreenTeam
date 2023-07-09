@@ -38,7 +38,8 @@ public class State_GenerateWorld : IBuildingState
         this.placementSystem = placementSystem;
 
         GenerateTerrain();
-        placementSystem.isGenerating = true;
+        GenerateTrack();
+        placementSystem.isGenerating = false;
     }
 
     private void GenerateTerrain()
@@ -72,7 +73,7 @@ public class State_GenerateWorld : IBuildingState
     private void GenerateTrack()
     {
         List<int> IDs = new List<int>() { 0, 1, 8 }; // track pieces to place
-        //List<int> IDs = new List<int>() { 8 }; // track pieces to place
+       //List<int> IDs = new List<int>() { 8 }; // track pieces to place
         int type = (int)ObjectData.ObjectType.Track;
         GridData selectedData = trackData;
 
@@ -149,14 +150,14 @@ public class State_GenerateWorld : IBuildingState
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds) { }
     public void UpdateState(Vector3 gridPosition, bool isWithinBounds) 
     {
-        curTime += Time.deltaTime;
-        if (curTime >= delayTime)
-        {
-            if(placedTrack==false)
-            {
-                placedTrack = true;
-                GenerateTrack();
-            }
-        }
+        //curTime += Time.deltaTime;
+        //if (curTime >= delayTime)
+        //{
+        //    if(placedTrack==false)
+        //    {
+        //        placedTrack = true;
+        //        GenerateTrack();
+        //    }
+        //}
     }
 }

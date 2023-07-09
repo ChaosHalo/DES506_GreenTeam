@@ -175,8 +175,6 @@ public class PlacementSystem : MonoBehaviour
 
 
 
-
-
     public void ExitGame()
     {
         Application.Quit();

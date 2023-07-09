@@ -38,6 +38,7 @@ public class PlacableObject : MonoBehaviour
     private Vector3 placedPos;
     private bool isFalling = false;
     [SerializeField] private float fallAnimSpeed = 12.5f;
+    internal int verticalOffset = 100;
 
 
     // scale presets
@@ -170,9 +171,24 @@ public class PlacableObject : MonoBehaviour
         isDeleted = true;
     }
 
-    internal void OnPlace(int verticalOffset)
+    internal void TriggerFallAnim(bool placedByUser)
     {
+        float delay = objectType == ObjectData.ObjectType.Terrain ? 0 : 1f;
+        if (placedByUser == true)
+            delay = 0;
+        else
+            verticalOffset = UnityEngine.Random.Range(300, 500);
+
+        StartCoroutine(DelayFallAnim(delay));
+    }
+
+    IEnumerator DelayFallAnim(float delay)
+    {
+        GetComponent<MeshRenderer>().enabled = false;
+        transform.parent.localPosition = new Vector3(transform.localPosition.x + 50, transform.localPosition.y + verticalOffset, transform.localPosition.z + 50);
         placedPos = new Vector3(transform.parent.localPosition.x, transform.parent.localPosition.y - verticalOffset, transform.parent.localPosition.z);
+        yield return new WaitForSeconds(delay);
+        GetComponent<MeshRenderer>().enabled = true;
         isFalling = true;
     }
 }
