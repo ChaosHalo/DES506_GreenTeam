@@ -13,11 +13,12 @@ public class AcceleratedPlot : MonoBehaviour
     }
     public LoopAccleartion loopAccleartion;
     Dictionary<string, CarData> originCarDatas = new();
+    public LayerMask carLayer;
     //开始
     // Start is called before the first frame update
     void Start()
     {
-        
+        //carLayer = LayerMask.GetMask(GlobalConstants.CARMASKNAME);
     }
 
     // Update is called once per frame
@@ -42,11 +43,10 @@ public class AcceleratedPlot : MonoBehaviour
 
             if (originCarDatas.ContainsKey(carName))
             {
-                other.GetComponent<Rigidbody>().Sleep();
-                other.GetComponent<Rigidbody>().WakeUp();
                 SetGravity(other.gameObject, true);
                 SetCarData(originCarDatas[carName], s);
                 originCarDatas.Remove(carName);
+                SetCarCollision(false);
             }
         }
     }
@@ -66,7 +66,7 @@ public class AcceleratedPlot : MonoBehaviour
     {
         SolidController s = other.GetComponent<SolidController>();
         string carName = s.GetComponent<CarManager>().CarInfo.Name;
-
+        SetCarCollision(true);
         CarData originCarData = new CarData();
         originCarData.TopSpeed = s.FullThrottleVelocity;
         originCarData.EngineForce = s.EngineForce;
@@ -85,6 +85,10 @@ public class AcceleratedPlot : MonoBehaviour
         SetGravity(other.gameObject, false);
         Debug.Log("加速模式");
         SetCarData(accCarData, s);
+    }
+    private void SetCarCollision(bool activeIgnore)
+    {
+        //Physics.IgnoreLayerCollision(LayerMask.NameToLayer(GlobalConstants.CARMASKNAME), LayerMask.NameToLayer(GlobalConstants.CARMASKNAME), activeIgnore);
     }
     private void SetGravity(GameObject gameObject,bool active)
     {

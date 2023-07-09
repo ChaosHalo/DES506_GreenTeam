@@ -20,6 +20,7 @@ public static class GlobalConstants
     /// 车辆出界检测标签
     /// </summary>
     public const string BOUNDARIES = "Boundaries";
+    public const string CARMASKNAME = "Car";
     #region CarName
     public const string BILLY = "Billy";
     public const string DARREN = "Darren";

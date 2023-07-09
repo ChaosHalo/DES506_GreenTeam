@@ -4734,11 +4734,13 @@ MonoBehaviour:
   autoRotate: {fileID: 7327752007027498506}
   lockedIndicator: {fileID: 1204212015147751665}
   unconnectedIndicator: {fileID: 3641085830514115812}
+  objectPlacer: {fileID: 0}
   connectionMaterialPrefab: {fileID: 2100000, guid: 715040dd217370e44b2d62b02277bb38,
     type: 2}
   canScale: 1
   scaleSpeed: 100
   isConnected: 0
+  fallAnimSpeed: 12.5
 --- !u!114 &7327752007027498506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4971,6 +4973,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loopAccleartion: {fileID: 11400000, guid: 49a6149d1d30f81489fb9a4f13ad603f, type: 2}
+  carLayer:
+    serializedVersion: 2
+    m_Bits: 131072
 --- !u!1 &7136768005924214848
 GameObject:
   m_ObjectHideFlags: 0
@@ -6287,6 +6292,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loopAccleartion: {fileID: 11400000, guid: e6e83cad4d1426342b5afc1dc1f5b0c7, type: 2}
+  carLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &564575891766930836
 PrefabInstance:
   m_ObjectHideFlags: 0
