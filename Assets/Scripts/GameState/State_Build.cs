@@ -20,7 +20,7 @@ public class State_Build : IGameState
         saveMap = MyGameManager.instance.GetSaveMap();
 
         MyGameManager.instance.GetMissionManager().InitialiseMissions();
-        MyGameManager.instance.GetMissionManager().CheckForCompletedMissions();
+        //MyGameManager.instance.GetMissionManager().CheckForCompletedMissions();
         //MyGameManager.instance.GetCameraManager().ResetCamera();
         MyGameManager.instance.GetObjectPlacer().TriggerFaillAnimations();
     }
@@ -39,7 +39,7 @@ public class State_Build : IGameState
         MissionManager missionManager = MyGameManager.instance.GetMissionManager();
 
         if(missionManager!=null)
-            if(missionManager.missionUI!= null)
-                missionManager.missionUI.CustomUpdate();
+            foreach(var mission in missionManager.missionUI)
+                mission.CustomUpdate();
     }
 }

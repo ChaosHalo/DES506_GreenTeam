@@ -21,7 +21,7 @@ public class MissionManager : MonoBehaviour
     public Mission[] currentMissions = new Mission[3];
 
     [Header("UI")]
-    public MissionUI missionUI;
+    public List<MissionUI> missionUI = new List<MissionUI>();
 
     private CurrencyManager currencyManager;
 
@@ -30,8 +30,8 @@ public class MissionManager : MonoBehaviour
 
     private void Update()
     {
-        if (missionUI == null)
-            missionUI = FindObjectOfType<MissionUI>();
+        if (missionUI.Count == 0)
+            missionUI.AddRange(FindObjectsOfType<MissionUI>());
         if (currencyManager == null)
             currencyManager = FindObjectOfType<CurrencyManager>();
 
@@ -41,6 +41,7 @@ public class MissionManager : MonoBehaviour
 
     public void InitialiseMissions()
     {
+        Debug.Log("hi");
         if(availableMissions.Count == 0)
             availableMissions.AddRange(missionPool);
 
@@ -79,8 +80,10 @@ public class MissionManager : MonoBehaviour
             }
         }
 
-        if(missionUI != null) 
-            missionUI.ShowCompletedMissions(descriptions, rewards, colours);
+        foreach (MissionUI m in missionUI)
+        {
+            m.ShowCompletedMissions(descriptions, rewards, colours);
+        }
     }
 
     public void CreateNewMission(int index)

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class PieceButton : MonoBehaviour
     private ObjectsDatabaseSO database;
 
     [SerializeField]
-    private Text costText;
+    private TMP_Text costText;
 
     [SerializeField]
     private int ID;
@@ -17,5 +18,8 @@ public class PieceButton : MonoBehaviour
     private void Start()
     {
         costText.text = database.objectsData[ID].cost.ToString();
+
+        if (database.objectsData[ID].cost == 0)
+            costText.text = "FREE";
     }
 }
