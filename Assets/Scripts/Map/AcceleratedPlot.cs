@@ -13,11 +13,12 @@ public class AcceleratedPlot : MonoBehaviour
     }
     public LoopAccleartion loopAccleartion;
     Dictionary<string, CarData> originCarDatas = new();
+    public LayerMask carLayer;
     //开始
     // Start is called before the first frame update
     void Start()
     {
-        
+        //carLayer = LayerMask.GetMask(GlobalConstants.CARMASKNAME);
     }
 
     // Update is called once per frame
@@ -42,11 +43,11 @@ public class AcceleratedPlot : MonoBehaviour
 
             if (originCarDatas.ContainsKey(carName))
             {
-                other.GetComponent<Rigidbody>().Sleep();
-                other.GetComponent<Rigidbody>().WakeUp();
                 SetGravity(other.gameObject, true);
                 SetCarData(originCarDatas[carName], s);
                 originCarDatas.Remove(carName);
+                EnableCarCollisions(other.gameObject);
+                
             }
         }
     }
@@ -66,7 +67,7 @@ public class AcceleratedPlot : MonoBehaviour
     {
         SolidController s = other.GetComponent<SolidController>();
         string carName = s.GetComponent<CarManager>().CarInfo.Name;
-
+        DisableCarCollisions(other.gameObject);
         CarData originCarData = new CarData();
         originCarData.TopSpeed = s.FullThrottleVelocity;
         originCarData.EngineForce = s.EngineForce;
@@ -85,6 +86,28 @@ public class AcceleratedPlot : MonoBehaviour
         SetGravity(other.gameObject, false);
         Debug.Log("加速模式");
         SetCarData(accCarData, s);
+    }
+    /// <summary>
+    /// 开启该车与其他车的碰撞
+    /// </summary>
+    /// <param name="gameObject"></param>
+    private void EnableCarCollisions(GameObject gameObject)
+    {
+        foreach(var i in MyGameManager.instance.GetRaceManager().TestBotPlayers)
+        {
+            CollisionController.EnableCollisionBetweenGameObjects(gameObject, i);
+        }
+    }
+    /// <summary>
+    /// 关闭该车与其他车的碰撞
+    /// </summary>
+    /// <param name="gameObject"></param>
+    private void DisableCarCollisions(GameObject gameObject)
+    {
+        foreach (var i in MyGameManager.instance.GetRaceManager().TestBotPlayers)
+        {
+            CollisionController.DisableCollisionBetweenGameObjects(gameObject, i);
+        }
     }
     private void SetGravity(GameObject gameObject,bool active)
     {

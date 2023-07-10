@@ -26,7 +26,7 @@ public class State_Race : IGameState
         litMaterial = MyGameManager.instance.litMaterial;
 
         // init race stuff
-        InitData();
+        InitCarData();
         InitMap();
         raceManager.StartRace();
 
@@ -44,12 +44,16 @@ public class State_Race : IGameState
 
 
 
-    public void InitData()
+    public void InitCarData()
     {
         foreach (GameObject i in raceManager.TestBotPlayers)
         {
             i.GetComponent<CarManager>().InitData();
+            // 卡住时间为2s
+            i.GetComponent<VehicleAI>().TimeBeforeStuck = 2f;
         }
+        // 启用所有车之间的碰撞
+        InitAllCarsCollision();
     }
     public void InitMap()
     {
@@ -64,8 +68,22 @@ public class State_Race : IGameState
 
         // 设置AI WayPoint
         LoadAIWayPoints();
+
     }
 
+    /// <summary>
+    /// 启用所有车之间的碰撞
+    /// </summary>
+    private void InitAllCarsCollision()
+    {
+        foreach(var i in raceManager.TestBotPlayers)
+        {
+            foreach (var j in raceManager.TestBotPlayers)
+            {
+                CollisionController.EnableCollisionBetweenGameObjects(i, j);
+            }
+        }
+    }
     private void LoadStartPoints()
     {
         StartPieceInfo startPieceInfo = MyGameManager.instance.GetStartPieceInfoObject();
@@ -131,7 +149,7 @@ public class State_Race : IGameState
         Waypoints waypoints = AIWayPoint.AddComponent<Waypoints>();
 
         // 获取全部导航点
-        MapPieceWayPoints[] mapPieceWayPoints = MyGameManager.instance.GetMapPieceWayPointsObjects();
+        MapPieceInfo[] mapPieceWayPoints = MyGameManager.instance.GetMapPieceWayPointsObjects();
 
         Debug.Log("Map Piece Waypoints: " + mapPieceWayPoints.Length);
 

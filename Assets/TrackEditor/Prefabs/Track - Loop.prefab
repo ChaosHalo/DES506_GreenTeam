@@ -1740,6 +1740,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2543603557020856059}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2559355114152538589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2528060855008882633}
+  m_Layer: 0
+  m_Name: RespawnPoint (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2528060855008882633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2559355114152538589}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 94.7, y: 8, z: 60}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7123582010798065455}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2595479174483581970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,6 +2457,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3943773329508273524}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &4262324266798561269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8043588264622032822}
+  m_Layer: 0
+  m_Name: RespawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8043588264622032822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4262324266798561269}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -89.9, y: 8, z: 38.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7123582010798065455}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4277071556074573354
 GameObject:
   m_ObjectHideFlags: 0
@@ -4271,6 +4333,8 @@ Transform:
   m_Children:
   - {fileID: 4350847828769238742}
   - {fileID: 463493580056257370}
+  - {fileID: 8043588264622032822}
+  - {fileID: 2528060855008882633}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4315,6 +4379,9 @@ MonoBehaviour:
   - {fileID: 1386196974946781661}
   - {fileID: 7402829270391519644}
   - {fileID: 3718805262701320034}
+  RespawnPoints:
+  - {fileID: 8043588264622032822}
+  - {fileID: 2528060855008882633}
 --- !u!1 &6030893525189519990
 GameObject:
   m_ObjectHideFlags: 0
@@ -4734,11 +4801,13 @@ MonoBehaviour:
   autoRotate: {fileID: 7327752007027498506}
   lockedIndicator: {fileID: 1204212015147751665}
   unconnectedIndicator: {fileID: 3641085830514115812}
+  objectPlacer: {fileID: 0}
   connectionMaterialPrefab: {fileID: 2100000, guid: 715040dd217370e44b2d62b02277bb38,
     type: 2}
   canScale: 1
   scaleSpeed: 100
   isConnected: 0
+  fallAnimSpeed: 12.5
 --- !u!114 &7327752007027498506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4956,7 +5025,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.59, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3146869339932550549
 MonoBehaviour:
@@ -4971,6 +5040,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loopAccleartion: {fileID: 11400000, guid: 49a6149d1d30f81489fb9a4f13ad603f, type: 2}
+  carLayer:
+    serializedVersion: 2
+    m_Bits: 131072
 --- !u!1 &7136768005924214848
 GameObject:
   m_ObjectHideFlags: 0
@@ -6287,6 +6359,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loopAccleartion: {fileID: 11400000, guid: e6e83cad4d1426342b5afc1dc1f5b0c7, type: 2}
+  carLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &564575891766930836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6465,6 +6540,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8486642982490250625, guid: 8368e1c13c6be314da9324df4550898c,
+        type: 3}
+      propertyPath: m_TagString
+      value: RaceTrackSurface
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 8368e1c13c6be314da9324df4550898c, type: 3}
@@ -6586,6 +6666,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8486642982490250625, guid: 8368e1c13c6be314da9324df4550898c,
+        type: 3}
+      propertyPath: m_TagString
+      value: RaceTrackSurface
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
