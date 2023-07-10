@@ -53,6 +53,8 @@ public class MissionUI : MonoBehaviour
 
     public void ShowCompletedMissions(List<string> descriptions, List<int> rewards, List<Color> colours)
     {
+        return;
+
         if (descriptions.Count <= 0)
             return;
 
