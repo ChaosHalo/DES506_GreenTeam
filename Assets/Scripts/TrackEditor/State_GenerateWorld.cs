@@ -37,6 +37,17 @@ public class State_GenerateWorld : IBuildingState
         this.perlinNoise = perlinNoise;
         this.placementSystem = placementSystem;
 
+        BeginGeneration();
+    }
+
+    private void BeginGeneration()
+    {
+        availablePositions.Clear();
+        objectPlacer.ClearAllObjects();
+        terrainData.ClearData();
+        trackData.ClearData();
+
+        perlinNoise.BeginGenerate();
         GenerateTerrain();
         GenerateTrack();
         placementSystem.isGenerating = false;
@@ -72,8 +83,8 @@ public class State_GenerateWorld : IBuildingState
 
     private void GenerateTrack()
     {
-        //List<int> IDs = new List<int>() { 0, 1, 8 }; // track pieces to place
-       List<int> IDs = new List<int>() { 8 }; // track pieces to place
+        List<int> IDs = new List<int>() { 0, 1, 8 }; // track pieces to place
+       //List<int> IDs = new List<int>() { 8 }; // track pieces to place
         int type = (int)ObjectData.ObjectType.Track;
         GridData selectedData = trackData;
 
@@ -81,6 +92,7 @@ public class State_GenerateWorld : IBuildingState
         int halfY = generationBoundsY / 2;
 
         GenerateUnusedPositions(halfX, halfY);
+
 
         List<Vector3> rotations = new()
         {
@@ -93,6 +105,13 @@ public class State_GenerateWorld : IBuildingState
 
         for (int i = 0; i < IDs.Count; i++)
         {
+            if (availablePositions.Count <= 0)
+            {
+                Debug.LogWarning("WARNING: No Free Tiles Available. Regenerating World...");
+                BeginGeneration();
+                return;
+            }
+
             int rotationState = Random.Range(0, 4);
             Vector3Int gridPosition = GetRandomPosition(halfX, halfY);
 
@@ -107,14 +126,27 @@ public class State_GenerateWorld : IBuildingState
 
     private void GenerateUnusedPositions(int halfX, int halfY)
     {
+        List<Vector3Int> unavailablePositions = new();
+
         for (int x = -halfX; x < halfX; x++)
         {
             for (int y = -halfY; y < halfY; y++)
             {
-                if (terrainData.IsBuildableAt(new(x, 0, y), new(1, 1), 0) == true)
-                    availablePositions.Add(new(x, 0, y));
+                Vector3Int newPos = new(x, 0, y);
+
+                if (terrainData.IsBuildableAt(newPos, new(1, 1), 0) == true)
+                    availablePositions.Add(newPos);
+                else
+                {
+                    unavailablePositions.Add(newPos);
+                    unavailablePositions.AddRange(CalculateAdjacentPositions(newPos));
+                }
             }
         }
+
+        // remove unavailable positions from available
+        var theSet = new HashSet<Vector3Int>(unavailablePositions);
+        availablePositions.RemoveAll(item => theSet.Contains(item));
     }
 
     private Vector3Int GetRandomPosition(int halfX, int halfY)
@@ -122,19 +154,8 @@ public class State_GenerateWorld : IBuildingState
         // get random position
         Vector3Int newPos = availablePositions[Random.Range(0, availablePositions.Count)];
 
-        // temp store this and adjacent positions
-        List<Vector3Int> unavailablePositions = new()
-            {
-                newPos,
-                new(newPos.x-1, 0, newPos.z),
-                new(newPos.x+1, 0, newPos.z),
-                new(newPos.x, 0, newPos.z-1),
-                new(newPos.x, 0, newPos.z+1),
-                new(newPos.x-1, 0, newPos.z-1),
-                new(newPos.x+1, 0, newPos.z-1),
-                new(newPos.x-1, 0, newPos.z+1),
-                new(newPos.x+1, 0, newPos.z+1),
-            };
+        // remove adjacent positions from list of available positions
+        List<Vector3Int> unavailablePositions = CalculateAdjacentPositions(newPos);
 
         // remove unavailable positions from available
         var theSet = new HashSet<Vector3Int>(unavailablePositions);
@@ -142,6 +163,23 @@ public class State_GenerateWorld : IBuildingState
 
         // return new position
         return newPos;
+    }
+
+    List<Vector3Int> CalculateAdjacentPositions(Vector3Int originPos)
+    {
+        // all 8 adjacent positions
+        return new()
+            {
+                originPos,
+                new(originPos.x-1, 0, originPos.z),
+                new(originPos.x+1, 0, originPos.z),
+                new(originPos.x, 0, originPos.z-1),
+                new(originPos.x, 0, originPos.z+1),
+                new(originPos.x-1, 0, originPos.z-1),
+                new(originPos.x+1, 0, originPos.z-1),
+                new(originPos.x-1, 0, originPos.z+1),
+                new(originPos.x+1, 0, originPos.z+1),
+            };
     }
 
     public void EndState() 
