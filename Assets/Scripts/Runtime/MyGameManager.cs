@@ -58,7 +58,6 @@ public class MyGameManager : MonoBehaviour
         if(gameState != null)
             gameState.UpdateState();
 
-
         if (missionManager != null)
             foreach (var mission in missionManager.missionUI)
                 mission.CustomUpdate();

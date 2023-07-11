@@ -106,7 +106,8 @@ public class State_PlaceTerrain : IBuildingState
                                  index,
                                  0,
                                  true,
-                                 database.objectsData[selectedObjectIndex].cost);
+                                 database.objectsData[selectedObjectIndex].cost,
+                                 database.objectsData[selectedObjectIndex].isBuildable);
 
         previewSystem.UpdatePreview(grid.CellToWorld(gridPosition), false);
         placementSystem.EndCurrentState();

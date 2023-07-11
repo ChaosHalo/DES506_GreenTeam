@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PerlinNoise : MonoBehaviour
 {
-    public enum Type { PRESET_1, PRESET_2 };
+    public enum Type { PRESET_1, PRESET_2, PRESET_3 };
     public Type generationType;
 
     private int heightPower = 2;
@@ -66,6 +66,21 @@ public class PerlinNoise : MonoBehaviour
                 ID = 5;
             else if (desertPerlinNoise[x, y] > 0.4f)
                 ID = 7;
+        }
+
+        // preset 3
+        if (generationType == Type.PRESET_3)
+        {
+            if (heightPerlinNoise[x, y] < 0.25f)
+                ID = 3;
+            else if (heightPerlinNoise[x, y] < 0.3f)
+                ID = 4;
+            else if (heightPerlinNoise[x, y] < 0.35f)
+                ID = 5;
+            else ID = 7;
+
+            if (waterPerlinNoise[x, y] < 0.1)
+                ID = 6;
         }
 
         return ID;

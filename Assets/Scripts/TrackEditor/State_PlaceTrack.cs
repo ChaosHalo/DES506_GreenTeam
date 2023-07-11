@@ -85,7 +85,8 @@ public class State_PlaceTrack : IBuildingState
                                  index,
                                  GetCurrentPreviewRotationState(),
                                  true,
-                                 database.objectsData[selectedObjectIndex].cost);
+                                 database.objectsData[selectedObjectIndex].cost,
+                                 database.objectsData[selectedObjectIndex].isBuildable);
 
         previewSystem.UpdatePreview(grid.CellToWorld(gridPosition), false);
         placementSystem.EndCurrentState();
@@ -94,6 +95,10 @@ public class State_PlaceTrack : IBuildingState
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {
         GridData selectedData = database.objectsData[selectedObjectIndex].objectType == ObjectData.ObjectType.Terrain ? terrainData : trackData;
+
+        if (terrainData.IsBuildableAt(gridPosition, database.objectsData[selectedObjectIndex].Size, GetCurrentPreviewRotationState()) == false)
+            return false;
+
         return selectedData.CanPlaceObejctAt(gridPosition, database.objectsData[selectedObjectIndex].Size, GetCurrentPreviewRotationState());
     }
 

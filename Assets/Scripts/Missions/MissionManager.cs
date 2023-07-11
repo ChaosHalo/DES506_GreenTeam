@@ -28,6 +28,9 @@ public class MissionManager : MonoBehaviour
     [SerializeField]
     private List<MissionGrouping> availableMissions = new List<MissionGrouping>();
 
+    private int rerollCost = 100;
+    private int rerollCount = 0;
+
     private void Update()
     {
         if (currencyManager == null)
@@ -97,6 +100,25 @@ public class MissionManager : MonoBehaviour
         currentMissions[index] = null;
         CreateNewMission(index);
         OnRemoveGrouping(rerolledGrouping);
+    }
+
+    public void RerollAllMissions()
+    {
+        CurrencyManager currencyManager =MyGameManager.instance.GetCurrencyManager();
+        int newCost = (rerollCount + 1) * rerollCost;
+
+        if (currencyManager.CanAfford(newCost))
+        {
+            // spend money
+            currencyManager.MakePurchase(newCost);
+
+            // reroll missions
+            for (int i = 0; i < 3; i++)
+                RerollMission(i);
+
+            // update variables
+            rerollCount++;
+        }
     }
 
     private void OnAddGrouping(int grouping)

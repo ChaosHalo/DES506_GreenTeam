@@ -49,6 +49,9 @@ public class PlacableObject : MonoBehaviour
     private Vector3 scaleNext;
     private Vector3 scaleOriginal;
 
+    [Header("Additional Track Piece Components")]
+    public List<GameObject> additionalObjects = new List<GameObject>();
+
     private void Awake()
     {
         scaleOriginal = transform.parent.localScale;
@@ -157,7 +160,14 @@ public class PlacableObject : MonoBehaviour
 
         if (objectType == ObjectData.ObjectType.Track)
             if (isPlaced == true)
+            {
                 transform.tag = "RaceTrackSurface";
+
+                foreach(GameObject obj in additionalObjects)
+                {
+                    obj.transform.tag = "RaceTrackSurface";
+                }
+            }
 
         if (objectType == ObjectData.ObjectType.Terrain)
             GetComponentInChildren<TerrainObject>().GenerateObjects();
