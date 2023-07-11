@@ -159,6 +159,7 @@ public class PlacementSystem : MonoBehaviour
                 GenerateWorld();
                 MyGameManager.instance.GetCurrencyManager().ResetCurrency();
                 MyGameManager.instance.missionManager.ResetMissions();
+                MyGameManager.instance.GetCameraManager().ResetCamera();
             }
         }
 

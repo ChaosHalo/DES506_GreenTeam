@@ -20,7 +20,7 @@ public class State_Build : IGameState
         saveMap = MyGameManager.instance.GetSaveMap();
 
         //MyGameManager.instance.GetMissionManager().CheckForCompletedMissions();
-        //MyGameManager.instance.GetCameraManager().ResetCamera();
+        MyGameManager.instance.GetCameraManager().ResetCamera();
         MyGameManager.instance.GetObjectPlacer().TriggerFaillAnimations();
     }
     public void EndState()

@@ -116,12 +116,15 @@ public class CameraManager : MonoBehaviour
 
     public void ResetCamera()
     {
-        isMouseDown = false;
-        cameraDistance = maxZoom;
-        ApplyZoomToCamera(cameraDistance);
-        anchorStartPos = anchorOriginalPos;
-        anchorCurPos = anchorOriginalPos;
-        virtualCamera.transform.position = camPos;
-        anchor.transform.position = anchorOriginalPos;
+        if (componentBase is CinemachineFramingTransposer)
+        {
+            isMouseDown = false;
+            cameraDistance = maxZoom;
+            ApplyZoomToCamera(cameraDistance);
+            anchorStartPos = anchorOriginalPos;
+            anchorCurPos = anchorOriginalPos;
+            virtualCamera.transform.position = camPos;
+            anchor.transform.position = anchorOriginalPos;
+        }
     }
 }
