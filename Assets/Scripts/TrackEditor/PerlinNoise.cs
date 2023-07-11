@@ -22,7 +22,7 @@ public class PerlinNoise : MonoBehaviour
     float[,] desertPerlinNoise = new float[sizeX, sizeY];
     float[,] waterPerlinNoise = new float[sizeX, sizeY];
 
-    private void Awake()
+    public void BeginGenerate()
     {
         heightPerlinNoise = GeneratePerlinNoise(heightPower, heightOctave, GenerateBaseNoise());
         desertPerlinNoise = GeneratePerlinNoise(desertPower, desertOctave, GenerateBaseNoise());

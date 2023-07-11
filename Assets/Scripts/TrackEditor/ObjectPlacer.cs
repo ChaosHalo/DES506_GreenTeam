@@ -81,6 +81,12 @@ public class ObjectPlacer : MonoBehaviour
         return placedObjects.Count - 1;
     }
 
+    internal void ClearAllObjects()
+    {
+        for (int i = 0; i < placedObjects.Count; i++)
+            RemoveObjectAt(i);
+    }
+
     internal void RemoveObjectAt(int gameObjectIndex)
     {
         if (placedObjects.Count <= gameObjectIndex || placedObjects[gameObjectIndex] == null)
@@ -188,16 +194,35 @@ public class ObjectPlacer : MonoBehaviour
                         {
                             return false;
                         }
-                        if (placableObject.GetFallingStatus() == true)
-                        {
-                            return false;
-                        }
                     }
                 }
             }
         }
 
         return true;
+    }
+
+    internal bool IsTrackAnimating()
+    {
+        foreach (GameObject obj in placedObjects)
+        {
+            if (obj != null)
+            {
+                PlacableObject placableObject = obj.GetComponentInChildren<PlacableObject>();
+                if (placableObject != null)
+                {
+                    if (placableObject.objectType == ObjectData.ObjectType.Track)
+                    {
+                        if (placableObject.GetFallingStatus() == true)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
 

@@ -25,7 +25,7 @@ public class GameStateManager : MonoBehaviour
 
     public bool ChangeToState_Race()
     {
-        if (MyGameManager.instance.GetObjectPlacer().IsTrackFullyConnected())
+        if (MyGameManager.instance.GetObjectPlacer().IsTrackFullyConnected() == true && MyGameManager.instance.GetObjectPlacer().IsTrackAnimating() == false)
         {
             Debug.Log("Track fully connected");
             ChangeToState(Index.RACE);
