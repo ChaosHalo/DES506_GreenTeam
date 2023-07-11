@@ -29,6 +29,7 @@ public class RaceScreenUIManager : MonoBehaviour
             raceManager.StartRaceEvent.RemoveListener(StartTimer);
             raceManager.EndRaceEvent.RemoveListener(StopTimer);
         }
+        StopTimer();
     }
     // Update is called once per frame
     void Update()
