@@ -29,6 +29,19 @@ public class CarInfoSerach : Singleton<CarInfoSerach>, ICarInfoSearch
         }
         return null;
     }
+    public string GetCarName(int place)
+    {
+        BaseController car = GetCarController(place);
+        if (car == null) return "";
+        return car.GetComponent<CarManager>().CarInfo.Name;
+    }
+    public float GetFinalTime(int place)
+    {
+        BaseController car = GetCarController(place);
+        if(car == null) return 0.0f;
+        return car.GetComponent<CarManager>().FinalTime;
+    }
+
     public float GetGapTime(int firstPlace, int nextPlace)
     {
         BaseController first = GetCarController(firstPlace);
@@ -60,5 +73,73 @@ public class CarInfoSerach : Singleton<CarInfoSerach>, ICarInfoSearch
     public bool IsFinishAfter(string firstCarName, string nextCarName)
     {
         return GetGapTime(firstCarName, nextCarName) > 0.0f;
+    }
+    /// <summary>
+    /// 获取最佳车手名字
+    /// </summary>
+    /// <returns></returns>
+    public string GetBestDriverName()
+    {
+        try
+        {
+            BaseController best = GetCarController(1);
+            return best.GetComponent<CarManager>().CarInfo.Name;
+        }
+        catch
+        {
+            Debug.Log("未找到最佳车手名字");
+            return "";
+        }
+    }
+    /// <summary>
+    /// 获取最差车手名
+    /// </summary>
+    /// <returns></returns>
+    public string GetWorstDriverName()
+    {
+        try
+        {
+            BaseController worst = GetCarController(4);
+            return worst.GetComponent<CarManager>().CarInfo.Name;
+        }
+        catch
+        {
+            Debug.Log("未找到最差车手名字");
+            return "";
+        }
+    }
+    /// <summary>
+    /// 获取最佳车手时间
+    /// </summary>
+    /// <returns></returns>
+    public float GetBestDriverTime()
+    {
+        try
+        {
+            BaseController best = GetCarController(1);
+            return best.GetComponent<CarManager>().FinalTime;
+        }
+        catch
+        {
+            Debug.Log("未找到最佳车手时间");
+            return 0;
+        }
+    }
+    /// <summary>
+    /// 获取最差车手时间
+    /// </summary>
+    /// <returns></returns>
+    public float GetWorstDriverTime()
+    {
+        try
+        {
+            BaseController worst = GetCarController(4);
+            return worst.GetComponent<CarManager>().FinalTime;
+        }
+        catch
+        {
+            Debug.Log("未找到最差车手时间 ");
+            return 0;
+        }
     }
 }

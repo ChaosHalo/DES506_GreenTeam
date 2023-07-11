@@ -20,10 +20,11 @@ public class GridData
                           int placedObjectIndex,
                           int rotationState,
                           bool canModify,
-                          int cost)
+                          int cost,
+                          bool isBuildable)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize, rotationState);
-        PlacementData data = new PlacementData(positionToOccupy, gridPosition, ID, type, placedObjectIndex, rotationState, objectSize, canModify, cost);
+        PlacementData data = new PlacementData(positionToOccupy, gridPosition, ID, type, placedObjectIndex, rotationState, objectSize, canModify, cost, isBuildable);
         foreach (var pos in positionToOccupy)
         {
             if (placedObjects.ContainsKey(pos))
@@ -76,7 +77,7 @@ public class GridData
                 return false;
 
             // is within grid?
-            if (pos.x+1 < -gridSize.x / 2)
+            if (pos.x < -gridSize.x / 2)
                 return false;
             if (pos.x+1 > gridSize.x / 2)
                 return false;
@@ -86,6 +87,21 @@ public class GridData
                 return false;
         }
         return true;
+    }
+
+    public bool IsBuildableAt(Vector3Int gridPosition, Vector2Int objectSize, int rotationState)
+    {
+        bool isBuildable = true;
+
+        List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize, rotationState);
+        foreach (var pos in positionToOccupy)
+        {
+            PlacementData data = GetObjectDataAt(pos);
+            if(data!= null)
+                if(data.isBuildable==false)
+                    isBuildable = false;
+        }
+        return isBuildable;
     }
 
     internal int GetRepresentationIndex(Vector3Int gridPosition)
@@ -124,9 +140,19 @@ public class PlacementData
     public Vector2Int Size { get; private set; }
     public bool canModify { get; private set; }
     public int cost { get; private set; }
+    public bool isBuildable { get; private set; }
 
 
-    public PlacementData(List<Vector3Int> occupiedPositions, Vector3Int originPosition, int iD, int type, int placedObjectIndex, int rotationState, Vector2Int size, bool canModify, int cost)
+    public PlacementData(List<Vector3Int> occupiedPositions,
+                         Vector3Int originPosition,
+                         int iD,
+                         int type,
+                         int placedObjectIndex,
+                         int rotationState,
+                         Vector2Int size,
+                         bool canModify,
+                         int cost,
+                         bool isBuildable)
     {
         this.occupiedPositions = occupiedPositions;
         this.originPosition = originPosition;
@@ -137,6 +163,7 @@ public class PlacementData
         Size = size;
         this.canModify = canModify;
         this.cost = cost;
+        this.isBuildable = isBuildable;
     }
 
 

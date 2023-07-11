@@ -107,7 +107,8 @@ public class State_RotateTrack : IBuildingState
                                  gameObjectIndex,
                                  finalState,
                                  true,
-                                 existingData.cost);
+                                 existingData.cost,
+                                 existingData.isBuildable);
 
 
         Vector3 cellPosition = grid.CellToWorld(gridPosition);
@@ -116,7 +117,14 @@ public class State_RotateTrack : IBuildingState
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int newRotationState, Vector2Int size)
     {
-        return trackData.CanPlaceObejctAt(gridPosition, size, newRotationState);
+        // is terrain buildable?
+        if (terrainData.IsBuildableAt(gridPosition, size, newRotationState) == false)
+            return false;
+
+        if (trackData.CanPlaceObejctAt(gridPosition, size, newRotationState) == false)
+            return false;
+
+        return true;
     }
 
     private bool CheckIfSelectionIsValid(Vector3Int gridPosition)

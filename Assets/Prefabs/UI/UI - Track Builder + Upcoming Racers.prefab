@@ -7343,6 +7343,7 @@ GameObject:
   - component: {fileID: 333723747756791997}
   - component: {fileID: 333723747756791986}
   - component: {fileID: 333723747756791987}
+  - component: {fileID: 3088657054915131104}
   m_Layer: 5
   m_Name: UI - Track Builder + Upcoming Racers
   m_TagString: Untagged
@@ -7438,6 +7439,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &3088657054915131104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333723747756791984}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01eff592be8d0c2429e9a889366c2ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carInfoScriptableObjects: []
+  CarName: {fileID: 1637232683433958696}
+  TopSpeedSlider: {fileID: 1984978620445895062}
+  AccelerationSlider: {fileID: 5222573880278221212}
+  HandlingSlider: {fileID: 6190009513030535816}
+  OffroadSlider: {fileID: 6477580805698465876}
+  PlaceholderCarImage: {fileID: 7347142992664811405}
 --- !u!1 &333723747762786144
 GameObject:
   m_ObjectHideFlags: 0
@@ -12331,7 +12351,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1259654227217400597}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3088657054915131104}
+        m_TargetAssemblyTypeName: UpcomingUIManager, Assembly-CSharp
+        m_MethodName: NextCar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2794589907245202918
 GameObject:
   m_ObjectHideFlags: 0
@@ -13772,7 +13804,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 360810857532251523}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3088657054915131104}
+        m_TargetAssemblyTypeName: UpcomingUIManager, Assembly-CSharp
+        m_MethodName: PreviousCar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3919985394509472076
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.HighroadEngine;
@@ -14,7 +14,19 @@ public class MyGameManager : MonoBehaviour
     public GameObject Map;
     public IGameState gameState;
     public Material litMaterial;
-
+    /// <summary>
+    /// 赛季轮次 
+    /// </summary>
+    public int Season = 3;
+    /// <summary>
+    /// 游戏已运行轮次
+    /// </summary>
+    [HideInInspector]
+    public int GameRound;
+    /// <summary>
+    /// 所有游戏轮次保存的比赛信息
+    /// </summary>
+    public List<OneRoundRaceResultData> OneRoundRaceResultDatas = new();
     // build / race scene objects
     [SerializeField] internal GameObject buildObjects;
     [SerializeField] internal GameObject raceObjects;
@@ -23,14 +35,14 @@ public class MyGameManager : MonoBehaviour
     bool gamestateNewScene = false;
 
     public MissionManager missionManager;
-
+    public CarInfoSerach CarInfoSerach;
     // singleton instance
     internal static MyGameManager instance;
 
     void Awake()
     {
         SetupInstance();
-
+        InitManager();
         if (instance != this)
             return;
 
@@ -57,7 +69,6 @@ public class MyGameManager : MonoBehaviour
     {
         if(gameState != null)
             gameState.UpdateState();
-
 
         if (missionManager != null)
             foreach (var mission in missionManager.missionUI)
@@ -86,7 +97,6 @@ public class MyGameManager : MonoBehaviour
             gameState.StartState();
         }
     }
-
 
     internal void SetNewState(int index, bool loadNewScene)
     {
@@ -130,8 +140,17 @@ public class MyGameManager : MonoBehaviour
         gameState.OnAction();
     }
 
-
-
+    private void InitManager()
+    {
+        if(FindObjectsOfType<CarInfoSerach>().Length == 0)
+        {
+            Instantiate(CarInfoSerach);
+        }
+    }
+    public void AddRaceResult(OneRoundRaceResultData oneRoundRaceResultData)
+    {
+        OneRoundRaceResultDatas.Add(oneRoundRaceResultData);
+    }
 
     #region GET / SET
     internal StartPieceInfo GetStartPieceInfoObject()
