@@ -65,15 +65,15 @@ public class State_GenerateWorld : IBuildingState
                 int index = objectPlacer.PlaceObject(database.objectsData[ID].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, false);
 
                 // place database object
-                selectedData.AddObjectAt(gridPosition, size, ID, type, index, rotationState, true, database.objectsData[ID].cost);
+                selectedData.AddObjectAt(gridPosition, size, ID, type, index, rotationState, true, database.objectsData[ID].cost, database.objectsData[ID].isBuildable);
             }
         }
     }
 
     private void GenerateTrack()
     {
-       // List<int> IDs = new List<int>() { 0, 1, 8 }; // track pieces to place
-       List<int> IDs = new List<int>() { 8 }; // track pieces to place
+        List<int> IDs = new List<int>() { 0, 1, 8 }; // track pieces to place
+       //List<int> IDs = new List<int>() { 8 }; // track pieces to place
         int type = (int)ObjectData.ObjectType.Track;
         GridData selectedData = trackData;
 
@@ -100,7 +100,7 @@ public class State_GenerateWorld : IBuildingState
             int index = objectPlacer.PlaceObject(database.objectsData[IDs[i]].Prefab, grid.CellToWorld(gridPosition), rotationState, false, ObjectData.ObjectType.Track, database.objectsData[IDs[i]].trackType, database.objectsData[IDs[i]].terrainType, false);
 
             // place database object
-            selectedData.AddObjectAt(gridPosition, database.objectsData[IDs[i]].Size, IDs[i], type, index, rotationState, false, database.objectsData[IDs[i]].cost);
+            selectedData.AddObjectAt(gridPosition, database.objectsData[IDs[i]].Size, IDs[i], type, index, rotationState, false, database.objectsData[IDs[i]].cost, database.objectsData[IDs[i]].isBuildable);
         }
         placementSystem.EndCurrentState();
     }
@@ -111,7 +111,8 @@ public class State_GenerateWorld : IBuildingState
         {
             for (int y = -halfY; y < halfY; y++)
             {
-                availablePositions.Add(new(x, 0, y));
+                if (terrainData.IsBuildableAt(new(x, 0, y), new(1, 1), 0) == true)
+                    availablePositions.Add(new(x, 0, y));
             }
         }
     }

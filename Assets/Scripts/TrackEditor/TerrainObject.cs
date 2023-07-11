@@ -11,8 +11,10 @@ public class TerrainObject : MonoBehaviour
     public Type terrainType;
     public Type GetTerrainType() { return terrainType; }
 
+
     [Header("Cosmetic Objects")]
     public List<GameObject> objectPrefabs = new();
+    public GameObject specialObject;
 
     private List<GameObject> instantiatedObjects = new();
 
@@ -20,6 +22,17 @@ public class TerrainObject : MonoBehaviour
 
     public void GenerateObjects()
     {
+        // special object
+        if (specialObject != null)
+        {
+            GameObject newObject = Instantiate(specialObject);
+            newObject.transform.position = transform.position;
+            newObject.transform.parent = transform;
+            newObject.transform.Rotate(new(0, 0, Random.Range(0, 360)));
+        }
+
+
+        // normal objects
         if (objectPrefabs.Count == 0)
             return;
 
