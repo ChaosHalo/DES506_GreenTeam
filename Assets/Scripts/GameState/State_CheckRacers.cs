@@ -8,7 +8,10 @@ public class State_CheckRacers : IGameState
     {
     }
 
-    public void StartState() { }
+    public void StartState()
+    {
+        MyGameManager.instance.missionManager.InitialiseMissions();
+    }
     public void EndState() { }
     public void OnAction() 
     {

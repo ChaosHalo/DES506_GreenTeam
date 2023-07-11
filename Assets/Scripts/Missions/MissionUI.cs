@@ -9,7 +9,6 @@ public class MissionUI : MonoBehaviour
 {
     public TMP_Text[] missionTexts = new TMP_Text[3];
     public Image[] missionDifficultyIndicators = new Image[3];
-    MissionManager missionManager;
 
     [SerializeField]
     private GameObject completedMissionUI;
@@ -29,19 +28,13 @@ public class MissionUI : MonoBehaviour
 
     public void CustomUpdate()
     {
-        if(missionManager==null)
-            missionManager=GameObject.FindObjectOfType<MissionManager>();
-
-        if (missionManager != null)
-        {
             for (int i = 0; i < 3; i++)
             {
                 if (missionTexts[i].text != null)
-                    missionTexts[i].text = missionManager.currentMissions[i].GetDescriptionText();
+                    missionTexts[i].text = MyGameManager.instance.missionManager.currentMissions[i].GetDescriptionText();
                 if (missionDifficultyIndicators[i] != null)
-                    missionDifficultyIndicators[i].color = missionManager.currentMissions[i].GetDifficultyColour();
+                    missionDifficultyIndicators[i].color = MyGameManager.instance.missionManager.currentMissions[i].GetDifficultyColour();
             }
-        }
     }
 
     private void Update()

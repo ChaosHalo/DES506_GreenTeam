@@ -22,6 +22,8 @@ public class MyGameManager : MonoBehaviour
     // has new scene been loaded for game state?
     bool gamestateNewScene = false;
 
+    public MissionManager missionManager;
+
     // singleton instance
     internal static MyGameManager instance;
 
@@ -56,6 +58,10 @@ public class MyGameManager : MonoBehaviour
         if(gameState != null)
             gameState.UpdateState();
 
+
+        if (missionManager != null)
+            foreach (var mission in missionManager.missionUI)
+                mission.CustomUpdate();
         // commented this out because was preventing build
         //ReLoadScene();
     }
@@ -146,7 +152,6 @@ public class MyGameManager : MonoBehaviour
     internal RaceManager GetRaceManager() { return FindObjectOfType<RaceManager>(); }
     internal SaveMap GetSaveMap() { return FindObjectOfType<SaveMap>(); }
     internal ObjectPlacer GetObjectPlacer() { return FindObjectOfType<ObjectPlacer>(); }
-    internal MissionManager GetMissionManager() { return FindObjectOfType<MissionManager>(); }
     internal CurrencyManager GetCurrencyManager() { return FindObjectOfType<CurrencyManager>(); }
     internal MapPieceInfo[] GetMapPieceWayPointsObjects() { return FindObjectsOfType<MapPieceInfo>(); }
     internal CameraManager GetCameraManager() { return FindObjectOfType<CameraManager>(); }
