@@ -72,7 +72,7 @@ public class State_GenerateWorld : IBuildingState
 
     private void GenerateTrack()
     {
-       // List<int> IDs = new List<int>() { 0, 1, 8 }; // track pieces to place
+        //List<int> IDs = new List<int>() { 0, 1, 8 }; // track pieces to place
        List<int> IDs = new List<int>() { 8 }; // track pieces to place
         int type = (int)ObjectData.ObjectType.Track;
         GridData selectedData = trackData;

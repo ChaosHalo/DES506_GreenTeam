@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CustomSceneManager : MonoBehaviour
+public class GameStateManager : MonoBehaviour
 {
     [SerializeField] internal GameObject buildObjects;
     [SerializeField] internal GameObject raceObjects;
@@ -18,15 +18,11 @@ public class CustomSceneManager : MonoBehaviour
         MyGameManager.instance.SetNewState((int)index, true);
     }
 
-    public void ChangeToState(Index index)
+    private void ChangeToState(Index index)
     {
-        if(index ==Index.BUILD)
-            trackBuilderUI.SetActive(true);
         MyGameManager.instance.SetNewState((int)index, false);
     }
 
-    public void LoadNewScene_Build() => LoadNewScene(Index.BUILD);
-    public void LoadNewScene_CheckRacers() => LoadNewScene(Index.CHECK_RACERS);
     public bool ChangeToState_Race()
     {
         if (MyGameManager.instance.GetObjectPlacer().IsTrackFullyConnected())
@@ -43,6 +39,11 @@ public class CustomSceneManager : MonoBehaviour
     }
     public void ChangeToState_Build()
     {
+        trackBuilderUI.SetActive(true);
         ChangeToState(Index.BUILD);
+    }
+    public void ChangeToState_CheckRacers()
+    {
+        ChangeToState(Index.CHECK_RACERS);
     }
 }
