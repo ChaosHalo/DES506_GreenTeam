@@ -188,6 +188,10 @@ public class ObjectPlacer : MonoBehaviour
                         {
                             return false;
                         }
+                        if (placableObject.GetFallingStatus() == true)
+                        {
+                            return false;
+                        }
                     }
                 }
             }

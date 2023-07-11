@@ -37,6 +37,8 @@ public class PlacableObject : MonoBehaviour
     private float deleteAnimSpeed = 12.5f;
     private Vector3 placedPos;
     private bool isFalling = false;
+    private bool isFallingAnim = false;
+    internal bool GetFallingStatus() { return isFallingAnim; }
     [SerializeField] private float fallAnimSpeed = 12.5f;
     internal int verticalOffset = 100;
 
@@ -88,6 +90,7 @@ public class PlacableObject : MonoBehaviour
             if (Vector3.Distance(transform.parent.localPosition, placedPos) < 0.5f)
             {
                 isFalling = false;
+                isFallingAnim = false;
                 transform.parent.localPosition = placedPos;
                 objectPlacer.UpdateTrackConnections();
             }
@@ -194,6 +197,7 @@ public class PlacableObject : MonoBehaviour
 
     IEnumerator DelayFallAnim(float delay)
     {
+        isFallingAnim = true;
         GetComponent<MeshRenderer>().enabled = false;
         transform.parent.localPosition = new Vector3(transform.localPosition.x + 50, transform.localPosition.y + verticalOffset, transform.localPosition.z + 50);
         placedPos = new Vector3(transform.parent.localPosition.x, transform.parent.localPosition.y - verticalOffset, transform.parent.localPosition.z);
