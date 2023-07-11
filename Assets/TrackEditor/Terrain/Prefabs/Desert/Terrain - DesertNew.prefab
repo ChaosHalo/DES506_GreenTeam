@@ -31,7 +31,7 @@ Transform:
   - {fileID: 4934930758092068857}
   - {fileID: 9111798648559540853}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3252026973094761287
 GameObject:
@@ -321,7 +321,8 @@ MonoBehaviour:
   canScale: 1
   scaleSpeed: 100
   isConnected: 0
-  fallAnimSpeed: 5
+  fallAnimSpeed: 1250
+  additionalObjects: []
 --- !u!114 &5455326115150343481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,6 +343,7 @@ MonoBehaviour:
   - {fileID: 3191097429870838534, guid: 9c7d0f34d7b5b2a4b948f4bac658dde1, type: 3}
   - {fileID: 3220415242983990195, guid: c7e54ae980de9c34baed975abe549820, type: 3}
   - {fileID: 6486902376069001430, guid: 2156765c59cdca6478d062a7dfb9185f, type: 3}
+  specialObject: {fileID: 0}
 --- !u!65 &5455326115150343482
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -61,7 +61,8 @@ public class State_PlaceTerrain : IBuildingState
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
         // check placement validity
-        if (isWithinBounds == false)
+        bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
+        if (placementValidity == false || isWithinBounds == false)
         {
             placementSystem.EndCurrentState();
             return;
@@ -115,17 +116,19 @@ public class State_PlaceTerrain : IBuildingState
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {
-        //return terrainData.CanPlaceObejctAt(gridPosition, database.objectsData[selectedObjectIndex].Size, 0);
+        if (terrainData.IsBuildableAt(gridPosition, database.objectsData[selectedObjectIndex].Size, 0) == false)
+            return false;
+
         return true;
     }
 
     public void UpdateState(Vector3 position, bool isWithinBounds)
     {
         bool placementValidity = false;
-
         if (isWithinBounds && currencyManager.CanAfford(database.objectsData[selectedObjectIndex].cost))
-            placementValidity = true;
-
+        {
+            placementValidity = CheckPlacementValidity(grid.WorldToCell(position), selectedObjectIndex);
+        }
         previewSystem.UpdatePreview(position, placementValidity);
     }
 }
