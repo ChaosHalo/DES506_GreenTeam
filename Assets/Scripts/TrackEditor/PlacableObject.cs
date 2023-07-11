@@ -86,7 +86,11 @@ public class PlacableObject : MonoBehaviour
 
         if (isFalling == true)
         {
-            transform.parent.localPosition = Vector3.Lerp(transform.parent.localPosition, placedPos, Time.deltaTime * fallAnimSpeed);
+            if(objectType == ObjectData.ObjectType.Terrain)
+                transform.parent.localPosition = Vector3.MoveTowards(transform.parent.localPosition, placedPos, Time.deltaTime * fallAnimSpeed);
+            else
+                transform.parent.localPosition = Vector3.Lerp(transform.parent.localPosition, placedPos, Time.deltaTime * fallAnimSpeed);
+
             if (Vector3.Distance(transform.parent.localPosition, placedPos) < 0.5f)
             {
                 isFalling = false;
@@ -186,12 +190,13 @@ public class PlacableObject : MonoBehaviour
 
     internal void TriggerFallAnim(bool placedByUser)
     {
-        float delay = objectType == ObjectData.ObjectType.Terrain ? 0 : 1f;
+        float delay = objectType == ObjectData.ObjectType.Terrain ? 0 : 0.5f;
         if (placedByUser == true)
             delay = 0;
         else
-            verticalOffset = UnityEngine.Random.Range(500, 800);
+            verticalOffset = UnityEngine.Random.Range(300, 500);
 
+        //verticalOffset = objectType == ObjectData.ObjectType.Terrain ? UnityEngine.Random.Range(300, 500) : 175;
         StartCoroutine(DelayFallAnim(delay));
     }
 

@@ -121,6 +121,16 @@ public class MissionManager : MonoBehaviour
         }
     }
 
+    internal void ResetMissions()
+    {
+        rerollCount = 0;
+        availableMissions.Clear();
+        for (int i = 0; i < 3; i++)
+            currentMissions[i] = null;
+
+        InitialiseMissions();
+    }
+
     private void OnAddGrouping(int grouping)
     {
         availableMissions.RemoveAll(item => item.grouping==grouping);

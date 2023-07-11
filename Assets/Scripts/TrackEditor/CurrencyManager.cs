@@ -9,10 +9,10 @@ public class CurrencyManager : MonoBehaviour
     public int GetPlayerCurrency() { return currencyCurrent; }
 
     [SerializeField]
-    private int currencyStart = 2000;
+    private int currencyStart = 3000;
 
     [SerializeField]
-    private int currencyWin = 1000;
+    private int currencyWin = 500;
 
     [SerializeField]
     private UIManager uiManager;
@@ -75,6 +75,12 @@ public class CurrencyManager : MonoBehaviour
     internal void AddMissionCurrency(int amount)
     {
         currencyCurrent += amount;
+        uiManager.UpdateCurrency(currencyCurrent);
+    }
+
+    internal void ResetCurrency()
+    {
+        currencyCurrent = currencyStart;
         uiManager.UpdateCurrency(currencyCurrent);
     }
 }
