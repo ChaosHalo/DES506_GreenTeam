@@ -72,6 +72,7 @@ public class MyGameManager : MonoBehaviour
         if (missionManager != null)
             foreach (var mission in missionManager.missionUI)
                 mission.CustomUpdate();
+
         // commented this out because was preventing build
         //ReLoadScene();
     }

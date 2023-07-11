@@ -151,6 +151,15 @@ public class PlacementSystem : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (objectPlacer.IsTrackAnimating() == false)
+            {
+                EndCurrentState();
+                GenerateWorld();
+            }
+        }
+
         if (buildingState == null)
             return;
 

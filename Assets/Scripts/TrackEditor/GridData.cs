@@ -33,6 +33,11 @@ public class GridData
         }
     }
 
+    internal void ClearData()
+    {
+        placedObjects.Clear();
+    }
+
     private List<Vector3Int> CalculatePositions(Vector3Int gridPosition, Vector2Int objectSize, int rotationState)
     {
         List<Vector3Int> returnVal = new();
