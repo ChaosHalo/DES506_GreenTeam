@@ -30,8 +30,6 @@ public class MissionManager : MonoBehaviour
 
     private void Update()
     {
-        if (missionUI.Count == 0)
-            missionUI.AddRange(FindObjectsOfType<MissionUI>());
         if (currencyManager == null)
             currencyManager = FindObjectOfType<CurrencyManager>();
 
@@ -41,7 +39,6 @@ public class MissionManager : MonoBehaviour
 
     public void InitialiseMissions()
     {
-        Debug.Log("hi");
         if(availableMissions.Count == 0)
             availableMissions.AddRange(missionPool);
 
