@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
+using Unity.Jobs;
 using UnityEngine;
 
 public class State_GenerateWorld : IBuildingState
@@ -21,9 +23,8 @@ public class State_GenerateWorld : IBuildingState
     // store used track positions
     List<Vector3Int> availablePositions = new();
 
-    float curTime = 0;
-    float delayTime = 1f;
-    bool placedTrack = false;
+    List<int> terrainIDs = new() { 3, 4, 5, 6, 7 };
+    Dictionary<int, int> allTerrainCounters = new();
 
     public struct ObjectToPlace
     {
@@ -69,15 +70,16 @@ public class State_GenerateWorld : IBuildingState
     private void BeginGeneration()
     {
         availablePositions.Clear();
-        objectPlacer.ClearAllObjects();
         terrainData.ClearData();
         trackData.ClearData();
         allObjectsToPlace.Clear();
         objectNumber = 0;
+        allTerrainCounters.Clear();
 
+        foreach (int id in terrainIDs)
+            allTerrainCounters.Add(id, 0);
         perlinNoise.BeginGenerate();
         GenerateTerrain();
-        GenerateTrack();
         placementSystem.isGenerating = false;
     }
 
@@ -99,20 +101,32 @@ public class State_GenerateWorld : IBuildingState
 
                 // get tile type from perlin noise
                 ID = perlinNoise.GetTileID(y, x);
+                allTerrainCounters[ID] += 1;
 
                 // place world object (index 3 = grass)
                 ObjectToPlace newObject = new ObjectToPlace(database.objectsData[ID].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, false);
                 allObjectsToPlace.Add(newObject);
-
-                //int index = objectPlacer.PlaceObject(database.objectsData[ID].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, false);
-
-
 
                 // place database object
                 selectedData.AddObjectAt(gridPosition, size, ID, type, objectNumber, rotationState, true, database.objectsData[ID].cost, database.objectsData[ID].isBuildable);
                 objectNumber++;
             }
         }
+
+        // ensure minimum terrain counts for each type
+        bool generationSuccessful = terrainIDs.All(id =>
+        {
+            if (allTerrainCounters.ContainsKey(id))
+            {
+                return allTerrainCounters[id] >= database.objectsData[id].minimumGeneratedCount;
+            }
+            return false;
+        });
+
+        if (generationSuccessful)
+            GenerateTrack();
+        else
+            BeginGeneration();
     }
 
     private void GenerateTrack()
@@ -152,14 +166,13 @@ public class State_GenerateWorld : IBuildingState
             // place world object (index 3 = grass)
             ObjectToPlace newObject = new ObjectToPlace(database.objectsData[IDs[i]].Prefab, grid.CellToWorld(gridPosition), rotationState, false, ObjectData.ObjectType.Track, database.objectsData[IDs[i]].trackType, database.objectsData[IDs[i]].terrainType, false);
             allObjectsToPlace.Add(newObject);
-            
-            //int index = objectPlacer.PlaceObject(database.objectsData[IDs[i]].Prefab, grid.CellToWorld(gridPosition), rotationState, false, ObjectData.ObjectType.Track, database.objectsData[IDs[i]].trackType, database.objectsData[IDs[i]].terrainType, false);
 
             // place database object
             selectedData.AddObjectAt(gridPosition, database.objectsData[IDs[i]].Size, IDs[i], type, objectNumber, rotationState, false, database.objectsData[IDs[i]].cost, database.objectsData[IDs[i]].isBuildable);
             objectNumber++;
         }
 
+        objectPlacer.ClearAllObjects();
         PlaceObjects();
         placementSystem.EndCurrentState();
     }
@@ -233,16 +246,5 @@ public class State_GenerateWorld : IBuildingState
         placementSystem.isGenerating = false;
     }
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds) { }
-    public void UpdateState(Vector3 gridPosition, bool isWithinBounds) 
-    {
-        //curTime += Time.deltaTime;
-        //if (curTime >= delayTime)
-        //{
-        //    if(placedTrack==false)
-        //    {
-        //        placedTrack = true;
-        //        GenerateTrack();
-        //    }
-        //}
-    }
+    public void UpdateState(Vector3 gridPosition, bool isWithinBounds) { }
 }

@@ -190,7 +190,7 @@ public class PlacableObject : MonoBehaviour
         if (placedByUser == true)
             delay = 0;
         else
-            verticalOffset = UnityEngine.Random.Range(300, 500);
+            verticalOffset = UnityEngine.Random.Range(500, 800);
 
         StartCoroutine(DelayFallAnim(delay));
     }

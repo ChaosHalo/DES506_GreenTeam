@@ -46,4 +46,7 @@ public class ObjectData
 
     [field: SerializeField]
     public bool isBuildable { get; private set; }
+
+    [field: SerializeField]
+    public int minimumGeneratedCount { get; private set; }
 }
