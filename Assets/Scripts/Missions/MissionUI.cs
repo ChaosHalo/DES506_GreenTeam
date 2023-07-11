@@ -8,7 +8,8 @@ using static UnityEngine.Rendering.DebugUI;
 public class MissionUI : MonoBehaviour
 {
     public TMP_Text[] missionTexts = new TMP_Text[3];
-    public Image[] missionDifficultyIndicators = new Image[3];
+    public TMP_Text[] rewardTexts = new TMP_Text[3];
+    public MissionDifficultyIndicator[] missionDifficultyIndicators = new MissionDifficultyIndicator[3];
 
     [SerializeField]
     private GameObject completedMissionUI;
@@ -28,13 +29,15 @@ public class MissionUI : MonoBehaviour
 
     public void CustomUpdate()
     {
-            for (int i = 0; i < 3; i++)
-            {
-                if (missionTexts[i].text != null)
-                    missionTexts[i].text = MyGameManager.instance.missionManager.currentMissions[i].GetDescriptionText();
-                if (missionDifficultyIndicators[i] != null)
-                    missionDifficultyIndicators[i].color = MyGameManager.instance.missionManager.currentMissions[i].GetDifficultyColour();
-            }
+        for (int i = 0; i < 3; i++)
+        {
+            if (missionTexts[i].text != null)
+                missionTexts[i].text = MyGameManager.instance.missionManager.currentMissions[i].GetDescriptionText();
+            if (missionDifficultyIndicators[i] != null)
+                missionDifficultyIndicators[i].UpdateDifficulty(MyGameManager.instance.missionManager.currentMissions[i].GetDifficulty());
+            if (rewardTexts[i].text != null)
+                rewardTexts[i].text = MyGameManager.instance.missionManager.currentMissions[i].CalculateReward().ToString();
+        }
     }
 
     private void Update()

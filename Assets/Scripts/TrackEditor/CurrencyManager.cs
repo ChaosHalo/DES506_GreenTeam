@@ -13,6 +13,7 @@ public class CurrencyManager : MonoBehaviour
 
     [SerializeField]
     private int currencyWin = 500;
+    internal int GetWinCurrency() { return currencyWin; }
 
     [SerializeField]
     private UIManager uiManager;

@@ -33,7 +33,7 @@ public class AllUIManager : MonoBehaviour
     protected virtual void WinCurrency()
     {
         // win currency
-        FindObjectOfType<CurrencyManager>().AddWinCurrency();
+        MyGameManager.instance.GetCurrencyManager().AddWinCurrency();
     }
     
 }

@@ -1,3 +1,4 @@
+using Mono.Cecil.Cil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,6 +39,7 @@ public class PlacableObject : MonoBehaviour
     private Vector3 placedPos;
     private bool isFalling = false;
     private bool isFallingAnim = false;
+    private bool wasPlacedByPlayer = false;
     internal bool GetFallingStatus() { return isFallingAnim; }
     [SerializeField] private float fallAnimSpeed = 12.5f;
     internal int verticalOffset = 100;
@@ -84,12 +86,18 @@ public class PlacableObject : MonoBehaviour
         if (isDeleted)
             transform.parent.localScale = Vector3.Lerp(transform.parent.localScale, Vector3.zero, Time.deltaTime * deleteAnimSpeed);
 
-        if (isFalling == true)
+        if (isFalling)
         {
-            if(objectType == ObjectData.ObjectType.Terrain)
-                transform.parent.localPosition = Vector3.MoveTowards(transform.parent.localPosition, placedPos, Time.deltaTime * fallAnimSpeed);
-            else
-                transform.parent.localPosition = Vector3.Lerp(transform.parent.localPosition, placedPos, Time.deltaTime * fallAnimSpeed);
+            Vector3 targetPosition = Vector3.Lerp(transform.parent.localPosition, placedPos, Time.deltaTime * fallAnimSpeed);
+
+            if (objectType == ObjectData.ObjectType.Terrain)
+            {
+                targetPosition = wasPlacedByPlayer
+                    ? Vector3.Lerp(transform.parent.localPosition, placedPos, Time.deltaTime * fallAnimSpeed / 200)
+                    : Vector3.MoveTowards(transform.parent.localPosition, placedPos, Time.deltaTime * fallAnimSpeed);
+            }
+
+            transform.parent.localPosition = targetPosition;
 
             if (Vector3.Distance(transform.parent.localPosition, placedPos) < 0.5f)
             {
@@ -190,6 +198,7 @@ public class PlacableObject : MonoBehaviour
 
     internal void TriggerFallAnim(bool placedByUser)
     {
+        wasPlacedByPlayer = placedByUser;
         float delay = objectType == ObjectData.ObjectType.Terrain ? 0 : 0.5f;
         if (placedByUser == true)
             delay = 0;

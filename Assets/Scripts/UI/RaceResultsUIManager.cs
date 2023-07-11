@@ -6,6 +6,15 @@ public class RaceResultsUIManager : AllUIManager
 {
     public GameObject PlaceholderScoreboard;
     public EndOfSeasonUIManager EndOfSeason;
+
+    public TMP_Text baseIncomeText;
+    public TMP_Text missionRewardText;
+    public TMP_Text finalRewardText;
+    public TMP_Text totalText;
+    public List<TMP_Text> missionDescriptionsTexts = new List<TMP_Text>();
+    public List<GameObject> completionCheckmarks = new List<GameObject>();
+
+
     private void Start()
     {
         //UpdatePlaceholderScoreboard();
@@ -14,8 +23,11 @@ public class RaceResultsUIManager : AllUIManager
     {
         //UpdatePlaceholderScoreboard();
     }
+
     public void UpdatePlaceholderScoreboard()
     {
+        MyGameManager.instance.missionManager.CheckForCompletedMissions(this);
+
         List<OneCarRaceResultData> tempCarDatas = new(); 
         string s = "";
         for (int i = 0; i < 4; i++)
