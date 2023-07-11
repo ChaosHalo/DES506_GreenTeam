@@ -43,4 +43,7 @@ public class ObjectData
 
     [field: SerializeField]
     public int cost { get; private set; }
+
+    [field: SerializeField]
+    public bool isBuildable { get; private set; }
 }

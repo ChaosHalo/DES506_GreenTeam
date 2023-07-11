@@ -4808,6 +4808,9 @@ MonoBehaviour:
   scaleSpeed: 100
   isConnected: 0
   fallAnimSpeed: 12.5
+  additionalObjects:
+  - {fileID: 2887693634923096470}
+  - {fileID: 3001798289418358697}
 --- !u!114 &7327752007027498506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6543,7 +6546,7 @@ PrefabInstance:
     - target: {fileID: 8486642982490250625, guid: 8368e1c13c6be314da9324df4550898c,
         type: 3}
       propertyPath: m_TagString
-      value: RaceTrackSurface
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -6670,7 +6673,7 @@ PrefabInstance:
     - target: {fileID: 8486642982490250625, guid: 8368e1c13c6be314da9324df4550898c,
         type: 3}
       propertyPath: m_TagString
-      value: RaceTrackSurface
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

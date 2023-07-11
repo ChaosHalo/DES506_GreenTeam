@@ -70,7 +70,6 @@ public class MyGameManager : MonoBehaviour
         if(gameState != null)
             gameState.UpdateState();
 
-
         if (missionManager != null)
             foreach (var mission in missionManager.missionUI)
                 mission.CustomUpdate();
@@ -188,7 +187,7 @@ public class MyGameManager : MonoBehaviour
     }
     internal CarInfoSerach GetCarInfoSerach() { return FindObjectOfType<CarInfoSerach>(); }
     internal GameObject GetObjectWithTag(string tag) { return GameObject.FindGameObjectWithTag(tag); }
-    internal CustomSceneManager GetSceneManager() { return FindObjectOfType<CustomSceneManager>(); }
+    internal GameStateManager GetSceneManager() { return FindObjectOfType<GameStateManager>(); }
     internal RaceManager GetRaceManager() { return FindObjectOfType<RaceManager>(); }
     internal SaveMap GetSaveMap() { return FindObjectOfType<SaveMap>(); }
     internal ObjectPlacer GetObjectPlacer() { return FindObjectOfType<ObjectPlacer>(); }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Missions;
-using static CustomSceneManager;
+using static GameStateManager;
 
 public class ObjectPlacer : MonoBehaviour
 {
@@ -185,6 +185,10 @@ public class ObjectPlacer : MonoBehaviour
                     if (placableObject.objectType == ObjectData.ObjectType.Track)
                     {
                         if (placableObject.GetConnectedStatus() == false)
+                        {
+                            return false;
+                        }
+                        if (placableObject.GetFallingStatus() == true)
                         {
                             return false;
                         }
