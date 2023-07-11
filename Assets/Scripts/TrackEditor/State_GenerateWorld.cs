@@ -26,6 +26,12 @@ public class State_GenerateWorld : IBuildingState
     List<int> terrainIDs = new() { 3, 4, 5, 6, 7 };
     Dictionary<int, int> allTerrainCounters = new();
 
+    List<Vector3Int> unavailablePositions = new();
+
+    bool waitTillNextFrame = false;
+    int curFails;
+    int maxFailsPerFrame = 10;
+
     public struct ObjectToPlace
     {
         public GameObject prefab;
@@ -64,10 +70,31 @@ public class State_GenerateWorld : IBuildingState
         this.perlinNoise = perlinNoise;
         this.placementSystem = placementSystem;
 
+        ReGenerate();
+    }
+
+    private void TryRegenerate()
+    {
+        curFails++;
+
+        if (curFails >= maxFailsPerFrame)
+        {
+            waitTillNextFrame = true;
+            curFails = 0;
+        }
+        else
+        {
+            ReGenerate();
+        }
+    }
+
+    private void ReGenerate()
+    {
+        ResetGeneration();
         BeginGeneration();
     }
 
-    private void BeginGeneration()
+    private void ResetGeneration()
     {
         availablePositions.Clear();
         terrainData.ClearData();
@@ -75,7 +102,11 @@ public class State_GenerateWorld : IBuildingState
         allObjectsToPlace.Clear();
         objectNumber = 0;
         allTerrainCounters.Clear();
+        unavailablePositions.Clear();
+    }
 
+    private void BeginGeneration()
+    {
         foreach (int id in terrainIDs)
             allTerrainCounters.Add(id, 0);
         perlinNoise.BeginGenerate();
@@ -107,6 +138,13 @@ public class State_GenerateWorld : IBuildingState
                 ObjectToPlace newObject = new ObjectToPlace(database.objectsData[ID].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, false);
                 allObjectsToPlace.Add(newObject);
 
+                // store unavailable positions
+                if (database.objectsData[ID].isBuildable == false)
+                {
+                    unavailablePositions.Add(gridPosition);
+                    unavailablePositions.AddRange(CalculateAdjacentPositions(gridPosition));
+                }
+
                 // place database object
                 selectedData.AddObjectAt(gridPosition, size, ID, type, objectNumber, rotationState, true, database.objectsData[ID].cost, database.objectsData[ID].isBuildable);
                 objectNumber++;
@@ -126,7 +164,7 @@ public class State_GenerateWorld : IBuildingState
         if (generationSuccessful)
             GenerateTrack();
         else
-            BeginGeneration();
+            TryRegenerate();
     }
 
     private void GenerateTrack()
@@ -156,7 +194,7 @@ public class State_GenerateWorld : IBuildingState
             if (availablePositions.Count <= 0)
             {
                 Debug.LogWarning("WARNING: No Free Tiles Available. Regenerating World...");
-                BeginGeneration();
+                TryRegenerate();
                 return;
             }
 
@@ -185,7 +223,6 @@ public class State_GenerateWorld : IBuildingState
 
     private void GenerateUnusedPositions(int halfX, int halfY)
     {
-        List<Vector3Int> unavailablePositions = new();
 
         for (int x = -halfX; x < halfX; x++)
         {
@@ -195,11 +232,6 @@ public class State_GenerateWorld : IBuildingState
 
                 if (terrainData.IsBuildableAt(newPos, new(1, 1), 0) == true)
                     availablePositions.Add(newPos);
-                else
-                {
-                    unavailablePositions.Add(newPos);
-                    unavailablePositions.AddRange(CalculateAdjacentPositions(newPos));
-                }
             }
         }
 
@@ -246,5 +278,12 @@ public class State_GenerateWorld : IBuildingState
         placementSystem.isGenerating = false;
     }
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds) { }
-    public void UpdateState(Vector3 gridPosition, bool isWithinBounds) { }
+    public void UpdateState(Vector3 gridPosition, bool isWithinBounds) 
+    {
+        if (waitTillNextFrame)
+        {
+            waitTillNextFrame=false;
+            ReGenerate();
+        }
+    }
 }
