@@ -15,7 +15,7 @@ public class State_CheckRacers : IGameState
     public void EndState() { }
     public void OnAction() 
     {
-        MyGameManager.instance.GetSceneManager().LoadNewScene(CustomSceneManager.Index.BUILD);
+        MyGameManager.instance.GetSceneManager().LoadNewScene(GameStateManager.Index.BUILD);
     }
     public void UpdateState() { }
 }

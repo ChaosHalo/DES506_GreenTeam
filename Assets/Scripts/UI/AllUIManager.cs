@@ -25,7 +25,7 @@ public class AllUIManager : MonoBehaviour
         onRaceEndCarInfo.Raise(MyGameManager.instance.GetCarInfoSerach(), null);
 
         // change state
-        MyGameManager.instance.GetSceneManager().ChangeToState(CustomSceneManager.Index.BUILD);
+        MyGameManager.instance.GetSceneManager().ChangeToState_Build();
 
         // win currency
         FindObjectOfType<CurrencyManager>().AddWinCurrency();

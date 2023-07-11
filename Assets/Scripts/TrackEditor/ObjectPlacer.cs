@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Missions;
-using static CustomSceneManager;
+using static GameStateManager;
 
 public class ObjectPlacer : MonoBehaviour
 {
