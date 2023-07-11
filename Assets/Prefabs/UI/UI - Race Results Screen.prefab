@@ -1178,7 +1178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1136061643607403129
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1202,7 +1202,7 @@ RectTransform:
   - {fileID: 1136061644626802047}
   - {fileID: 1136061643296871726}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1283,8 +1283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ec8b23d50f9b04baa2c96f2477faf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onRaceEndTime: {fileID: 0}
-  onRaceEndCarInfo: {fileID: 0}
+  onRaceEndTime: {fileID: 11400000, guid: f05de3904f955854e86dffb33bdb27d5, type: 2}
+  onRaceEndCarInfo: {fileID: 11400000, guid: c1e8450d3dd873f44b5b961bc5ad5fc8, type: 2}
   PlaceholderScoreboard: {fileID: 1136061643142428936}
   EndOfSeason: {fileID: 0}
 --- !u!1 &1136061643666407011
