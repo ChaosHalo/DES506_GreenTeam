@@ -3405,7 +3405,7 @@ GameObject:
   - component: {fileID: 312396175}
   - component: {fileID: 312396176}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: 'Directional Light '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14704,6 +14704,18 @@ MonoBehaviour:
   EndRaceEvent:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1989633830}
+        m_TargetAssemblyTypeName: MyGameManager, Assembly-CSharp
+        m_MethodName: ClearAllCars
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1368202624}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -15973,6 +15985,7 @@ MonoBehaviour:
   litMaterial: {fileID: 2100000, guid: 69f63e1412178461e9aad59ac350a22e, type: 2}
   Season: 3
   GameRound: 0
+  OneRoundRaceResultDatas: []
   buildObjects: {fileID: 1155725322}
   raceObjects: {fileID: 0}
   missionManager: {fileID: 1989633832}

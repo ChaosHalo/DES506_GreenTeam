@@ -52,19 +52,19 @@ public class EndOfSeasonUIManager : AllUIManager
     private void UpdateWorstDriverName()
     {
         OneRoundRaceResultData oneRoundRaceResultData = GetMergeRoundData();
-        string name = oneRoundRaceResultData.OneCarRaceResultDatas[3].CarName;
+        string name = oneRoundRaceResultData.OneCarRaceResultDatas[oneRoundRaceResultData.OneCarRaceResultDatas.Count - 1].CarName;
         WorstDriverName.GetComponent<TextMeshProUGUI>().text = "Worst driver:" + name;
     }
     private void UpdateBestDriverTime()
     {
         OneRoundRaceResultData oneRoundRaceResultData = GetMergeRoundData();
         float time = oneRoundRaceResultData.OneCarRaceResultDatas[0].FinalTime;
-        BestDriverName.GetComponent<TextMeshProUGUI>().text = "Best time:" + time;
+        BestDriverTime.GetComponent<TextMeshProUGUI>().text = "Best time:" + time.ToString("f3");
     }
     private void UpdateWorstDriverTime()
     {
         OneRoundRaceResultData oneRoundRaceResultData = GetMergeRoundData();
-        float time = oneRoundRaceResultData.OneCarRaceResultDatas[0].FinalTime;
-        WorstDriverName.GetComponent<TextMeshProUGUI>().text = "Worst time:" + time;
+        float time = oneRoundRaceResultData.OneCarRaceResultDatas[oneRoundRaceResultData.OneCarRaceResultDatas.Count - 1].FinalTime;
+        WorstDriverTime.GetComponent<TextMeshProUGUI>().text = "Worst time:" + time.ToString("f3");
     }
 }

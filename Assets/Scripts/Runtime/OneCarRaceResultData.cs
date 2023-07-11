@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class OneCarRaceResultData
 {
     public string CarName;
@@ -15,12 +16,14 @@ public class OneCarRaceResultData
     }
 }
 
+[System.Serializable]
 public class OneRoundRaceResultData
 {
     public List<OneCarRaceResultData> OneCarRaceResultDatas;
     public bool ContainCar(string carName)
     {
-        foreach(var i in OneCarRaceResultDatas)
+        if(OneCarRaceResultDatas.Count == 0) return false;
+        foreach (var i in OneCarRaceResultDatas)
         {
             if(i.CarName == carName) return true;
         }
@@ -66,7 +69,7 @@ public class OneRoundRaceResultData
 
     public OneRoundRaceResultData()
     {
-
+        OneCarRaceResultDatas = new();
     }
     public OneRoundRaceResultData(List<OneCarRaceResultData> oneCarRaceResultDatas)
     {

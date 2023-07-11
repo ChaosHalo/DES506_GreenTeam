@@ -5,6 +5,7 @@ using MoreMountains.HighroadEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
 using System;
+using Lovatto.MiniMap;
 /// <summary>
 /// 游戏主流程
 /// </summary>
@@ -21,12 +22,11 @@ public class MyGameManager : MonoBehaviour
     /// <summary>
     /// 游戏已运行轮次
     /// </summary>
-    [HideInInspector]
     public int GameRound;
     /// <summary>
     /// 所有游戏轮次保存的比赛信息
     /// </summary>
-    public List<OneRoundRaceResultData> OneRoundRaceResultDatas = new();
+    public List<OneRoundRaceResultData> OneRoundRaceResultDatas;
     // build / race scene objects
     [SerializeField] internal GameObject buildObjects;
     [SerializeField] internal GameObject raceObjects;
@@ -143,7 +143,8 @@ public class MyGameManager : MonoBehaviour
 
     private void InitManager()
     {
-        if(FindObjectsOfType<CarInfoSerach>().Length == 0)
+        OneRoundRaceResultDatas = new();
+        if (FindObjectsOfType<CarInfoSerach>().Length == 0)
         {
             Instantiate(CarInfoSerach);
         }
@@ -151,6 +152,25 @@ public class MyGameManager : MonoBehaviour
     public void AddRaceResult(OneRoundRaceResultData oneRoundRaceResultData)
     {
         OneRoundRaceResultDatas.Add(oneRoundRaceResultData);
+    }
+    /// <summary>
+    /// 清除所有车辆和车辆图标
+    /// </summary>
+    public void ClearAllCars()
+    {
+        CarManager[] CarManager = FindObjectsOfType<CarManager>();
+        // 清除小地图UI
+        bl_MiniMapIcon[] bl_MiniMapIcons = FindObjectsOfType<bl_MiniMapIcon>();
+        foreach (var i in bl_MiniMapIcons)
+        {
+            Debug.Log("已清除图标" + i.gameObject.name);
+            Destroy(i.gameObject);
+        }
+        foreach (var Car in CarManager)
+        {
+            Debug.Log("已清除车辆" + Car.gameObject.name);
+            Destroy(Car.gameObject);
+        }
     }
 
     #region GET / SET

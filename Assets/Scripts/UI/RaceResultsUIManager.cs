@@ -27,4 +27,23 @@ public class RaceResultsUIManager : AllUIManager
         PlaceholderScoreboard.GetComponent<TextMeshProUGUI>().text = s;
         MyGameManager.instance.AddRaceResult(new OneRoundRaceResultData(tempCarDatas));
     }
+    protected override void ChangeState()
+    {
+        // 非赛季
+        if(MyGameManager.instance.GameRound % MyGameManager.instance.Season != 0)
+        {
+            base.ChangeState();
+        }
+        // 赛季特殊处理
+        EndOfSeason.gameObject.SetActive(true);
+    }
+    protected override void WinCurrency()
+    {
+        // 非赛季
+        if (MyGameManager.instance.GameRound % MyGameManager.instance.Season != 0)
+        {
+            base.WinCurrency();
+        }
+        // 赛季特殊处理
+    }
 }
