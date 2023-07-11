@@ -17,6 +17,9 @@ namespace MoreMountains.HighroadEngine
     /// </summary>
     public class RaceManager : MonoBehaviour
     {
+        public UnityEvent StartRaceEvent;
+        public UnityEvent EndRaceEvent;
+
         [Header("Start positions")]
         [MMInformation("Set the size of the <b>Startpositions</b>, then position the Vector3 using either the inspector or by moving the handles directly in scene view. The order of the array will be the order the car positions.\n", MMInformationAttribute.InformationType.Info, false)]
         /// the list of start positions
@@ -228,6 +231,7 @@ namespace MoreMountains.HighroadEngine
                     CameraChangeButton.gameObject.SetActive(false);
                 }
             }
+            StartRaceEvent?.Invoke();
         }
 
         /// <summary>
@@ -559,6 +563,7 @@ namespace MoreMountains.HighroadEngine
                                 OnDisableControlForPlayers();
                                 _isPlaying = false;
                                 ShowFinalRanking(playersRank);
+                                EndRaceEvent?.Invoke();
                             }
                         }
                         else
@@ -588,6 +593,7 @@ namespace MoreMountains.HighroadEngine
                                 OnDisableControlForPlayers();
                                 _isPlaying = false;
                                 ShowFinalRanking(playersRank);
+                                EndRaceEvent?.Invoke();
                             }
                         }
 

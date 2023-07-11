@@ -1,7 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 /// <summary>
 /// 车辆属性值
 /// 一共10个等级
@@ -73,4 +73,11 @@ public class Car : ICarReality
         Handling = factorsBaseObject.Get(factorsBaseObject.Handling, carInfo.Handling);
         OffRoad = factorsBaseObject.Get(factorsBaseObject.OffRoad, carInfo.OffRoad);
     }
+}
+
+[System.Serializable]
+public class CarUIInfo
+{
+    public Sprite PlaceholderCarImage;
+    public Sprite BackGroundImage;
 }
