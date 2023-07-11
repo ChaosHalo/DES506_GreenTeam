@@ -9,11 +9,11 @@ public class PerlinNoise : MonoBehaviour
     public Type generationType;
 
     private int heightPower = 2;
-    private int heightOctave = 3;
+    private int heightOctave = 2;
     private int desertPower = 2;
-    private int desertOctave = 3;
+    private int desertOctave = 2;
     private int waterPower = 2;
-    private int waterOctave = 3;
+    private int waterOctave = 2;
 
     internal const int sizeX = 10;
     internal const int sizeY = 10;
@@ -41,14 +41,14 @@ public class PerlinNoise : MonoBehaviour
         // preset 1
         if (generationType == Type.PRESET_1)
         {
-            if (desertPerlinNoise[x, y] < 0.19f)
+            if (desertPerlinNoise[x, y] < 0.16f)
                 ID = 4;
             else if (heightPerlinNoise[x, y] > 0.1f)
                 ID = 3;
-            else if (heightPerlinNoise[x, y] > 0.05f)
-                ID = 7;
-            else
+            else if (heightPerlinNoise[x, y] > 0.075f)
                 ID = 5;
+            else
+                ID = 7;
             if (waterPerlinNoise[x, y] < 0.1)
                 ID = 6;
         }
@@ -71,14 +71,18 @@ public class PerlinNoise : MonoBehaviour
         // preset 3
         if (generationType == Type.PRESET_3)
         {
-            if (heightPerlinNoise[x, y] < 0.25f)
-                ID = 3;
-            else if (heightPerlinNoise[x, y] < 0.3f)
+            if (heightPerlinNoise[x, y] < 0.16f)
                 ID = 4;
-            else if (heightPerlinNoise[x, y] < 0.35f)
+            else if (heightPerlinNoise[x, y] < 0.3f)
+                ID = 3;
+            else if (heightPerlinNoise[x, y] < 0.4f)
                 ID = 5;
-            else ID = 7;
+            else if (heightPerlinNoise[x, y] < 0.47f)
+                ID = 7;
 
+
+            //if (desertPerlinNoise[x, y] < 0.1f)
+             //   ID = 7;
             if (waterPerlinNoise[x, y] < 0.1)
                 ID = 6;
         }

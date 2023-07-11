@@ -25,6 +25,32 @@ public class State_GenerateWorld : IBuildingState
     float delayTime = 1f;
     bool placedTrack = false;
 
+    public struct ObjectToPlace
+    {
+        public GameObject prefab;
+        public Vector3 position;
+        public int rotationState;
+        public bool canModify;
+        public ObjectData.ObjectType objectType;
+        public ObjectData.TrackType trackType;
+        public ObjectData.TerrainType terrainType;
+        public bool placedByUser;
+
+        public ObjectToPlace(GameObject prefab, Vector3 position, int rotationState, bool canModify, ObjectData.ObjectType objectType, ObjectData.TrackType trackType, ObjectData.TerrainType terrainType, bool placedByUser)
+        {
+            this.prefab = prefab;
+            this.position = position;
+            this.rotationState = rotationState;
+            this.canModify = canModify;
+            this.objectType = objectType;
+            this.trackType = trackType;
+            this.terrainType = terrainType;
+            this.placedByUser = placedByUser;
+        }
+    }
+
+    private List<ObjectToPlace> allObjectsToPlace=new();
+    int objectNumber = 0;
 
     public State_GenerateWorld(GridData terrainData, GridData trackData, ObjectsDatabaseSO database, Grid grid, ObjectPlacer objectPlacer, PerlinNoise perlinNoise, int gridSize, PlacementSystem placementSystem)
     {
@@ -46,6 +72,8 @@ public class State_GenerateWorld : IBuildingState
         objectPlacer.ClearAllObjects();
         terrainData.ClearData();
         trackData.ClearData();
+        allObjectsToPlace.Clear();
+        objectNumber = 0;
 
         perlinNoise.BeginGenerate();
         GenerateTerrain();
@@ -73,10 +101,16 @@ public class State_GenerateWorld : IBuildingState
                 ID = perlinNoise.GetTileID(y, x);
 
                 // place world object (index 3 = grass)
-                int index = objectPlacer.PlaceObject(database.objectsData[ID].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, false);
+                ObjectToPlace newObject = new ObjectToPlace(database.objectsData[ID].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, false);
+                allObjectsToPlace.Add(newObject);
+
+                //int index = objectPlacer.PlaceObject(database.objectsData[ID].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, false);
+
+
 
                 // place database object
-                selectedData.AddObjectAt(gridPosition, size, ID, type, index, rotationState, true, database.objectsData[ID].cost, database.objectsData[ID].isBuildable);
+                selectedData.AddObjectAt(gridPosition, size, ID, type, objectNumber, rotationState, true, database.objectsData[ID].cost, database.objectsData[ID].isBuildable);
+                objectNumber++;
             }
         }
     }
@@ -116,12 +150,24 @@ public class State_GenerateWorld : IBuildingState
             Vector3Int gridPosition = GetRandomPosition(halfX, halfY);
 
             // place world object (index 3 = grass)
-            int index = objectPlacer.PlaceObject(database.objectsData[IDs[i]].Prefab, grid.CellToWorld(gridPosition), rotationState, false, ObjectData.ObjectType.Track, database.objectsData[IDs[i]].trackType, database.objectsData[IDs[i]].terrainType, false);
+            ObjectToPlace newObject = new ObjectToPlace(database.objectsData[IDs[i]].Prefab, grid.CellToWorld(gridPosition), rotationState, false, ObjectData.ObjectType.Track, database.objectsData[IDs[i]].trackType, database.objectsData[IDs[i]].terrainType, false);
+            allObjectsToPlace.Add(newObject);
+            
+            //int index = objectPlacer.PlaceObject(database.objectsData[IDs[i]].Prefab, grid.CellToWorld(gridPosition), rotationState, false, ObjectData.ObjectType.Track, database.objectsData[IDs[i]].trackType, database.objectsData[IDs[i]].terrainType, false);
 
             // place database object
-            selectedData.AddObjectAt(gridPosition, database.objectsData[IDs[i]].Size, IDs[i], type, index, rotationState, false, database.objectsData[IDs[i]].cost, database.objectsData[IDs[i]].isBuildable);
+            selectedData.AddObjectAt(gridPosition, database.objectsData[IDs[i]].Size, IDs[i], type, objectNumber, rotationState, false, database.objectsData[IDs[i]].cost, database.objectsData[IDs[i]].isBuildable);
+            objectNumber++;
         }
+
+        PlaceObjects();
         placementSystem.EndCurrentState();
+    }
+
+    private void PlaceObjects()
+    {
+        foreach (ObjectToPlace obj in allObjectsToPlace)
+            objectPlacer.PlaceObject(obj.prefab, obj.position, obj.rotationState, obj.canModify, obj.objectType, obj.trackType, obj.terrainType, obj.placedByUser);
     }
 
     private void GenerateUnusedPositions(int halfX, int halfY)
