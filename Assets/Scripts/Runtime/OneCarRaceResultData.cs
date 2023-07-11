@@ -6,12 +6,12 @@ using UnityEngine;
 public class OneCarRaceResultData
 {
     public string CarName;
-    public int Rank;
+    public int Place;
     public float FinalTime;
-    public OneCarRaceResultData(string carName, int rank, float finalTime)
+    public OneCarRaceResultData(string carName, int place, float finalTime)
     {
         CarName = carName;
-        Rank = rank;
+        Place = place;
         FinalTime = finalTime;
     }
 }
@@ -46,7 +46,7 @@ public class OneRoundRaceResultData
             {
                 OneCarRaceResultData temp = new(
                     curCar.CarName,
-                    curCar.Rank,
+                    curCar.Place,
                     curCar.FinalTime + oneCarRaceResultData.FinalTime);
                 OneCarRaceResultDatas[i] = temp;
                 return;
@@ -62,7 +62,7 @@ public class OneRoundRaceResultData
         for (int i = 0; i < OneCarRaceResultDatas.Count; i++)
         {
             OneCarRaceResultData carData = OneCarRaceResultDatas[i];
-            carData.Rank = i + 1; // Update the rank starting from 1
+            carData.Place = i + 1; // Update the rank starting from 1
             OneCarRaceResultDatas[i] = carData; // Update the modified car data in the list
         }
     }

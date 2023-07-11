@@ -8,9 +8,12 @@ public class RaceResultsUIManager : AllUIManager
     public EndOfSeasonUIManager EndOfSeason;
     private void Start()
     {
-        UpdatePlaceholderScoreboard();
+        //UpdatePlaceholderScoreboard();
     }
-
+    private void OnEnable()
+    {
+        //UpdatePlaceholderScoreboard();
+    }
     public void UpdatePlaceholderScoreboard()
     {
         List<OneCarRaceResultData> tempCarDatas = new(); 
@@ -18,14 +21,13 @@ public class RaceResultsUIManager : AllUIManager
         for (int i = 0; i < 4; i++)
         {
             int place = i + 1;
-            string name = CarInfoSerach.instance.GetCarName(place);
-            float finalTime = CarInfoSerach.instance.GetFinalTime(place);
+            string name = CarInfoSearch.instance.GetCarName(place);
+            float finalTime = CarInfoSearch.instance.GetFinalTime(place);
             OneCarRaceResultData raceResultData = new OneCarRaceResultData(name, place, finalTime);
             tempCarDatas.Add(raceResultData);
             s += string.Format("{0} | {1} {2} - {3} sec\n", place, name, place, finalTime);
         }
         PlaceholderScoreboard.GetComponent<TextMeshProUGUI>().text = s;
-        MyGameManager.instance.AddRaceResult(new OneRoundRaceResultData(tempCarDatas));
     }
     protected override void ChangeState()
     {
@@ -34,8 +36,12 @@ public class RaceResultsUIManager : AllUIManager
         {
             base.ChangeState();
         }
-        // 赛季特殊处理
-        EndOfSeason.gameObject.SetActive(true);
+        else
+        {
+            // 赛季特殊处理
+            EndOfSeason.gameObject.SetActive(true);
+        }
+        
     }
     protected override void WinCurrency()
     {

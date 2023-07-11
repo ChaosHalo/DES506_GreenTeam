@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +22,7 @@ public class Mission_Race1 : Mission
         if (carInfoSerach == null)
             return false;
 
-        return carInfoSerach.GetRank(name1) == int1 ? true : false;
+        return carInfoSerach.GetPlace(name1) == int1 ? true : false;
     }
     public override Mission.Difficulty GetDifficulty()
     {

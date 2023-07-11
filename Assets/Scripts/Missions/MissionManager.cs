@@ -1,4 +1,4 @@
-using Mono.Cecil.Cil;
+﻿using Mono.Cecil.Cil;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -364,7 +364,7 @@ public class MissionManager : MonoBehaviour
                     {
                         if (sender != null)
                         {
-                            CarInfoSerach carInfoSerach = sender as CarInfoSerach;
+                            CarInfoSearch carInfoSerach = sender as CarInfoSearch;
                             if (carInfoSerach != null)
                             {
                                 currentMissions[i].carInfoSerach = carInfoSerach;

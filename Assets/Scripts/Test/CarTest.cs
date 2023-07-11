@@ -9,11 +9,11 @@ public class CarTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            print(CarInfoSerach.instance.GetRank(GlobalConstants.BILLY));
-            print(CarInfoSerach.instance.GetGapTime(1,2)); 
-            print(CarInfoSerach.instance.GetGapTime(GlobalConstants.BILLY, GlobalConstants.SUZIE));
-            print(CarInfoSerach.instance.GetLapTime(GlobalConstants.BILLY));
-            print(CarInfoSerach.instance.IsFinishAfter(GlobalConstants.BILLY, GlobalConstants.SUZIE));
+            print(CarInfoSearch.instance.GetPlace(GlobalConstants.BILLY));
+            print(CarInfoSearch.instance.GetGapTime(1,2)); 
+            print(CarInfoSearch.instance.GetGapTime(GlobalConstants.BILLY, GlobalConstants.SUZIE));
+            print(CarInfoSearch.instance.GetLapTime(GlobalConstants.BILLY));
+            print(CarInfoSearch.instance.IsFinishAfter(GlobalConstants.BILLY, GlobalConstants.SUZIE));
         }
     }
 }

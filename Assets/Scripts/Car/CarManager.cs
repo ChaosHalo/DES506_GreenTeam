@@ -16,7 +16,7 @@ public class CarManager : MonoBehaviour
     private bool IsTimerRunning;
     private void Awake()
     {
-        InitData();
+        //InitData();
     }
     private void Start()
     {
@@ -28,6 +28,7 @@ public class CarManager : MonoBehaviour
     }
     public void InitData()
     {
+        //Debug.Log("已重置车辆数据");
         FinalTime = 0;
         oneLapTime = 0;
         StartTimer();

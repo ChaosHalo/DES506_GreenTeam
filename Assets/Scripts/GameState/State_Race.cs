@@ -28,10 +28,11 @@ public class State_Race : IGameState
         // init race stuff
         InitCarData();
         InitMap();
-        raceManager.StartRace();
+        InitRaceManager();
+        //raceManager.StartRace();
 
         // init carInfoSearch
-        CarInfoSerach carInfoSerach = MyGameManager.instance.GetCarInfoSerach();
+        CarInfoSearch carInfoSerach = MyGameManager.instance.GetCarInfoSerach();
         //carInfoSerach.SetupCarManagers();
     }
     public void EndState()
@@ -43,7 +44,11 @@ public class State_Race : IGameState
     public void UpdateState() { }
 
 
-
+    public void InitRaceManager()
+    {
+        raceManager.ResetCurrentFinisherRank();
+        raceManager.StartRace();
+    }
     public void InitCarData()
     {
         foreach (GameObject i in raceManager.TestBotPlayers)

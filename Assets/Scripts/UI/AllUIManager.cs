@@ -28,7 +28,7 @@ public class AllUIManager : MonoBehaviour
     protected virtual void ChangeState()
     {
         // change state
-        MyGameManager.instance.GetSceneManager().ChangeToState(CustomSceneManager.Index.BUILD);
+        MyGameManager.instance.GetSceneManager().ChangeToState_Build();
     }
     protected virtual void WinCurrency()
     {

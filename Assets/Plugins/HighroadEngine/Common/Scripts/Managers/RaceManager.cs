@@ -106,6 +106,7 @@ namespace MoreMountains.HighroadEngine
         public delegate List<BaseController> OnUpdatePlayersListDelegate();
         public OnUpdatePlayersListDelegate OnUpdatePlayersList;
 
+        public void ResetCurrentFinisherRank() => _currentFinisherRank = 1;
         /// <summary>
         /// We checks proper initialization of the RaceManager object
         /// </summary>

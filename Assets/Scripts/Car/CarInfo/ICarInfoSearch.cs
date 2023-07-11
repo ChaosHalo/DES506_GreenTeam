@@ -12,7 +12,7 @@ public interface ICarInfoSearch
     /// <param name="carName"></param>
     /// <param name="lapIndex"></param>
     /// <returns></returns>
-    int GetRank(string carName);
+    int GetPlace(string carName);
     /// <summary>
     /// Get the elapsed time of the carName car
     /// 获取carName车的用时

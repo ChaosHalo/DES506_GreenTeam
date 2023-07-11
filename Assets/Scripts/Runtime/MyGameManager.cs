@@ -26,7 +26,7 @@ public class MyGameManager : MonoBehaviour
     /// <summary>
     /// 所有游戏轮次保存的比赛信息
     /// </summary>
-    public List<OneRoundRaceResultData> OneRoundRaceResultDatas;
+    public List<OneRoundRaceResultData> OneRoundRaceResultDatas = new();
     // build / race scene objects
     [SerializeField] internal GameObject buildObjects;
     [SerializeField] internal GameObject raceObjects;
@@ -35,7 +35,6 @@ public class MyGameManager : MonoBehaviour
     bool gamestateNewScene = false;
 
     public MissionManager missionManager;
-    public CarInfoSerach CarInfoSerach;
     // singleton instance
     internal static MyGameManager instance;
 
@@ -142,14 +141,24 @@ public class MyGameManager : MonoBehaviour
 
     private void InitManager()
     {
-        OneRoundRaceResultDatas = new();
-        if (FindObjectsOfType<CarInfoSerach>().Length == 0)
+        
+    }
+    public void SaveOneRoundRaceResultData()
+    {
+        List<OneCarRaceResultData> tempCarDatas = new();
+        BaseController[] baseControllers = FindObjectsOfType<BaseController>();
+        foreach(var i in baseControllers)
         {
-            Instantiate(CarInfoSerach);
+            tempCarDatas.Add(new OneCarRaceResultData(
+                i.GetComponent<CarManager>().CarInfo.Name,
+                i.FinalRank,
+                i.GetComponent<CarManager>().FinalTime));
         }
+        AddRaceResult(new OneRoundRaceResultData(tempCarDatas));
     }
     public void AddRaceResult(OneRoundRaceResultData oneRoundRaceResultData)
     {
+        Debug.Log($"添加第{GameRound}轮的比赛结算数据");
         OneRoundRaceResultDatas.Add(oneRoundRaceResultData);
     }
     /// <summary>
@@ -162,13 +171,14 @@ public class MyGameManager : MonoBehaviour
         bl_MiniMapIcon[] bl_MiniMapIcons = FindObjectsOfType<bl_MiniMapIcon>();
         foreach (var i in bl_MiniMapIcons)
         {
-            Debug.Log("已清除图标" + i.gameObject.name);
+            //Debug.Log("已清除图标" + i.gameObject.name);
             Destroy(i.gameObject);
         }
         foreach (var Car in CarManager)
         {
-            Debug.Log("已清除车辆" + Car.gameObject.name);
+            //Debug.Log("已清除车辆" + Car.gameObject.name);
             Destroy(Car.gameObject);
+            //Car.gameObject.SetActive(false);
         }
     }
 
@@ -185,7 +195,7 @@ public class MyGameManager : MonoBehaviour
             return null;
         }
     }
-    internal CarInfoSerach GetCarInfoSerach() { return FindObjectOfType<CarInfoSerach>(); }
+    internal CarInfoSearch GetCarInfoSerach() { return FindObjectOfType<CarInfoSearch>(); }
     internal GameObject GetObjectWithTag(string tag) { return GameObject.FindGameObjectWithTag(tag); }
     internal GameStateManager GetSceneManager() { return FindObjectOfType<GameStateManager>(); }
     internal RaceManager GetRaceManager() { return FindObjectOfType<RaceManager>(); }
