@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -56.799866, y: -50.164032}
+  m_AnchoredPosition: {x: -56.799805, y: -50.164062}
   m_SizeDelta: {x: 74.591, y: 74.591}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7362415769532368971
@@ -2058,7 +2058,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5946010477014811548}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2376744280458709389}
+        m_TargetAssemblyTypeName: EndUIManager, Assembly-CSharp
+        m_MethodName: TryAgain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5946010477588346727
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,6 +2431,7 @@ GameObject:
   - component: {fileID: 5946010478168726681}
   - component: {fileID: 5946010478168726682}
   - component: {fileID: 5946010478168726683}
+  - component: {fileID: 2376744280458709389}
   m_Layer: 5
   m_Name: UI - End of Season Screen
   m_TagString: Untagged
@@ -2515,6 +2528,24 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2376744280458709389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5946010478168726692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7393afff31110412f8b0a06d2be9b547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onRaceEndTime: {fileID: 11400000, guid: f05de3904f955854e86dffb33bdb27d5, type: 2}
+  onRaceEndCarInfo: {fileID: 11400000, guid: c1e8450d3dd873f44b5b961bc5ad5fc8, type: 2}
+  BestDriverName: {fileID: 1615918885330421554}
+  WorstDriverName: {fileID: 1615918884860872180}
+  BestDriverTime: {fileID: 1615918886541451981}
+  WorstDriverTime: {fileID: 1615918884642690436}
 --- !u!1 &5946010478395112799
 GameObject:
   m_ObjectHideFlags: 0

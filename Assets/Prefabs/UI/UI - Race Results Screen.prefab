@@ -1171,6 +1171,7 @@ GameObject:
   - component: {fileID: 1136061643607403128}
   - component: {fileID: 1136061643607403131}
   - component: {fileID: 1136061643607403130}
+  - component: {fileID: 8978366984964576460}
   m_Layer: 5
   m_Name: UI - Race Results Screen
   m_TagString: Untagged
@@ -1270,6 +1271,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8978366984964576460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136061643607403077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ec8b23d50f9b04baa2c96f2477faf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onRaceEndTime: {fileID: 0}
+  onRaceEndCarInfo: {fileID: 0}
+  PlaceholderScoreboard: {fileID: 1136061643142428936}
+  EndOfSeason: {fileID: 0}
 --- !u!1 &1136061643666407011
 GameObject:
   m_ObjectHideFlags: 0
@@ -2646,7 +2663,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1136061644626802045}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8978366984964576460}
+        m_TargetAssemblyTypeName: AllUIManager, Assembly-CSharp
+        m_MethodName: TryAgain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1136061643607403077}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1136061644670070453
 GameObject:
   m_ObjectHideFlags: 0
@@ -3105,7 +3146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -56.799866, y: -50.164032}
+  m_AnchoredPosition: {x: -56.799805, y: -50.164062}
   m_SizeDelta: {x: 74.591, y: 74.591}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8871932521212679553
