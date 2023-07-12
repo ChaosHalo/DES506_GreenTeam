@@ -84,16 +84,25 @@ public class ObjectPlacer : MonoBehaviour
     internal void ClearAllObjects()
     {
         for (int i = 0; i < placedObjects.Count; i++)
-            RemoveObjectAt(i);
+            RemoveObjectAt(i, false);
+
+        placedObjects.Clear();
     }
 
-    internal void RemoveObjectAt(int gameObjectIndex)
+    internal void RemoveObjectAt(int gameObjectIndex, bool doDelay = true)
     {
         if (placedObjects.Count <= gameObjectIndex || placedObjects[gameObjectIndex] == null)
             return;
 
         PlacableObject placableObject = placedObjects[gameObjectIndex].GetComponentInChildren<PlacableObject>();
         placableObject.OnDelete();
+
+        if (doDelay == false)
+        {
+            Destroy(placedObjects[gameObjectIndex]);
+            placedObjects[gameObjectIndex] = null;
+            return;
+        }
 
         if(placableObject.objectType==ObjectData.ObjectType.Track)
         StartCoroutine(DeleteAfterDelay(gameObjectIndex, 0.2f));

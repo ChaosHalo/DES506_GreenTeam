@@ -153,14 +153,6 @@ public class PlacementSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (objectPlacer.IsTrackAnimating() == false)
-            {
-                EndCurrentState();
-                GenerateWorld();
-                MyGameManager.instance.GetCurrencyManager().ResetCurrency();
-                MyGameManager.instance.missionManager.ResetMissions();
-                MyGameManager.instance.GetCameraManager().ResetCamera();
-            }
         }
 
         if (buildingState == null)
@@ -192,8 +184,15 @@ public class PlacementSystem : MonoBehaviour
         Application.Quit();
     }
 
-    public void ReloadLevel()
+    public void ResetLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (objectPlacer.IsTrackAnimating() == false)
+        {
+            EndCurrentState();
+            GenerateWorld();
+            MyGameManager.instance.GetCurrencyManager().ResetCurrency();
+            MyGameManager.instance.missionManager.ResetMissions();
+            MyGameManager.instance.GetCameraManager().ResetCamera();
+        }
     }
 }

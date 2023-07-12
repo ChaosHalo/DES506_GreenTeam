@@ -205,6 +205,6 @@ public class MyGameManager : MonoBehaviour
     internal CurrencyManager GetCurrencyManager() { return FindObjectOfType<CurrencyManager>(); }
     internal MapPieceInfo[] GetMapPieceWayPointsObjects() { return FindObjectsOfType<MapPieceInfo>(); }
     internal CameraManager GetCameraManager() { return FindObjectOfType<CameraManager>(); }
-
+    internal PlacementSystem GetPlacementSystem() { return FindObjectOfType<PlacementSystem>(); }
     #endregion
 }
