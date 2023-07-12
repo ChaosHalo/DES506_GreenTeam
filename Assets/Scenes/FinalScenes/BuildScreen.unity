@@ -6880,6 +6880,16 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.1710101
       objectReference: {fileID: 0}
+    - target: {fileID: 20000011383122886, guid: 8bb8c0e45c2144145ab7771a2105e433,
+        type: 3}
+      propertyPath: far clip plane
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 20000011383122886, guid: 8bb8c0e45c2144145ab7771a2105e433,
+        type: 3}
+      propertyPath: near clip plane
+      value: -2000
+      objectReference: {fileID: 0}
     - target: {fileID: 114858122349798972, guid: 8bb8c0e45c2144145ab7771a2105e433,
         type: 3}
       propertyPath: DampTime
@@ -6909,6 +6919,21 @@ PrefabInstance:
         type: 3}
       propertyPath: HumanPlayers.Array.data[0]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493692030240221125, guid: 8bb8c0e45c2144145ab7771a2105e433,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493692030240221125, guid: 8bb8c0e45c2144145ab7771a2105e433,
+        type: 3}
+      propertyPath: m_ShowToolkit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493692030240221125, guid: 8bb8c0e45c2144145ab7771a2105e433,
+        type: 3}
+      propertyPath: m_ShowCustomSorter
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
