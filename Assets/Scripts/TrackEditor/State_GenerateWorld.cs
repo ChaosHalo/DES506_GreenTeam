@@ -18,7 +18,7 @@ public class State_GenerateWorld : IBuildingState
 
     // generate pre-placed track pieces within these bounds
     int generationBoundsX = 6;
-    int generationBoundsY = 6;
+    int generationBoundsY = 4;
 
     // store used track positions
     List<Vector3Int> availablePositions = new();
@@ -156,7 +156,15 @@ public class State_GenerateWorld : IBuildingState
         {
             if (allTerrainCounters.ContainsKey(id))
             {
-                return allTerrainCounters[id] >= database.objectsData[id].minimumGeneratedCount;
+                bool withinLimits = true;
+
+                if (allTerrainCounters[id] < database.objectsData[id].minimumGeneratedCount)
+                    withinLimits = false;
+                if (database.objectsData[id].maximumGeneratedCount > database.objectsData[id].minimumGeneratedCount)
+                    if (allTerrainCounters[id] > database.objectsData[id].maximumGeneratedCount)
+                        withinLimits = false;
+
+                return withinLimits;
             }
             return false;
         });

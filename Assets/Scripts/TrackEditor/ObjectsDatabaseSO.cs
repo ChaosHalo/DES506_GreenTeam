@@ -49,4 +49,6 @@ public class ObjectData
 
     [field: SerializeField]
     public int minimumGeneratedCount { get; private set; }
+    [field: SerializeField]
+    public int maximumGeneratedCount { get; private set; }
 }
