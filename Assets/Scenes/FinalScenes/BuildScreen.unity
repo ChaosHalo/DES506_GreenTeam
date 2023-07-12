@@ -3867,7 +3867,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 356758123}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -250}
+  m_LocalPosition: {x: 0, y: 0, z: -225}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5726,6 +5726,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 333723747628097129, guid: 799c779d9bb33b042869d74994138fff,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 333723747628097130, guid: 799c779d9bb33b042869d74994138fff,
         type: 3}
       propertyPath: m_Color.b
@@ -7132,11 +7137,11 @@ MonoBehaviour:
   inputManager: {fileID: 807530367}
   placementSystem: {fileID: 907506413}
   virtualCamera: {fileID: 1444816079}
-  minZoom: 70
+  minZoom: 100
   maxZoom: 700
   zoomSpeed: 100
-  minBounds: {x: -600, y: -400}
-  maxBounds: {x: 600, y: 400}
+  minBounds: {x: -600, y: -300}
+  maxBounds: {x: 600, y: 500}
 --- !u!1 &587364128
 GameObject:
   m_ObjectHideFlags: 0
@@ -12300,7 +12305,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 356758124}
   m_Follow: {fileID: 356758124}
   m_Lens:
-    FieldOfView: 60
+    FieldOfView: 55
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 3000
@@ -12324,15 +12329,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444816078}
-  m_LocalRotation: {x: 0.3826839, y: 0.00000003842526, z: -0.000000015916285, w: 0.9238794}
-  m_LocalPosition: {x: -0.00004005432, y: 549.9753, z: -799.97424}
+  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
+  m_LocalPosition: {x: 0, y: 550, z: -650}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 33323516}
   m_Father: {fileID: 584168193}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!1 &1445863487
 GameObject:
   m_ObjectHideFlags: 0
