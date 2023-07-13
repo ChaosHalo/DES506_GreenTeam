@@ -14,6 +14,7 @@ public class CarManager : MonoBehaviour
 
     public float FinalTime;
     private bool IsTimerRunning;
+    private bool twoLapFlag = false; 
     private void Awake()
     {
         //InitData();
@@ -62,7 +63,14 @@ public class CarManager : MonoBehaviour
         // 一圈结束
         if (other.CompareTag(GlobalConstants.CHECKPOINT))
         {
-            OnOneLapEnd();
+            if (!twoLapFlag)
+            {
+                twoLapFlag = true;
+            }
+            else
+            {
+                OnOneLapEnd();
+            }
         }
         // 出界
         if (other.CompareTag(GlobalConstants.BOUNDARIES))
