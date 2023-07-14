@@ -15,9 +15,9 @@ public class Mission_Track4 : Mission
     }
     public override Mission.Difficulty GetDifficulty()
     {
-        if (int1 <= 40)
+        if (int1 <= 15)
             return Mission.Difficulty.EASY;
-        else if (int1 <= 55)
+        else if (int1 <= 30)
             return Mission.Difficulty.MEDIUM;
         else
             return Mission.Difficulty.HARD;

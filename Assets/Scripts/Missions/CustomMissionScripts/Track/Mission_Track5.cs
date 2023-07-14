@@ -11,7 +11,7 @@ public class Mission_Track5 : Mission
         if (int1 == 1)
             pluralString = "type";
 
-        return "Place <b>" + int1 + " terrain</b> " + pluralString;
+        return "Place <b>" + int1 + " unique terrain</b> " + pluralString;
     }
     public override bool IsGoalReached()
     {
@@ -32,9 +32,9 @@ public class Mission_Track5 : Mission
     }
     public override Mission.Difficulty GetDifficulty()
     {
-        if (int1 <= 1)
+        if (int1 <= 2)
             return Mission.Difficulty.EASY;
-        else if (int1 <= 3)
+        else if (int1 <= 4)
             return Mission.Difficulty.MEDIUM;
         else
             return Mission.Difficulty.HARD;
