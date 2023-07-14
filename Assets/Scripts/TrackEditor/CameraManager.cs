@@ -18,6 +18,7 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField] private float minZoom;
     [SerializeField] private float maxZoom;
+    [SerializeField] private float startZoom;
     [SerializeField] float zoomSpeed = 10f;
     [SerializeField] private Vector2 minBounds;
     [SerializeField] private Vector2 maxBounds;
@@ -37,7 +38,7 @@ public class CameraManager : MonoBehaviour
         anchorOriginalPos= anchor.transform.position;
         anchorStartPos = anchor.transform.position;
         anchorCurPos = anchor.transform.position;
-        cameraDistance = maxZoom;
+        cameraDistance = startZoom;
         camPos=virtualCamera.transform.position;
     }
 
@@ -119,7 +120,7 @@ public class CameraManager : MonoBehaviour
         if (componentBase is CinemachineFramingTransposer)
         {
             isMouseDown = false;
-            cameraDistance = maxZoom;
+            cameraDistance = startZoom;
             ApplyZoomToCamera(cameraDistance);
             anchorStartPos = anchorOriginalPos;
             anchorCurPos = anchorOriginalPos;
