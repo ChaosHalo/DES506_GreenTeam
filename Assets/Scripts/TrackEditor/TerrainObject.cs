@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class TerrainObject : MonoBehaviour
 {
+    [Header("Spawn Conditions")]
+    [SerializeField] private int minCount = 3;
+    [SerializeField] private int maxCount = 6;
+    [SerializeField] private int minBounds = -45;
+    [SerializeField] private int maxBound = 45;
+
     public enum Type { NONE, Grass, Desert, Snow, Sea, Mountain}
 
     [Header("Terrain Type Categorisation")]
@@ -36,7 +42,7 @@ public class TerrainObject : MonoBehaviour
         if (objectPrefabs.Count == 0)
             return;
 
-        int count = Random.Range(3, 6);
+        int count = Random.Range(minCount, maxCount);
 
         for(int i = 0; i < count; i++)
         {
@@ -51,8 +57,8 @@ public class TerrainObject : MonoBehaviour
 
     private Vector3 GetNewPosition()
     {
-        float xCoord = Random.Range(-45, 45);
-        float yCoord = Random.Range(-45, 45);
+        float xCoord = Random.Range(minBounds, maxBound);
+        float yCoord = Random.Range(minBounds, maxBound);
 
         Vector3 newPos = new(transform.position.x + xCoord, transform.position.y, transform.position.z + yCoord);
 

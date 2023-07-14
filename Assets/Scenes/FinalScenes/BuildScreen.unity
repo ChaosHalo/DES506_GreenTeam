@@ -7350,7 +7350,7 @@ MonoBehaviour:
   placementSystem: {fileID: 907506413}
   virtualCamera: {fileID: 1444816079}
   minZoom: 100
-  maxZoom: 700
+  maxZoom: 1200
   zoomSpeed: 100
   minBounds: {x: -600, y: -300}
   maxBounds: {x: 600, y: 500}
@@ -12947,7 +12947,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b379a9d8120dc3c408bba4934b2a979e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generationType: 2
 --- !u!1 &1476965532 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1314085551830550374, guid: 799c779d9bb33b042869d74994138fff,
@@ -13575,7 +13574,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6ea7630ec5a3e844bafbe1168168767c, type: 2}
+      objectReference: {fileID: 2100000, guid: a1787c3b888df3643938310450b14ac1, type: 2}
+    - target: {fileID: -5754084199372789682, guid: fd6ee48057b93ab4da04fb3f34820bfa,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -5495978125123183453, guid: 41b8d15084686624f8bf99c5718236e2,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: fd6ee48057b93ab4da04fb3f34820bfa,
         type: 3}
       propertyPath: m_Name
