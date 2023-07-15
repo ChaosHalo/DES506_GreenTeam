@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     {
         GameObject newObj = Instantiate(spentCurrencyPrefab);
         newObj.transform.SetParent(spentCurrenyParent.transform, false);
-        newObj.GetComponentInChildren<FloatingCurrencyText>().SetupVariables(Input.mousePosition, modificationAmount);
+        newObj.transform.position = Input.mousePosition;
+        newObj.GetComponentInChildren<FloatingCurrencyText>().SetupVariables(modificationAmount);
     }
 }

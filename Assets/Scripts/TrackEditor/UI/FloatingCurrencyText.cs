@@ -43,10 +43,8 @@ public class FloatingCurrencyText : MonoBehaviour
         Destroy(gameObject);
     }
 
-    internal void SetupVariables(Vector3 position, int modificationAmount)
+    internal void SetupVariables(int modificationAmount)
     {
-        transform.position = position;
-
         if (modificationAmount > 0)
         {
             text.text = "+" + modificationAmount.ToString();
