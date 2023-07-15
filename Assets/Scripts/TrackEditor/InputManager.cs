@@ -145,7 +145,7 @@ public class InputManager : MonoBehaviour
             float oldDistance = Vector2.Distance(lastZoomPositions[0], lastZoomPositions[1]);
             float offset = newDistance - oldDistance;
 
-            cameraManager.ZoomCamera(offset);
+            cameraManager.ZoomCamera(offset * 0.75f);
 
             lastZoomPositions = newPositions;
         }

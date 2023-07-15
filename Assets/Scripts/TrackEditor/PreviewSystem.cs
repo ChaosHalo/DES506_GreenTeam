@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PreviewSystem : MonoBehaviour
@@ -26,9 +27,16 @@ public class PreviewSystem : MonoBehaviour
 
     public void SetNewPreview(GameObject prefab, Vector2Int size, PlacementSystem placementSystem)
     {
+        StartCoroutine(SetNewPreviewDelay(prefab, size, placementSystem));
+    }
+
+    private IEnumerator SetNewPreviewDelay(GameObject prefab, Vector2Int size, PlacementSystem placementSystem)
+    {
+        yield return new WaitForEndOfFrame();
+
         // set new preview indicator
         previewObject = Instantiate(prefab);
-        previewObjectRotation=previewObject.GetComponentInChildren<AutoRotate>();
+        previewObjectRotation = previewObject.GetComponentInChildren<AutoRotate>();
         PreparePreview(previewObject);
     }
 

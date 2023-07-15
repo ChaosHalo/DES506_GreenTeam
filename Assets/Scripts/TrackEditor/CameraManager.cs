@@ -88,8 +88,14 @@ public class CameraManager : MonoBehaviour
         float scalingValue = Mathf.Sin(cameraDistance / maxZoom);
         float mouseDistanceX = inputManager.posMouseDown.x - inputManager.posMouseCur.x;
         float mouseDistanceY = inputManager.posMouseDown.y - inputManager.posMouseCur.y;
-        anchorCurPos.x += mouseDistanceX * scalingValue;
-        anchorCurPos.z += mouseDistanceY * scalingValue;
+
+        if (scalingValue > 0.5f) scalingValue = 0.5f;
+
+        float speedX = mouseDistanceX * scalingValue;
+        float speedY = mouseDistanceY * scalingValue;
+
+        anchorCurPos.x += speedX;
+        anchorCurPos.z += speedY;
         ClampAndSetCameraPosition();
 
         // camera is panning if mouse down does not equal mouse current
