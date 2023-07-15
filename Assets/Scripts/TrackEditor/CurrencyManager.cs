@@ -38,6 +38,7 @@ public class CurrencyManager : MonoBehaviour
         {
             currencyCurrent -= cost;
             uiManager.UpdateCurrency(currencyCurrent);
+            uiManager.OnCurrencyModified(-cost);
             onSpendCurrency.Raise(this, cost);
             return true;
         }
@@ -64,6 +65,7 @@ public class CurrencyManager : MonoBehaviour
 
         currencyCurrent += cost;
         uiManager.UpdateCurrency(currencyCurrent);
+        uiManager.OnCurrencyModified(cost);
         onSpendCurrency.Raise(this, -cost);
     }
 

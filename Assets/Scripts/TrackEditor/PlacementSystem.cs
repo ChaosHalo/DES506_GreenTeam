@@ -48,6 +48,8 @@ public class PlacementSystem : MonoBehaviour
 
     internal bool isGenerating = false;
 
+    public Vector3 LastPlacedPosition;
+
 
     private void Start()
     {
@@ -166,6 +168,7 @@ public class PlacementSystem : MonoBehaviour
         // snap if over placable grid
         // do not snap if outside of placable grid
         Vector3 newPreviewPosition = inputManager.isWithinPlacementBounds ? grid.CellToWorld(inputManager.gridCellPos) : mousePosition;
+        LastPlacedPosition = inputManager.mouseWorldPos;
 
         buildingState.UpdateState(newPreviewPosition, inputManager.isWithinPlacementBounds);
     }

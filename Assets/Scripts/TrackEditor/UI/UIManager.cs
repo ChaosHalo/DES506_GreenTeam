@@ -7,20 +7,26 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField]
     public CustomToggle toggleButton_Remove;
 
-    [SerializeField]
     public CustomToggle toggleButton_Rotate;
 
-    [SerializeField]
     public CustomToggle toggleTerrain;
 
-    [SerializeField]
     public TMP_Text currencyText;
+
+    public GameObject spentCurrencyPrefab;
+    public GameObject spentCurrenyParent;
 
     internal void UpdateCurrency(int currency)
     {
         currencyText.text = currency.ToString();
+    }
+
+    internal void OnCurrencyModified(int modificationAmount)
+    {
+        GameObject newObj = Instantiate(spentCurrencyPrefab);
+        newObj.transform.SetParent(spentCurrenyParent.transform, false);
+        newObj.GetComponentInChildren<FloatingCurrencyText>().SetupVariables(Input.mousePosition, modificationAmount);
     }
 }
