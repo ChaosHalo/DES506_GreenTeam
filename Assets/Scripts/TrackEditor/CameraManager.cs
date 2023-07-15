@@ -32,6 +32,7 @@ public class CameraManager : MonoBehaviour
     private Vector3 camPos;
 
     internal bool isPanning = false;
+    bool isZooming = false;
 
     private void Start()
     {
@@ -46,6 +47,8 @@ public class CameraManager : MonoBehaviour
     {
         if (componentBase == null)
             componentBase = virtualCamera.GetCinemachineComponent(CinemachineCore.Stage.Body);
+
+        isZooming = false;
     }
 
     private bool CanUpdateCamera()
@@ -68,6 +71,7 @@ public class CameraManager : MonoBehaviour
 
         if (componentBase is CinemachineFramingTransposer)
         {
+            isZooming = true;
             cameraDistance = Mathf.Clamp((componentBase as CinemachineFramingTransposer).m_CameraDistance - offset * zoomSpeed, minZoom, maxZoom);
             ApplyZoomToCamera(cameraDistance);
         }
@@ -85,17 +89,19 @@ public class CameraManager : MonoBehaviour
             return;
 
         anchorCurPos = anchorStartPos;
-        float scalingValue = Mathf.Sin(cameraDistance / maxZoom);
+        float panSpeed = Mathf.Sin(cameraDistance / maxZoom);
         float mouseDistanceX = inputManager.posMouseDown.x - inputManager.posMouseCur.x;
         float mouseDistanceY = inputManager.posMouseDown.y - inputManager.posMouseCur.y;
 
-        if (scalingValue > 0.5f) scalingValue = 0.5f;
+        // limit max panning speed
+        if (panSpeed > 0.5f) panSpeed = 0.5f;
 
-        float speedX = mouseDistanceX * scalingValue;
-        float speedY = mouseDistanceY * scalingValue;
+        // lower panning speed while zooming
+        if (isZooming)
+            if (panSpeed > 0.2f) panSpeed = 0.2f;
 
-        anchorCurPos.x += speedX;
-        anchorCurPos.z += speedY;
+        anchorCurPos.x += mouseDistanceX * panSpeed;
+        anchorCurPos.z += mouseDistanceY * panSpeed;
         ClampAndSetCameraPosition();
 
         // camera is panning if mouse down does not equal mouse current

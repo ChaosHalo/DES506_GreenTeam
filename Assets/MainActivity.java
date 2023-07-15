@@ -14,7 +14,7 @@ public class MainActivity extends UnityPlayerActivity {
             Display.Mode[] modes = getDisplay().getSupportedModes();
             //find display mode with max hz
             int maxMode = 0;
-            float maxHZ = 120f;
+            float maxHZ = 60f;
             for(Display.Mode m:modes) {
                 if (maxHZ < m.getRefreshRate()) {
                     maxHZ = m.getRefreshRate();
