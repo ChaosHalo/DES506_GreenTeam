@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using System;
 using Lovatto.MiniMap;
+using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.Rendering;
 /// <summary>
 /// 游戏主流程
 /// </summary>
@@ -30,6 +32,8 @@ public class MyGameManager : MonoBehaviour
     // build / race scene objects
     [SerializeField] internal GameObject buildObjects;
     [SerializeField] internal GameObject raceObjects;
+
+    public Light light;
 
     // has new scene been loaded for game state?
     bool gamestateNewScene = false;
@@ -183,6 +187,17 @@ public class MyGameManager : MonoBehaviour
             Destroy(Car.gameObject);
             //Car.gameObject.SetActive(false);
         }
+    }
+
+    public void SetShadowQuality(int shadowQuality)
+    {
+        light.shadowResolution = (LightShadowResolution)1;
+
+        float shadowDistance = 500;
+        if (shadowQuality == 1)
+            shadowDistance = 100;
+        QualitySettings.shadowDistance = shadowDistance;
+        Debug.Log(QualitySettings.shadowDistance);
     }
 
     #region GET / SET

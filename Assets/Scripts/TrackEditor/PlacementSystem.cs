@@ -151,10 +151,6 @@ public class PlacementSystem : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-        }
-
         if (buildingState == null)
             return;
 

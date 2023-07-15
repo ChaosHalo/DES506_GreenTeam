@@ -3681,11 +3681,11 @@ Light:
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
-    m_Resolution: -1
+    m_Resolution: 1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_Bias: 0.1
+    m_NormalBias: 0.3
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
@@ -7070,12 +7070,12 @@ PrefabInstance:
     - target: {fileID: 20000011383122886, guid: 8bb8c0e45c2144145ab7771a2105e433,
         type: 3}
       propertyPath: far clip plane
-      value: 1000
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 20000011383122886, guid: 8bb8c0e45c2144145ab7771a2105e433,
         type: 3}
       propertyPath: near clip plane
-      value: -2000
+      value: -450
       objectReference: {fileID: 0}
     - target: {fileID: 114858122349798972, guid: 8bb8c0e45c2144145ab7771a2105e433,
         type: 3}
@@ -7121,6 +7121,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ShowCustomSorter
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493692030240221125, guid: 8bb8c0e45c2144145ab7771a2105e433,
+        type: 3}
+      propertyPath: fastApproximateAntialiasing.fastMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493692030240221125, guid: 8bb8c0e45c2144145ab7771a2105e433,
+        type: 3}
+      propertyPath: fastApproximateAntialiasing.keepAlpha
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -7350,9 +7360,9 @@ MonoBehaviour:
   placementSystem: {fileID: 907506413}
   virtualCamera: {fileID: 1444816079}
   minZoom: 100
-  maxZoom: 700
-  startZoom: 300
-  zoomSpeed: 100
+  maxZoom: 500
+  startZoom: 500
+  zoomSpeed: 1
   minBounds: {x: -600, y: -300}
   maxBounds: {x: 600, y: 500}
 --- !u!1 &587364128
@@ -9045,6 +9055,7 @@ MonoBehaviour:
   gridLayermask:
     serializedVersion: 2
     m_Bits: 4096
+  cameraManager: {fileID: 584168194}
   gridWorldPos: {x: 0, y: 0, z: 0}
   gridCellPos: {x: 0, y: 0, z: 0}
   mouseWorldPos: {x: 0, y: 0, z: 0}
@@ -12527,7 +12538,7 @@ MonoBehaviour:
     FieldOfView: 55
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 3000
+    FarClipPlane: 850
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -12548,15 +12559,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444816078}
-  m_LocalRotation: {x: 0.5, y: 0, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 0, y: 550, z: -650}
+  m_LocalRotation: {x: 0.60876137, y: 0, z: 0, w: 0.7933534}
+  m_LocalPosition: {x: 0, y: 550, z: -550}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 33323516}
   m_Father: {fileID: 584168193}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
 --- !u!1 &1445863487
 GameObject:
   m_ObjectHideFlags: 0
@@ -15991,6 +16002,7 @@ MonoBehaviour:
   OneRoundRaceResultDatas: []
   buildObjects: {fileID: 1155725322}
   raceObjects: {fileID: 0}
+  light: {fileID: 312396176}
   missionManager: {fileID: 1989633832}
 --- !u!4 &1989633831
 Transform:

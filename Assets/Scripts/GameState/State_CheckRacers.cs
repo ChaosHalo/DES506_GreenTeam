@@ -11,6 +11,7 @@ public class State_CheckRacers : IGameState
     public void StartState()
     {
         MyGameManager.instance.missionManager.InitialiseMissions();
+        MyGameManager.instance.SetShadowQuality(0);
     }
     public void EndState() { }
     public void OnAction() 

@@ -19,13 +19,13 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float minZoom;
     [SerializeField] private float maxZoom;
     [SerializeField] private float startZoom;
-    [SerializeField] float zoomSpeed = 10f;
+    [SerializeField] float zoomSpeed = 1f;
     [SerializeField] private Vector2 minBounds;
     [SerializeField] private Vector2 maxBounds;
 
     private float cameraDistance;
-    private bool isMouseDown = false;
-    private Vector3 mouseDown;
+   // private bool isMouseDown = false;
+   // private Vector3 mouseDown;
     private Vector3 anchorStartPos;
     private Vector3 anchorOriginalPos;
     private Vector3 anchorCurPos;
@@ -46,23 +46,30 @@ public class CameraManager : MonoBehaviour
     {
         if (componentBase == null)
             componentBase = virtualCamera.GetCinemachineComponent(CinemachineCore.Stage.Body);
-
-       // if (placementSystem.buildingState == null)
-        {
-            UpdateCameraZoom();
-            UpdateCameraPan();
-        }
     }
 
-    private void UpdateCameraZoom()
+    private bool CanUpdateCamera()
     {
-        if (Input.mouseScrollDelta.y != 0)
+        if (placementSystem.buildingState == null)
         {
-            if (componentBase is CinemachineFramingTransposer)
-            {
-                cameraDistance = Mathf.Clamp((componentBase as CinemachineFramingTransposer).m_CameraDistance -= Input.mouseScrollDelta.y * zoomSpeed, minZoom, maxZoom);
-                ApplyZoomToCamera(cameraDistance);
-            }
+            return true;
+        }
+        else if (placementSystem.buildingState.GetType() != typeof(State_PlaceTerrain) && placementSystem.buildingState.GetType() != typeof(State_PlaceTrack))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    internal void ZoomCamera(float offset)
+    {
+        if (offset == 0 || CanUpdateCamera() == false)
+            return;
+
+        if (componentBase is CinemachineFramingTransposer)
+        {
+            cameraDistance = Mathf.Clamp((componentBase as CinemachineFramingTransposer).m_CameraDistance - offset * zoomSpeed, minZoom, maxZoom);
+            ApplyZoomToCamera(cameraDistance);
         }
     }
 
@@ -72,38 +79,34 @@ public class CameraManager : MonoBehaviour
         ClampAndSetCameraPosition();
     }
 
-    private void UpdateCameraPan()
+    internal void PanCamera()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (inputManager.IsPointerOverUI() == false)
-            {
-                isMouseDown = true;
-                mouseDown = Input.mousePosition;
-                anchorStartPos = anchor.transform.position;
-            }
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            isMouseDown = false;
-            anchorStartPos = anchor.transform.position;
-        }
+        if (CanUpdateCamera() == false)
+            return;
 
         anchorCurPos = anchorStartPos;
-
-        if (isMouseDown)
-        {
-            float scalingValue = Mathf.Sin(cameraDistance / maxZoom);
-            float mouseDistanceX = mouseDown.x - Input.mousePosition.x;
-            float mouseDistanceY = mouseDown.y - Input.mousePosition.y;
-            anchorCurPos.x += mouseDistanceX * scalingValue;
-            anchorCurPos.z += mouseDistanceY * scalingValue;
-            ClampAndSetCameraPosition();
-        }
+        float scalingValue = Mathf.Sin(cameraDistance / maxZoom);
+        float mouseDistanceX = inputManager.posMouseDown.x - inputManager.posMouseCur.x;
+        float mouseDistanceY = inputManager.posMouseDown.y - inputManager.posMouseCur.y;
+        anchorCurPos.x += mouseDistanceX * scalingValue;
+        anchorCurPos.z += mouseDistanceY * scalingValue;
+        ClampAndSetCameraPosition();
 
         // camera is panning if mouse down does not equal mouse current
-        float panDistance = Vector3.Distance(mouseDown, Input.mousePosition);
+        float panDistance = Vector3.Distance(inputManager.posMouseDown, inputManager.posMouseCur);
         isPanning = panDistance > 5;
+    }
+
+    public void OnCameraPanTap()
+    {
+        if (inputManager.IsPointerOverUI() == false)
+        {
+            anchorStartPos = anchor.transform.position;
+        }
+    }
+    public void OnCameraPanRelease()
+    {
+        anchorStartPos = anchor.transform.position;
     }
 
     private void ClampAndSetCameraPosition()
@@ -119,7 +122,6 @@ public class CameraManager : MonoBehaviour
     {
         if (componentBase is CinemachineFramingTransposer)
         {
-            isMouseDown = false;
             cameraDistance = startZoom;
             ApplyZoomToCamera(cameraDistance);
             anchorStartPos = anchorOriginalPos;

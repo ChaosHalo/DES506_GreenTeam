@@ -70,6 +70,7 @@ public class State_GenerateWorld : IBuildingState
         this.perlinNoise = perlinNoise;
         this.placementSystem = placementSystem;
 
+        MyGameManager.instance.SetShadowQuality(0);
         ReGenerate();
     }
 

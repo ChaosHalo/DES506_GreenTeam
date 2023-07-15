@@ -22,6 +22,7 @@ public class State_Build : IGameState
         //MyGameManager.instance.GetMissionManager().CheckForCompletedMissions();
         MyGameManager.instance.GetCameraManager().ResetCamera();
         MyGameManager.instance.GetObjectPlacer().TriggerFaillAnimations();
+        MyGameManager.instance.SetShadowQuality(0);
     }
     public void EndState()
     {
