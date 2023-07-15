@@ -370,28 +370,28 @@ public class MissionManager : MonoBehaviour
     }
     public void Event_RaceEndCarInfo(Component sender, object data)
     {
-        List<string> eligibleMissions = new() { "Race1", "Race4", "Race5", "Race6" };
+        //List<string> eligibleMissions = new() { "Race1", "Race4", "Race5", "Race6" };
 
-        for (int i = 0; i < 3; i++)
-        {
-            if (currentMissions[i] != null)
-            {
-                foreach(string missionName in eligibleMissions)
-                {
-                    if (currentMissions[i].title == missionName)
-                    {
-                        if (sender != null)
-                        {
-                            CarInfoSearch carInfoSerach = sender as CarInfoSearch;
-                            if (carInfoSerach != null)
-                            {
-                                currentMissions[i].carInfoSerach = carInfoSerach;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    if (currentMissions[i] != null)
+        //    {
+        //        foreach(string missionName in eligibleMissions)
+        //        {
+        //            if (currentMissions[i].title == missionName)
+        //            {
+        //                if (sender != null)
+        //                {
+        //                    CarInfoSearch carInfoSerach = sender as CarInfoSearch;
+        //                    if (carInfoSerach != null)
+        //                    {
+        //                        currentMissions[i].carInfoSerach = carInfoSerach;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
     }
     #endregion
     #endregion

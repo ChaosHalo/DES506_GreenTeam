@@ -13,10 +13,7 @@ public class Mission_Race1 : Mission
     }
     public override bool IsGoalReached()
     {
-        if (carInfoSerach == null)
-            return false;
-
-        return carInfoSerach.GetPlace(name1) == int1 ? true : false;
+        return CarInfoSearch.instance.GetPlace(name1) == int1 ? true : false;
     }
     public override Mission.Difficulty GetDifficulty()
     {

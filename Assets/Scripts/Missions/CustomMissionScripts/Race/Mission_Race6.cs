@@ -11,10 +11,7 @@ public class Mission_Race6 : Mission
     }
     public override bool IsGoalReached()
     {
-        if (carInfoSerach == null)
-            return false;
-
-        return carInfoSerach.IsFinishAfter(name1, name2) ? true : false;
+        return CarInfoSearch.instance.IsFinishAfter(name1, name2) ? true : false;
     }
     public override Mission.Difficulty GetDifficulty()
     {

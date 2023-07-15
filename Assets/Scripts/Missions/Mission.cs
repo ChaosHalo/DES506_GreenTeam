@@ -54,8 +54,6 @@ public class Mission : ScriptableObject
     internal string name2;
     List<string> allNames = new List<string>() { "Peter", "Mik", "Felicia", "Billy" };
 
-    internal CarInfoSearch carInfoSerach = null;
-
     [Header("Goal Track Piece Type")]
     public ObjectData.TrackType trackType;
 

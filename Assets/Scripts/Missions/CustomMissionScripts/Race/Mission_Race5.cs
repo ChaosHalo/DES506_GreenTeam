@@ -11,10 +11,7 @@ public class Mission_Race5 : Mission
     }
     public override bool IsGoalReached()
     {
-        if (carInfoSerach == null)
-            return false;
-
-        return carInfoSerach.GetGapTime(name1, name2) >= int1 ? true : false;
+        return CarInfoSearch.instance.GetGapTime(name1, name2) >= int1 ? true : false;
     }
     public override Mission.Difficulty GetDifficulty()
     {
