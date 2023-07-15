@@ -7,15 +7,9 @@ public class Mission_Race1 : Mission
 {
     public override string GetDescriptionText()
     {
-        string numberEnd = "th";
-        if (int1 == 1)
-            numberEnd = "st";
-        else if (int1 == 2)
-            numberEnd = "nd";
-        else if (int1 == 3)
-            numberEnd = "rd";
+        string ordinalString = GetOrdinalString(int1);
 
-        return "Make <b>" + name1 + "</b> finish <b>" + int1 + numberEnd +"</b>";
+        return "Make <b>" + name1 + "</b> finish <b>" + int1 + ordinalString +"</b>";
     }
     public override bool IsGoalReached()
     {
@@ -32,5 +26,28 @@ public class Mission_Race1 : Mission
             return Mission.Difficulty.MEDIUM;
         else
             return Mission.Difficulty.EASY;
+    }
+
+    private string GetOrdinalString(int number)
+    {
+        int lastDigit = number % 10;
+        int secondLastDigit = (number / 10) % 10;
+
+        if (secondLastDigit == 1)
+        {
+            return "th";
+        }
+
+        switch (lastDigit)
+        {
+            case 1:
+                return "st";
+            case 2:
+                return "nd";
+            case 3:
+                return "rd";
+            default:
+                return "th";
+        }
     }
 }

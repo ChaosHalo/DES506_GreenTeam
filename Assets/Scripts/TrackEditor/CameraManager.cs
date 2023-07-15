@@ -94,11 +94,11 @@ public class CameraManager : MonoBehaviour
         float mouseDistanceY = inputManager.posMouseDown.y - inputManager.posMouseCur.y;
 
         // limit max panning speed
-        if (panSpeed > 0.5f) panSpeed = 0.5f;
+        panSpeed = Mathf.Clamp(panSpeed, 0f, 0.5f);
 
         // lower panning speed while zooming
-        if (isZooming)
-            if (panSpeed > 0.2f) panSpeed = 0.2f;
+        if (isZooming && panSpeed > 0.2f)
+            panSpeed = 0.2f;
 
         anchorCurPos.x += mouseDistanceX * panSpeed;
         anchorCurPos.z += mouseDistanceY * panSpeed;
