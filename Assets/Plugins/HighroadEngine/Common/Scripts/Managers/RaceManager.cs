@@ -451,7 +451,7 @@ namespace MoreMountains.HighroadEngine
 
             if (DynamicCameras && _cameraControllersAvailable.Length == 0)
             {
-                Debug.LogError("No camera available found. Please ensure at least one camera is configurated in RaceManager inspector.");
+                //Debug.LogError("No camera available found. Please ensure at least one camera is configurated in RaceManager inspector.");
                 return;
             }
             else

@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using Cinemachine;
 public class State_Race : IGameState
 {
     private GameObject raceObjects = null;
     RaceManager raceManager;
     Material litMaterial;
-
+    private GameObject raceCamera;
     public State_Race()
     {
     }
@@ -25,10 +25,13 @@ public class State_Race : IGameState
         raceManager = MyGameManager.instance.GetRaceManager();
         litMaterial = MyGameManager.instance.litMaterial;
 
-        // init race stuff
+        // init stuff
+        
         InitCarData();
         InitMap();
         InitRaceManager();
+        InitCamera();
+
         //raceManager.StartRace();
 
         // init carInfoSearch
@@ -44,12 +47,23 @@ public class State_Race : IGameState
     public void OnAction() { }
     public void UpdateState() { }
 
-
+    public void InitCamera()
+    {
+        if(raceCamera == null)
+        {
+            //raceCamera = GameObject.Instantiate(MyGameManager.instance.RaceCamera);
+            raceCamera = MyGameManager.instance.RaceCamera;
+            // 初始化Follow和Target
+            Transform car = GameObject.FindObjectOfType<CarManager>().transform;
+            RaceCameraManager.SetTarget(raceCamera, car);
+        }
+    }
     public void InitRaceManager()
     {
         raceManager.ResetCurrentFinisherRank();
         raceManager.StartRace();
     }
+
     public void InitCarData()
     {
         foreach (GameObject i in raceManager.TestBotPlayers)

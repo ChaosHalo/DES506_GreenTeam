@@ -39,6 +39,7 @@ public class MyGameManager : MonoBehaviour
     bool gamestateNewScene = false;
 
     public MissionManager missionManager;
+    public GameObject RaceCamera;
     // singleton instance
     internal static MyGameManager instance;
 

@@ -20,7 +20,8 @@ namespace MoreMountains.HighroadEngine
 		public float SteeringOffset = 5f;
 		/// camera LookAt target offset
 		public float TargetLookUpOffset = 2f;
-
+		public float TargetLookRightOffset = 0;
+		public float TargetLookForwardOffset = 0;
 		/// this type of camera can only follow one target
 		public override bool IsSinglePlayerCamera 
 		{
@@ -94,7 +95,9 @@ namespace MoreMountains.HighroadEngine
 			currentLateralOffset = Vector3.Lerp(currentLateralOffset, _targetLateralTranslation, Time.deltaTime * DampingSteering);
 
 			// we make the camera look at the vehicle, modified by the lateral and up offsets
-			_camera.transform.LookAt(currentLateralOffset + _target.transform.position + (_target.up * TargetLookUpOffset));
+			//_camera.transform.LookAt(currentLateralOffset + _target.transform.position + (_target.up * TargetLookUpOffset));
+			_camera.transform.LookAt(currentLateralOffset + _target.transform.position + (_target.up * TargetLookUpOffset) 
+				+ (_target.right * TargetLookRightOffset) + (_target.forward * TargetLookForwardOffset));
 			return;
 		}
     }
