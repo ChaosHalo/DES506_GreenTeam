@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2992670455732496013}
   - component: {fileID: 2992670455732496012}
   - component: {fileID: 2992670455732496015}
+  - component: {fileID: 983208527927950994}
   m_Layer: 15
   m_Name: Water
   m_TagString: TerrainObject
@@ -143,6 +144,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 100, y: 100, z: 100}
   m_Center: {x: 0, y: 0, z: 50}
+--- !u!114 &983208527927950994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2992670455732496014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123fa3c1f65ba5f4d8825f1f7f4cd28b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IncidentEffectScriptableObject: {fileID: 11400000, guid: 96a5ac6309bd5ed40aae960dd546172b,
+    type: 2}
 --- !u!1 &5457813455414454757
 GameObject:
   m_ObjectHideFlags: 0

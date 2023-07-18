@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 1071603365402602294}
   - component: {fileID: 5455326115150343480}
   - component: {fileID: 5455326115150343481}
+  - component: {fileID: 2178559448779330961}
   - component: {fileID: 5455326115150343482}
   m_Layer: 15
   m_Name: Desert
@@ -335,6 +336,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7a2de86d33cdf43943f2fa6003e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minCount: 3
+  maxCount: 6
+  minBounds: -45
+  maxBound: 45
   terrainType: 2
   objectPrefabs:
   - {fileID: 4454434041548266028, guid: 4e94f1b3f0310f640b88314b49d7e061, type: 3}
@@ -344,6 +349,20 @@ MonoBehaviour:
   - {fileID: 3220415242983990195, guid: c7e54ae980de9c34baed975abe549820, type: 3}
   - {fileID: 6486902376069001430, guid: 2156765c59cdca6478d062a7dfb9185f, type: 3}
   specialObject: {fileID: 0}
+--- !u!114 &2178559448779330961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5455326115150343483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123fa3c1f65ba5f4d8825f1f7f4cd28b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IncidentEffectScriptableObject: {fileID: 11400000, guid: d157431deb2b9844793820f7e1aa53ee,
+    type: 2}
 --- !u!65 &5455326115150343482
 BoxCollider:
   m_ObjectHideFlags: 0

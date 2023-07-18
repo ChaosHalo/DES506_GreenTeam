@@ -5,16 +5,35 @@ using UnityEngine;
 using MoreMountains.HighroadEngine;
 public class CarManager : MonoBehaviour
 {
-    public CarInfo CarInfo;
+    public CarInfo CarInfo
+    {
+        get
+        {
+            return CarInfoScriptableObject.GetCarInfo();
+        }
+    }
     public CarInfoScriptableObject CarInfoScriptableObject;
     private float oneLapTime;
     private float totalTime;
     private VehicleInformation vehicleInformation;
-    private SolidController solidController;
+    private SolidController solidController
+    {
+        get
+        {
+            return GetComponent<SolidController>();
+        }
+    }
 
     public float FinalTime;
     private bool IsTimerRunning;
-    private bool twoLapFlag = false; 
+    private bool twoLapFlag = false;
+    private Car car
+    {
+        get 
+        {
+            return new(MyGameManager.instance.FactorsBaseObject, CarInfo);
+        }
+    }
     private void Awake()
     {
         //InitData();
@@ -27,6 +46,7 @@ public class CarManager : MonoBehaviour
     {
         Timer();
     }
+    #region Init
     public void InitData()
     {
         //Debug.Log("已重置车辆数据");
@@ -34,17 +54,33 @@ public class CarManager : MonoBehaviour
         oneLapTime = 0;
         StartTimer();
 
-        CarInfo = CarInfoScriptableObject.GetCarInfo();
-        Car car = new(MyGameManager.instance.FactorsBaseObject, CarInfo);
+        /*CarInfo = CarInfoScriptableObject.GetCarInfo();
+        car = new(MyGameManager.instance.FactorsBaseObject, CarInfo);*/
         // 设置车辆名称信息
         vehicleInformation = GetComponent<VehicleInformation>();
         vehicleInformation.LobbyName = CarInfo.Name;
-        // 设置车辆实际数值
-        solidController = GetComponent<SolidController>();
-        solidController.EngineForce = car.Acceleration;
-        solidController.FullThrottleVelocity = car.TopSpeed;
-        solidController.CarGrip = car.Handling;
+        InitCarData();
     }
+
+    public void InitCarData()
+    {
+        // 设置车辆实际数值
+        //solidController = GetComponent<SolidController>();
+        InitEngineForce();
+        InitFullThrottleVelocity();
+        InitCarGrip();
+    }
+    public void InitEngineForce() => solidController.EngineForce = car.Acceleration;
+    public void InitFullThrottleVelocity() => solidController.FullThrottleVelocity = car.TopSpeed;
+    public void InitCarGrip() => solidController.CarGrip = car.Handling;
+    #endregion
+
+    #region Get / Set
+    public void SetEngineForce(float engineForce) => solidController.EngineForce = engineForce;
+    public void SetFullThrottleVelocity(float fullThrottleVelocity) => solidController.FullThrottleVelocity = fullThrottleVelocity;
+    public void SetCarGrip(float carGrip) => solidController.CarGrip = carGrip;
+    public Car GetInitCar() => car;
+    #endregion
     private void StartTimer() => IsTimerRunning = false;
     private void StopTimer() => IsTimerRunning = true;
     /// <summary>
