@@ -31,7 +31,8 @@ public class UpcomingUIManager : MonoBehaviour
     }
     private CarInfo GetCarInfo(CarInfoScriptableObject carInfoScriptableObject)
     {
-        int index = Mathf.Min(carInfoScriptableObject.CarInfos.Count - 1, MyGameManager.instance.CurSeason);
+        int seasonIndex = MyGameManager.instance.GameRound % MyGameManager.instance.Season;
+        int index = Mathf.Min(carInfoScriptableObject.CarInfos.Count - 1, seasonIndex);
         return carInfoScriptableObject.GetCarInfo(index);
     }
     public void UpdateCarInfo()

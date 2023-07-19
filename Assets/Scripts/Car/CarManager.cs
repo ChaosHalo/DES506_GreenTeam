@@ -14,7 +14,7 @@ public class CarManager : MonoBehaviour
         }
     }
     public CarInfoScriptableObject CarInfoScriptableObject;
-    private int CarInfoIndex => MyGameManager.instance.CurSeason;
+    private int CarInfoIndex => MyGameManager.instance.GameRound % MyGameManager.instance.Season;
     private float oneLapTime;
     private float totalTime;
     private VehicleInformation vehicleInformation;

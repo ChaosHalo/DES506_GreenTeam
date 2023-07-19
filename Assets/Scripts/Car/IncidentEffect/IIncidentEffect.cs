@@ -6,21 +6,30 @@ using MoreMountains.HighroadEngine;
 public interface IIncidentEffect
 {
     void EnterEffect(CarManager carManager, IncidentEffectScriptableObject incidentEffectScriptableObject);
-    static float CalEffect(IncidentEffectScriptableObject incidentEffectScriptableObject, float originValue)
+    static float CalEffect(IncidentEffectScriptableObject incidentEffectScriptableObject, CarManager carManager, float originValue)
     {
-        if(incidentEffectScriptableObject.type == IncidentEffectScriptableObject.Type.Reduce)
-        {
-            return originValue * (1 - incidentEffectScriptableObject.Value);
-        }
-        else if(incidentEffectScriptableObject.type == IncidentEffectScriptableObject.Type.Increase)
-        {
-            return originValue * (1 + incidentEffectScriptableObject.Value);
-        }
-        return originValue;
+        // originValue * ImpactFactor
+        return originValue * CalImpactDirection(incidentEffectScriptableObject, carManager);
     }
-    static void DebugLog(string message)
+    static float CalImpactDirection(IncidentEffectScriptableObject incidentEffectScriptableObject, CarManager carManager)
     {
-        Debug.Log(message);
+        if (incidentEffectScriptableObject.type == IncidentEffectScriptableObject.Type.Reduce)
+        {
+            return 1 - CalImpactOffRoad(incidentEffectScriptableObject, carManager);
+        }
+        else if (incidentEffectScriptableObject.type == IncidentEffectScriptableObject.Type.Increase)
+        {
+            return 1 + CalImpactOffRoad(incidentEffectScriptableObject, carManager);
+        }
+        return 1;
+    }
+    static float CalImpactOffRoad(IncidentEffectScriptableObject incidentEffectScriptableObject, CarManager carManager)
+    {
+        return incidentEffectScriptableObject.Value * (1 - carManager.GetInitCar().OffRoad);
+    }
+    static void DebugLog(string carName, string effectName,string effectDescription, string effectValue, string effectObject)
+    {
+        Debug.Log(carName + " " + effectName + " " + effectDescription + ": " + effectValue + " " + effectObject);
     }
 }
 
@@ -40,9 +49,15 @@ public class DessertEffect : IIncidentEffect
 {
     public void EnterEffect(CarManager carManager, IncidentEffectScriptableObject incidentEffectScriptableObject)
     {
-        var value = IIncidentEffect.CalEffect(incidentEffectScriptableObject, carManager.GetInitCar().Acceleration);
+        var value = IIncidentEffect.CalEffect(incidentEffectScriptableObject, carManager, carManager.GetInitCar().Acceleration);
         carManager.SetEngineForce(value);
-        IIncidentEffect.DebugLog(carManager.CarInfo.Name + " DessertEffect: reduce " + incidentEffectScriptableObject.Value + " acceleration");
+
+        IIncidentEffect.DebugLog(
+            carManager.CarInfo.Name,
+            "DessertEffect",
+            incidentEffectScriptableObject.type.ToString(),
+            IIncidentEffect.CalImpactOffRoad(incidentEffectScriptableObject, carManager).ToString(),
+            "acceleration");
     }
 }
 /// <summary>
@@ -52,9 +67,14 @@ public class RockyEffect : IIncidentEffect
 {
     public void EnterEffect(CarManager carManager, IncidentEffectScriptableObject incidentEffectScriptableObject)
     {
-        var value = IIncidentEffect.CalEffect(incidentEffectScriptableObject, carManager.GetInitCar().TopSpeed);
+        var value = IIncidentEffect.CalEffect(incidentEffectScriptableObject, carManager, carManager.GetInitCar().TopSpeed);
         carManager.SetFullThrottleVelocity(value);
-        IIncidentEffect.DebugLog(carManager.CarInfo.Name + " RockyEffect: Increase " + incidentEffectScriptableObject.Value + " speed max");
+        IIncidentEffect.DebugLog(
+            carManager.CarInfo.Name,
+            "RockyEffect",
+            incidentEffectScriptableObject.type.ToString(),
+            IIncidentEffect.CalImpactOffRoad(incidentEffectScriptableObject, carManager).ToString(),
+            "speed max");
     }
 }
 
@@ -65,13 +85,19 @@ public class WaterEffect : IIncidentEffect
 {
     public void EnterEffect(CarManager carManager, IncidentEffectScriptableObject incidentEffectScriptableObject)
     {
-        var value = IIncidentEffect.CalEffect(incidentEffectScriptableObject, carManager.GetInitCar().TopSpeed);
+        var value = IIncidentEffect.CalEffect(incidentEffectScriptableObject, carManager, carManager.GetInitCar().TopSpeed);
         carManager.SetFullThrottleVelocity(value);
 
-        var acc = IIncidentEffect.CalEffect(incidentEffectScriptableObject, carManager.GetInitCar().Acceleration);
+        var acc = IIncidentEffect.CalEffect(incidentEffectScriptableObject, carManager, carManager.GetInitCar().Acceleration);
         carManager.SetEngineForce(acc);
 
-        IIncidentEffect.DebugLog(carManager.CarInfo.Name + " WaterEffect: reduce " + incidentEffectScriptableObject.Value + " current speed");
+        IIncidentEffect.DebugLog(
+            carManager.CarInfo.Name,
+            "WaterEffect",
+            incidentEffectScriptableObject.type.ToString(),
+            IIncidentEffect.CalImpactOffRoad(incidentEffectScriptableObject, carManager).ToString(),
+            "current speed");
+        
     }
 }
 
@@ -82,8 +108,14 @@ public class SnowEffect : IIncidentEffect
 {
     public void EnterEffect(CarManager carManager, IncidentEffectScriptableObject incidentEffectScriptableObject)
     {
-        var value = IIncidentEffect.CalEffect(incidentEffectScriptableObject, carManager.GetInitCar().Handling);
+        var value = IIncidentEffect.CalEffect(incidentEffectScriptableObject, carManager, carManager.GetInitCar().Handling);
         carManager.SetCarGrip(value);
-        IIncidentEffect.DebugLog(carManager.CarInfo.Name + " SnowEffect: decrease" + incidentEffectScriptableObject.Value + " the handling");
+
+        IIncidentEffect.DebugLog(
+            carManager.CarInfo.Name,
+            "SnowEffect",
+            incidentEffectScriptableObject.type.ToString(),
+            IIncidentEffect.CalImpactOffRoad(incidentEffectScriptableObject, carManager).ToString(),
+            "the handling");
     }
 }
