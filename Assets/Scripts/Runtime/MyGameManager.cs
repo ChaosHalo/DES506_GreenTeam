@@ -198,13 +198,13 @@ public class MyGameManager : MonoBehaviour
 
     public void SetShadowQuality(int shadowQuality)
     {
-        light.shadowResolution = (LightShadowResolution)1;
+        //light.shadowResolution = (LightShadowResolution)1;
 
-        float shadowDistance = 500;
-        if (shadowQuality == 1)
-            shadowDistance = 100;
-        QualitySettings.shadowDistance = shadowDistance;
-        Debug.Log(QualitySettings.shadowDistance);
+        //float shadowDistance = 500;
+        //if (shadowQuality == 1)
+        //    shadowDistance = 250;
+        //QualitySettings.shadowDistance = shadowDistance;
+        //Debug.Log(QualitySettings.shadowDistance);
     }
 
 

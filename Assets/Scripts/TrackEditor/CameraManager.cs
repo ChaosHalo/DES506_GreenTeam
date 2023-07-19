@@ -40,11 +40,11 @@ public class CameraManager : MonoBehaviour
 
     private void Start()
     {
-        anchorOriginalPos= anchor.transform.position;
+        anchorOriginalPos = anchor.transform.position;
         anchorStartPos = anchor.transform.position;
         anchorCurPos = anchor.transform.position;
         cameraDistance = startZoom;
-        camPos=virtualCamera.transform.position;
+        camPos = virtualCamera.transform.position;
     }
 
     private void Update()
@@ -117,6 +117,9 @@ public class CameraManager : MonoBehaviour
 
     internal void PanCameraWindows()
     {
+        if (Application.platform == RuntimePlatform.Android || Application.isMobilePlatform)
+            return;
+
         if (Input.GetMouseButtonDown(0))
         {
             if (inputManager.IsPointerOverUI() == false)
