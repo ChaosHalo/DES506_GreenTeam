@@ -147,7 +147,7 @@ public class State_GenerateWorld : IBuildingState
                 }
 
                 // place database object
-                selectedData.AddObjectAt(gridPosition, size, ID, type, objectNumber, rotationState, true, database.objectsData[ID].cost, database.objectsData[ID].isBuildable);
+                selectedData.AddObjectAt(gridPosition, size, ID, type, objectNumber, rotationState, true, database.objectsData[ID].cost, database.objectsData[ID].isBuildable, (int)database.objectsData[ID].terrainType);
                 objectNumber++;
             }
         }
@@ -215,7 +215,7 @@ public class State_GenerateWorld : IBuildingState
             allObjectsToPlace.Add(newObject);
 
             // place database object
-            selectedData.AddObjectAt(gridPosition, database.objectsData[IDs[i]].Size, IDs[i], type, objectNumber, rotationState, false, database.objectsData[IDs[i]].cost, database.objectsData[IDs[i]].isBuildable);
+            selectedData.AddObjectAt(gridPosition, database.objectsData[IDs[i]].Size, IDs[i], type, objectNumber, rotationState, false, database.objectsData[IDs[i]].cost, database.objectsData[IDs[i]].isBuildable, (int)database.objectsData[IDs[i]].terrainType);
             objectNumber++;
         }
 

@@ -86,7 +86,8 @@ public class State_PlaceTrack : IBuildingState
                                  GetCurrentPreviewRotationState(),
                                  true,
                                  database.objectsData[selectedObjectIndex].cost,
-                                 database.objectsData[selectedObjectIndex].isBuildable);
+                                 database.objectsData[selectedObjectIndex].isBuildable,
+                                 (int)database.objectsData[selectedObjectIndex].terrainType);
 
         previewSystem.UpdatePreview(grid.CellToWorld(gridPosition), false);
         placementSystem.EndCurrentState();

@@ -69,14 +69,15 @@ public class State_PlaceTerrain : IBuildingState
         }
 
         // check currency
-        if (currencyManager.MakePurchase(database.objectsData[selectedObjectIndex].cost) == false)
+        int cost = database.objectsData[selectedObjectIndex].cost;
+        if (cost > 0)
         {
-            placementSystem.EndCurrentState();
-            return;
+            if (currencyManager.MakePurchase(database.objectsData[selectedObjectIndex].cost) == false)
+            {
+                placementSystem.EndCurrentState();
+                return;
+            }
         }
-
-        // object to place index
-        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, true);
 
         // chose data type
         GridData selectedData = terrainData;
@@ -86,6 +87,13 @@ public class State_PlaceTerrain : IBuildingState
 
         // get index at selected position
         gameObjectIndex = selectedData.GetRepresentationIndex(gridPosition);
+
+        // check if existing terrain is of same type, do NOT place if TRUE
+        if (terrainData.IsSameType(gridPosition, (int)database.objectsData[selectedObjectIndex].terrainType))
+            return;
+
+        // object to place index
+        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, true);
 
         // remove existing object from database
         if (existingData != null)
@@ -108,15 +116,25 @@ public class State_PlaceTerrain : IBuildingState
                                  0,
                                  true,
                                  database.objectsData[selectedObjectIndex].cost,
-                                 database.objectsData[selectedObjectIndex].isBuildable);
+                                 database.objectsData[selectedObjectIndex].isBuildable,
+                                 (int)database.objectsData[selectedObjectIndex].terrainType);
 
         previewSystem.UpdatePreview(grid.CellToWorld(gridPosition), false);
         placementSystem.EndCurrentState();
     }
 
+    private bool IsSameTerrainType(TerrainObject.Type type, int selectedObjectIndex)
+    {
+        return (int)type == (int)database.objectsData[selectedObjectIndex].terrainType ? true : false;
+    }
+
+
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {
         if (terrainData.IsBuildableAt(gridPosition, database.objectsData[selectedObjectIndex].Size, 0) == false)
+            return false;
+
+        if (terrainData.IsSameType(gridPosition, (int)database.objectsData[selectedObjectIndex].terrainType))
             return false;
 
         return true;
