@@ -9,6 +9,9 @@ public class CarManager : MonoBehaviour
     MeshRenderer[] renderers;
     [SerializeField] private GameObject explosionPrefab;
 
+    internal double airDuration = 0;
+    internal bool isRespawning = false;
+
     public CarInfo CarInfo
     {
         get
@@ -53,6 +56,20 @@ public class CarManager : MonoBehaviour
     private void Update()
     {
         Timer();
+        CheckAirTime();
+    }
+
+    private void CheckAirTime()
+    {
+        // calculate how long car is in air for
+        if (solidController.IsGrounded == false)
+            airDuration += Time.deltaTime;
+        else
+            airDuration = 0;
+
+        // focus on this car when it is in the air
+       // if (airBorneDuration > minAirTime)
+           // MyGameManager.instance.raceCamera.SwitchTarget(CarInfo.Name, false, true);
     }
     #region Init
     public void InitData()
@@ -120,7 +137,7 @@ public class CarManager : MonoBehaviour
         if (other.CompareTag(GlobalConstants.BOUNDARIES))
         {
             //solidController.Respawn();
-            Respawn();
+            Respawn(true);
         }
     }
 
@@ -131,7 +148,7 @@ public class CarManager : MonoBehaviour
             SpawnExplosion();
         }
     }
-    internal void Respawn()
+    internal void Respawn(bool respawnWithExplosion)
     {
         MapPieceInfo[] mapPieceInfos = FindObjectsOfType<MapPieceInfo>();
         Vector3 respawnPos = new Vector3(0, 0, 0);
@@ -148,22 +165,29 @@ public class CarManager : MonoBehaviour
                 }
             }
         }
-        StartCoroutine(RespawnWithDelay(respawnPos));
+        if(respawnWithExplosion)
+            StartCoroutine(RespawnWithDelay(respawnPos));
+
+
     }
 
     private IEnumerator RespawnWithDelay(Vector3 respawnPos)
     {
+        // move camera to another driver after this one explodes
+        MyGameManager.instance.raceCamera.StartCoroutine(MyGameManager.instance.raceCamera.SwitchToAnotherDriverAfterDelay(2.25f));
+
         // spawn explosion particle
         SpawnExplosion();
-
-        FindObjectOfType<RaceScreenUIManager>().SwitchTarget(CarInfo.Name);
 
         // make invisible
         foreach (var ren in renderers)
             ren.enabled = false;
 
-        // wait
-        yield return new WaitForSeconds(2.5f);
+        // wait a bit to set respawn flag (for smoother camera
+        yield return new WaitForSeconds(0.5f);
+        isRespawning = true;
+        airDuration = 0;
+        yield return new WaitForSeconds(2f);
 
         // respawn to position
         transform.position = respawnPos;
@@ -171,11 +195,13 @@ public class CarManager : MonoBehaviour
         // make visible
         foreach (var ren in renderers)
             ren.enabled = true;
+
+        isRespawning = false;
     }
 
     internal void SpawnExplosion()
     {
-        FindObjectOfType<RaceScreenUIManager>().FocusCamera(CarInfo.Name);
+       MyGameManager.instance.raceCamera.TryZoomOnDriver(CarInfo.Name);
         GameObject newExplosion = Instantiate(explosionPrefab);
         newExplosion.transform.position = transform.position;
     }

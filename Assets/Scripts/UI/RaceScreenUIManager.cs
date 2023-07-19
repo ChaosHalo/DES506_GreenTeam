@@ -12,12 +12,10 @@ public class RaceScreenUIManager : MonoBehaviour
     private float timer;
     private bool runTimerFlag;
     private RaceManager raceManager => MyGameManager.instance.GetRaceManager();
-    public RaceCameraScripitObject RaceCameraScripitObject;
     public List<Button> RacerInfos = new List<Button>();
     public List<Button> CameraTrackers = new List<Button>();
 
-    [SerializeField] private float cameraSwitchCooldown = 5f;
-    private string currentTrackedDriver= "Felicia";
+    [SerializeField] private RaceCamera raceCamera;
 
 
     // Start is called before the first frame update
@@ -80,7 +78,7 @@ public class RaceScreenUIManager : MonoBehaviour
         for (int i = 0; i < CameraTrackers.Count; i++)
         {
             //buttons[i].onClick.RemoveAllListeners();
-            CameraTrackers[i].onClick.AddListener(() => SwitchCamera(i));
+            CameraTrackers[i].onClick.AddListener(() => raceCamera.SwitchCamera(i));
         }
     }
     private void InitRacerInfos()
@@ -91,40 +89,7 @@ public class RaceScreenUIManager : MonoBehaviour
             Debug.Log(i + "InitRacerInfos");
             RacerInfos[i].GetComponentInChildren<TextMeshProUGUI>().text = carManagers[i].CarInfo.Name;
             //RacerInfos[i].GetComponent<Button>().onClick.RemoveAllListeners();
-            RacerInfos[i].onClick.AddListener(() => SwitchTarget(carManagers[i].CarInfo.Name));
+            RacerInfos[i].onClick.AddListener(() => raceCamera.SwitchTarget(carManagers[i].CarInfo.Name, false));
         }
-    }
-    public void SwitchCamera(int index)
-    {
-        //Debug.Log(index);
-        RaceCameraManager.SwitchCamera(MyGameManager.instance.RaceCamera, RaceCameraScripitObject.cameraDatas[index].FollowOffset, RaceCameraScripitObject.cameraDatas[index].fov);
-    }
-
-    public void FocusCamera(string name)
-    {
-        if (name == currentTrackedDriver)
-        {
-            StartCoroutine(StartActionCameraFocus());
-        }
-    }
-    public void SwitchTarget(string name)
-    {
-        CarManager[] carManagers = FindObjectsOfType<CarManager>();
-        foreach(var carManager in carManagers)
-        {
-            if(carManager.CarInfo.Name == name)
-            {
-                currentTrackedDriver = name;
-                RaceCameraManager.SetTarget(MyGameManager.instance.RaceCamera, carManager.transform);
-                return;
-            }
-        }
-    }
-
-    private IEnumerator StartActionCameraFocus()
-    {
-        RaceCameraManager.SetFOV(MyGameManager.instance.RaceCamera, 15);
-        yield return new WaitForSeconds(1f);
-        RaceCameraManager.SetFOV(MyGameManager.instance.RaceCamera, 25);
     }
 }
