@@ -21,10 +21,11 @@ public class GridData
                           int rotationState,
                           bool canModify,
                           int cost,
-                          bool isBuildable)
+                          bool isBuildable,
+                          int terrainType)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPosition, objectSize, rotationState);
-        PlacementData data = new PlacementData(positionToOccupy, gridPosition, ID, type, placedObjectIndex, rotationState, objectSize, canModify, cost, isBuildable);
+        PlacementData data = new PlacementData(positionToOccupy, gridPosition, ID, type, placedObjectIndex, rotationState, objectSize, canModify, cost, isBuildable, terrainType);
         foreach (var pos in positionToOccupy)
         {
             if (placedObjects.ContainsKey(pos))
@@ -109,6 +110,16 @@ public class GridData
         return isBuildable;
     }
 
+    public bool IsSameType(Vector3Int gridPosition, int type)
+    {
+        PlacementData data = GetObjectDataAt(gridPosition);
+        if (data != null)
+            if (data.terrainType == (PlacementData.TerrainType)type)
+                return true;
+
+        return false;
+    }
+
     internal int GetRepresentationIndex(Vector3Int gridPosition)
     {
         if (placedObjects.ContainsKey(gridPosition) == false)
@@ -147,6 +158,9 @@ public class PlacementData
     public int cost { get; private set; }
     public bool isBuildable { get; private set; }
 
+    public enum TerrainType { None, Grass, Desert, Snow, Sea, Mountain };
+    public TerrainType terrainType;
+
 
     public PlacementData(List<Vector3Int> occupiedPositions,
                          Vector3Int originPosition,
@@ -157,7 +171,8 @@ public class PlacementData
                          Vector2Int size,
                          bool canModify,
                          int cost,
-                         bool isBuildable)
+                         bool isBuildable,
+                         int terrainType)
     {
         this.occupiedPositions = occupiedPositions;
         this.originPosition = originPosition;
@@ -169,7 +184,9 @@ public class PlacementData
         this.canModify = canModify;
         this.cost = cost;
         this.isBuildable = isBuildable;
-    }
+        this.terrainType=(TerrainType)terrainType;
+
+}
 
 
 }
