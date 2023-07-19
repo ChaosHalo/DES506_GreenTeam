@@ -179,6 +179,7 @@ public class InputManager : MonoBehaviour
     private void HandleClickHold()
     {
         posMouseCur = Input.mousePosition;
+        cameraManager.PanCamera();
     }
 
     private void HandleScroll(float delta)
