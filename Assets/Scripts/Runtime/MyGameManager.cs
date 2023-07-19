@@ -51,7 +51,7 @@ public class MyGameManager : MonoBehaviour
     void Awake()
     {
         //Application.targetFrameRate = Screen.currentResolution.refreshRate;
-        Application.targetFrameRate = 60;
+       // Application.targetFrameRate = 60;
 
         SetupInstance();
         InitManager();
@@ -207,6 +207,11 @@ public class MyGameManager : MonoBehaviour
         Debug.Log(QualitySettings.shadowDistance);
     }
 
+
+    public void OnEndSeason(GameObject endSeasonObject)
+    {
+        endSeasonObject.SetActive(true);
+    }
     #region GET / SET
     internal StartPieceInfo GetStartPieceInfoObject()
     {

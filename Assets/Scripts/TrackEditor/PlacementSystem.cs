@@ -183,15 +183,19 @@ public class PlacementSystem : MonoBehaviour
         Application.Quit();
     }
 
-    public void ResetLevel()
+    public void ResetLevel(bool resetCurrency = false)
     {
         if (objectPlacer.IsTrackAnimating() == false)
         {
             EndCurrentState();
             GenerateWorld();
-            MyGameManager.instance.GetCurrencyManager().ResetCurrency();
-            MyGameManager.instance.missionManager.ResetMissions();
             MyGameManager.instance.GetCameraManager().ResetCamera();
+
+            if(resetCurrency)
+            {
+                MyGameManager.instance.GetCurrencyManager().ResetCurrency();
+                MyGameManager.instance.missionManager.ResetMissions();
+            }
         }
     }
 }

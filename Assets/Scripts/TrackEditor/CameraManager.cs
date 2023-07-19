@@ -109,6 +109,33 @@ public class CameraManager : MonoBehaviour
         isPanning = panDistance > 5;
     }
 
+    internal void PanCameraWindows()
+    {
+        if (CanUpdateCamera() == false)
+            return;
+
+        anchorCurPos = anchorStartPos;
+        float panSpeed = Mathf.Sin(cameraDistance / maxZoom);
+        float mouseDistanceX = inputManager.posMouseDown.x - Input.mousePosition.x;
+        float mouseDistanceY = inputManager.posMouseDown.y - Input.mousePosition.y;
+
+        // limit max panning speed
+        panSpeed = Mathf.Clamp(panSpeed, 0f, 0.5f);
+
+        // lower panning speed while zooming
+        if (isZooming && panSpeed > 0.2f)
+            panSpeed = 0.2f;
+
+        anchorCurPos.x += mouseDistanceX * panSpeed;
+        anchorCurPos.z += mouseDistanceY * panSpeed;
+        ClampAndSetCameraPosition();
+
+        // camera is panning if mouse down does not equal mouse current
+        float panDistance = Vector3.Distance(inputManager.posMouseDown, Input.mousePosition);
+        isPanning = panDistance > 5;
+    }
+
+
     public void OnCameraPanTap()
     {
         if (inputManager.IsPointerOverUI() == false)
