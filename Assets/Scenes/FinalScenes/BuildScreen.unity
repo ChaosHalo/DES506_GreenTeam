@@ -320,11 +320,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 376221543
-      Data2: 1234461549
-      Data3: 707720379
-      Data4: 907664374
-    Path: event:/Engine
+      Data1: -1925331968
+      Data2: 1227912351
+      Data3: -1113538884
+      Data4: 549185089
+    Path: event:/Engine Total
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -6323,6 +6323,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3088657054915131104, guid: 799c779d9bb33b042869d74994138fff,
+        type: 3}
+      propertyPath: InfoText
+      value: 
+      objectReference: {fileID: 1862954337}
     - target: {fileID: 3191535656316693888, guid: 799c779d9bb33b042869d74994138fff,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -15467,6 +15472,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI - Race Results Screen
       objectReference: {fileID: 0}
+    - target: {fileID: 1136061643607403077, guid: 4d677237dc54f42469cb7666633ef8e5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1136061643607403129, guid: 4d677237dc54f42469cb7666633ef8e5,
         type: 3}
       propertyPath: m_Pivot.x
@@ -15827,6 +15837,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1862954337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3953278097694296699, guid: 799c779d9bb33b042869d74994138fff,
+    type: 3}
+  m_PrefabInstance: {fileID: 515150739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1888982289
 GameObject:
   m_ObjectHideFlags: 0

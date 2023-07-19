@@ -18,9 +18,10 @@ public class MyGameManager : MonoBehaviour
     public IGameState gameState;
     public Material litMaterial;
     /// <summary>
-    /// 赛季轮次 
+    /// 表示每多少GameRound轮后更新一次赛季信息
     /// </summary>
     public int Season = 3;
+    [HideInInspector]
     /// <summary>
     /// 游戏已运行轮次
     /// </summary>
@@ -29,6 +30,10 @@ public class MyGameManager : MonoBehaviour
     /// 所有游戏轮次保存的比赛信息
     /// </summary>
     public List<OneRoundRaceResultData> OneRoundRaceResultDatas = new();
+    /// <summary>
+    /// 当前赛季值
+    /// </summary>
+    public int CurSeason => GameRound / Season;
     // build / race scene objects
     [SerializeField] internal GameObject buildObjects;
     [SerializeField] internal GameObject raceObjects;

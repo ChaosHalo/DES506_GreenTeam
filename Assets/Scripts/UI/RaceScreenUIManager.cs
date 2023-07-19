@@ -25,8 +25,8 @@ public class RaceScreenUIManager : MonoBehaviour
             raceManager.StartRaceEvent.AddListener(StartTimer);
             raceManager.EndRaceEvent.AddListener(StopTimer);
         }
-        InitRacerInfos();
-        InitCameraTracker();
+        /*InitRacerInfos();
+        InitCameraTracker();*/
     }
     private void OnDisable()
     {

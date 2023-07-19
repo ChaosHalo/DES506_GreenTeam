@@ -80,4 +80,6 @@ public class CarUIInfo
 {
     public Sprite PlaceholderCarImage;
     public Sprite BackGroundImage;
+    [TextArea]
+    public string Info;
 }
