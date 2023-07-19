@@ -50,7 +50,7 @@ public class MyGameManager : MonoBehaviour
 
     void Awake()
     {
-        //Application.targetFrameRate = Screen.currentResolution.refreshRate;
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
        // Application.targetFrameRate = 60;
 
         SetupInstance();
