@@ -40,6 +40,16 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1177753878641209273}
     m_Modifications:
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: TrailModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: CollisionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5150193364312020943, guid: 9d45d28c76a5792499537e2eb784acdb,
         type: 3}
       propertyPath: m_RootOrder
@@ -99,6 +109,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sparks
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020977, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
