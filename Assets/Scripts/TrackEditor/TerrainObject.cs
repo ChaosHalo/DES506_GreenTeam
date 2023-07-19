@@ -20,7 +20,7 @@ public class TerrainObject : MonoBehaviour
 
     [Header("Cosmetic Objects")]
     public List<GameObject> objectPrefabs = new();
-    public GameObject specialObject;
+    public List<GameObject> specialObject = new();
 
     private List<GameObject> instantiatedObjects = new();
 
@@ -29,9 +29,9 @@ public class TerrainObject : MonoBehaviour
     public void GenerateObjects()
     {
         // special object
-        if (specialObject != null)
+        if (specialObject.Count > 0)
         {
-            GameObject newObject = Instantiate(specialObject);
+            GameObject newObject = Instantiate(specialObject[Random.Range(0, specialObject.Count)]);
             newObject.transform.position = transform.position;
             newObject.transform.parent = transform;
             newObject.transform.Rotate(new(0, 0, Random.Range(0, 360)));
