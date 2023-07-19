@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraManager : MonoBehaviour
 {
@@ -52,6 +53,8 @@ public class CameraManager : MonoBehaviour
             componentBase = virtualCamera.GetCinemachineComponent(CinemachineCore.Stage.Body);
 
         isZooming = false;
+
+        PanCameraWindows();
     }
 
     private bool CanUpdateCamera()
