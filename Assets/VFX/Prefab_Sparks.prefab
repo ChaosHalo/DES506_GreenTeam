@@ -42,13 +42,83 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
         type: 3}
+      propertyPath: ShapeModule.angle
+      value: 61.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: TrailModule.ratio
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
       propertyPath: TrailModule.enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: TrailModule.worldSpace
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
         type: 3}
       propertyPath: CollisionModule.enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: TrailModule.textureMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: TrailModule.lifetime.scalar
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: TrailModule.minVertexDistance
+      value: 1.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: TrailModule.lifetime.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.087006
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.5648601
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.9811321
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: InitialModule.startColor.minColor.b
+      value: 0.5226415
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: InitialModule.startColor.minColor.g
+      value: 0.9621319
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020942, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: InitialModule.startColor.minColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5150193364312020943, guid: 9d45d28c76a5792499537e2eb784acdb,
         type: 3}
@@ -113,8 +183,18 @@ PrefabInstance:
     - target: {fileID: 5150193364312020977, guid: 9d45d28c76a5792499537e2eb784acdb,
         type: 3}
       propertyPath: m_Materials.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5150193364312020977, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a4b2cacd89f36834286c248881e54f44, type: 2}
+    - target: {fileID: 5150193364312020977, guid: 9d45d28c76a5792499537e2eb784acdb,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4084637e6bfbd4f459d7c16b7321449b, type: 2}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d45d28c76a5792499537e2eb784acdb, type: 3}
