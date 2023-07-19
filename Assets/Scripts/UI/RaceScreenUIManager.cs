@@ -15,6 +15,14 @@ public class RaceScreenUIManager : MonoBehaviour
     public RaceCameraScripitObject RaceCameraScripitObject;
     public List<Button> RacerInfos = new List<Button>();
     public List<Button> CameraTrackers = new List<Button>();
+
+    [SerializeField] private float cameraSwitchCooldown = 5f;
+    private bool canSwitchCameraHighlight = true;
+    private int previousCameraIndex = 0;
+    private int currentCameraIndex = 0;
+    private string currentTrackedDriver= "Felicia";
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -92,18 +100,54 @@ public class RaceScreenUIManager : MonoBehaviour
     public void SwitchCamera(int index)
     {
         //Debug.Log(index);
-        RaceCameraManager.SwitchCamera(MyGameManager.instance.RaceCamera, RaceCameraScripitObject.cameraDatas[index].FollowOffset);
+        previousCameraIndex = currentCameraIndex;
+        currentCameraIndex= index;
+        RaceCameraManager.SwitchCamera(MyGameManager.instance.RaceCamera, RaceCameraScripitObject.cameraDatas[index].FollowOffset, RaceCameraScripitObject.cameraDatas[index].fov);
+    }
+
+    public void FocusCamera(string name)
+    {
+        if (name == currentTrackedDriver)
+        {
+            StartCoroutine(StartActionCameraFocus());
+        }
     }
     public void SwitchTarget(string name)
     {
+        //if (actionFocus)
+        //{
+        //    if (canSwitchCameraHighlight == true)
+        //    {
+        //        StartCoroutine(StartActionCameraFocus());
+        //    }
+        //    else
+        //    {
+        //        return;
+        //    }
+        //}
+
+
         CarManager[] carManagers = FindObjectsOfType<CarManager>();
         foreach(var carManager in carManagers)
         {
             if(carManager.CarInfo.Name == name)
             {
+                currentTrackedDriver = name;
                 RaceCameraManager.SetTarget(MyGameManager.instance.RaceCamera, carManager.transform);
                 return;
             }
         }
+    }
+
+    private IEnumerator StartActionCameraFocus()
+    {
+        //SwitchCamera(3);
+        RaceCameraManager.SetFOV(MyGameManager.instance.RaceCamera, 15);
+       // canSwitchCameraHighlight = false;
+        yield return new WaitForSeconds(1f);
+        RaceCameraManager.SetFOV(MyGameManager.instance.RaceCamera, 25);
+         //SwitchCamera(previousCameraIndex);
+       // yield return new WaitForSeconds(cameraSwitchCooldown-2);
+        //canSwitchCameraHighlight = true;
     }
 }

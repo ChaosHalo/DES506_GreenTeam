@@ -36,7 +36,7 @@ public class State_Race : IGameState
 
         // init carInfoSearch
         CarInfoSearch carInfoSerach = MyGameManager.instance.GetCarInfoSerach();
-        MyGameManager.instance.SetShadowQuality(1);
+        MyGameManager.instance.SetShadowQuality(0);
         //carInfoSerach.SetupCarManagers();
     }
     public void EndState()

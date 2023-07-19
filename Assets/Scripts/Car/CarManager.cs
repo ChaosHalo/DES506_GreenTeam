@@ -5,6 +5,10 @@ using UnityEngine;
 using MoreMountains.HighroadEngine;
 public class CarManager : MonoBehaviour
 {
+    // store renderers
+    MeshRenderer[] renderers;
+    [SerializeField] private GameObject explosionPrefab;
+
     public CarInfo CarInfo
     {
         get
@@ -39,6 +43,8 @@ public class CarManager : MonoBehaviour
     private void Awake()
     {
         //InitData();
+        // store renderers
+        renderers = GetComponentsInChildren<MeshRenderer>();
     }
     private void Start()
     {
@@ -117,7 +123,15 @@ public class CarManager : MonoBehaviour
             Respawn();
         }
     }
-    private void Respawn()
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("ExplosionTag"))
+        {
+            SpawnExplosion();
+        }
+    }
+    internal void Respawn()
     {
         MapPieceInfo[] mapPieceInfos = FindObjectsOfType<MapPieceInfo>();
         Vector3 respawnPos = new Vector3(0, 0, 0);
@@ -134,8 +148,38 @@ public class CarManager : MonoBehaviour
                 }
             }
         }
-        transform.position = respawnPos;
+        StartCoroutine(RespawnWithDelay(respawnPos));
     }
+
+    private IEnumerator RespawnWithDelay(Vector3 respawnPos)
+    {
+        // spawn explosion particle
+        SpawnExplosion();
+
+        FindObjectOfType<RaceScreenUIManager>().SwitchTarget(CarInfo.Name);
+
+        // make invisible
+        foreach (var ren in renderers)
+            ren.enabled = false;
+
+        // wait
+        yield return new WaitForSeconds(2.5f);
+
+        // respawn to position
+        transform.position = respawnPos;
+
+        // make visible
+        foreach (var ren in renderers)
+            ren.enabled = true;
+    }
+
+    internal void SpawnExplosion()
+    {
+        FindObjectOfType<RaceScreenUIManager>().FocusCamera(CarInfo.Name);
+        GameObject newExplosion = Instantiate(explosionPrefab);
+        newExplosion.transform.position = transform.position;
+    }
+
     /// <summary>
     /// 一圈结束事件
     /// </summary>
