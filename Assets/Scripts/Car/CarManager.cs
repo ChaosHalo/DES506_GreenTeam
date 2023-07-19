@@ -9,10 +9,12 @@ public class CarManager : MonoBehaviour
     {
         get
         {
-            return CarInfoScriptableObject.GetCarInfo();
+            int index = Mathf.Min(CarInfoScriptableObject.CarInfos.Count - 1, CarInfoIndex);
+            return CarInfoScriptableObject.GetCarInfo(index);
         }
     }
     public CarInfoScriptableObject CarInfoScriptableObject;
+    private int CarInfoIndex => MyGameManager.instance.CurSeason;
     private float oneLapTime;
     private float totalTime;
     private VehicleInformation vehicleInformation;

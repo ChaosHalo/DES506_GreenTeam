@@ -16,23 +16,34 @@ public class UpcomingUIManager : MonoBehaviour
     public Image PlaceholderCarImage;
     public Image BackGroundImage;
 
+    public GameObject InfoText;
+
     private CarInfoScriptableObject curCar;
     private int carIndex;
-    private void Start()
+    private void OnEnable()
     {
         curCar = carInfoScriptableObjects[carIndex];
         UpdateCarInfo();
     }
-
+    private void Start()
+    {
+        
+    }
+    private CarInfo GetCarInfo(CarInfoScriptableObject carInfoScriptableObject)
+    {
+        int index = Mathf.Min(carInfoScriptableObject.CarInfos.Count - 1, MyGameManager.instance.CurSeason);
+        return carInfoScriptableObject.GetCarInfo(index);
+    }
     public void UpdateCarInfo()
     {
-        CarName.GetComponent<TextMeshProUGUI>().text = curCar.CarInfo.Name;
-        TopSpeedSlider.value = curCar.CarInfo.TopSpeed;
-        AccelerationSlider.value = curCar.CarInfo.Acceleration;
-        HandlingSlider.value = curCar.CarInfo.Handling;
-        OffroadSlider.value = curCar.CarInfo.OffRoad;
+        CarName.GetComponent<TextMeshProUGUI>().text = GetCarInfo(curCar).Name;
+        TopSpeedSlider.value = GetCarInfo(curCar).TopSpeed;
+        AccelerationSlider.value = GetCarInfo(curCar).Acceleration;
+        HandlingSlider.value = GetCarInfo(curCar).Handling;
+        OffroadSlider.value = GetCarInfo(curCar).OffRoad;
         PlaceholderCarImage.sprite = curCar.CarUIInfo.PlaceholderCarImage;
         BackGroundImage.sprite = curCar.CarUIInfo.BackGroundImage;
+        InfoText.GetComponent<TextMeshProUGUI>().text = curCar.CarUIInfo.Info;
     }
     public void NextCar()
     {
