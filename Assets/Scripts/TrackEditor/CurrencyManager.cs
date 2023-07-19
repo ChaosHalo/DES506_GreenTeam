@@ -31,7 +31,7 @@ public class CurrencyManager : MonoBehaviour
     internal bool MakePurchase(int cost)
     {
         // don't allow negative cost
-        if (cost < 0) return false;
+        if (cost <= 0) return false;
 
         // can afford
         if(CanAfford(cost))

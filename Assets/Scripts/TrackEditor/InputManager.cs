@@ -2,6 +2,7 @@ using MoreMountains.HighroadEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -43,16 +44,9 @@ public class InputManager : MonoBehaviour
     internal bool wasZoomingLastFrame = false;
     bool firstFingerLifted = false;
 
-
-    private void Start()
-    {
-        OnTap += cameraManager.OnCameraPanTap;
-        OnRelease += cameraManager.OnCameraPanRelease;
-    }
-
     private void Update()
     {
-        if (Application.platform == RuntimePlatform.Android)
+        if (Application.platform == RuntimePlatform.Android || Application.isMobilePlatform)
             CheckAndroidInput();
         else
             CheckWindowsInput();

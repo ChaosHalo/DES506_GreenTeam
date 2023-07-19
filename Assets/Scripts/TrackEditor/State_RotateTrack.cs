@@ -108,7 +108,8 @@ public class State_RotateTrack : IBuildingState
                                  finalState,
                                  true,
                                  existingData.cost,
-                                 existingData.isBuildable);
+                                 existingData.isBuildable,
+                                 (int)existingData.terrainType);
 
 
         Vector3 cellPosition = grid.CellToWorld(gridPosition);
