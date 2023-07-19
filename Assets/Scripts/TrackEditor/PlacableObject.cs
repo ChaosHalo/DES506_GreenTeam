@@ -213,7 +213,7 @@ public class PlacableObject : MonoBehaviour
     {
         isFallingAnim = true;
         GetComponent<MeshRenderer>().enabled = false;
-        transform.parent.localPosition = new Vector3(transform.localPosition.x + 50, transform.localPosition.y + verticalOffset, transform.localPosition.z + 50);
+        transform.parent.localPosition = new Vector3(50, transform.localPosition.y + verticalOffset, 50);
         placedPos = new Vector3(transform.parent.localPosition.x, transform.parent.localPosition.y - verticalOffset, transform.parent.localPosition.z);
         yield return new WaitForSeconds(delay);
         GetComponent<MeshRenderer>().enabled = true;
