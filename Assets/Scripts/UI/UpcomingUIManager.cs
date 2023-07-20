@@ -47,6 +47,7 @@ public class UpcomingUIManager : MonoBehaviour
         BackGroundImage.sprite = curCar.CarUIInfo.BackGroundImage;
         InfoText.GetComponent<TextMeshProUGUI>().text = curCar.CarUIInfo.Info;
         RaceCounter.text = ((MyGameManager.instance.GameRound % MyGameManager.instance.Season) + 1).ToString() + " / " + MyGameManager.instance.Season;
+        // RaceCounter.text = (MyGameManager.instance.CurSeason + 1).ToString() + " / " + MyGameManager.instance.Season;
     }
     public void NextCar()
     {
