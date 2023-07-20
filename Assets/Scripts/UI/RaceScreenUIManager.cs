@@ -142,7 +142,7 @@ public class RaceScreenUIManager : MonoBehaviour
         for (int i = 0; i < CameraTrackers.Count; i++)
         {
             //buttons[i].onClick.RemoveAllListeners();
-            CameraTrackers[i].onClick.AddListener(() => SwitchCamera(i));
+           // CameraTrackers[i].onClick.AddListener(() => SwitchCamera(i));
         }
     }
     private void InitRacerInfos()
@@ -153,24 +153,24 @@ public class RaceScreenUIManager : MonoBehaviour
             Debug.Log(i + "InitRacerInfos");
             RacerInfos[i].GetComponentInChildren<TextMeshProUGUI>().text = carManagers[i].CarInfo.Name;
             //RacerInfos[i].GetComponent<Button>().onClick.RemoveAllListeners();
-            RacerInfos[i].onClick.AddListener(() => SwitchTarget(carManagers[i].CarInfo.Name));
+          //  RacerInfos[i].onClick.AddListener(() => SwitchTarget(carManagers[i].CarInfo.Name));
         }
     }
-    public void SwitchCamera(int index)
-    {
-        //Debug.Log(index);
-        RaceCameraManager.SwitchCamera(MyGameManager.instance.RaceCamera, RaceCameraScripitObject.cameraDatas[index].FollowOffset);
-    }
-    public void SwitchTarget(string name)
-    {
-        CarManager[] carManagers = FindObjectsOfType<CarManager>();
-        foreach(var carManager in carManagers)
-        {
-            if(carManager.CarInfo.Name == name)
-            {
-                RaceCameraManager.SetTarget(MyGameManager.instance.RaceCamera, carManager.transform);
-                return;
-            }
-        }
-    }
+    //public void SwitchCamera(int index)
+    //{
+    //    //Debug.Log(index);
+    //    RaceCameraManager.SwitchCamera(MyGameManager.instance.RaceCamera, RaceCameraScripitObject.cameraDatas[index].FollowOffset);
+    //}
+    //public void SwitchTarget(string name)
+    //{
+    //    CarManager[] carManagers = FindObjectsOfType<CarManager>();
+    //    foreach(var carManager in carManagers)
+    //    {
+    //        if(carManager.CarInfo.Name == name)
+    //        {
+    //            RaceCameraManager.SetTarget(MyGameManager.instance.RaceCamera, carManager.transform);
+    //            return;
+    //        }
+    //    }
+    //}
 }
