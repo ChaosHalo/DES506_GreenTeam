@@ -4,6 +4,7 @@ using UnityEngine;
 using MoreMountains.HighroadEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 public class RaceScreenUIManager : MonoBehaviour
 {
     public GameObject TimerTextComponent;
@@ -12,12 +13,11 @@ public class RaceScreenUIManager : MonoBehaviour
     private float timer;
     private bool runTimerFlag;
     private RaceManager raceManager => MyGameManager.instance.GetRaceManager();
+    public RaceCameraScripitObject RaceCameraScripitObject;
     public List<Button> RacerInfos = new List<Button>();
     public List<Button> CameraTrackers = new List<Button>();
-
-    [SerializeField] private RaceCamera raceCamera;
-
-
+    public Text ScoreText2;
+    public List<TextMeshProUGUI> RankNames = new();
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +46,23 @@ public class RaceScreenUIManager : MonoBehaviour
     {
         UpdateTimerText();
         UpdateTimer();
+        UpdateRank();
+    }
+    public void UpdateRank()
+    {
+        // 去除空格
+        string rank = ScoreText2.text.Trim();
+        string[] ranks = rank.Split("|");
+        // 去除最后那个数字
+        for (int i = 0; i < ranks.Length; i++)
+        {
+            ranks[i] = ranks[i].Substring(0, ranks[i].Length - 1);
+        }
+        foreach (var i in rank)
+        {
+            Debug.Log(i);
+        }
+        
     }
     #region Timer
     private void UpdateTimer()
@@ -78,7 +95,7 @@ public class RaceScreenUIManager : MonoBehaviour
         for (int i = 0; i < CameraTrackers.Count; i++)
         {
             //buttons[i].onClick.RemoveAllListeners();
-            CameraTrackers[i].onClick.AddListener(() => raceCamera.SwitchCamera(i));
+            CameraTrackers[i].onClick.AddListener(() => SwitchCamera(i));
         }
     }
     private void InitRacerInfos()
@@ -89,7 +106,24 @@ public class RaceScreenUIManager : MonoBehaviour
             Debug.Log(i + "InitRacerInfos");
             RacerInfos[i].GetComponentInChildren<TextMeshProUGUI>().text = carManagers[i].CarInfo.Name;
             //RacerInfos[i].GetComponent<Button>().onClick.RemoveAllListeners();
-            RacerInfos[i].onClick.AddListener(() => raceCamera.SwitchTarget(carManagers[i].CarInfo.Name, false));
+            RacerInfos[i].onClick.AddListener(() => SwitchTarget(carManagers[i].CarInfo.Name));
+        }
+    }
+    public void SwitchCamera(int index)
+    {
+        //Debug.Log(index);
+        RaceCameraManager.SwitchCamera(MyGameManager.instance.RaceCamera, RaceCameraScripitObject.cameraDatas[index].FollowOffset);
+    }
+    public void SwitchTarget(string name)
+    {
+        CarManager[] carManagers = FindObjectsOfType<CarManager>();
+        foreach(var carManager in carManagers)
+        {
+            if(carManager.CarInfo.Name == name)
+            {
+                RaceCameraManager.SetTarget(MyGameManager.instance.RaceCamera, carManager.transform);
+                return;
+            }
         }
     }
 }
