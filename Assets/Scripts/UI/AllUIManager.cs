@@ -11,13 +11,15 @@ public class AllUIManager : MonoBehaviour
     public MissionEvent onRaceEndCarInfo;
     public void TryAgain()
     {
-        // 游戏轮次增加
-        MyGameManager.instance.GameRound++;
         EventsHandle();
         ChangeState();
         WinCurrency();
     }
-
+    public void GameRoundIncrease()
+    {
+        // 游戏轮次增加
+        MyGameManager.instance.GameRound++;
+    }
     protected virtual void EventsHandle()
     {
         // events
