@@ -8,6 +8,7 @@ public class CarManager : MonoBehaviour
     // store renderers
     MeshRenderer[] renderers;
     [SerializeField] private GameObject explosionPrefab;
+    private GameObject currentExplosion;
 
     internal double airDuration = 0;
     internal bool isRespawning = false;
@@ -161,8 +162,7 @@ public class CarManager : MonoBehaviour
             Respawn(true);
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         // 出界
         if (collision.transform.CompareTag(GlobalConstants.BOUNDARIES))
@@ -170,9 +170,17 @@ public class CarManager : MonoBehaviour
             //solidController.Respawn();
             Respawn(true);
         }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
         if (collision.transform.CompareTag("ExplosionTag"))
         {
             SpawnExplosion();
+        }
+        if (collision.transform.CompareTag("ExplosionDeathTag"))
+        {
+            SpawnExplosion();
+            Respawn(false);
         }
     }
     internal void Respawn(bool respawnWithExplosion)
@@ -228,9 +236,13 @@ public class CarManager : MonoBehaviour
 
     internal void SpawnExplosion()
     {
-       MyGameManager.instance.raceCamera.TryZoomOnDriver(CarInfo.Name);
-        GameObject newExplosion = Instantiate(explosionPrefab);
-        newExplosion.transform.position = transform.position;
+        if (currentExplosion == null)
+        {
+            MyGameManager.instance.raceCamera.TryZoomOnDriver(CarInfo.Name);
+            GameObject newExplosion = Instantiate(explosionPrefab);
+            newExplosion.transform.position = transform.position;
+            currentExplosion = newExplosion;
+        }
     }
 
     /// <summary>
