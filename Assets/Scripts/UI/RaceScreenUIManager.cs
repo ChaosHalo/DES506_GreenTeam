@@ -4,6 +4,7 @@ using UnityEngine;
 using MoreMountains.HighroadEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 public class RaceScreenUIManager : MonoBehaviour
 {
     public GameObject TimerTextComponent;
@@ -15,6 +16,8 @@ public class RaceScreenUIManager : MonoBehaviour
     public RaceCameraScripitObject RaceCameraScripitObject;
     public List<Button> RacerInfos = new List<Button>();
     public List<Button> CameraTrackers = new List<Button>();
+    public Text ScoreText2;
+    public List<TextMeshProUGUI> RankNames = new();
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +46,23 @@ public class RaceScreenUIManager : MonoBehaviour
     {
         UpdateTimerText();
         UpdateTimer();
+        UpdateRank();
+    }
+    public void UpdateRank()
+    {
+        // 去除空格
+        string rank = ScoreText2.text.Trim();
+        string[] ranks = rank.Split("|");
+        // 去除最后那个数字
+        for (int i = 0; i < ranks.Length; i++)
+        {
+            ranks[i] = ranks[i].Substring(0, ranks[i].Length - 1);
+        }
+        foreach (var i in rank)
+        {
+            Debug.Log(i);
+        }
+        
     }
     #region Timer
     private void UpdateTimer()
