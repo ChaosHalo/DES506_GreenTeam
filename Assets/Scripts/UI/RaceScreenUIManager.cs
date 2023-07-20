@@ -137,7 +137,7 @@ public class RaceScreenUIManager : MonoBehaviour
         timerText.text = GetCurTime().ToString("f3");
     }
     #endregion
-    private void InitCameraTracker()
+    /*private void InitCameraTracker()
     {
         for (int i = 0; i < CameraTrackers.Count; i++)
         {
