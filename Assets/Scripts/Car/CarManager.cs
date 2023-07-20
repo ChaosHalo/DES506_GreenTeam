@@ -64,7 +64,22 @@ public class CarManager : MonoBehaviour
         Timer();
         CheckAirTime();
     }
+    private VehicleAI vehicleAI;
+    private void OnEnable()
+    {
+        vehicleAI = GetComponent<VehicleAI>();
+        vehicleAI.StuckEvent.AddListener(OnStuck);
+    }
+    private void OnDisable()
+    {
+        if (vehicleAI != null) vehicleAI.StuckEvent.RemoveListener(OnStuck);
+    }
 
+
+    internal void OnStuck()
+    {
+        Respawn(true);
+    }
     private void CheckAirTime()
     {
         // calculate how long car is in air for
