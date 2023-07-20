@@ -76,7 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ce80dc470ff8946a1910fb4d429e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshObject: {fileID: 4082835939256575958}
 --- !u!1 &4082835939256575958
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,9 +87,10 @@ GameObject:
   - component: {fileID: 3738820069088984428}
   - component: {fileID: 309955207497347785}
   - component: {fileID: 2569824582470567427}
+  - component: {fileID: 3014912993228625524}
   m_Layer: 0
   m_Name: mesh
-  m_TagString: Untagged
+  m_TagString: Boundaries
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -160,3 +160,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3014912993228625524
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082835939256575958}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7286963873906345894, guid: d965819f1505dc842856e1a9ef8c9f7c, type: 3}

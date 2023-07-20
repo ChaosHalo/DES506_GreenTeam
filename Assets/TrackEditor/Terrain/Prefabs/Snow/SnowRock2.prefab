@@ -33,7 +33,7 @@ Transform:
   m_Children:
   - {fileID: 4041196112170696088}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!65 &4584540240030229771
 BoxCollider:
@@ -149,9 +149,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Snow rock 2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5f0c526a8ec760248b78f8c4e9397548,
+        type: 3}
+      propertyPath: m_TagString
+      value: Boundaries
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f0c526a8ec760248b78f8c4e9397548, type: 3}
+--- !u!1 &3701649791196849954 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5f0c526a8ec760248b78f8c4e9397548,
+    type: 3}
+  m_PrefabInstance: {fileID: 4584540238447303283}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4684721623169343737
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3701649791196849954}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8550125972033807716, guid: 5f0c526a8ec760248b78f8c4e9397548, type: 3}
 --- !u!4 &4041196112170696088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5f0c526a8ec760248b78f8c4e9397548,

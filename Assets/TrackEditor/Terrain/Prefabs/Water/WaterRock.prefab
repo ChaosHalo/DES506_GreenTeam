@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1437075204947043251}
   - component: {fileID: 3776155706502497461}
   - component: {fileID: 3596483764852245784}
-  - component: {fileID: 6114116213294350991}
+  - component: {fileID: 6805294964258239878}
   m_Layer: 0
   m_Name: WaterRock
   m_TagString: Untagged
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58ce80dc470ff8946a1910fb4d429e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &6114116213294350991
+--- !u!54 &6805294964258239878
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,9 +159,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: mesh
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c35df809b3552e048a6dbfd112bfbb8c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Boundaries
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: c35df809b3552e048a6dbfd112bfbb8c, type: 3}
+--- !u!1 &1347149203818329026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c35df809b3552e048a6dbfd112bfbb8c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2194203829212778131}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &2647460749424190069
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347149203818329026}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1054821056217790592, guid: c35df809b3552e048a6dbfd112bfbb8c, type: 3}
 --- !u!4 &1871766524373166456 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c35df809b3552e048a6dbfd112bfbb8c,

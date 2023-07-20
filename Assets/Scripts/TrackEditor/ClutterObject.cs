@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class ClutterObject : MonoBehaviour
 {
-    bool showMesh = true;
+    bool enableObject = true;
 
     GameObject meshObject;
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("RaceTrackSurface"))
         {
-            showMesh = false;
+            enableObject = false;
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("RaceTrackSurface"))
         {
-            showMesh = true;
+            enableObject = true;
         }
     }
 
@@ -29,11 +29,11 @@ public class ClutterObject : MonoBehaviour
 
     private void FixedUpdate()
     {
-        showMesh = true;
+        enableObject = true;
     }
 
     private void Update()
     {
-        meshObject.SetActive(showMesh);
+        meshObject.SetActive(enableObject);
     }
 }
