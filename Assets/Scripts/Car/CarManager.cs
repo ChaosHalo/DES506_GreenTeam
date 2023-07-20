@@ -9,7 +9,8 @@ public class CarManager : MonoBehaviour
     {
         get
         {
-            int index = Mathf.Min(CarInfoScriptableObject.CarInfos.Count - 1, CarInfoIndex);
+            // int index = Mathf.Min(CarInfoScriptableObject.CarInfos.Count - 1, CarInfoIndex);
+            int index = (MyGameManager.instance.GameRound % MyGameManager.instance.Season);
             return CarInfoScriptableObject.GetCarInfo(index);
         }
     }

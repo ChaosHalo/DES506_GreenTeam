@@ -5,6 +5,8 @@ using MoreMountains.HighroadEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using System.Linq;
+
 public class RaceScreenUIManager : MonoBehaviour
 {
     public GameObject TimerTextComponent;
@@ -13,11 +15,12 @@ public class RaceScreenUIManager : MonoBehaviour
     private float timer;
     private bool runTimerFlag;
     private RaceManager raceManager => MyGameManager.instance.GetRaceManager();
+    public CarInfoScriptableObject[] CarInfoScriptableObjects;
     public RaceCameraScripitObject RaceCameraScripitObject;
     public List<Button> RacerInfos = new List<Button>();
     public List<Button> CameraTrackers = new List<Button>();
     public Text ScoreText2;
-    public List<TextMeshProUGUI> RankNames = new();
+    public List<GameObject> Ranks = new();
     // Start is called before the first frame update
     void Start()
     {
@@ -50,19 +53,63 @@ public class RaceScreenUIManager : MonoBehaviour
     }
     public void UpdateRank()
     {
-        // 去除空格
-        string rank = ScoreText2.text.Trim();
-        string[] ranks = rank.Split("|");
-        // 去除最后那个数字
-        for (int i = 0; i < ranks.Length; i++)
+        string[] rankNames = ParsePlayers(ScoreText2.text);
+        Dictionary<string, Sprite> carRankImages = new();
+        foreach (var i in CarInfoScriptableObjects)
         {
-            ranks[i] = ranks[i].Substring(0, ranks[i].Length - 1);
+            carRankImages.Add(i.GetCarInfo(0).Name, i.CarUIInfo.RankImage);
         }
-        foreach (var i in rank)
+        for (int i = 0; i < carRankImages.Count; i++)
         {
-            Debug.Log(i);
+            string carName = rankNames[i];
+            if (carName == null || carName.Length == 0) return;
+            Image rankImage = Ranks[i].GetComponent<Image>();
+            TextMeshProUGUI rankName = Ranks[i].GetComponentInChildren<TextMeshProUGUI>();
+
+            if (carRankImages.ContainsKey(carName))
+            {
+                rankImage.sprite = carRankImages[carName];
+                rankName.text = carName;
+            }
+            else
+            {
+                // Handle the case when the carName is not found in the dictionary
+                Debug.LogError($"Car name '{carName}' not found in carRankImages dictionary.");
+            }
+
         }
-        
+    }
+    string[] ParsePlayers(string inputText)
+    {
+        // 按行分隔字符串
+        string[] lines = inputText.Split('\n');
+
+        // 初始化玩家数组
+        string[] playerArray = new string[lines.Length];
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            // 清除每行前后的空白字符
+            string playerName = lines[i].Trim();
+
+            // 移除每行中的"|"
+            playerName = playerName.Replace("| ", "");
+
+            // 移除名字后面的数字
+            playerName = RemoveNumbers(playerName);
+
+            // 存储每个玩家名字到数组中
+            if (playerName == "") continue;
+            playerArray[i] = playerName;
+            //Debug.Log(playerName);
+        }
+        return playerArray;
+    }
+
+    // 移除名字后面的数字
+    string RemoveNumbers(string input)
+    {
+        return new string(input.Where(c => !char.IsDigit(c)).ToArray());
     }
     #region Timer
     private void UpdateTimer()

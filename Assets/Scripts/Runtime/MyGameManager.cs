@@ -21,7 +21,6 @@ public class MyGameManager : MonoBehaviour
     /// 表示每多少GameRound轮后更新一次赛季信息
     /// </summary>
     public int Season = 3;
-    [HideInInspector]
     /// <summary>
     /// 游戏已运行轮次
     /// </summary>
