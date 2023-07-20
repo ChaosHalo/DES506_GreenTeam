@@ -51,7 +51,7 @@ public class RaceResultsUIManager : AllUIManager
         else
         {
             // 赛季特殊处理
-            EndOfSeason.gameObject.SetActive(true);
+            MyGameManager.instance.OnEndSeason(EndOfSeason.gameObject);
         }
         
     }

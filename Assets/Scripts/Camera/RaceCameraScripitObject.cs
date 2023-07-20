@@ -22,4 +22,5 @@ public class CameraData
     }
     public CameraTypes cameraType;
     public Vector3 FollowOffset;
+    public float fov;
 }

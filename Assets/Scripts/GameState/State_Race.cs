@@ -52,7 +52,7 @@ public class State_Race : IGameState
         if(raceCamera == null)
         {
             //raceCamera = GameObject.Instantiate(MyGameManager.instance.RaceCamera);
-            raceCamera = MyGameManager.instance.RaceCamera;
+            raceCamera = MyGameManager.instance.RaceCameraObject;
             // 初始化Follow和Target
             Transform car = GameObject.FindObjectOfType<CarManager>().transform;
             RaceCameraManager.SetTarget(raceCamera, car);

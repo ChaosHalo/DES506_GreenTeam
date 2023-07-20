@@ -121,10 +121,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7a2de86d33cdf43943f2fa6003e88d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minCount: 3
+  maxCount: 6
+  minBounds: -45
+  maxBound: 45
   terrainType: 5
   objectPrefabs: []
-  specialObject: {fileID: 5403514056900887119, guid: 9a256aa52b622cb418a21ef1634d803f,
-    type: 3}
+  specialObject:
+  - {fileID: 5403514056900887119, guid: 9a256aa52b622cb418a21ef1634d803f, type: 3}
+  - {fileID: 7205237501079132427, guid: 25ffcce5fc1ecd34b997a600bab210bf, type: 3}
 --- !u!65 &66017806235344992
 BoxCollider:
   m_ObjectHideFlags: 0
