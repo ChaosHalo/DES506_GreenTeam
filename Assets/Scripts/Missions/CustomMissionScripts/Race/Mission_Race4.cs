@@ -11,6 +11,8 @@ public class Mission_Race4 : Mission
         base.InitialiseMission();
         if (int2 == int3)
             FixDuplicateVariableValues();
+
+        description=GetDescriptionText();
     }
 
     private void FixDuplicateVariableValues()

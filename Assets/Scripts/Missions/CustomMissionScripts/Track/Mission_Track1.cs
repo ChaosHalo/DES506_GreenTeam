@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,5 +22,10 @@ public class Mission_Track1 : Mission
             return Mission.Difficulty.MEDIUM;
         else 
             return Mission.Difficulty.HARD;
+    }
+    public override string GetProgressString()
+    {
+        int currentProgress = Mathf.Clamp(goalInt, 0, int1);
+        return " (" + currentProgress + "/" + int1 + ")";
     }
 }

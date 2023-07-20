@@ -72,6 +72,7 @@ public class MyGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
         //SetNewState(SceneManager.GetActiveScene().buildIndex, false);
         SetNewState(0, false);
         SceneManager.sceneLoaded += OnSceneLoaded;

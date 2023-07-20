@@ -32,7 +32,7 @@ public class MissionUI : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             if (missionTexts[i].text != null)
-                missionTexts[i].text = MyGameManager.instance.missionManager.currentMissions[i].GetDescriptionText();
+                missionTexts[i].text = MyGameManager.instance.missionManager.currentMissions[i].description + "<b> <color=#798F9D>" + MyGameManager.instance.missionManager.currentMissions[i].GetProgressString();
             if (missionDifficultyIndicators[i] != null)
                 missionDifficultyIndicators[i].UpdateDifficulty(MyGameManager.instance.missionManager.currentMissions[i].GetDifficulty());
             if (rewardTexts[i].text != null)

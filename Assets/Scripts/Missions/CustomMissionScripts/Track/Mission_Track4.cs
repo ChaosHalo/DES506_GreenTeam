@@ -22,4 +22,9 @@ public class Mission_Track4 : Mission
         else
             return Mission.Difficulty.HARD;
     }
+    public override string GetProgressString()
+    {
+        int currentProgress = Mathf.Clamp(goalInt, 0, int1);
+        return " (" + currentProgress + "/" + int1 + ")";
+    }
 }

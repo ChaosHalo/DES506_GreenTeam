@@ -112,6 +112,14 @@ public class Mission : ScriptableObject
 
     public virtual string GetDescriptionText() { return "NONE"; }
     public virtual bool IsGoalReached() { return false; }
+
+    public virtual string GetProgressString() 
+    { 
+        if(missionType==Type.TRACK)
+            return " (" + (Convert.ToInt32(IsGoalReached())).ToString() + "/1)";
+        else
+            return " (0/1)";
+    }
     public virtual Mission.Difficulty GetDifficulty() { return Mission.Difficulty.EASY; }
 
     public Color GetDifficultyColour()

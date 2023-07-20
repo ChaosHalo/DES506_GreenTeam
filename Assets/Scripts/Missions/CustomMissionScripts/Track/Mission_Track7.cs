@@ -36,4 +36,9 @@ public class Mission_Track7 : Mission
         else
             return Mission.Difficulty.EASY;
     }
+    public override string GetProgressString()
+    {
+        int currentProgress = Mathf.Clamp(goalInt, 0, int1);
+        return " (" + currentProgress + "/" + int1 + ")";
+    }
 }
