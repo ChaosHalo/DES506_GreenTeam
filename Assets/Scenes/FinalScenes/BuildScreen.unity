@@ -6041,6 +6041,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 907506413}
+    - target: {fileID: 83451200, guid: 799c779d9bb33b042869d74994138fff, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1989633832}
+    - target: {fileID: 83451200, guid: 799c779d9bb33b042869d74994138fff, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RerollAllMissions
+      objectReference: {fileID: 0}
     - target: {fileID: 215455783, guid: 799c779d9bb33b042869d74994138fff, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -6392,11 +6400,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3088657054915131104, guid: 799c779d9bb33b042869d74994138fff,
-        type: 3}
-      propertyPath: RaceCounter
-      value: 
-      objectReference: {fileID: 679103708}
     - target: {fileID: 3191535656316693888, guid: 799c779d9bb33b042869d74994138fff,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -6477,11 +6480,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4466369191852731437, guid: 799c779d9bb33b042869d74994138fff,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1989633832}
     - target: {fileID: 4672426743059374845, guid: 799c779d9bb33b042869d74994138fff,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -7794,18 +7792,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677374712}
   m_CullTransparentMesh: 1
---- !u!114 &679103708 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1362055686043850372, guid: 799c779d9bb33b042869d74994138fff,
-    type: 3}
-  m_PrefabInstance: {fileID: 515150739}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &681803494
 GameObject:
   m_ObjectHideFlags: 0

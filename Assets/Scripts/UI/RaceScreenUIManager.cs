@@ -42,7 +42,7 @@ public class RaceScreenUIManager : MonoBehaviour
             raceManager.EndRaceEvent.RemoveListener(StopTimer);
         }
         StopTimer();
-        
+
     }
     // Update is called once per frame
     void Update()
@@ -136,26 +136,27 @@ public class RaceScreenUIManager : MonoBehaviour
     {
         timerText.text = GetCurTime().ToString("f3");
     }
+}
     #endregion
-    /*private void InitCameraTracker()
-    {
-        for (int i = 0; i < CameraTrackers.Count; i++)
-        {
-            //buttons[i].onClick.RemoveAllListeners();
-           // CameraTrackers[i].onClick.AddListener(() => SwitchCamera(i));
-        }
-    }
-    private void InitRacerInfos()
-    {
-        CarManager[] carManagers = FindObjectsOfType<CarManager>();
-        for(int i = 0; i < RacerInfos.Count; i++)
-        {
-            Debug.Log(i + "InitRacerInfos");
-            RacerInfos[i].GetComponentInChildren<TextMeshProUGUI>().text = carManagers[i].CarInfo.Name;
-            //RacerInfos[i].GetComponent<Button>().onClick.RemoveAllListeners();
-          //  RacerInfos[i].onClick.AddListener(() => SwitchTarget(carManagers[i].CarInfo.Name));
-        }
-    }
+    //*private void InitCameraTracker()
+    //{
+    //    for (int i = 0; i < CameraTrackers.Count; i++)
+    //    {
+    //        //buttons[i].onClick.RemoveAllListeners();
+    //       // CameraTrackers[i].onClick.AddListener(() => SwitchCamera(i));
+    //    }
+    //}
+    //private void InitRacerInfos()
+    //{
+    //    CarManager[] carManagers = FindObjectsOfType<CarManager>();
+    //    for(int i = 0; i < RacerInfos.Count; i++)
+    //    {
+    //        Debug.Log(i + "InitRacerInfos");
+    //        RacerInfos[i].GetComponentInChildren<TextMeshProUGUI>().text = carManagers[i].CarInfo.Name;
+    //        //RacerInfos[i].GetComponent<Button>().onClick.RemoveAllListeners();
+    //      //  RacerInfos[i].onClick.AddListener(() => SwitchTarget(carManagers[i].CarInfo.Name));
+    //    }
+    //}
     //public void SwitchCamera(int index)
     //{
     //    //Debug.Log(index);
@@ -173,4 +174,3 @@ public class RaceScreenUIManager : MonoBehaviour
     //        }
     //    }
     //}
-}
