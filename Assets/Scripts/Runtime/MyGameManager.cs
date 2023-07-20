@@ -72,7 +72,6 @@ public class MyGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Application.targetFrameRate = Screen.currentResolution.refreshRate;
         //SetNewState(SceneManager.GetActiveScene().buildIndex, false);
         SetNewState(0, false);
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -200,13 +199,13 @@ public class MyGameManager : MonoBehaviour
 
     public void SetShadowQuality(int shadowQuality)
     {
-        //light.shadowResolution = (LightShadowResolution)1;
+        light.shadowResolution = (LightShadowResolution)1;
 
-        //float shadowDistance = 500;
-        //if (shadowQuality == 1)
-        //    shadowDistance = 250;
-        //QualitySettings.shadowDistance = shadowDistance;
-        //Debug.Log(QualitySettings.shadowDistance);
+        float shadowDistance = 500;
+        if (shadowQuality == 1)
+            shadowDistance = 250;
+        QualitySettings.shadowDistance = shadowDistance;
+        Debug.Log(QualitySettings.shadowDistance);
     }
 
 

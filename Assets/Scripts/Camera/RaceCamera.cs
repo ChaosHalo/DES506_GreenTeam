@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RaceCamera : MonoBehaviour
 {
-    private float cameraSwitchCooldown = 1f;
+    private float cameraSwitchCooldown = 1.75f;
     private float minDistanceBeforeSwitch = 50f;
     private bool isSwitchCameraOnCooldown = false;
     private string currentTrackedDriver = "Felicia";
