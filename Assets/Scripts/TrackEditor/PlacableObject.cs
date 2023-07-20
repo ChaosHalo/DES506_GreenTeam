@@ -2,6 +2,8 @@ using Mono.Cecil.Cil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class PlacableObject : MonoBehaviour
@@ -20,8 +22,8 @@ public class PlacableObject : MonoBehaviour
     [SerializeField]
     private Material connectionMaterialPrefab;
     private Material connectionMaterialInstance;
-    private Material originalMaterialInstance;
-    private Renderer renderer;
+    private List<Material> originalMaterialInstance=new();
+    private Renderer[] renderers;
 
     [SerializeField]
     internal bool canScale = true;
@@ -66,7 +68,10 @@ public class PlacableObject : MonoBehaviour
         scaleNext = scaleLarge;
 
         inputManager = FindObjectOfType<InputManager>();
-        renderer = GetComponent<Renderer>();
+        renderers = GetComponentsInChildren<Renderer>();
+
+        foreach (Renderer renderer in renderers)
+            originalMaterialInstance.Add(renderer.material);
     }
 
     private void Start()
@@ -111,23 +116,23 @@ public class PlacableObject : MonoBehaviour
 
     private void PrepareConnectionMaterial()
     {
-        originalMaterialInstance=renderer.material;
-        renderer.material = connectionMaterialInstance;
+       // originalMaterialInstance=renderer.material;
+       // renderer.material = connectionMaterialInstance;
        // Color c = new(0.1f, 0.1f, 0.1f);
        // Color c = Color.red;
        // c.a = 0.75f;
        // connectionMaterialInstance.color = c;
+
+        foreach (Renderer renderer in renderers)
+        {
+            Material[] materials = renderer.materials;
+            for (int i = 0; i < materials.Length; i++)
+            {
+                materials[i] = connectionMaterialInstance;
+            }
+            renderer.materials = materials;
+        }
         UpdateConnectionState();
-        //Renderer[] renderers = GetComponentsInChildren<Renderer>();
-        //foreach (Renderer renderer in renderers)
-        //{
-        //    Material[] materials = renderer.materials;
-        //    for (int i = 0; i < materials.Length; i++)
-        //    {
-        //        materials[i] = connectionMaterialInstance;
-        //    }
-        //    renderer.materials = materials;
-        //}
     }
 
     internal virtual void UpdateScale()
@@ -161,11 +166,15 @@ public class PlacableObject : MonoBehaviour
             return;
 
         isConnected = autoRotate.CheckForConnections();
-        //unconnectedIndicator.SetActive(!isConnected);
 
         if (connectionMaterialInstance)
         {
-            renderer.material = isConnected ? originalMaterialInstance : connectionMaterialInstance;
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                renderers[i].material = connectionMaterialInstance;
+                renderers[i].material = isConnected ? originalMaterialInstance[i] : connectionMaterialInstance;
+            }
+            //renderer.material = isConnected ? originalMaterialInstance : connectionMaterialInstance;
         }
     }
 
@@ -212,11 +221,17 @@ public class PlacableObject : MonoBehaviour
     IEnumerator DelayFallAnim(float delay)
     {
         isFallingAnim = true;
-        GetComponent<MeshRenderer>().enabled = false;
-        transform.parent.localPosition = new Vector3(transform.localPosition.x + 50, transform.localPosition.y + verticalOffset, transform.localPosition.z + 50);
+        ToggleRenderes(false);
+        transform.parent.localPosition = new Vector3(50, transform.localPosition.y + verticalOffset, 50);
         placedPos = new Vector3(transform.parent.localPosition.x, transform.parent.localPosition.y - verticalOffset, transform.parent.localPosition.z);
         yield return new WaitForSeconds(delay);
-        GetComponent<MeshRenderer>().enabled = true;
+        ToggleRenderes(true);
         isFalling = true;
+    }
+
+    private void ToggleRenderes(bool b)
+    {
+        foreach (MeshRenderer renderer in renderers)
+            renderer.enabled = b;
     }
 }

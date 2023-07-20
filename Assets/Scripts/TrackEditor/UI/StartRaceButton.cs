@@ -6,6 +6,7 @@ public class StartRaceButton : MonoBehaviour
 {
     public GameObject trackBuilderScreen;
     public GameObject trackBuilderUI;
+    public GameObject raceResultsUI;
     public GameObject upcomingRacersScreen;
     public GameStateManager gameStateManager;
 
@@ -16,6 +17,7 @@ public class StartRaceButton : MonoBehaviour
 
         trackBuilderScreen.SetActive(false);
         trackBuilderUI.SetActive(false);
+        raceResultsUI.SetActive(false);
         upcomingRacersScreen.SetActive(true);
     }
 }
