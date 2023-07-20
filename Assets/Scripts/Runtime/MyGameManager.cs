@@ -44,14 +44,15 @@ public class MyGameManager : MonoBehaviour
     bool gamestateNewScene = false;
 
     public MissionManager missionManager;
-    public GameObject RaceCamera;
+    public GameObject RaceCameraObject;
+    public RaceCamera raceCamera;
     // singleton instance
     internal static MyGameManager instance;
 
     void Awake()
     {
-        //Application.targetFrameRate = Screen.currentResolution.refreshRate;
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
+       // Application.targetFrameRate = 60;
 
         SetupInstance();
         InitManager();
@@ -198,15 +199,20 @@ public class MyGameManager : MonoBehaviour
 
     public void SetShadowQuality(int shadowQuality)
     {
-        light.shadowResolution = (LightShadowResolution)1;
+        //light.shadowResolution = (LightShadowResolution)1;
 
-        float shadowDistance = 500;
-        if (shadowQuality == 1)
-            shadowDistance = 100;
-        QualitySettings.shadowDistance = shadowDistance;
-        Debug.Log(QualitySettings.shadowDistance);
+        //float shadowDistance = 500;
+        //if (shadowQuality == 1)
+        //    shadowDistance = 250;
+        //QualitySettings.shadowDistance = shadowDistance;
+        //Debug.Log(QualitySettings.shadowDistance);
     }
 
+
+    public void OnEndSeason(GameObject endSeasonObject)
+    {
+        endSeasonObject.SetActive(true);
+    }
     #region GET / SET
     internal StartPieceInfo GetStartPieceInfoObject()
     {

@@ -2,7 +2,9 @@ using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraManager : MonoBehaviour
 {
@@ -24,8 +26,6 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private Vector2 maxBounds;
 
     private float cameraDistance;
-   // private bool isMouseDown = false;
-   // private Vector3 mouseDown;
     private Vector3 anchorStartPos;
     private Vector3 anchorOriginalPos;
     private Vector3 anchorCurPos;
@@ -34,13 +34,17 @@ public class CameraManager : MonoBehaviour
     internal bool isPanning = false;
     bool isZooming = false;
 
+    // windows specific
+    private bool isMouseDown = false;
+    private Vector3 mouseDown;
+
     private void Start()
     {
-        anchorOriginalPos= anchor.transform.position;
+        anchorOriginalPos = anchor.transform.position;
         anchorStartPos = anchor.transform.position;
         anchorCurPos = anchor.transform.position;
         cameraDistance = startZoom;
-        camPos=virtualCamera.transform.position;
+        camPos = virtualCamera.transform.position;
     }
 
     private void Update()
@@ -49,6 +53,8 @@ public class CameraManager : MonoBehaviour
             componentBase = virtualCamera.GetCinemachineComponent(CinemachineCore.Stage.Body);
 
         isZooming = false;
+
+        PanCameraWindows();
     }
 
     private bool CanUpdateCamera()
@@ -108,6 +114,44 @@ public class CameraManager : MonoBehaviour
         float panDistance = Vector3.Distance(inputManager.posMouseDown, inputManager.posMouseCur);
         isPanning = panDistance > 5;
     }
+
+    internal void PanCameraWindows()
+    {
+        if (Application.platform == RuntimePlatform.Android || Application.isMobilePlatform)
+            return;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (inputManager.IsPointerOverUI() == false)
+            {
+                isMouseDown = true;
+                mouseDown = Input.mousePosition;
+                anchorStartPos = anchor.transform.position;
+            }
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            isMouseDown = false;
+            anchorStartPos = anchor.transform.position;
+        }
+
+        anchorCurPos = anchorStartPos;
+
+        if (isMouseDown)
+        {
+            float scalingValue = Mathf.Sin(cameraDistance / maxZoom);
+            float mouseDistanceX = mouseDown.x - Input.mousePosition.x;
+            float mouseDistanceY = mouseDown.y - Input.mousePosition.y;
+            anchorCurPos.x += mouseDistanceX * scalingValue;
+            anchorCurPos.z += mouseDistanceY * scalingValue;
+            ClampAndSetCameraPosition();
+        }
+
+        // camera is panning if mouse down does not equal mouse current
+        float panDistance = Vector3.Distance(mouseDown, Input.mousePosition);
+        isPanning = panDistance > 5;
+    }
+
 
     public void OnCameraPanTap()
     {
