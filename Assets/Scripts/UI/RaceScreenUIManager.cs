@@ -137,7 +137,7 @@ public class RaceScreenUIManager : MonoBehaviour
         timerText.text = GetCurTime().ToString("f3");
     }
     #endregion
-    private void InitCameraTracker()
+    /*private void InitCameraTracker()
     {
         for (int i = 0; i < CameraTrackers.Count; i++)
         {
@@ -155,11 +155,11 @@ public class RaceScreenUIManager : MonoBehaviour
             //RacerInfos[i].GetComponent<Button>().onClick.RemoveAllListeners();
             RacerInfos[i].onClick.AddListener(() => SwitchTarget(carManagers[i].CarInfo.Name));
         }
-    }
-    public void SwitchCamera(int index)
+    }*/
+    /*public void SwitchCamera(int index)
     {
         //Debug.Log(index);
-        RaceCameraManager.SwitchCamera(MyGameManager.instance.RaceCamera, RaceCameraScripitObject.cameraDatas[index].FollowOffset);
+        RaceCameraManager.SwitchCamera(MyGameManager.instance.raceCamera, RaceCameraScripitObject.cameraDatas[index].FollowOffset);
     }
     public void SwitchTarget(string name)
     {
@@ -172,5 +172,5 @@ public class RaceScreenUIManager : MonoBehaviour
                 return;
             }
         }
-    }
+    }*/
 }
