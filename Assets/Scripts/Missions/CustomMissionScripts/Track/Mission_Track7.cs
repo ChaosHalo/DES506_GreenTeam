@@ -38,7 +38,7 @@ public class Mission_Track7 : Mission
     }
     public override string GetProgressString()
     {
-        int currentProgress = Mathf.Clamp(goalInt, 0, int1);
-        return " (" + currentProgress + "/" + int1 + ")";
+        string finalColour = IsGoalReached() ? colourComplete : colourInProgress;
+        return finalColour + "<b> (" + goalInt + "/" + int1 + ")";
     }
 }

@@ -20,6 +20,9 @@ public class Mission : ScriptableObject
     public enum Difficulty { EASY, MEDIUM, HARD }
     public Type missionType;
     public enum Type { NONE, TRACK, RACE }
+
+    internal string colourInProgress = "<color=#798F9D>";
+    internal string colourComplete = "<color=#00B729>";
     #endregion
 
     #region GOAL
@@ -114,11 +117,11 @@ public class Mission : ScriptableObject
     public virtual bool IsGoalReached() { return false; }
 
     public virtual string GetProgressString() 
-    { 
+    {
         if(missionType==Type.TRACK)
-            return " (" + (Convert.ToInt32(IsGoalReached())).ToString() + "/1)";
+            return colourInProgress + "<b> (" + (Convert.ToInt32(IsGoalReached())).ToString() + "/1)";
         else
-            return " (0/1)";
+            return colourInProgress+ "<b> (0/1)";
     }
     public virtual Mission.Difficulty GetDifficulty() { return Mission.Difficulty.EASY; }
 
