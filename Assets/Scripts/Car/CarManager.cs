@@ -34,6 +34,11 @@ public class CarManager : MonoBehaviour
         }
     }
 
+    internal bool HasFinishedRace()
+    {
+        return solidController.FinalRank > 0 ? true : false;
+    }
+
     public float FinalTime;
     private bool IsTimerRunning;
     private bool twoLapFlag = false;
@@ -175,7 +180,7 @@ public class CarManager : MonoBehaviour
     private IEnumerator RespawnWithDelay(Vector3 respawnPos)
     {
         // move camera to another driver after this one explodes
-        MyGameManager.instance.raceCamera.StartCoroutine(MyGameManager.instance.raceCamera.SwitchToAnotherDriverAfterDelay(2.25f));
+        //MyGameManager.instance.raceCamera.StartCoroutine(MyGameManager.instance.raceCamera.SwitchToAnotherDriverAfterDelay(2.25f));
 
         // spawn explosion particle
         SpawnExplosion();

@@ -1,49 +1,76 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RaceCamera: MonoBehaviour
+public class RaceCamera : MonoBehaviour
 {
     private float cameraSwitchCooldown = 1f;
+    private float minDistanceBeforeSwitch = 50f;
     private bool isSwitchCameraOnCooldown = false;
     private string currentTrackedDriver = "Felicia";
+    private CarManager currentTrackedCarManager;
     public RaceCameraScripitObject RaceCameraScripitObject;
 
-    private List<string> allDrivers = new List<string>() { "Felicia", "Mik", "Peter", "Billy" };
-    private List<string> availableDrivers=new();
-    CarManager[] carManagers;
+    private List<string> allDriverStrings = new List<string>() { "Felicia", "Mik", "Peter", "Billy" };
+    private List<string> availableDriverStrings = new();
+
+    public enum Type { ACTION, FOCUS };
+    public Type cameraType;
+
+    [SerializeField] private List<CarManager> allCars = new();
+
+    [SerializeField] private GameObject cameraAction;
+    [SerializeField] private GameObject cameraFocus;
+    private GameObject currentCameraObject;
 
     private void Start()
     {
-        availableDrivers.AddRange(allDrivers);
+        availableDriverStrings.AddRange(allDriverStrings);
     }
 
     private void Update()
     {
-        AutoSwitchCamera();
+        if (cameraType == Type.ACTION)
+        {
+            GetDrivers();
+            UpdateEligibleDCrivers();
+        }
     }
 
-    private void AutoSwitchCamera()
+    internal void GetDrivers()
     {
-        if (isSwitchCameraOnCooldown)
-            return;
+        allCars.Clear();
+        allCars.AddRange(FindObjectsOfType<CarManager>());
+        if (currentTrackedCarManager == null)
+            if (allCars.Count > 0)
+                currentTrackedCarManager = allCars[0];
+    }
 
-        // all cars
-        carManagers = FindObjectsOfType<CarManager>();
-        List<CarManager> allCars = new();
-
-        // only check cars which are not respawning
-        foreach (CarManager carManager in carManagers)
-            if (carManager.isRespawning == false)
-                allCars.Add(carManager);
-
-        // sort by longest air duration
-        allCars.Sort(SortByAirDuration);
-
-        // switch to car with longest air duration
+    private void UpdateEligibleDCrivers()
+    {
         if (allCars.Count > 0)
-            if (allCars[allCars.Count - 1] != null)
-                SwitchTarget(allCars[allCars.Count - 1].CarInfo.Name, false, true);
+        {
+            allCars.RemoveAll(item => item.HasFinishedRace());
+            allCars.RemoveAll(item => item.isRespawning);
+
+            // sort by longest air duration
+            allCars.Sort(SortByAirDuration);
+
+            // switch to car with longest air duration
+            if (allCars.Count > 0)
+            {
+                CarManager car = allCars[allCars.Count - 1];
+                if (car != null)
+                {
+                    if(Vector3.Distance(car.gameObject.transform.position, currentTrackedCarManager.transform.position)>minDistanceBeforeSwitch)
+                    {
+                        SwitchTarget(car.CarInfo.Name, false, true);
+                    }
+                }
+            }
+        }
+
     }
 
     static int SortByAirDuration(CarManager c1, CarManager c2)
@@ -67,22 +94,23 @@ public class RaceCamera: MonoBehaviour
     }
 
     // if autoSwitchAfterDelay == TRUE then switch to a different driver after delay
-    public void SwitchTarget(string name, bool autoSwitchAfterDelay = false, bool startCooldown=false)
+    public void SwitchTarget(string name, bool autoSwitchAfterDelay = false, bool startCooldown = false)
     {
         if (startCooldown && isSwitchCameraOnCooldown)
             return;
 
-        foreach (var carManager in carManagers)
+        foreach (var carManager in allCars)
         {
             if (carManager.CarInfo.Name == name)
             {
                 currentTrackedDriver = name;
+                currentTrackedCarManager = carManager;
                 RaceCameraManager.SetTarget(MyGameManager.instance.RaceCameraObject, carManager.transform);
 
                 RaceCameraManager.SetFOV(MyGameManager.instance.RaceCameraObject, 25);
-                
-                if(autoSwitchAfterDelay)
-                    StartCoroutine(SwitchToAnotherDriverAfterDelay(2.25f));
+
+                //if (autoSwitchAfterDelay)
+                   // StartCoroutine(SwitchToAnotherDriverAfterDelay(2.25f));
 
                 if (startCooldown)
                     StartCoroutine(RunSwitchTargetCooldown());
@@ -104,25 +132,41 @@ public class RaceCamera: MonoBehaviour
     {
         //RaceCameraManager.SetFOV(MyGameManager.instance.RaceCameraObject, 17.5f);
         yield return new WaitForSeconds(duration);
-       // RaceCameraManager.SetFOV(MyGameManager.instance.RaceCameraObject, 25);
+        // RaceCameraManager.SetFOV(MyGameManager.instance.RaceCameraObject, 25);
     }
 
     // switch to different driver after delay
     internal IEnumerator SwitchToAnotherDriverAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        availableDrivers.Clear();
-        availableDrivers.AddRange(allDrivers);
-        availableDrivers.Remove(currentTrackedDriver);
-        SwitchTarget(availableDrivers[Random.Range(0, availableDrivers.Count)], false, true);
+        availableDriverStrings.Clear();
+        availableDriverStrings.AddRange(allDriverStrings);
+        availableDriverStrings.Remove(currentTrackedDriver);
+        SwitchTarget(availableDriverStrings[Random.Range(0, availableDriverStrings.Count)], false, true);
     }
 
 
     #region EditorStuff
     // editor function
-    public void SwitchTarget_Editor(string name)
+    public void SwitchTarget_Editor(string name) => SwitchTarget(name, false);
+    public void CameraAction()
     {
-        SwitchTarget(name, false);
+        cameraType = Type.ACTION;
+        cameraAction.SetActive(true);
+        cameraFocus.SetActive(false);
+        currentCameraObject = cameraAction;
+        MyGameManager.instance.RaceCameraObject = currentCameraObject;
+        SwitchCamera(0);
+    }
+
+    public void CameraFocus()
+    {
+        cameraType = Type.FOCUS;
+        cameraAction.SetActive(false);
+        cameraFocus.SetActive(true);
+        currentCameraObject = cameraFocus;
+        MyGameManager.instance.RaceCameraObject = currentCameraObject;
+        SwitchCamera(1);
     }
     #endregion
 }
