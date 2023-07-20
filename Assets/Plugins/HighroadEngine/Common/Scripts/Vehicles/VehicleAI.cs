@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using MoreMountains.Tools;
-
+using UnityEngine.Events;
 namespace MoreMountains.HighroadEngine
 {
 	/// <summary>
@@ -16,6 +16,7 @@ namespace MoreMountains.HighroadEngine
 	[RequireComponent(typeof(BaseController))]
 	public class VehicleAI : MonoBehaviour 
 	{
+		public UnityEvent StuckEvent;
 		/// If Active, AI controls the vehicle
 		public bool Active;
 
@@ -106,7 +107,8 @@ namespace MoreMountains.HighroadEngine
 
 			if (IsStuck())
             {
-                _controller.Respawn();
+				StuckEvent?.Invoke();
+                //_controller.Respawn();
                 return;
             }
 

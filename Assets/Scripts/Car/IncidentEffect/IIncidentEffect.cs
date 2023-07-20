@@ -29,7 +29,7 @@ public interface IIncidentEffect
     }
     static void DebugLog(string carName, string effectName,string effectDescription, string effectValue, string effectObject)
     {
-        Debug.Log(carName + " " + effectName + " " + effectDescription + ": " + effectValue + " " + effectObject);
+        //Debug.Log(carName + " " + effectName + " " + effectDescription + ": " + effectValue + " " + effectObject);
     }
 }
 

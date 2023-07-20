@@ -240,6 +240,7 @@ GameObject:
   - component: {fileID: 4168620319936427301}
   - component: {fileID: 4168305122019000497}
   - component: {fileID: 4775938815491979320}
+  - component: {fileID: 2053670324828686620}
   m_Layer: 17
   m_Name: Muscle
   m_TagString: Car
@@ -283,7 +284,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 800
   m_Drag: 1
-  m_AngularDrag: 10
+  m_AngularDrag: 8
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -336,12 +337,12 @@ MonoBehaviour:
   SteeringSpeed: 10000
   AutoForward: 0
   _finisherPosition: 0
-  EngineForce: 1444.4445
+  EngineForce: 1600
   CenterOfMass: {x: 0, y: -1, z: 0}
   GroundDistance: 2
   OffroadPenaltyFactor: 1
-  CarGrip: 57.77778
-  FullThrottleVelocity: 130
+  CarGrip: 40
+  FullThrottleVelocity: 12
   MinimalTurningSpeed: 1
   ForwardForceHeight: 0.5
   TorqueCurve:
@@ -437,7 +438,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4056022515747808193}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7f7b9e55c47c4bb4a1a665d60fbdf95, type: 3}
   m_Name: 
@@ -456,8 +457,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0008d6f6cc4fb41a2ad6eb3fd9b0e1d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StuckEvent:
+    m_PersistentCalls:
+      m_Calls: []
   Active: 0
-  TimeBeforeStuck: 2.87
+  TimeBeforeStuck: 2
   MinimalDistanceToNextWaypoint: 15
   FullThrottle: 1
   SmallThrottle: 0.4
@@ -475,7 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517e366c652644e06a308ac8f13ceb8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LobbyName: Darren
+  LobbyName: Billy
   lobbySprite: {fileID: 0}
 --- !u!114 &4168305122019000497
 MonoBehaviour:
@@ -526,6 +530,22 @@ MonoBehaviour:
   RenderDelay: 0.5
   m_Effect: 2
   CustomIconPrefab: {fileID: 0}
+--- !u!114 &2053670324828686620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4056022515747808193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a9540367042bd4c82500a34f50c160, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Smokes: {fileID: 4219564099012681969}
+  SmokeCollisionNum: 10
+  ExplosionForce: 10
+  pushForce: 10000
 --- !u!1 &4056184549773968879
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,9 +572,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4056184549773968879}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.19, y: -0.98, z: -3.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.09, y: 1.94, z: -0.76}
+  m_LocalScale: {x: 2.17, y: 2.17, z: 2.17}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4062232925689085565}
   m_RootOrder: 5
