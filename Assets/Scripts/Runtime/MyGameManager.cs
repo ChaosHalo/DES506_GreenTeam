@@ -48,6 +48,7 @@ public class MyGameManager : MonoBehaviour
     // singleton instance
     internal static MyGameManager instance;
 
+    public CarInfoScriptableObject[] carInfoScriptableObjects;
     void Awake()
     {
         Application.targetFrameRate = Screen.currentResolution.refreshRate;
@@ -211,6 +212,15 @@ public class MyGameManager : MonoBehaviour
     public void OnEndSeason(GameObject endSeasonObject)
     {
         endSeasonObject.SetActive(true);
+    }
+
+    public CarInfoScriptableObject GetCarInfoScriptableObjectByName(string carName)
+    {
+        foreach(var i in carInfoScriptableObjects)
+        {
+            if(i.CarName == carName) return i;
+        }
+        return null;
     }
     #region GET / SET
     internal StartPieceInfo GetStartPieceInfoObject()

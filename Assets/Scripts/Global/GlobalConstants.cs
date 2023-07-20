@@ -26,6 +26,8 @@ public static class GlobalConstants
     public const string DARREN = "Darren";
     public const string FELICIA = "Felicia";
     public const string SUZIE = "Suzie";
+    public const string MIK = "Mik";
+    public const string PETER = "Peter";
     #endregion
 }
 

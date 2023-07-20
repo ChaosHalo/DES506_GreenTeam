@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CarInfo", menuName = "Data/Car", order = 0)]
 public class CarInfoScriptableObject : ScriptableObject
 {
-    //public CarInfo CarInfo;
+    public string CarName;
     public CarUIInfo CarUIInfo;
     public List<CarInfo> CarInfos = new();
     public CarInfo GetCarInfo(int index)
