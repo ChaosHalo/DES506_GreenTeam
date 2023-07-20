@@ -12,13 +12,10 @@ public class State_GenerateWorld : IBuildingState
     ObjectPlacer objectPlacer;
     Grid grid;
     ObjectsDatabaseSO database;
+    WorldgenDatabaseSO worldgenDatabase;
     PerlinNoise perlinNoise;
     PlacementSystem placementSystem;
     int gridSize;
-
-    // generate pre-placed track pieces within these bounds
-    int generationBoundsX = 6;
-    int generationBoundsY = 4;
 
     // store used track positions
     List<Vector3Int> availablePositions = new();
@@ -59,13 +56,14 @@ public class State_GenerateWorld : IBuildingState
     private List<ObjectToPlace> allObjectsToPlace=new();
     int objectNumber = 0;
 
-    public State_GenerateWorld(GridData terrainData, GridData trackData, ObjectsDatabaseSO database, Grid grid, ObjectPlacer objectPlacer, PerlinNoise perlinNoise, int gridSize, PlacementSystem placementSystem)
+    public State_GenerateWorld(GridData terrainData, GridData trackData, ObjectsDatabaseSO database, WorldgenDatabaseSO worldgenDatabase, Grid grid, ObjectPlacer objectPlacer, PerlinNoise perlinNoise, int gridSize, PlacementSystem placementSystem)
     {
         this.terrainData = terrainData;
         this.trackData = trackData;
         this.objectPlacer = objectPlacer;
         this.gridSize = gridSize;
         this.database = database;
+        this.worldgenDatabase = worldgenDatabase;
         this.grid = grid;
         this.perlinNoise = perlinNoise;
         this.placementSystem = placementSystem;
@@ -178,13 +176,18 @@ public class State_GenerateWorld : IBuildingState
 
     private void GenerateTrack()
     {
-        //List<int> IDs = new List<int>() { 0, 1, 8 }; // track pieces to place
-       List<int> IDs = new List<int>() { 8 }; // track pieces to place
+        // get list of track IDs to place
+        WorldgenData worldData = worldgenDatabase.worldgenData[MyGameManager.instance.gameDifficulty];
+        List<int> IDs = new();
+        IDs.AddRange(worldData.trackIDs);
+        for(int i=0; i< worldData.randomTrackCount; i++)
+        IDs.Add(worldData.randomTrackIdPool[Random.Range(0, worldData.randomTrackIdPool.Count)]);
+
         int type = (int)ObjectData.ObjectType.Track;
         GridData selectedData = trackData;
 
-        int halfX = generationBoundsX / 2;
-        int halfY = generationBoundsY / 2;
+        int halfX = worldData.trackGenerationGrid.x / 2;
+        int halfY = worldData.trackGenerationGrid.y / 2;
 
         GenerateUnusedPositions(halfX, halfY);
 

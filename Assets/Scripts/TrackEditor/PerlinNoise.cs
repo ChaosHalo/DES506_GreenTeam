@@ -16,38 +16,55 @@ public class PerlinNoise : MonoBehaviour
     float[,] heightPerlinNoise = new float[sizeX, sizeY];
     float[,] waterPerlinNoise = new float[sizeX, sizeY];
 
+    int[,] tileIDs = new int[sizeX, sizeY];
+
     public void BeginGenerate()
     {
         heightPerlinNoise = GeneratePerlinNoise(heightPower, heightOctave, GenerateBaseNoise());
         waterPerlinNoise = GeneratePerlinNoise(waterPower, waterOctave, GenerateBaseNoise());
+        GenerateTileIDs();
+    }
+
+    private void GenerateTileIDs()
+    {
+        // normal terrain
+        for(int x =0; x < sizeX; x++)
+        {
+            for(int y =0; y < sizeY; y++)
+            {
+                int ID = 3;
+                // 3 = grass
+                // 4 = desert
+                // 5 = snow
+                // 6 = water
+                // 7 = mountain
+
+                // height-based biomes
+                if (heightPerlinNoise[x, y] < 0.16f)
+                    ID = 4; // desert
+                else if (heightPerlinNoise[x, y] < 0.3f)
+                    ID = 3; // grass
+                else if (heightPerlinNoise[x, y] < 0.4f)
+                    ID = 5; // snow
+
+                // water noise is separate
+                if (waterPerlinNoise[x, y] < 0.1)
+                    ID = 6;
+
+                tileIDs[x, y] = ID;
+            }
+        }
+
+        // obstacles (mountains)
+        int difficulty = MyGameManager.instance.gameDifficulty;
+        WorldgenData worldgenData = MyGameManager.instance.GetPlacementSystem().worldgenDatabase.worldgenData[difficulty];
+        for (int i = 0; i < worldgenData.mountainCount; i++)
+            tileIDs[Random.Range(0, sizeX), Random.Range(0, sizeY)] = 7;
     }
 
     internal int GetTileID(int x, int y)
     {
-        int ID = 3;
-        // 3 = grass
-        // 4 = desert
-        // 5 = snow
-        // 6 = water
-        // 7 = mountain
-
-        // height-based biomes
-        if (heightPerlinNoise[x, y] < 0.16f)
-            ID = 4; // desert
-        else if (heightPerlinNoise[x, y] < 0.3f)
-            ID = 3; // grass
-        else if (heightPerlinNoise[x, y] < 0.4f)
-            ID = 5; // snow
-
-        // water noise is separate
-        if (waterPerlinNoise[x, y] < 0.1)
-            ID = 6;
-
-        // mountains are simply random roll to achieve more "scattered" effect
-        if (Random.Range(0, 100) < 5)
-            ID = 7;
-
-        return ID;
+        return tileIDs[x, y];
     }
 
 

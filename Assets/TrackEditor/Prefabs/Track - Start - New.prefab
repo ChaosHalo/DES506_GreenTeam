@@ -668,7 +668,8 @@ MonoBehaviour:
   scaleSpeed: 100
   isConnected: 0
   fallAnimSpeed: 12.5
-  additionalObjects: []
+  additionalObjects:
+  - {fileID: 8765977693337559067}
 --- !u!114 &1645097221318062245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1202,3 +1203,17 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8459567239844011338}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &1408922731827733294
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8765977693337559067}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3469496567076233753, guid: c6f2da102745bbb4ab1dd8427bb3c270, type: 3}

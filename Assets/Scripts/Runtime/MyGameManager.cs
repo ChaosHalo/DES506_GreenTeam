@@ -39,6 +39,8 @@ public class MyGameManager : MonoBehaviour
 
     public Light light;
 
+    public int gameDifficulty = 0;
+
     // has new scene been loaded for game state?
     bool gamestateNewScene = false;
 
@@ -221,6 +223,13 @@ public class MyGameManager : MonoBehaviour
             if(i.CarName == carName) return i;
         }
         return null;
+    }
+
+    public void IncreaseDifficulty()
+    {
+        gameDifficulty++;
+        if(gameDifficulty>2)
+            gameDifficulty = 2;
     }
     #region GET / SET
     internal StartPieceInfo GetStartPieceInfoObject()

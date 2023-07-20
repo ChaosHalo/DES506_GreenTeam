@@ -19,6 +19,9 @@ public class PlacementSystem : MonoBehaviour
     private ObjectsDatabaseSO database;
 
     [SerializeField]
+    internal WorldgenDatabaseSO worldgenDatabase;
+
+    [SerializeField]
     private GameObject gridVisualisation;
 
     private GridData terrainData, trackData;
@@ -61,7 +64,7 @@ public class PlacementSystem : MonoBehaviour
 
     public void GenerateWorld()
     {
-        buildingState = new State_GenerateWorld(terrainData, trackData, database, grid, objectPlacer, perlinNoise, 10, this);
+        buildingState = new State_GenerateWorld(terrainData, trackData, database, worldgenDatabase, grid, objectPlacer, perlinNoise, 10, this);
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
     }
