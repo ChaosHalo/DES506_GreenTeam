@@ -174,12 +174,6 @@ public class CarManager : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
-        // 出界
-        if (collision.transform.CompareTag(GlobalConstants.BOUNDARIES))
-        {
-            //solidController.Respawn();
-            Respawn(true);
-        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -191,6 +185,12 @@ public class CarManager : MonoBehaviour
         {
             SpawnExplosion();
             Respawn(false);
+        }
+        // 出界
+        if (collision.transform.CompareTag(GlobalConstants.BOUNDARIES))
+        {
+            //solidController.Respawn();
+            Respawn(true);
         }
     }
     internal void Respawn(bool respawnWithExplosion)
