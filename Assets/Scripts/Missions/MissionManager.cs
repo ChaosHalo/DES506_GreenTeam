@@ -54,6 +54,7 @@ public class MissionManager : MonoBehaviour
     public void CheckForCompletedMissions(RaceResultsUIManager raceResultsUI)
     {
         List<string> descriptions = new List<string>();
+        List<string> rewards = new List<string>();
         List<bool> completedStatus = new List<bool>();
         int totalReward = 0;
 
@@ -62,6 +63,7 @@ public class MissionManager : MonoBehaviour
             if (currentMissions[i] != null)
             {
                 descriptions.Add(currentMissions[i].description);
+                
 
                 if (currentMissions[i].IsGoalReached())
                 {
@@ -73,10 +75,13 @@ public class MissionManager : MonoBehaviour
                     totalReward+=(currentMissions[i].rewardCurrency);
                     completedStatus.Add(true);
 
+                    rewards.Add(currentMissions[i].rewardCurrency.ToString());
+
                     RerollMission(i);
                 }
                 else
                 {
+                    rewards.Add("0");
                     completedStatus.Add(false);
                 }
             }
@@ -89,7 +94,7 @@ public class MissionManager : MonoBehaviour
         //raceResultsUI.totalText.text = "TOTAL: " + (currencyManager.GetPlayerCurrency() + currencyManager.GetWinCurrency()).ToString();
         for (int i = 0; i < 3; i++)
         {
-            raceResultsUI.missionDescriptionsTexts[i].text = descriptions[i];
+            raceResultsUI.missionDescriptionsTexts[i].text = descriptions[i] + " ( +" + rewards[i] + " )";
             raceResultsUI.completionCheckmarks[i].SetActive(completedStatus[i]);
         }
     }
