@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public struct MissionGrouping
@@ -28,8 +29,17 @@ public class MissionManager : MonoBehaviour
     [SerializeField]
     private List<MissionGrouping> availableMissions = new List<MissionGrouping>();
 
+    [SerializeField]
+    private TMP_Text rerollCostText;
+
     private int rerollCost = 100;
     private int rerollCount = 0;
+
+    private void Start()
+    {
+        //update cost text i UI
+        rerollCostText.text = ((rerollCount + 1) * rerollCost).ToString();
+    }
 
     private void Update()
     {
@@ -54,6 +64,7 @@ public class MissionManager : MonoBehaviour
     public void CheckForCompletedMissions(RaceResultsUIManager raceResultsUI)
     {
         List<string> descriptions = new List<string>();
+        List<string> rewards = new List<string>();
         List<bool> completedStatus = new List<bool>();
         int totalReward = 0;
 
@@ -62,6 +73,7 @@ public class MissionManager : MonoBehaviour
             if (currentMissions[i] != null)
             {
                 descriptions.Add(currentMissions[i].description);
+                
 
                 if (currentMissions[i].IsGoalReached())
                 {
@@ -73,23 +85,26 @@ public class MissionManager : MonoBehaviour
                     totalReward+=(currentMissions[i].rewardCurrency);
                     completedStatus.Add(true);
 
+                    rewards.Add(currentMissions[i].rewardCurrency.ToString());
+
                     RerollMission(i);
                 }
                 else
                 {
+                    rewards.Add("0");
                     completedStatus.Add(false);
                 }
             }
         }
 
         // update completed UI
-        //raceResultsUI.baseIncomeText.text = "Base income: " + currencyManager.GetWinCurrency().ToString();
+        raceResultsUI.baseIncomeText.text = "BASE INCOME: " + currencyManager.GetWinCurrency().ToString();
         //raceResultsUI.missionRewardText.text = "Missions completed: " + totalReward.ToString();
         raceResultsUI.finalRewardText.text ="MONEY EARNED: " + (currencyManager.GetWinCurrency() + totalReward).ToString();
         //raceResultsUI.totalText.text = "TOTAL: " + (currencyManager.GetPlayerCurrency() + currencyManager.GetWinCurrency()).ToString();
         for (int i = 0; i < 3; i++)
         {
-            raceResultsUI.missionDescriptionsTexts[i].text = descriptions[i];
+            raceResultsUI.missionDescriptionsTexts[i].text = descriptions[i] + " ( +" + rewards[i] + " )";
             raceResultsUI.completionCheckmarks[i].SetActive(completedStatus[i]);
         }
     }
@@ -126,7 +141,12 @@ public class MissionManager : MonoBehaviour
 
             // update variables
             rerollCount++;
+
+            
         }
+
+        //update cost text in UI
+        rerollCostText.text = ((rerollCount + 1) * rerollCost).ToString();
     }
 
     internal void ResetMissions()
