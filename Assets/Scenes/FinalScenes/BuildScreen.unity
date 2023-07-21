@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11744,18 +11744,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1220113339}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1240910799 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1136061644670070443, guid: 4d677237dc54f42469cb7666633ef8e5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1847117721}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1244731485 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1471134333495654998, guid: 5b46d45fb0dd44e4a9c0e569b31f61ed,
@@ -12650,18 +12638,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327679639}
   m_CullTransparentMesh: 1
---- !u!114 &1334646913 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1136061643781223820, guid: 4d677237dc54f42469cb7666633ef8e5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1847117721}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1342744810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15794,32 +15770,7 @@ PrefabInstance:
     - target: {fileID: 1136061643089424560, guid: 4d677237dc54f42469cb7666633ef8e5,
         type: 3}
       propertyPath: m_text
-      value: 'FINAL EARNINGS:'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1136061643089424563, guid: 4d677237dc54f42469cb7666633ef8e5,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1136061643089424563, guid: 4d677237dc54f42469cb7666633ef8e5,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1136061643089424563, guid: 4d677237dc54f42469cb7666633ef8e5,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1136061643089424563, guid: 4d677237dc54f42469cb7666633ef8e5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1136061643089424563, guid: 4d677237dc54f42469cb7666633ef8e5,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 'MONEY EARNED: '
       objectReference: {fileID: 0}
     - target: {fileID: 1136061643208017575, guid: 4d677237dc54f42469cb7666633ef8e5,
         type: 3}
@@ -16325,7 +16276,7 @@ PrefabInstance:
         type: 3}
       propertyPath: totalText
       value: 
-      objectReference: {fileID: 1334646913}
+      objectReference: {fileID: 0}
     - target: {fileID: 8978366984964576460, guid: 4d677237dc54f42469cb7666633ef8e5,
         type: 3}
       propertyPath: EndOfSeason
@@ -16335,7 +16286,7 @@ PrefabInstance:
         type: 3}
       propertyPath: baseIncomeText
       value: 
-      objectReference: {fileID: 1855945838}
+      objectReference: {fileID: 0}
     - target: {fileID: 8978366984964576460, guid: 4d677237dc54f42469cb7666633ef8e5,
         type: 3}
       propertyPath: finalRewardText
@@ -16345,7 +16296,7 @@ PrefabInstance:
         type: 3}
       propertyPath: missionRewardText
       value: 
-      objectReference: {fileID: 1240910799}
+      objectReference: {fileID: 0}
     - target: {fileID: 8978366984964576460, guid: 4d677237dc54f42469cb7666633ef8e5,
         type: 3}
       propertyPath: LeaderboardInfos.Array.size
@@ -16414,18 +16365,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d677237dc54f42469cb7666633ef8e5, type: 3}
---- !u!114 &1855945838 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1136061643479726665, guid: 4d677237dc54f42469cb7666633ef8e5,
-    type: 3}
-  m_PrefabInstance: {fileID: 1847117721}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1888982289
 GameObject:
   m_ObjectHideFlags: 0
