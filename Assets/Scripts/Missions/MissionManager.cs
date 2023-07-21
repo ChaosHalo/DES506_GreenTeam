@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public struct MissionGrouping
@@ -28,8 +29,17 @@ public class MissionManager : MonoBehaviour
     [SerializeField]
     private List<MissionGrouping> availableMissions = new List<MissionGrouping>();
 
+    [SerializeField]
+    private TMP_Text rerollCostText;
+
     private int rerollCost = 100;
     private int rerollCount = 0;
+
+    private void Start()
+    {
+        //update cost text i UI
+        rerollCostText.text = ((rerollCount + 1) * rerollCost).ToString();
+    }
 
     private void Update()
     {
@@ -131,7 +141,12 @@ public class MissionManager : MonoBehaviour
 
             // update variables
             rerollCount++;
+
+            
         }
+
+        //update cost text in UI
+        rerollCostText.text = ((rerollCount + 1) * rerollCost).ToString();
     }
 
     internal void ResetMissions()
