@@ -2806,7 +2806,7 @@ RectTransform:
   - {fileID: 8055840179947819781}
   - {fileID: 3978466764731295765}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2889,10 +2889,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimerTextComponent: {fileID: 1975322235887135016}
   ResetTimeWhenStop: 1
+  CarInfoScriptableObjects: []
   RaceCameraScripitObject: {fileID: 11400000, guid: 5a94f144c866ced46ac5a510cbaa4c79,
     type: 2}
   RacerInfos: []
   CameraTrackers: []
+  ScoreText2: {fileID: 0}
+  Ranks: []
 --- !u!1 &1548356209409641829
 GameObject:
   m_ObjectHideFlags: 0
@@ -12454,14 +12457,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.47843552, g: 1, b: 0.3915094, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3f07f9a9cf719b54fac64e6875e69f3d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4093cbac40717ce4982fc46e94c97e91, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15569,14 +15572,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4764151, g: 0.73614734, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3f07f9a9cf719b54fac64e6875e69f3d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a8ced4de89e81645be1d83c4f3422ae, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15990,14 +15993,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.69682956, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3f07f9a9cf719b54fac64e6875e69f3d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f7adec1aabeff0744a040118afdddedf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17203,14 +17206,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.01697588, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3f07f9a9cf719b54fac64e6875e69f3d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c90617aab4ec43a4cb69443d16a8e1c1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

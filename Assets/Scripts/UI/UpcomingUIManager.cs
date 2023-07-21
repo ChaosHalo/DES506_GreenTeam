@@ -7,6 +7,9 @@ public class UpcomingUIManager : MonoBehaviour
 {
     public List<CarInfoScriptableObject> carInfoScriptableObjects;
     public GameObject CarName;
+    public Image racerIcon;
+
+    public Sprite[] allIcons;
 
     public Slider TopSpeedSlider;
     public Slider AccelerationSlider;
@@ -38,6 +41,7 @@ public class UpcomingUIManager : MonoBehaviour
     }
     public void UpdateCarInfo()
     {
+        racerIcon.sprite = allIcons[carIndex];
         CarName.GetComponent<TextMeshProUGUI>().text = GetCarInfo(curCar).Name;
         TopSpeedSlider.value = GetCarInfo(curCar).TopSpeed;
         AccelerationSlider.value = GetCarInfo(curCar).Acceleration;
