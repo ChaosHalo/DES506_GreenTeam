@@ -83,10 +83,10 @@ public class MissionManager : MonoBehaviour
         }
 
         // update completed UI
-        raceResultsUI.baseIncomeText.text = "Base income: " + currencyManager.GetWinCurrency().ToString();
-        raceResultsUI.missionRewardText.text = "Missions completed: " + totalReward.ToString();
-        raceResultsUI.finalRewardText.text ="FINAL EARNINGS: " + (currencyManager.GetWinCurrency() + totalReward).ToString();
-        raceResultsUI.totalText.text = "TOTAL: " + (currencyManager.GetPlayerCurrency() + currencyManager.GetWinCurrency()).ToString();
+        //raceResultsUI.baseIncomeText.text = "Base income: " + currencyManager.GetWinCurrency().ToString();
+        //raceResultsUI.missionRewardText.text = "Missions completed: " + totalReward.ToString();
+        raceResultsUI.finalRewardText.text ="MONEY EARNED: " + (currencyManager.GetWinCurrency() + totalReward).ToString();
+        //raceResultsUI.totalText.text = "TOTAL: " + (currencyManager.GetPlayerCurrency() + currencyManager.GetWinCurrency()).ToString();
         for (int i = 0; i < 3; i++)
         {
             raceResultsUI.missionDescriptionsTexts[i].text = descriptions[i];

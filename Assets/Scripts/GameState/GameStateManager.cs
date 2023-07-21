@@ -11,7 +11,12 @@ public class GameStateManager : MonoBehaviour
 
     public enum Index { CHECK_RACERS = 0, BUILD = 1, RACE = 2 };
     public Index sceneIndex;
-
+    
+    private void Start()
+    {
+        ChangeToState(Index.BUILD);
+    }
+    
     public void LoadNewScene(Index index)
     {
         SceneManager.LoadScene((int)index);
