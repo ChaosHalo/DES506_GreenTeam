@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.HighroadEngine;
+using Missions;
+
 public class CarInteraction : MonoBehaviour
 {
+    public MissionEvent FocusCameraOnCar;
     public ParticleSystem Smokes;
     public int SmokeCollisionNum;
     public float ExplosionForce = 10f;
@@ -39,6 +42,7 @@ public class CarInteraction : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Car"))
         {
+            FocusCameraOnCar.Raise(GetComponent<CarManager>(), GetComponent<CarManager>().HasFinishedRace());
             // 获取碰撞对象的Rigidbody组件
             Rigidbody otherRb = other.gameObject.GetComponent<Rigidbody>();
 

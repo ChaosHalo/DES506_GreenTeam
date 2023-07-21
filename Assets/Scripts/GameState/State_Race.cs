@@ -37,6 +37,7 @@ public class State_Race : IGameState
         // init carInfoSearch
         CarInfoSearch carInfoSerach = MyGameManager.instance.GetCarInfoSerach();
         MyGameManager.instance.SetShadowQuality(1);
+        MyGameManager.instance.raceCamera.StoreCarManagers();
         //carInfoSerach.SetupCarManagers();
     }
     public void EndState()
@@ -49,14 +50,14 @@ public class State_Race : IGameState
 
     public void InitCamera()
     {
-        if(raceCamera == null)
-        {
-            //raceCamera = GameObject.Instantiate(MyGameManager.instance.RaceCamera);
-            raceCamera = MyGameManager.instance.RaceCameraObject;
-            // 初始化Follow和Target
-            Transform car = GameObject.FindObjectOfType<CarManager>().transform;
-            RaceCameraManager.SetTarget(raceCamera, car);
-        }
+//        if(raceCamera == null)
+//        {
+//            //raceCamera = GameObject.Instantiate(MyGameManager.instance.RaceCamera);
+//           // raceCamera = MyGameManager.instance.RaceCameraObject;
+//            // 初始化Follow和Target
+//            //Transform car = GameObject.FindObjectOfType<CarManager>().transform;
+/////RaceCameraManager.SetTarget(raceCamera, car);
+//        }
     }
     public void InitRaceManager()
     {

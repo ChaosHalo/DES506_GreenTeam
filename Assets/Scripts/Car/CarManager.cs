@@ -3,13 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.HighroadEngine;
+using Missions;
+
 public class CarManager : MonoBehaviour
 {
+    public GameObject cameraAction;
+    public MissionEvent FocusCameraOnCar;
+    public MissionEvent OnCarExplode;
+
     // store renderers
     MeshRenderer[] renderers;
     [SerializeField] private GameObject explosionPrefab;
     private GameObject currentExplosion;
 
+    private double minAirDuration = 1;
     internal double airDuration = 0;
     internal bool isRespawning = false;
 
@@ -58,7 +65,7 @@ public class CarManager : MonoBehaviour
     }
     private void Start()
     {
-        
+        RaceCameraManager.SetTarget(cameraAction, transform);
     }
     private void Update()
     {
@@ -88,6 +95,9 @@ public class CarManager : MonoBehaviour
             airDuration += Time.deltaTime;
         else
             airDuration = 0;
+
+        if (airDuration > minAirDuration)
+            FocusCameraOnCar.Raise(this);
 
         // focus on this car when it is in the air
        // if (airBorneDuration > minAirTime)
@@ -222,6 +232,7 @@ public class CarManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         isRespawning = true;
         airDuration = 0;
+        OnCarExplode.Raise(this);
         yield return new WaitForSeconds(2f);
 
         // respawn to position
@@ -238,7 +249,6 @@ public class CarManager : MonoBehaviour
     {
         if (currentExplosion == null)
         {
-            MyGameManager.instance.raceCamera.TryZoomOnDriver(CarInfo.Name);
             GameObject newExplosion = Instantiate(explosionPrefab);
             newExplosion.transform.position = transform.position;
             currentExplosion = newExplosion;
