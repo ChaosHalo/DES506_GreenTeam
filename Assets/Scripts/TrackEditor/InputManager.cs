@@ -42,7 +42,7 @@ public class InputManager : MonoBehaviour
     private Vector2[] lastZoomPositions;
 
     internal bool wasZoomingLastFrame = false;
-    internal float minPanDistance = 5;
+    internal float minPanDistance = 12.5f;
     private bool firstFingerLifted = false;
     private float fingerDownDuration = 0;
 
@@ -127,9 +127,6 @@ public class InputManager : MonoBehaviour
         {
             posMouseUp = touch.position;
             firstFingerLifted = true;
-
-            // only if minimum time has passed
-            if(fingerDownDuration>0.05f)
             OnRelease?.Invoke();
         }
     }
