@@ -27,7 +27,7 @@ public class RaceResultsUIManager : AllUIManager
 
     public void UpdatePlaceholderScoreboard()
     {
-        MyGameManager.instance.missionManager.CheckForCompletedMissions(this);
+        MyGameManager.instance.missionManager.missionUI.UpdateMissionStatusUI(this);
 
         List<OneCarRaceResultData> tempCarDatas = new(); 
         // string s = "";

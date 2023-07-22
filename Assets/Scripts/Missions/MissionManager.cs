@@ -22,15 +22,11 @@ public class MissionManager : MonoBehaviour
     public Mission[] currentMissions = new Mission[3];
 
     [Header("UI")]
-    public List<MissionUI> missionUI = new List<MissionUI>();
+    public MissionUI missionUI;
 
-    private CurrencyManager currencyManager;
+    [SerializeField] private List<MissionGrouping> availableMissions = new List<MissionGrouping>();
 
-    [SerializeField]
-    private List<MissionGrouping> availableMissions = new List<MissionGrouping>();
-
-    [SerializeField]
-    private TMP_Text rerollCostText;
+    [SerializeField] private TMP_Text rerollCostText;
 
     private int rerollCost = 100;
     private int rerollCount = 0;
@@ -39,12 +35,6 @@ public class MissionManager : MonoBehaviour
     {
         //update cost text i UI
         rerollCostText.text = ((rerollCount + 1) * rerollCost).ToString();
-    }
-
-    private void Update()
-    {
-        if (currencyManager == null)
-            currencyManager = FindObjectOfType<CurrencyManager>();
     }
 
     public void InitialiseMissions()
@@ -60,53 +50,14 @@ public class MissionManager : MonoBehaviour
             }
         }
     }
-
-    public void CheckForCompletedMissions(RaceResultsUIManager raceResultsUI)
+    internal bool HasMission(int index)
     {
-        List<string> descriptions = new List<string>();
-        List<string> rewards = new List<string>();
-        List<bool> completedStatus = new List<bool>();
-        int totalReward = 0;
+        return currentMissions.Length > index && currentMissions[index] != null;
+    }
 
-        for (int i = 0; i < 3; i++)
-        {
-            if (currentMissions[i] != null)
-            {
-                descriptions.Add(currentMissions[i].description);
-                
-
-                if (currentMissions[i].IsGoalReached())
-                {
-                    Debug.Log("Completed Mission: "+ currentMissions[i].description);
-
-                    if (currencyManager != null)
-                        currencyManager.AddMissionCurrency(currentMissions[i].rewardCurrency);
-
-                    totalReward+=(currentMissions[i].rewardCurrency);
-                    completedStatus.Add(true);
-
-                    rewards.Add(currentMissions[i].rewardCurrency.ToString());
-
-                    RerollMission(i);
-                }
-                else
-                {
-                    rewards.Add("0");
-                    completedStatus.Add(false);
-                }
-            }
-        }
-
-        // update completed UI
-        raceResultsUI.baseIncomeText.text = "BASE INCOME: " + currencyManager.GetWinCurrency().ToString();
-        //raceResultsUI.missionRewardText.text = "Missions completed: " + totalReward.ToString();
-        raceResultsUI.finalRewardText.text ="MONEY EARNED: " + (currencyManager.GetWinCurrency() + totalReward).ToString();
-        //raceResultsUI.totalText.text = "TOTAL: " + (currencyManager.GetPlayerCurrency() + currencyManager.GetWinCurrency()).ToString();
-        for (int i = 0; i < 3; i++)
-        {
-            raceResultsUI.missionDescriptionsTexts[i].text = descriptions[i] + " ( +" + rewards[i] + " )";
-            raceResultsUI.completionCheckmarks[i].SetActive(completedStatus[i]);
-        }
+    internal Mission GetMission(int index)
+    {
+        return currentMissions[index];
     }
 
     public void CreateNewMission(int index)

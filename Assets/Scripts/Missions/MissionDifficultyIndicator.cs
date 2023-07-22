@@ -9,23 +9,9 @@ public class MissionDifficultyIndicator : MonoBehaviour
 
     public void UpdateDifficulty(Mission.Difficulty difficulty)
     {
-        switch (difficulty)
+        for (int i = 0; i < indicators.Count; i++)
         {
-            case Mission.Difficulty.EASY:
-                indicators[0].enabled = true;
-                indicators[1].enabled = false;
-                indicators[2].enabled = false;
-                break;
-            case Mission.Difficulty.MEDIUM:
-                indicators[0].enabled = false;
-                indicators[1].enabled = true;
-                indicators[2].enabled = false;
-                break;
-            case Mission.Difficulty.HARD:
-                indicators[0].enabled = false;
-                indicators[1].enabled = false;
-                indicators[2].enabled = true;
-                break;
+            indicators[i].enabled = (i == (int)difficulty);
         }
     }
 }
