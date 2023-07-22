@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class RaceCamera : MonoBehaviour
 {
-    private float cameraSwitchCooldown = 0.5f;
+    private float cameraSwitchCooldown = 0.2f;
     private bool isSwitchCameraOnCooldown = false;
     private CarManager currentTrackedCarManager;
     public RaceCameraScripitObject RaceCameraScripitObject;
@@ -17,6 +17,7 @@ public class RaceCamera : MonoBehaviour
 
     [SerializeField] private GameObject cameraFocus;
     [SerializeField] private GameObject cameraCurrent;
+    private GameObject cameraOld;
 
     private void Update()
     {
@@ -72,10 +73,10 @@ public class RaceCamera : MonoBehaviour
             }
         }
     }
-    public void FocusOnCar_Action(CarManager car, float delay = 0)
+    public void FocusOnCar_Action(CarManager car, float delay = 0, bool overrideCooldown=false)
     {
         // camera switch is on cooldown
-        if (isSwitchCameraOnCooldown)
+        if (isSwitchCameraOnCooldown && overrideCooldown==false)
             return;
 
         // do not switch to the same camera as current
@@ -90,13 +91,10 @@ public class RaceCamera : MonoBehaviour
         StartCoroutine(ActionFocusWithDelay(car, delay));
     }
 
-    public void FocusOnRandomCar_Action()
+    private void FocusOnRandomCar_Action()
     {
         // get all available cars
-        List<CarManager> allCars = new();
-        allCars.AddRange(FindObjectsOfType<CarManager>());
-        allCars.RemoveAll(item => item.HasFinishedRace());
-        allCars.RemoveAll(item=> item.cameraAction == cameraCurrent);
+        List<CarManager> allCars = GetCurrentAvailableCars();
 
         // no cars available, return
         if (allCars.Count < 1)
@@ -105,7 +103,20 @@ public class RaceCamera : MonoBehaviour
         // focus on random new car
         CarManager newCar = allCars[Random.Range(0, allCars.Count)];
         Debug.Log("Focusing: " + newCar.CarInfo.Name);
-        FocusOnCar_Action(newCar);
+        FocusOnCar_Action(newCar, 0, true);
+    }
+
+    private List<CarManager> GetCurrentAvailableCars()
+    {
+        List<CarManager> allCars = new();
+        List<CarManager> finalCars = new();
+        allCars.AddRange(FindObjectsOfType<CarManager>());
+      //  allCars.RemoveAll(item => item.HasFinishedRace());
+       // allCars.RemoveAll(item => item.cameraAction == cameraCurrent);
+       foreach (CarManager carManager in allCars)
+            if(carManager.HasFinishedRace() == false && carManager.cameraAction!=cameraCurrent)
+                finalCars.Add(carManager);
+        return finalCars;
     }
 
     private IEnumerator ActionFocusWithDelay(CarManager car, float delay)
@@ -142,11 +153,14 @@ public class RaceCamera : MonoBehaviour
         if (cameraType == Type.FOCUS)
             return;
 
+        if (isSwitchCameraOnCooldown)
+            return;
+
         if (sender is CarManager)
         {
-            if(data is bool)
+            if (data is bool)
             {
-                if((bool)data == false)
+                if ((bool)data == false)
                 {
                     FocusOnCar_Action((CarManager)sender);
                 }
@@ -185,12 +199,18 @@ public class RaceCamera : MonoBehaviour
         if (availableCarManagers.Count <= 0)
             return;
 
-        cameraType = Type.ACTION;
+        List<CarManager> allCars = GetCurrentAvailableCars();
+        if (allCars.Count < 1)
+            return;
+
+        if(cameraType == Type.FOCUS)
         cameraCurrent.SetActive(false);
+
+        cameraType = Type.ACTION;
         FocusOnRandomCar_Action();
-        StartCoroutine(StartSwitchTargetCooldown());
-        cameraCurrent.SetActive(true);
-        SwitchCameraPreset(0);
+        // StartCoroutine(StartSwitchTargetCooldown());
+        //cameraCurrent.SetActive(true);
+        // SwitchCameraPreset(0);
     }
 
     public void CameraFocus()
@@ -199,7 +219,7 @@ public class RaceCamera : MonoBehaviour
         cameraCurrent.SetActive(false);
         cameraCurrent = cameraFocus;
         cameraCurrent.SetActive(true);
-        SwitchCameraPreset(1);
+       // SwitchCameraPreset(1);
     }
     #endregion
 }
