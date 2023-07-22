@@ -31,7 +31,7 @@ public class CameraManager : MonoBehaviour
     private Vector3 anchorCurPos;
     private Vector3 camPos;
 
-    internal bool isPanning = false;
+    //internal bool isPanning = false;
     bool isZooming = false;
 
     // windows specific
@@ -109,10 +109,6 @@ public class CameraManager : MonoBehaviour
         anchorCurPos.x += mouseDistanceX * panSpeed;
         anchorCurPos.z += mouseDistanceY * panSpeed;
         ClampAndSetCameraPosition();
-
-        // camera is panning if mouse down does not equal mouse current
-        float panDistance = Vector3.Distance(inputManager.posMouseDown, inputManager.posMouseCur);
-        isPanning = panDistance > 5;
     }
 
     internal void PanCameraWindows()
@@ -146,10 +142,6 @@ public class CameraManager : MonoBehaviour
             anchorCurPos.z += mouseDistanceY * scalingValue;
             ClampAndSetCameraPosition();
         }
-
-        // camera is panning if mouse down does not equal mouse current
-        float panDistance = Vector3.Distance(mouseDown, Input.mousePosition);
-        isPanning = panDistance > 5;
     }
 
 

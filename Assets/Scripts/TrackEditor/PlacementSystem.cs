@@ -95,7 +95,7 @@ public class PlacementSystem : MonoBehaviour
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new State_RemoveTrack(grid, terrainData, trackData, objectPlacer, previewSystem, uiManager, this, currencyManager, cameraManager);
+        buildingState = new State_RemoveTrack(grid, terrainData, trackData, objectPlacer, previewSystem, uiManager, this, currencyManager, cameraManager, inputManager);
 
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
@@ -111,7 +111,7 @@ public class PlacementSystem : MonoBehaviour
         if (gridVisualAlwaysOn == false)
             gridVisualisation.SetActive(true);
 
-        buildingState = new State_RotateTrack(grid, database, terrainData, trackData, objectPlacer, previewSystem, uiManager, this, cameraManager);
+        buildingState = new State_RotateTrack(grid, database, terrainData, trackData, objectPlacer, previewSystem, uiManager, this, cameraManager, inputManager);
 
         inputManager.OnRelease += PerformAction;
         inputManager.OnExit += EndCurrentState;
@@ -149,8 +149,12 @@ public class PlacementSystem : MonoBehaviour
             return;
 
         buildingState.EndState();
+
+        // remove delegates
         inputManager.OnRelease -= PerformAction;
         inputManager.OnExit -= EndCurrentState;
+
+
         buildingState = null;
     }
 

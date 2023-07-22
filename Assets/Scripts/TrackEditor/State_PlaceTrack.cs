@@ -74,7 +74,12 @@ public class State_PlaceTrack : IBuildingState
             return;
         }
 
+        // handle action
+        OnActionHandle(gridPosition);
+    }
 
+    private void OnActionHandle(Vector3Int gridPosition)
+    {
         // place object
         int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), previewSystem.GetCurrentRotationState(), true, ObjectData.ObjectType.Track, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, true);
         GridData selectedData = database.objectsData[selectedObjectIndex].objectType == ObjectData.ObjectType.Terrain ? terrainData : trackData;

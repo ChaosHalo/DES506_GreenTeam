@@ -42,7 +42,9 @@ public class InputManager : MonoBehaviour
     private Vector2[] lastZoomPositions;
 
     internal bool wasZoomingLastFrame = false;
-    bool firstFingerLifted = false;
+    internal float minPanDistance = 5;
+    private bool firstFingerLifted = false;
+    private float fingerDownDuration = 0;
 
     private void Update()
     {
@@ -51,6 +53,7 @@ public class InputManager : MonoBehaviour
         else
             CheckWindowsInput();
 
+        fingerDownDuration += Time.deltaTime;
         //Debug.Log(mouseWorldPos + " ::::: " + gridWorldPos);
     }
 
@@ -107,6 +110,7 @@ public class InputManager : MonoBehaviour
 
         if (touch.phase == TouchPhase.Began)
         {
+            fingerDownDuration = 0;
             posMouseDown = touch.position;
             posMouseCur = touch.position;
             OnTap?.Invoke();
@@ -114,12 +118,18 @@ public class InputManager : MonoBehaviour
         if (touch.phase == TouchPhase.Moved)
         {
             posMouseCur = touch.position;
-            cameraManager.PanCamera();
+
+            // minimum pan distance
+            if (Vector3.Distance(posMouseDown, posMouseCur) > minPanDistance)
+                cameraManager.PanCamera();
         }
         if (touch.phase == TouchPhase.Ended)
         {
             posMouseUp = touch.position;
             firstFingerLifted = true;
+
+            // only if minimum time has passed
+            if(fingerDownDuration>0.05f)
             OnRelease?.Invoke();
         }
     }
@@ -188,6 +198,14 @@ public class InputManager : MonoBehaviour
             return;
 
         cameraManager.ZoomCamera(delta * 100);
+    }
+
+    internal bool HasPanned()
+    {
+        if (Vector3.Distance(posMouseCur, posMouseDown) > minPanDistance)
+            return true;
+        else
+            return false;
     }
     #endregion
 }

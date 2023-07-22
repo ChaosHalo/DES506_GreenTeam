@@ -15,6 +15,7 @@ public class State_RotateTrack : IBuildingState
     UIManager uiManager;
     PlacementSystem placementSystem;
     CameraManager cameraManager;
+    InputManager inputManager;
 
     public State_RotateTrack(Grid grid,
                          ObjectsDatabaseSO database,
@@ -24,7 +25,8 @@ public class State_RotateTrack : IBuildingState
                          PreviewSystem previewSystem,
                          UIManager uIManager,
                          PlacementSystem placementSystem,
-                         CameraManager cameraManager)
+                         CameraManager cameraManager,
+                         InputManager inputManager)
     {
         this.grid = grid;
         this.database = database;
@@ -35,6 +37,7 @@ public class State_RotateTrack : IBuildingState
         this.uiManager = uIManager;
         this.placementSystem = placementSystem;
         this.cameraManager = cameraManager;
+        this.inputManager = inputManager;
 
         previewSystem.StartShowingRemovePreview();
         uiManager.toggleButton_Rotate.ToggleButtons();
@@ -57,7 +60,7 @@ public class State_RotateTrack : IBuildingState
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
         // don't allow action if camera is panning
-        if (cameraManager.isPanning == true)
+        if (inputManager.HasPanned())
             return;
 
         // get index at selected position
@@ -73,6 +76,12 @@ public class State_RotateTrack : IBuildingState
             if (existingData.canModify == false)
                 return;
 
+        // handle action
+        OnActionHandle(gridPosition, existingData);
+    }
+
+    private void OnActionHandle(Vector3Int gridPosition, PlacementData existingData)
+    {
         // remove existing from database
         trackData.RemoveObjectAt(gridPosition);
 

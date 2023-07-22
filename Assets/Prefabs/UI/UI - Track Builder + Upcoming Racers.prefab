@@ -2792,13 +2792,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8154075289301836161}
+  m_Father: {fileID: 7054543575820135465}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 400.3889, y: 143.11}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -220, y: 140.12415}
+  m_SizeDelta: {x: 400.38892, y: 143.10999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &333723746323268479
 CanvasRenderer:
@@ -7960,7 +7960,7 @@ RectTransform:
   - {fileID: 2518458577888767706}
   - {fileID: 7301339836575878485}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8047,6 +8047,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 893776463a8804dfd92bdb198b039069, type: 2}
   - {fileID: 11400000, guid: 93d881e1ccab44d45b97c051b4f16db5, type: 2}
   CarName: {fileID: 1637232683433958696}
+  racerIcon: {fileID: 0}
+  allIcons: []
   TopSpeedSlider: {fileID: 1984978620445895062}
   AccelerationSlider: {fileID: 5222573880278221212}
   HandlingSlider: {fileID: 6190009513030535816}
@@ -14543,15 +14545,8 @@ MonoBehaviour:
   - {fileID: 7238483159596535111}
   - {fileID: 4121732292397325112}
   completedMissionUI: {fileID: 0}
-  completedMissionTabs:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  completedMissionDifficultyIndicators:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  rewardText: {fileID: 0}
+  missionManager: {fileID: 0}
+  currencyManager: {fileID: 0}
 --- !u!95 &6552609779149022055
 Animator:
   serializedVersion: 4
@@ -15632,6 +15627,7 @@ RectTransform:
   - {fileID: 67520708}
   - {fileID: 9092493040206373695}
   - {fileID: 2726423457896650923}
+  - {fileID: 333723746323268466}
   - {fileID: 8154075289301836161}
   m_Father: {fileID: 333723747756791996}
   m_RootOrder: -1
@@ -22119,7 +22115,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 333723746763648754}
-  - {fileID: 333723746323268466}
   m_Father: {fileID: 7054543575820135465}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

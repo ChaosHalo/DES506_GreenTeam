@@ -10,7 +10,6 @@ public class State_CheckRacers : IGameState
 
     public void StartState()
     {
-        Application.targetFrameRate = Screen.currentResolution.refreshRate;
         MyGameManager.instance.missionManager.InitialiseMissions();
         MyGameManager.instance.SetShadowQuality(0);
     }

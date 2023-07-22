@@ -60,14 +60,6 @@ public class State_PlaceTerrain : IBuildingState
 
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
-        // check placement validity
-        bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
-        if (placementValidity == false || isWithinBounds == false)
-        {
-            placementSystem.EndCurrentState();
-            return;
-        }
-
         // check currency
         int cost = database.objectsData[selectedObjectIndex].cost;
         if (cost > 0)
@@ -79,6 +71,24 @@ public class State_PlaceTerrain : IBuildingState
             }
         }
 
+        // check placement validity
+        bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
+        if (placementValidity == false || isWithinBounds == false)
+        {
+            placementSystem.EndCurrentState();
+            return;
+        }
+
+        // check if existing terrain is of same type, do NOT place if TRUE
+        if (terrainData.IsSameType(gridPosition, (int)database.objectsData[selectedObjectIndex].terrainType))
+            return;
+
+        // handle action
+        OnActionHandle(gridPosition);
+    }
+
+    private void OnActionHandle(Vector3Int gridPosition)
+    {
         // chose data type
         GridData selectedData = terrainData;
 
@@ -88,9 +98,6 @@ public class State_PlaceTerrain : IBuildingState
         // get index at selected position
         gameObjectIndex = selectedData.GetRepresentationIndex(gridPosition);
 
-        // check if existing terrain is of same type, do NOT place if TRUE
-        if (terrainData.IsSameType(gridPosition, (int)database.objectsData[selectedObjectIndex].terrainType))
-            return;
 
         // object to place index
         int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, true);
@@ -102,7 +109,7 @@ public class State_PlaceTerrain : IBuildingState
         }
 
         // remove existing object from world
-        if(gameObjectIndex != -1)
+        if (gameObjectIndex != -1)
         {
             objectPlacer.RemoveObjectAt(gameObjectIndex);
         }
@@ -122,12 +129,6 @@ public class State_PlaceTerrain : IBuildingState
         previewSystem.UpdatePreview(grid.CellToWorld(gridPosition), false);
         placementSystem.EndCurrentState();
     }
-
-    private bool IsSameTerrainType(TerrainObject.Type type, int selectedObjectIndex)
-    {
-        return (int)type == (int)database.objectsData[selectedObjectIndex].terrainType ? true : false;
-    }
-
 
     private bool CheckPlacementValidity(Vector3Int gridPosition, int selectedObjectIndex)
     {

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class State_RemoveTrack : IBuildingState
 {
@@ -15,6 +16,7 @@ public class State_RemoveTrack : IBuildingState
     UIManager uiManager;
     CurrencyManager currencyManager;
     CameraManager cameraManager;
+    InputManager inputManager;
 
     public State_RemoveTrack(Grid grid,
                          GridData terrainData,
@@ -24,7 +26,8 @@ public class State_RemoveTrack : IBuildingState
                          UIManager uiManager,
                          PlacementSystem placementSystem,
                          CurrencyManager currencyManager,
-                         CameraManager cameraManager)
+                         CameraManager cameraManager,
+                         InputManager inputManager)
     {
         this.grid = grid;
         this.terrainData = terrainData;
@@ -35,6 +38,7 @@ public class State_RemoveTrack : IBuildingState
         this.placementSystem = placementSystem;
         this.currencyManager = currencyManager;
         this.cameraManager = cameraManager;
+        this.inputManager = inputManager;
 
         previewSystem.StartShowingRemovePreview();
         uiManager.toggleButton_Remove.ToggleButtons();
@@ -57,7 +61,7 @@ public class State_RemoveTrack : IBuildingState
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
         // don't allow action if camera is panning
-        if (cameraManager.isPanning == true)
+        if (inputManager.HasPanned())
             return;
 
         // no object exists here
@@ -78,6 +82,12 @@ public class State_RemoveTrack : IBuildingState
         if (existingData.canModify == false)
             return;
 
+        // handle action
+        OnActionHandle(gridPosition, existingData);
+    }
+
+    private void OnActionHandle(Vector3Int gridPosition, PlacementData existingData)
+    {
         // remove object
         trackData.RemoveObjectAt(gridPosition);
         objectPlacer.RemoveObjectAt(gameObjectIndex);
