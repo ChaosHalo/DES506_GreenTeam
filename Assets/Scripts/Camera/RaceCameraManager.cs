@@ -10,7 +10,7 @@ public static class RaceCameraManager
     {
         CinemachineVirtualCamera virtualCamera = camera.GetComponent<CinemachineVirtualCamera>();
         CinemachineTransposer transposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
-        transposer.m_FollowOffset = followOffset;
+        //transposer.m_FollowOffset = followOffset;
         virtualCamera.m_Lens.FieldOfView = fov;
     }
     public static void SetTarget(GameObject camera, Transform target)

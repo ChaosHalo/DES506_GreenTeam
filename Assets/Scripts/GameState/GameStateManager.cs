@@ -49,6 +49,7 @@ public class GameStateManager : MonoBehaviour
             }
         }
 
+        MyGameManager.instance.GetPlacementSystem().EndCurrentState();
         ChangeToState(Index.RACE);
         return true;
     }
