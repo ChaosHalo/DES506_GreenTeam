@@ -53,8 +53,8 @@ public class MyGameManager : MonoBehaviour
     public CarInfoScriptableObject[] carInfoScriptableObjects;
     void Awake()
     {
-        Application.targetFrameRate = 300;
-        //Application.targetFrameRate = Screen.currentResolution.refreshRate;
+        //Application.targetFrameRate = 300;
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
         // Application.targetFrameRate = 60;
 
         SetupInstance();

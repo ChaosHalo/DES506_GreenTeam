@@ -128,7 +128,7 @@ namespace MoreMountains.HighroadEngine
             }
 
             // Helps iOS Framerate
-            Application.targetFrameRate = 300;
+            //Application.targetFrameRate = 300;
         }
 
         /// <summary>
