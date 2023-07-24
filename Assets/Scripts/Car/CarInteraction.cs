@@ -13,6 +13,7 @@ public class CarInteraction : MonoBehaviour
     public float pushForce = 10000f;
     private ParticleSystem.EmissionModule _smokes;
     private SolidController controller;
+    [SerializeField]
     private int collisionNum;
     private Rigidbody rb;
     //开始
@@ -29,7 +30,8 @@ public class CarInteraction : MonoBehaviour
     public void InitSmoke()
     {
         _smokes = Smokes.emission;
-        _smokes.enabled = false;
+        //_smokes.enabled = false;
+        Smokes.Stop();
     }
 
     private void OnVehicleCollisionEnter(Collision other)
@@ -60,19 +62,24 @@ public class CarInteraction : MonoBehaviour
     }
     private void UpdateSmoke()
     {
-        if(collisionNum >= SmokeCollisionNum && !_smokes.enabled)
+        if(collisionNum >= SmokeCollisionNum && !Smokes.isPlaying)
         {
-            _smokes.enabled = true;
+            //Debug.Log("开启烟雾");
+            //_smokes.enabled = true;
+            Smokes.Play();
         }
-        // 烟变大
-        SetStartSize(Smokes, Smokes.main.startSize.curveMultiplier + 1);
+        if (Smokes.isPlaying)
+        {
+            // 烟变大
+            SetStartSize(Smokes, Smokes.main.startSize.curveMultiplier + 4);
 
-        // 烟变黑
-        Color color = new Color(
-            Smokes.main.startColor.color.r - 10,
-            Smokes.main.startColor.color.g - 10,
-            Smokes.main.startColor.color.b - 10);
-        SetStartColor(Smokes, color);
+            // 烟变黑
+            Color color = new Color(
+                Mathf.Max(50, Smokes.main.startColor.color.r - 10),
+                Mathf.Max(50, Smokes.main.startColor.color.g - 10),
+                Mathf.Max(50, Smokes.main.startColor.color.b - 10));
+            SetStartColor(Smokes, color);
+        }
     }
     // 设置粒子系统的起始大小
     private void SetStartSize(ParticleSystem particleSystem, float size)
