@@ -29,7 +29,7 @@ public class State_Build : IGameState
     public void EndState()
     {
         saveMap.OnSaveMap();
-        MyGameManager.instance.GetPlacementSystem().SaveData();
+        MyGameManager.instance.GetSaveSystem().SaveData();
 
         if (buildObjects != null)
             buildObjects.SetActive(false);

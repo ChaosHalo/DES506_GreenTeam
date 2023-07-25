@@ -60,6 +60,13 @@ public class State_PlaceTerrain : IBuildingState
 
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
+        // check if existing terrain is of same type, do NOT place if TRUE
+        if (terrainData.IsSameType(gridPosition, (int)database.objectsData[selectedObjectIndex].terrainType))
+        {
+            placementSystem.EndCurrentState();
+            return;
+        }
+
         // check currency
         int cost = database.objectsData[selectedObjectIndex].cost;
         if (cost > 0)
@@ -78,10 +85,6 @@ public class State_PlaceTerrain : IBuildingState
             placementSystem.EndCurrentState();
             return;
         }
-
-        // check if existing terrain is of same type, do NOT place if TRUE
-        if (terrainData.IsSameType(gridPosition, (int)database.objectsData[selectedObjectIndex].terrainType))
-            return;
 
         // handle action
         OnActionHandle(gridPosition);
