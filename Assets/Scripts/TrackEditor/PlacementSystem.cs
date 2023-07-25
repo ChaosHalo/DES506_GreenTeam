@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,7 +25,7 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private GameObject gridVisualisation;
 
-    private GridData terrainData, trackData;
+    internal GridData terrainData, trackData;
 
     [SerializeField]
     private ObjectPlacer objectPlacer;
@@ -205,4 +206,109 @@ public class PlacementSystem : MonoBehaviour
             }
         }
     }
+
+    #region SAVEDATA
+    [System.Serializable]
+    public struct WorldData
+    {
+        public int currency;
+        public GridData terrainData;
+        public GridData trackData;
+        public List<GameObject> placedObjects;
+
+        public WorldData(int currency, GridData terrainData, GridData trackData, List<GameObject> placedObjects)
+        {
+            this.currency = currency;
+            this.terrainData = terrainData;
+            this.trackData = trackData;
+            this.placedObjects = placedObjects;
+        }
+    }
+    private WorldData savedData;
+
+    public void SaveData()
+    {
+        SavePlacedPieces();
+
+        GridData newTerrainData = new(terrainData.gridSize);
+        newTerrainData.placedObjects.AddRange(terrainData.placedObjects);
+        GridData newTrackData = new(trackData.gridSize);
+        newTrackData.placedObjects.AddRange(trackData.placedObjects);
+
+
+        savedData = new(currencyManager.GetPlayerCurrency(), newTerrainData, newTrackData, objectPlacer.placedObjects);
+    }
+
+    public void LoadData()
+    {
+        currencyManager.SetCurrencyTo(savedData.currency);
+
+        GridData newTerrainData = new(savedData.terrainData.gridSize);
+        newTerrainData.placedObjects.AddRange(savedData.terrainData.placedObjects);
+        GridData newTrackData = new(savedData.trackData.gridSize);
+        newTrackData.placedObjects.AddRange(savedData.trackData.placedObjects);
+
+        terrainData.ClearData();
+        trackData.ClearData();
+
+        terrainData = newTerrainData;
+        trackData= newTrackData;
+
+        foreach(GameObject obj in objectPlacer.placedObjects)
+        {
+            if (obj != null)
+            {
+                PlacableObject placableObject = obj.GetComponentInChildren<PlacableObject>();
+                if (placableObject != null)
+                {
+                   // if (!placableObject.isSaved)
+                            Destroy(obj);
+                }
+            }
+        }
+
+        objectPlacer.placedObjects.Clear();
+        
+        foreach(var data in terrainData.placedObjects)
+        {
+            objectPlacer.PlaceObject(database.objectsData[data.Value.ID].Prefab,
+                                                 grid.CellToWorld(data.Value.originPosition),
+                                                 0,
+                                                 true,
+                                                 ObjectData.ObjectType.Terrain,
+                                                 database.objectsData[data.Value.ID].trackType,
+                                                 database.objectsData[data.Value.ID].terrainType,
+                                                 true);
+        }
+        foreach (var data in trackData.placedObjects)
+        {
+            objectPlacer.PlaceObject(database.objectsData[data.Value.ID].Prefab,
+                                                 grid.CellToWorld(data.Value.originPosition),
+                                                 0,
+                                                 true,
+                                                 ObjectData.ObjectType.Terrain,
+                                                 database.objectsData[data.Value.ID].trackType,
+                                                 database.objectsData[data.Value.ID].terrainType,
+                                                 true);
+        }
+
+
+        // objectPlacer.placedObjects = savedData.placedObjects;
+    }
+
+    private void SavePlacedPieces()
+    {
+        foreach (GameObject obj in objectPlacer.placedObjects)
+        {
+            if(obj != null)
+            {
+                PlacableObject placableObject = obj.GetComponentInChildren<PlacableObject>();
+                if (placableObject != null)
+                {
+                    placableObject.isSaved = true;
+                }
+            }
+        }
+    }
+    #endregion
 }

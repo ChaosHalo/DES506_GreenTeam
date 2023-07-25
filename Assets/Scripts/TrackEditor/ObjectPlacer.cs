@@ -35,6 +35,7 @@ public class ObjectPlacer : MonoBehaviour
         if (placeableObject.autoRotate)
             placeableObject.autoRotate.SetRotationState(rotationState, true);
         placeableObject.SetIsPlaced(true);
+        placeableObject.isSaved = !placedByUser;
         placedObjects.Add(newObject);
 
         int verticalOffset = 100;

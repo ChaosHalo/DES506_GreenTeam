@@ -38,6 +38,7 @@ public class PlacableObject : MonoBehaviour
 
     internal ObjectData.ObjectType objectType;
 
+    internal bool isSaved = false;
     private bool isPlaced = false;
     private bool isDeleted = false;
     private float deleteAnimSpeed = 12.5f;

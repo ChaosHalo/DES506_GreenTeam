@@ -86,4 +86,10 @@ public class CurrencyManager : MonoBehaviour
         currencyCurrent = currencyStart;
         uiManager.UpdateCurrency(currencyCurrent);
     }
+
+    internal void SetCurrencyTo(int currency)
+    {
+        currencyCurrent = currency;
+        uiManager.UpdateCurrency(currencyCurrent);
+    }
 }

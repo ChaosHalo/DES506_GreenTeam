@@ -288,6 +288,7 @@ public class State_GenerateWorld : IBuildingState
     public void EndState() 
     {
         placementSystem.isGenerating = false;
+        MyGameManager.instance.GetPlacementSystem().SaveData();
     }
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds) { }
     public void UpdateState(Vector3 gridPosition, bool isWithinBounds) 
