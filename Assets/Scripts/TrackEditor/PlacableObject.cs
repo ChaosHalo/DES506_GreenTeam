@@ -29,9 +29,12 @@ public class PlacableObject : MonoBehaviour
     internal bool canScale = true;
     [SerializeField]
     private float scaleSpeed = 0.005f;
-    [SerializeField]
     private bool isConnected = false;
+    public bool isConnectedToStart = false;
+    public bool isStartPiece = false;
+    internal bool hasCompletedChainCheck = false;
     internal bool GetConnectedStatus() { return isConnected; }
+    internal bool IsConnectedToStart() { return isConnectedToStart; }
 
     internal ObjectData.ObjectType objectType;
 
@@ -158,6 +161,31 @@ public class PlacableObject : MonoBehaviour
     {
         if (canModify == false)
             lockedIndicator.SetActive(true);
+    }
+
+    internal void BeginChainCheck()
+    {
+        ChainCheckAdjacent();
+    }
+
+    internal void ChainCheckAdjacent()
+    {
+        // don't check same piece twice
+        if (hasCompletedChainCheck == true)
+            return;
+        hasCompletedChainCheck = true;
+
+        // check if adjacent piece is start piece or connected to it
+        List<PlacableObject> adjacentObjects = autoRotate.GetAdjacentObjects();
+        foreach (PlacableObject adjacentObject in adjacentObjects)
+            if (adjacentObject != null)
+                if (adjacentObject.isStartPiece || adjacentObject.isConnectedToStart == true)
+                    isConnectedToStart = true;
+
+        // continue to chain to adjacent pieces
+        foreach (PlacableObject adjacentObject in adjacentObjects)
+            if (adjacentObject != null)
+                adjacentObject.ChainCheckAdjacent();
     }
 
     internal void UpdateConnectionState()

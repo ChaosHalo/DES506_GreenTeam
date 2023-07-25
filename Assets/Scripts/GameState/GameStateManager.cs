@@ -30,25 +30,6 @@ public class GameStateManager : MonoBehaviour
 
     public bool ChangeToState_Race()
     {
-        if (MyGameManager.instance.GetObjectPlacer().IsTrackFullyConnected() == false)
-        {
-            Debug.Log("Track not connected");
-            return false;
-        }
-        if (MyGameManager.instance.GetObjectPlacer().IsTrackAnimating() == true)
-        {
-            Debug.Log("Objects currently animating");
-            return false;
-        }
-        if (MyGameManager.instance.GetPlacementSystem().buildingState != null)
-        {
-            if (MyGameManager.instance.GetPlacementSystem().buildingState.GetType() == typeof(State_GenerateWorld))
-            {
-                Debug.Log("World currently generating");
-                return false;
-            }
-        }
-
         MyGameManager.instance.GetPlacementSystem().EndCurrentState();
         ChangeToState(Index.RACE);
         return true;

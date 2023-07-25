@@ -34,6 +34,8 @@ public class AutoRotate : MonoBehaviour
     private float rotateSpeed = 2000;
     private bool isRotating = false;
 
+    public List<PlacableObject> allAdjacentObjects = new();
+
     private void Awake()
     {
         AdjustConnectionDirectionsForRotationState(rotationState);
@@ -187,6 +189,35 @@ public class AutoRotate : MonoBehaviour
         return false;
     }
 
+
+    private PlacableObject GetAdjacentPieceAt(Vector3 direction, Vector3 originPos, float distanceMulti)
+    {
+        // offset origin point in direction of check
+        Vector3 originOffset = direction * 45;
+
+        // adjust origin point and distance by connection distance multiplier
+        originOffset *= distanceMulti;
+        float distance = 40;
+
+        // do raycast
+        RaycastHit[] hits = Physics.RaycastAll(originPos + originOffset, direction, distance);
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.collider != null)
+            {
+                // ignore hits on itself
+                if (hit.transform != this.transform.parent)
+                {
+                    if (hit.transform.CompareTag("RotationHitbox"))
+                    {
+                        return hit.transform.GetComponentInChildren<PlacableObject>();
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     internal bool CheckForConnections()
     {
         bool isConnected = true;
@@ -202,4 +233,19 @@ public class AutoRotate : MonoBehaviour
         return isConnected;
     }
 
+    private void FindAdjacentObjects()
+    {
+        allAdjacentObjects.Clear();
+
+        for (int i = 0; i < connectionDirectionsAdjusted.Count; i++)
+        {
+            allAdjacentObjects.Add(GetAdjacentPieceAt(connectionDirectionsAdjusted[i], rayCastOrigin.transform.position, connectionDistanceMulti));
+        }
+    }
+
+    internal List<PlacableObject> GetAdjacentObjects()
+    {
+        FindAdjacentObjects();
+        return allAdjacentObjects;
+    }
 }
