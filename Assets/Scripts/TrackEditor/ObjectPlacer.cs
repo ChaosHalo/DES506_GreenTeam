@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Missions;
 using static GameStateManager;
+using UnityEditor;
 
 public class ObjectPlacer : MonoBehaviour
 {
@@ -188,23 +189,47 @@ public class ObjectPlacer : MonoBehaviour
         }
     }
 
+    internal void StartChainCheck()
+    {
+        // reset pieces
+        foreach (PlacableObject obj in GetAllPlacableObjects())
+        {
+            obj.hasCompletedChainCheck = false;
+        }
+
+        // find Start Piece
+        PlacableObject startPiece = null;
+        foreach (PlacableObject obj in GetAllPlacableObjects())
+        {
+            if (obj.isStartPiece)
+            {
+                startPiece = obj;
+                break;
+            }
+        }
+
+        // start chain at start piece
+        if (startPiece != null)
+        {
+            startPiece.BeginChainCheck();
+        }
+    }
+
     internal bool IsTrackFullyConnected()
     {
-        foreach (GameObject obj in placedObjects)
+        // check if each piece is individually connected
+        // check each piece in chain for connection to start
+        foreach (PlacableObject obj in GetAllPlacableObjects())
         {
-            if (obj != null)
+            if (obj.IsConnectedToStart() == false)
             {
-                PlacableObject placableObject = obj.GetComponentInChildren<PlacableObject>();
-                if (placableObject != null)
-                {
-                    if (placableObject.objectType == ObjectData.ObjectType.Track)
-                    {
-                        if (placableObject.GetConnectedStatus() == false)
-                        {
-                            return false;
-                        }
-                    }
-                }
+                Debug.Log("Not Connected To Start");
+                return false;
+            }
+            if (obj.GetConnectedStatus() == false)
+            {
+                Debug.Log("Pieces Not Connected");
+                return false;
             }
         }
 
@@ -213,6 +238,20 @@ public class ObjectPlacer : MonoBehaviour
 
     internal bool IsTrackAnimating()
     {
+        foreach(PlacableObject obj in GetAllPlacableObjects())
+        {
+            if (obj.GetFallingStatus() == true)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private List<PlacableObject> GetAllPlacableObjects()
+    {
+        List<PlacableObject> newList = new();
+
         foreach (GameObject obj in placedObjects)
         {
             if (obj != null)
@@ -222,16 +261,13 @@ public class ObjectPlacer : MonoBehaviour
                 {
                     if (placableObject.objectType == ObjectData.ObjectType.Track)
                     {
-                        if (placableObject.GetFallingStatus() == true)
-                        {
-                            return true;
-                        }
+                        newList.Add(placableObject);
                     }
                 }
             }
         }
 
-        return false;
+        return newList;
     }
 
 
