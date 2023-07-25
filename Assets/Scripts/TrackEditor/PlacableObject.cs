@@ -22,7 +22,7 @@ public class PlacableObject : MonoBehaviour
     [SerializeField]
     private Material connectionMaterialPrefab;
     private Material connectionMaterialInstance;
-    private List<Material> originalMaterialInstance=new();
+    internal List<Material> originalMaterialInstance=new();
     private Renderer[] renderers;
 
     [SerializeField]

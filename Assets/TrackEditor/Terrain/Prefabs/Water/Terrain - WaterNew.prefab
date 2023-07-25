@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2992670455732496012}
   - component: {fileID: 2992670455732496015}
   - component: {fileID: 983208527927950994}
+  - component: {fileID: 5518942717948478523}
   m_Layer: 15
   m_Name: Water
   m_TagString: TerrainObject
@@ -108,7 +109,8 @@ MonoBehaviour:
   connectionMaterialPrefab: {fileID: 0}
   canScale: 1
   scaleSpeed: 100
-  isConnected: 0
+  isConnectedToStart: 0
+  isStartPiece: 0
   fallAnimSpeed: 1250
   additionalObjects: []
 --- !u!114 &2992670455732496012
@@ -159,6 +161,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IncidentEffectScriptableObject: {fileID: 11400000, guid: 96a5ac6309bd5ed40aae960dd546172b,
     type: 2}
+--- !u!54 &5518942717948478523
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2992670455732496014}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5457813455414454757
 GameObject:
   m_ObjectHideFlags: 0
