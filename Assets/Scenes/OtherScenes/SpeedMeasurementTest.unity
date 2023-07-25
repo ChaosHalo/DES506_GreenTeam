@@ -1641,8 +1641,11 @@ MonoBehaviour:
   buildObjects: {fileID: 0}
   raceObjects: {fileID: 0}
   light: {fileID: 0}
+  gameDifficulty: 0
   missionManager: {fileID: 0}
-  RaceCamera: {fileID: 0}
+  RaceCameraObject: {fileID: 0}
+  raceCamera: {fileID: 0}
+  carInfoScriptableObjects: []
 --- !u!4 &509817112
 Transform:
   m_ObjectHideFlags: 0
@@ -5991,7 +5994,7 @@ MonoBehaviour:
   AIWaypoints: {fileID: 1038365712}
   TestHumanPlayers: []
   TestBotPlayers:
-  - {fileID: 4056022515747808193, guid: c7d26a6ac4d542e4da4f5c86231c3601, type: 3}
+  - {fileID: 4056022515747808193, guid: 065188954bd95c74cab4eb49adc8afdd, type: 3}
 --- !u!1001 &1823024497
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -444,6 +444,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4053423160352308879}
+  - {fileID: 4368257738541468288}
   m_Father: {fileID: 4062083421154969813}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1830,7 +1831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VehicleController: {fileID: 4168269826279685327}
   WheelPosition: {fileID: 4053333363764071527}
-  WheelModel: {fileID: 4053375782611935431}
+  WheelModel: {fileID: 8438187151235281876}
   SteeringWheel: 1
   RollingOrientation: 0
   WheelRotationSpeed: 1000
@@ -1899,6 +1900,7 @@ Transform:
   - {fileID: 7247017547244536394}
   - {fileID: 1008521241210634471}
   - {fileID: 226764663400370864}
+  - {fileID: 8954948688607279508}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -2.2510002, z: 0}
@@ -2178,6 +2180,7 @@ MonoBehaviour:
   SmokeCollisionNum: 4
   ExplosionForce: 10
   pushForce: 10000
+  collisionNum: 0
 --- !u!1 &4056077304818578723
 GameObject:
   m_ObjectHideFlags: 0
@@ -12792,7 +12795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VehicleController: {fileID: 4168269826279685327}
   WheelPosition: {fileID: 4061986730391277785}
-  WheelModel: {fileID: 4053423160352308879}
+  WheelModel: {fileID: 4368257738541468288}
   SteeringWheel: 1
   RollingOrientation: 1
   WheelRotationSpeed: 1000
@@ -13075,7 +13078,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4053786327135831573
 Transform:
   m_ObjectHideFlags: 0
@@ -13131,6 +13134,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4053486611365008895}
+  - {fileID: 2377304434225701913}
   m_Father: {fileID: 4053329126089691015}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14178,7 +14182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VehicleController: {fileID: 4168269826279685327}
   WheelPosition: {fileID: 4053652066313451139}
-  WheelModel: {fileID: 4061723141702447955}
+  WheelModel: {fileID: 6148774725433138652}
   SteeringWheel: 0
   RollingOrientation: 0
   WheelRotationSpeed: 1000
@@ -14392,6 +14396,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4061723141702447955}
+  - {fileID: 6148774725433138652}
   m_Father: {fileID: 4053788267637964151}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14526,7 +14531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VehicleController: {fileID: 4168269826279685327}
   WheelPosition: {fileID: 4061995586890205765}
-  WheelModel: {fileID: 4053486611365008895}
+  WheelModel: {fileID: 2377304434225701913}
   SteeringWheel: 0
   RollingOrientation: 1
   WheelRotationSpeed: 1000
@@ -15559,6 +15564,7 @@ Transform:
   m_LocalScale: {x: 0.50000036, y: 0.5, z: 0.50000036}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8438187151235281876}
   - {fileID: 4053375782611935431}
   m_Father: {fileID: 4062052085704839337}
   m_RootOrder: 0
@@ -15931,6 +15937,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Formula 1 car textured
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6ad27279245e4414a9be0df6fdc23335,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ad27279245e4414a9be0df6fdc23335, type: 3}
@@ -16027,6 +16038,511 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7650395551955915811, guid: ed92ac8f507dce8459e244179706fbf0,
     type: 3}
   m_PrefabInstance: {fileID: 2341977609052923394}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2843839223755604978
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 4061995586890205765}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8000008
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8000008
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.076
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.117
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.713
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000053085387
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.000000055879354
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cdd56bf99f945464c8758d1f716def44, type: 2}
+    - target: {fileID: 919132149155446097, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_Name
+      value: Formula 1 car wheel (without body) rearright
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5dd28aa0ddd5da439ecc779019ede38, type: 3}
+--- !u!4 &2377304434225701913 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+    type: 3}
+  m_PrefabInstance: {fileID: 2843839223755604978}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4257469798803369323
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 4061986730391277785}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.80000067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.80000067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.16000009
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.000000053085387
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.00000005401671
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cdd56bf99f945464c8758d1f716def44, type: 2}
+    - target: {fileID: 919132149155446097, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_Name
+      value: Formula 1 car wheel (without body) frontright
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5dd28aa0ddd5da439ecc779019ede38, type: 3}
+--- !u!4 &4368257738541468288 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+    type: 3}
+  m_PrefabInstance: {fileID: 4257469798803369323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5971332702092851767
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 4053652066313451139}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8000007
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8000007
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.069
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.000000053085387
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000054948032
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cdd56bf99f945464c8758d1f716def44, type: 2}
+    - target: {fileID: 919132149155446097, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_Name
+      value: Formula 1 car wheel (without body) rearleft
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5dd28aa0ddd5da439ecc779019ede38, type: 3}
+--- !u!4 &6148774725433138652 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+    type: 3}
+  m_PrefabInstance: {fileID: 5971332702092851767}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8255326801683387455
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 4053333363764071527}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.147
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.585
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.00000005338508
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.000000053385076
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cdd56bf99f945464c8758d1f716def44, type: 2}
+    - target: {fileID: 919132149155446097, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_Name
+      value: Formula 1 car wheel (without body) frontleft
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d5dd28aa0ddd5da439ecc779019ede38,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: d5dd28aa0ddd5da439ecc779019ede38, type: 3}
+--- !u!4 &8438187151235281876 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d5dd28aa0ddd5da439ecc779019ede38,
+    type: 3}
+  m_PrefabInstance: {fileID: 8255326801683387455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8920759079844191871
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 4062232925689085565}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cdd56bf99f945464c8758d1f716def44, type: 2}
+    - target: {fileID: 919132149155446097, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+        type: 3}
+      propertyPath: m_Name
+      value: Formula 1 body (without wheels)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6f4fc3b09a00bc44fb2ae50566b04c76, type: 3}
+--- !u!4 &8954948688607279508 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6f4fc3b09a00bc44fb2ae50566b04c76,
+    type: 3}
+  m_PrefabInstance: {fileID: 8920759079844191871}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9013099913830047971
 PrefabInstance:
