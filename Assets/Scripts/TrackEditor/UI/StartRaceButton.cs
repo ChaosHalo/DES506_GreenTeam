@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,6 +46,7 @@ public class StartRaceButton : MonoBehaviour
         trackBuilderUI.SetActive(false);
         raceResultsUI.SetActive(false);
         upcomingRacersScreen.SetActive(true);
+        trackButton.onClick?.Invoke();
         gameStateManager.ChangeToState_Race();
     }
 }
