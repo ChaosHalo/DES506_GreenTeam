@@ -502,7 +502,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7074131522109120775}
-  m_Mesh: {fileID: 7978521856305101220, guid: 23c03061977170643acefd294dab1744, type: 3}
+  m_Mesh: {fileID: 7978521856305101220, guid: 340ea68b08f899d4a96a74de50c6e6c3, type: 3}
 --- !u!23 &8731531158155329746
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -566,7 +566,6 @@ MonoBehaviour:
     type: 2}
   canScale: 1
   scaleSpeed: 100
-  isConnected: 0
   isConnectedToStart: 1
   isStartPiece: 1
   fallAnimSpeed: 12.5
@@ -596,6 +595,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0}
   connectionDistanceMulti: 1
   rayCastOrigin: {fileID: 2103027585820375964}
+  allAdjacentObjects: []
 --- !u!64 &1701255844333435775
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -609,7 +609,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 7978521856305101220, guid: 23c03061977170643acefd294dab1744, type: 3}
+  m_Mesh: {fileID: 7978521856305101220, guid: 340ea68b08f899d4a96a74de50c6e6c3, type: 3}
 --- !u!1 &7355457802295458788
 GameObject:
   m_ObjectHideFlags: 0
