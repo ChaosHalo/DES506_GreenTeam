@@ -10,6 +10,7 @@ public class SaveSystem : MonoBehaviour
     [SerializeField] private ObjectPlacer objectPlacer;
     [SerializeField] private CurrencyManager currencyManager;
     [SerializeField] private Button trackModeButton;
+    [SerializeField] private UnlockableButton[] unlockableButtons;
 
 
     [System.Serializable]
@@ -19,13 +20,15 @@ public class SaveSystem : MonoBehaviour
         public GridData terrainData;
         public GridData trackData;
         public List<GameObject> placedObjects;
+        public List<int> lockedPieces;
 
-        public WorldData(int currency, GridData terrainData, GridData trackData, List<GameObject> placedObjects)
+        public WorldData(int currency, GridData terrainData, GridData trackData, List<GameObject> placedObjects, List<int> lockedPieces)
         {
             this.currency = currency;
             this.terrainData = terrainData;
             this.trackData = trackData;
             this.placedObjects = placedObjects;
+            this.lockedPieces = lockedPieces;
         }
     }
     private WorldData savedData;
@@ -46,11 +49,34 @@ public class SaveSystem : MonoBehaviour
         GridData newTerrainData = CloneGridData(placementSystem.terrainData);
         GridData newTrackData = CloneGridData(placementSystem.trackData);
 
-        savedData = new(currencyManager.GetPlayerCurrency(), newTerrainData, newTrackData, objectPlacer.placedObjects);
+        List<int> lockedPieces = new();
+
+        foreach (UnlockableButton button in unlockableButtons)
+            if (button.isLocked)
+                lockedPieces.Add(button.ID);
+
+        savedData = new(currencyManager.GetPlayerCurrency(), newTerrainData, newTrackData, objectPlacer.placedObjects, lockedPieces);
     }
 
     public void LoadData()
     {
+        // check if world is still generating
+        if (MyGameManager.instance.GetPlacementSystem().buildingState != null)
+        {
+            if (MyGameManager.instance.GetPlacementSystem().buildingState.GetType() == typeof(State_GenerateWorld))
+            {
+                Debug.Log("World currently generating");
+                return;
+            }
+        }
+
+        // check for track drop/delete/rotate animations
+        if (MyGameManager.instance.GetObjectPlacer().IsTrackAnimating() == true)
+        {
+            Debug.Log("Objects currently animating");
+            return;
+        }
+
         // clone saved data
         GridData newTerrainData = CloneGridData(savedData.terrainData);
         GridData newTrackData = CloneGridData(savedData.trackData);
@@ -75,10 +101,19 @@ public class SaveSystem : MonoBehaviour
         // handle misc
         currencyManager.SetCurrencyTo(savedData.currency);
         trackModeButton.onClick.Invoke();
+
+        // undo unlocked pieces
+        foreach (UnlockableButton button in unlockableButtons)
+            foreach (int id in savedData.lockedPieces)
+                if (button.ID == id)
+                    button.Lock();
     }
 
     private void RestoreObjects(GridData gridData)
     {
+        if (gridData == null)
+            return;
+
         foreach (var data in gridData.placedObjects)
         {
             objectPlacer.PlaceObject(placementSystem.database.objectsData[data.Value.ID].Prefab,
