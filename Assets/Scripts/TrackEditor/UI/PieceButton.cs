@@ -12,6 +12,8 @@ public class PieceButton : MonoBehaviour
 
     [SerializeField]
     private TMP_Text textObject;
+    [SerializeField]
+    private TMP_Text costText;
 
     [SerializeField]
     private int ID;
@@ -28,6 +30,12 @@ public class PieceButton : MonoBehaviour
     private Vector3 downPos;
     private float minDistance = 10f;
 
+    private void Start()
+    {
+        int cost = database.objectsData[ID].cost;
+        string textString = cost > 0 ? cost.ToString() : "FREE";
+        costText.text = textString;
+    }
 
     private void Update()
     {
