@@ -78,6 +78,9 @@ public class State_Race : IGameState
     }
     public void InitMap()
     {
+        // 随机打乱车辆出生位置
+        ShuffleList(raceManager.StartPositions);
+
         // 设置车辆出生点
         LoadStartPoints();
 
@@ -92,6 +95,18 @@ public class State_Race : IGameState
 
     }
 
+    public static void ShuffleList<T>(T[] list)
+    {
+        int n = list.Length;
+        while (n > 1)
+        {
+            n--;
+            int k = Random.Range(0, n + 1);
+            T value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
+    }
     /// <summary>
     /// 启用所有车之间的碰撞
     /// </summary>
@@ -108,7 +123,7 @@ public class State_Race : IGameState
     private void LoadStartPoints()
     {
         StartPieceInfo startPieceInfo = MyGameManager.instance.GetStartPieceInfoObject();
-        if (startPieceInfo == null  )
+        if (startPieceInfo == null)
         {
             Debug.LogError("Failed to load map : Non-existent StartPoints");
             return;

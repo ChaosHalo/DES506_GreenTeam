@@ -83,8 +83,6 @@ public class EndOfSeasonUIManager : AllUIManager
     #endregion
 
     #region ImageUpdate
-    [HideInInspector]
-    public string folderPath = "SaveData/MapScreenShots";
     public Image[] MapScreenShots; // 这里假设您有一个名为image1的Image数组
 
     public void UpdateMapScreenShots()
@@ -93,20 +91,7 @@ public class EndOfSeasonUIManager : AllUIManager
     }
     private void LoadSpritesAndAssign()
     {
-        string[] filePaths = Directory.GetFiles(Application.dataPath + "/Resources/" + folderPath, "*.jpg");
         List<Sprite> sprites = new List<Sprite>();
-
-        /*foreach (string filePath in filePaths)
-        {
-            // 异步加载PNG图片为Texture2D
-            Texture2D texture = new Texture2D(2, 2);
-            byte[] imageData = File.ReadAllBytes(filePath);
-            yield return texture.LoadImage(imageData);
-
-            // 创建Sprite并赋值
-            Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
-            sprites.Add(sprite);
-        }*/
         CameraScreenshot screenshot = FindObjectOfType<CameraScreenshot>();
         foreach(var texture in screenshot.ScreenShots)
         {
