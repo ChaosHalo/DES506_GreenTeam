@@ -157,7 +157,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2629212506903008637}
-  m_Mesh: {fileID: 8696962209570006523, guid: 94c6fae9c01dd5c4b915285e054b4e01, type: 3}
+  m_Mesh: {fileID: 8696962209570006523, guid: 7694ed2409ef8e2438925496797a8e1c, type: 3}
 --- !u!23 &3063092393245537814
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -779,7 +779,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7292216342749449870}
-  m_Mesh: {fileID: -8298498127820932079, guid: 94c6fae9c01dd5c4b915285e054b4e01, type: 3}
+  m_Mesh: {fileID: -8298498127820932079, guid: 7694ed2409ef8e2438925496797a8e1c, type: 3}
 --- !u!23 &1088906274113641391
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -871,7 +871,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -8298498127820932079, guid: 94c6fae9c01dd5c4b915285e054b4e01, type: 3}
+  m_Mesh: {fileID: -8298498127820932079, guid: 7694ed2409ef8e2438925496797a8e1c, type: 3}
 --- !u!1 &7991940321643567673
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +916,7 @@ GameObject:
   - component: {fileID: 6680352268378579597}
   - component: {fileID: 7852769796124017536}
   - component: {fileID: 5052136523194407008}
+  - component: {fileID: 4762657911639182197}
   m_Layer: 0
   m_Name: RotationPivot
   m_TagString: RotationHitbox
@@ -1024,3 +1025,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2, z: 0.2}
   m_Center: {x: -0.2, y: 0, z: 0}
+--- !u!114 &4762657911639182197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8457297093644955060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8208a551c04a627459ba4e0a24ba39de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMaterial: {fileID: 2100000, guid: c907f4e3c23ad8548b4c4788cd819d4c, type: 2}
+  sandMaterial: {fileID: 2100000, guid: 4b845a06ca6b7294f938d0f62ab3f5be, type: 2}
+  snowMaterial: {fileID: 2100000, guid: 459ce206dab301c45b75fe825e0e5776, type: 2}
+  waterMaterial: {fileID: 2100000, guid: 6cd201c2dc42e1e4a8a65c5eeb2df397, type: 2}
+  placableObject: {fileID: 8328864324864194405}

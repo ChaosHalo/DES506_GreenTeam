@@ -85,7 +85,7 @@ public class Mission : ScriptableObject
 
         // randomise track & terrain
         trackType = (ObjectData.TrackType)UnityEngine.Random.Range(1, (int)Enum.GetValues(typeof(ObjectData.TrackType)).Cast<ObjectData.TrackType>().Max());
-        terrainType = (ObjectData.TerrainType)UnityEngine.Random.Range(1, (int)Enum.GetValues(typeof(ObjectData.TerrainType)).Cast<ObjectData.TerrainType>().Max() + 1);
+        terrainType = (ObjectData.TerrainType)UnityEngine.Random.Range(1, (int)Enum.GetValues(typeof(ObjectData.TerrainType)).Cast<ObjectData.TerrainType>().Max());
 
         // set variables
         missionDifficulty = GetDifficulty();
