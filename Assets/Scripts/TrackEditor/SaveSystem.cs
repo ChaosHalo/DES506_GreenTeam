@@ -31,6 +31,9 @@ public class SaveSystem : MonoBehaviour
     private WorldData savedData;
     private GridData CloneGridData(GridData originalGridData)
     {
+        if (originalGridData == null)
+            return null;
+
         GridData newGridData = new GridData(originalGridData.gridSize);
         newGridData.placedObjects.AddRange(originalGridData.placedObjects);
         return newGridData;
