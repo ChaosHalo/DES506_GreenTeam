@@ -88,8 +88,8 @@ public class CarManager : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(transform.position, BoundaryCheckRadio);
+        /*Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(transform.position, BoundaryCheckRadio);*/
     }
     private void CheckAirTime()
     {

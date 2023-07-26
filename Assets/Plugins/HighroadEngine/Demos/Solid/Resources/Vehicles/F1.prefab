@@ -1973,12 +1973,12 @@ MonoBehaviour:
   SteeringSpeed: 10000
   AutoForward: 0
   _finisherPosition: 0
-  EngineForce: 2888.889
+  EngineForce: 2444.4446
   CenterOfMass: {x: 0, y: -1, z: 0}
   GroundDistance: 2
   OffroadPenaltyFactor: 1
-  CarGrip: 124.44445
-  FullThrottleVelocity: 10
+  CarGrip: 106.66667
+  FullThrottleVelocity: 8.666667
   MinimalTurningSpeed: 1
   ForwardForceHeight: 0.5
   TorqueCurve:
@@ -2184,6 +2184,10 @@ MonoBehaviour:
   ExplosionForce: 10
   pushForce: 10000
   collisionNum: 0
+  overtakingProbability: 0.5
+  overtakingDistance: 15
+  overtakingSpeedThreshold: 10
+  overtakingForce: 30000
 --- !u!1 &4056077304818578723
 GameObject:
   m_ObjectHideFlags: 0

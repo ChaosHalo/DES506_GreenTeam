@@ -16,6 +16,8 @@ public class CarInteraction : MonoBehaviour
     [SerializeField]
     private int collisionNum;
     private Rigidbody rb;
+
+    private CarManager carManager;
     //开始
     // Start is called before the first frame update
     void Start()
@@ -24,10 +26,78 @@ public class CarInteraction : MonoBehaviour
         controller = GetComponent<SolidController>();
         rb = GetComponent<Rigidbody>();
         controller.OnCollisionEnterWithOther += OnVehicleCollisionEnter;
-        
+        carManager = GetComponent<CarManager>();
+    }
+    private void Update()
+    {
+        OvertakingSystem();
     }
 
-    public void InitSmoke()
+    #region 超车系统
+    public float overtakingProbability = 0.2f;
+    public float overtakingDistance = 15f;
+    public float overtakingSpeedThreshold = 10f;
+    public float overtakingForce = 20000f; // 超车时施加的推力大小
+    public float overtakingDuration = 2f;
+
+    private Transform frontCar;
+    private bool isOvertaking = false;
+    
+    private void OvertakingSystem()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, overtakingDistance))
+        {
+            if (hit.collider.CompareTag(GlobalConstants.CARTAGNAME))
+            {
+                frontCar = hit.collider.transform;
+                TryOvertake(hit);
+                
+            }
+        }
+    }
+
+    private void TryOvertake(RaycastHit hit)
+    {
+        if (!isOvertaking /*&& rb.velocity.magnitude > overtakingSpeedThreshold*/)
+        {
+            if (Random.value < overtakingProbability)
+            {
+                int direction = Random.Range(0, 2); // 0代表左边，1代表右边
+                //Vector3 overtakingForceVector = Quaternion.Euler(0, (direction == 0) ? -90f : 90f, 0) * transform.forward;
+                Vector3 overtakingForceVector = (direction == 0) ? -transform.right : transform.right;
+                
+
+                // 在超车结束后，重置正在超车标志
+                StartCoroutine(ResetOvertakingFlag(overtakingForceVector));
+
+                Debug.Log(carManager.CarInfo.Name + "检测到前面有车 :" + hit.collider.GetComponent<CarManager>().CarInfo.Name + ",正在向" + direction + "超车");
+            }
+        }
+    }
+
+    private IEnumerator ResetOvertakingFlag(Vector3 overtakingForceVector)
+    {
+        // 设置正在超车标志
+        isOvertaking = true;
+
+        float time = 0;
+        while (time < overtakingDuration)
+        {
+            // 施加超车推力
+            rb.AddForce(overtakingForceVector * overtakingForce, ForceMode.Force);
+            time += Time.deltaTime;
+            // 等待1秒钟后重置正在超车标志
+            yield return null;
+        }
+        
+        isOvertaking = false;
+        Debug.Log(carManager.CarInfo.Name + "超车结束");
+    }
+    #endregion
+
+    #region 车辆碰撞事件处理
+    private void InitSmoke()
     {
         _smokes = Smokes.emission;
         //_smokes.enabled = false;
@@ -36,13 +106,14 @@ public class CarInteraction : MonoBehaviour
 
     private void OnVehicleCollisionEnter(Collision other)
     {
-        collisionNum ++;
+        collisionNum++;
         UpdateSmoke();
         AddPushForce(other);
     }
+
     private void AddPushForce(Collision other)
     {
-        if (other.gameObject.CompareTag("Car"))
+        if (other.gameObject.CompareTag(GlobalConstants.CARTAGNAME))
         {
             FocusCameraOnCar.Raise(GetComponent<CarManager>(), GetComponent<CarManager>().HasFinishedRace());
             // 获取碰撞对象的Rigidbody组件
@@ -94,4 +165,14 @@ public class CarInteraction : MonoBehaviour
         ParticleSystem.MainModule mainModule = particleSystem.main;
         mainModule.startColor = color;
     }
+    #endregion
+
+
+    private void OnDrawGizmos()
+    {
+        // 在Scene视图中绘制射线
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, transform.forward * overtakingDistance);
+    }
+
 }
