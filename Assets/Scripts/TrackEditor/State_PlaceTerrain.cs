@@ -2,9 +2,11 @@ using MoreMountains.HighroadEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class State_PlaceTerrain : IBuildingState
 {
+    private bool spawnObjectOnce = true;
     private int gameObjectIndex = -1;
     private int selectedObjectIndex = -1;
     int ID;
@@ -39,8 +41,12 @@ public class State_PlaceTerrain : IBuildingState
         this.currencyManager = currencyManager;
 
         previewSystem.StopShowingPreview();
-
         selectedObjectIndex = database.objectsData.FindIndex(data => data.ID == ID);
+        // EnablePreview();
+    }
+
+    private void EnablePreview()
+    {
         if (selectedObjectIndex > -1)
         {
             // set new preview indicator
@@ -60,6 +66,13 @@ public class State_PlaceTerrain : IBuildingState
 
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
+        // don't allow placement inside UI
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            placementSystem.EndCurrentState();
+            return;
+        }
+
         // check if existing terrain is of same type, do NOT place if TRUE
         if (terrainData.IsSameType(gridPosition, (int)database.objectsData[selectedObjectIndex].terrainType))
         {
@@ -100,7 +113,6 @@ public class State_PlaceTerrain : IBuildingState
 
         // get index at selected position
         gameObjectIndex = selectedData.GetRepresentationIndex(gridPosition);
-
 
         // object to place index
         int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, true);
@@ -146,6 +158,15 @@ public class State_PlaceTerrain : IBuildingState
 
     public void UpdateState(Vector3 position, bool isWithinBounds)
     {
+        if (EventSystem.current.IsPointerOverGameObject() == false)
+        {
+            if (spawnObjectOnce == true)
+            {
+                spawnObjectOnce = false;
+                EnablePreview();
+            }
+        }
+
         bool placementValidity = false;
         if (isWithinBounds && currencyManager.CanAfford(database.objectsData[selectedObjectIndex].cost))
         {

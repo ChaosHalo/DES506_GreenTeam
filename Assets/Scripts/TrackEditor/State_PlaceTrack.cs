@@ -2,9 +2,11 @@ using MoreMountains.HighroadEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class State_PlaceTrack : IBuildingState
 {
+    private bool spawnObjectOnce = true;
     private int selectedObjectIndex = -1;
     int ID;
     Grid grid;
@@ -40,6 +42,11 @@ public class State_PlaceTrack : IBuildingState
         previewSystem.StopShowingPreview();
 
         selectedObjectIndex = database.objectsData.FindIndex(data => data.ID == ID);
+        //EnablePreview();
+    }
+
+    private void EnablePreview()
+    {
         if (selectedObjectIndex > -1)
         {
             // set new preview indicator
@@ -59,6 +66,13 @@ public class State_PlaceTrack : IBuildingState
 
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
+        // don't allow placement inside UI
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            placementSystem.EndCurrentState();
+            return;
+        }
+
         // check validity
         bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
         if (placementValidity == false || isWithinBounds == false)
@@ -118,6 +132,15 @@ public class State_PlaceTrack : IBuildingState
 
     public void UpdateState(Vector3 position, bool isWithinBounds)
     {
+        if (EventSystem.current.IsPointerOverGameObject() == false)
+        {
+            if (spawnObjectOnce == true)
+            {
+                spawnObjectOnce = false;
+                EnablePreview();
+            }
+        }
+
         bool placementValidity = false;
         if(isWithinBounds && currencyManager.CanAfford(database.objectsData[selectedObjectIndex].cost))
         {

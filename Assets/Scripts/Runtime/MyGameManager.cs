@@ -224,6 +224,8 @@ public class MyGameManager : MonoBehaviour
         gameDifficulty++;
         if(gameDifficulty>2)
             gameDifficulty = 2;
+
+        missionManager.ResetMissions();
     }
     #region GET / SET
     internal StartPieceInfo GetStartPieceInfoObject()

@@ -77,6 +77,9 @@ public class SaveSystem : MonoBehaviour
             return;
         }
 
+        // TEMP reset missions
+        MyGameManager.instance.missionManager.ResetMissions();
+
         // clone saved data
         GridData newTerrainData = CloneGridData(savedData.terrainData);
         GridData newTrackData = CloneGridData(savedData.trackData);
