@@ -930,9 +930,9 @@ RectTransform:
   m_Father: {fileID: 3978466764731295765}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 192, y: -262.5}
   m_SizeDelta: {x: 384, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6708144473758849698
@@ -2674,9 +2674,9 @@ RectTransform:
   m_Father: {fileID: 3978466764731295765}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 192, y: -37.5}
   m_SizeDelta: {x: 384, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8303206308700478810
@@ -2780,7 +2780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1548356209359682624
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2806,7 +2806,7 @@ RectTransform:
   - {fileID: 8055840179947819781}
   - {fileID: 3978466764731295765}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2889,13 +2889,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimerTextComponent: {fileID: 1975322235887135016}
   ResetTimeWhenStop: 1
-  CarInfoScriptableObjects: []
+  CarInfoScriptableObjects:
+  - {fileID: 11400000, guid: 5ef6a07b4eca243c1a3dbb80e3a4adda, type: 2}
+  - {fileID: 11400000, guid: a4d4bd9eab8984a1faa0423b29fecab6, type: 2}
+  - {fileID: 11400000, guid: 893776463a8804dfd92bdb198b039069, type: 2}
+  - {fileID: 11400000, guid: 93d881e1ccab44d45b97c051b4f16db5, type: 2}
   RaceCameraScripitObject: {fileID: 11400000, guid: 5a94f144c866ced46ac5a510cbaa4c79,
     type: 2}
   RacerInfos: []
   CameraTrackers: []
   ScoreText2: {fileID: 0}
-  Ranks: []
+  Ranks:
+  - {fileID: 1416607905400281481}
+  - {fileID: 6063753587626217862}
+  - {fileID: 8632852250007592122}
+  - {fileID: 484821370365882426}
 --- !u!1 &1548356209409641829
 GameObject:
   m_ObjectHideFlags: 0
@@ -3822,7 +3830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1975322235733030769
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3838,9 +3846,9 @@ RectTransform:
   m_Father: {fileID: 1975322236732591381}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 486.7442, y: -40.8273}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1975322235733030770
@@ -3955,7 +3963,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1975322235842591888
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3971,9 +3979,9 @@ RectTransform:
   m_Father: {fileID: 1975322236732591381}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 416.7442, y: -40.8273}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1975322235842591853
@@ -4224,7 +4232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1975322235954916389
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4240,9 +4248,9 @@ RectTransform:
   m_Father: {fileID: 1975322236732591381}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 206.7442, y: -40.8273}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1975322235954916390
@@ -4513,10 +4521,10 @@ RectTransform:
   m_Father: {fileID: 1361884376124793766}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 170, y: -300}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1975322236409448080
 CanvasRenderer:
@@ -4630,7 +4638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1975322236413242023
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4646,9 +4654,9 @@ RectTransform:
   m_Father: {fileID: 1975322236732591381}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 276.7442, y: -40.8273}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1975322236413242016
@@ -4981,7 +4989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1975322236732591381
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5089,7 +5097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1975322236762663333
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5191,7 +5199,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1975322236762663332}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RaceCamera, Assembly-CSharp
+        m_MethodName: CameraAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1975322236904246297
 GameObject:
   m_ObjectHideFlags: 0
@@ -5524,7 +5544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1975322237316255573
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5540,9 +5560,9 @@ RectTransform:
   m_Father: {fileID: 1975322236732591381}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 346.7442, y: -40.8273}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1975322237316255574
@@ -6602,7 +6622,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7154356974766371958}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RaceCamera, Assembly-CSharp
+        m_MethodName: CameraAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2574902422448206647
 GameObject:
   m_ObjectHideFlags: 0
@@ -9027,10 +9059,10 @@ RectTransform:
   m_Father: {fileID: 1361884376124793766}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 170, y: -420}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5788172009074160386
 CanvasRenderer:
@@ -12431,9 +12463,9 @@ RectTransform:
   m_Father: {fileID: 8055840179947819781}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 118.36776, y: -211.52196}
   m_SizeDelta: {x: 139.9009, y: 122.4133}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4655893886758762100
@@ -12518,9 +12550,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3928257174417483582}
-        m_TargetAssemblyTypeName: RaceScreenUIManager, Assembly-CSharp
-        m_MethodName: SwitchTarget
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RaceCamera, Assembly-CSharp
+        m_MethodName: CameraFocus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Mik
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RaceCamera, Assembly-CSharp
+        m_MethodName: SwitchTarget_Editor
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12794,9 +12838,9 @@ RectTransform:
   m_Father: {fileID: 3978466764731295765}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 192, y: -112.5}
   m_SizeDelta: {x: 384, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4350400419438458381
@@ -15546,9 +15590,9 @@ RectTransform:
   m_Father: {fileID: 8055840179947819781}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 118.36776, y: -61.20665}
   m_SizeDelta: {x: 139.9009, y: 122.4133}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8385995933358148526
@@ -15633,9 +15677,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3928257174417483582}
-        m_TargetAssemblyTypeName: RaceScreenUIManager, Assembly-CSharp
-        m_MethodName: SwitchTarget
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RaceCamera, Assembly-CSharp
+        m_MethodName: CameraFocus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Felicia
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RaceCamera, Assembly-CSharp
+        m_MethodName: SwitchTarget_Editor
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15967,9 +16023,9 @@ RectTransform:
   m_Father: {fileID: 8055840179947819781}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 118.36776, y: -512.1526}
   m_SizeDelta: {x: 139.9009, y: 122.4133}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5632012052041898643
@@ -16054,9 +16110,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3928257174417483582}
-        m_TargetAssemblyTypeName: RaceScreenUIManager, Assembly-CSharp
-        m_MethodName: SwitchTarget
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RaceCamera, Assembly-CSharp
+        m_MethodName: CameraFocus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Billy
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RaceCamera, Assembly-CSharp
+        m_MethodName: SwitchTarget_Editor
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16392,10 +16460,10 @@ RectTransform:
   m_Father: {fileID: 1361884376124793766}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 170, y: -660}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7589189444605090692
 CanvasRenderer:
@@ -16636,10 +16704,10 @@ RectTransform:
   m_Father: {fileID: 1361884376124793766}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 170, y: -540}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7385854055923258007
 CanvasRenderer:
@@ -16771,9 +16839,9 @@ RectTransform:
   m_Father: {fileID: 3978466764731295765}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 192, y: -187.5}
   m_SizeDelta: {x: 384, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9085957511482346179
@@ -17180,9 +17248,9 @@ RectTransform:
   m_Father: {fileID: 8055840179947819781}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 118.36776, y: -361.83728}
   m_SizeDelta: {x: 139.9009, y: 122.4133}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3716415941542616697
@@ -17267,9 +17335,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3928257174417483582}
-        m_TargetAssemblyTypeName: RaceScreenUIManager, Assembly-CSharp
-        m_MethodName: SwitchTarget
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RaceCamera, Assembly-CSharp
+        m_MethodName: CameraFocus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Peter
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: RaceCamera, Assembly-CSharp
+        m_MethodName: SwitchTarget_Editor
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

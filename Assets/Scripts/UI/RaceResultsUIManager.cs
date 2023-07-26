@@ -16,8 +16,12 @@ public class RaceResultsUIManager : AllUIManager
     public List<GameObject> completionCheckmarks = new List<GameObject>();
 
     public List<GameObject> LeaderboardInfos = new List<GameObject>();
+
+    private int ImageIndex = 0;
+    private CameraScreenshot cameraScreenshot;
     private void Start()
     {
+        cameraScreenshot = FindObjectOfType<CameraScreenshot>();
         //UpdatePlaceholderScoreboard();
     }
     private void OnEnable()
@@ -72,5 +76,11 @@ public class RaceResultsUIManager : AllUIManager
             base.WinCurrency();
         }
         // 赛季特殊处理
+    }
+
+    public void OnSaveScreenShot()
+    {
+        cameraScreenshot.TakeScreenshot(ImageIndex);
+        ImageIndex = (ImageIndex + 1) % MyGameManager.instance.Season;
     }
 }

@@ -41,12 +41,12 @@ public class StartRaceButton : MonoBehaviour
         }
 
         // can proceed to race
-        trackButton.onClick.Invoke();
+        //trackButton.onClick.Invoke();
         trackBuilderScreen.SetActive(false);
         trackBuilderUI.SetActive(false);
         raceResultsUI.SetActive(false);
         upcomingRacersScreen.SetActive(true);
-        trackButton.onClick?.Invoke();
+        //trackButton.onClick?.Invoke();
         gameStateManager.ChangeToState_Race();
     }
 }
