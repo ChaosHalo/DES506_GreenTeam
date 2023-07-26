@@ -25,7 +25,6 @@ public class Mission_Track8 : Mission
     }
     public override bool IsGoalReached()
     {
-        Debug.Log(goalInt);
         return goalInt > int1 ? true : false;
     }
     public override Mission.Difficulty GetDifficulty()

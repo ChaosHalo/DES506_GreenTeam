@@ -12,8 +12,10 @@ public class CarManager : MonoBehaviour
     public MissionEvent OnCarExplode;
 
     // store renderers
-    MeshRenderer[] renderers;
+    private MeshRenderer[] renderers;
     [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private GameObject splashPrefab;
+    [SerializeField] private float BoundaryCheckRadio = 5f;
     private GameObject currentExplosion;
 
     private double minAirDuration = 1;
@@ -57,6 +59,7 @@ public class CarManager : MonoBehaviour
             return new(MyGameManager.instance.FactorsBaseObject, CarInfo);
         }
     }
+    private VehicleAI vehicleAI;
     private void Awake()
     {
         //InitData();
@@ -71,8 +74,9 @@ public class CarManager : MonoBehaviour
     {
         Timer();
         CheckAirTime();
+        BoundariesHandle();
     }
-    private VehicleAI vehicleAI;
+    
     private void OnEnable()
     {
         vehicleAI = GetComponent<VehicleAI>();
@@ -82,11 +86,10 @@ public class CarManager : MonoBehaviour
     {
         if (vehicleAI != null) vehicleAI.StuckEvent.RemoveListener(OnStuck);
     }
-
-
-    internal void OnStuck()
+    private void OnDrawGizmos()
     {
-        Respawn(true);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(transform.position, BoundaryCheckRadio);
     }
     private void CheckAirTime()
     {
@@ -138,8 +141,11 @@ public class CarManager : MonoBehaviour
     public void SetCarGrip(float carGrip) => solidController.CarGrip = carGrip;
     public Car GetInitCar() => car;
     #endregion
+
+    #region Timer
     private void StartTimer() => IsTimerRunning = false;
     private void StopTimer() => IsTimerRunning = true;
+    
     /// <summary>
     /// 计时器
     /// </summary>
@@ -151,10 +157,24 @@ public class CarManager : MonoBehaviour
             totalTime += Time.deltaTime;
         }
     }
+    #endregion
+
+    #region CollisionHandle
     private void OnTriggerEnter(Collider other)
     {
+        CollisionEnterHandle(other.gameObject);
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        CollisionEnterHandle(collision.gameObject);
+    }
+    private void CollisionEnterHandle(GameObject gameObject)
+    {
         // 一圈结束
-        if (other.CompareTag(GlobalConstants.CHECKPOINT))
+        if (gameObject.CompareTag(GlobalConstants.CHECKPOINT))
         {
             if (!twoLapFlag)
             {
@@ -165,32 +185,47 @@ public class CarManager : MonoBehaviour
                 OnOneLapEnd();
             }
         }
-        // 出界
-        if (other.CompareTag(GlobalConstants.BOUNDARIES))
-        {
-            //solidController.Respawn();
-            Respawn(true);
-        }
-    }
-    private void OnCollisionStay(Collision collision)
-    {
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.CompareTag("ExplosionTag"))
+        if (gameObject.transform.CompareTag("ExplosionTag"))
         {
             SpawnExplosion();
         }
-        if (collision.transform.CompareTag("ExplosionDeathTag"))
+        if (gameObject.transform.CompareTag("ExplosionDeathTag"))
         {
             SpawnExplosion();
             Respawn(false);
         }
         // 出界
-        if (collision.transform.CompareTag(GlobalConstants.BOUNDARIES))
+        if (gameObject.transform.CompareTag(GlobalConstants.BOUNDARIES))
         {
             //solidController.Respawn();
             Respawn(true);
+        }
+    }
+    /// <summary>
+    /// 出界处理
+    /// </summary>
+    private void BoundariesHandle()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, BoundaryCheckRadio);
+        foreach(var i in colliders)
+        {
+            if (i.CompareTag(GlobalConstants.BOUNDARIES))
+            {
+                TerrainObject terrainObject = i.GetComponentInParent<TerrainObject>();
+                if(terrainObject != null)
+                {
+                    switch (terrainObject.terrainType)
+                    {
+                        case TerrainObject.Type.Sea:
+                            Instantiate(splashPrefab);
+                            break;
+                        default:
+                            SpawnExplosion();
+                            break;
+                    }
+                    Respawn(false);
+                }
+            }
         }
     }
     internal void Respawn(bool respawnWithExplosion)
@@ -210,12 +245,23 @@ public class CarManager : MonoBehaviour
                 }
             }
         }
-        if(respawnWithExplosion)
+        if (respawnWithExplosion)
             StartCoroutine(RespawnWithDelay(respawnPos));
-
-
+        else
+            // respawn to position
+            //transform.position = respawnPos;
+            RespawnDelay(respawnPos);
     }
-
+    private void RespawnDelay(Vector3 respawnPosition, float delayTime = 0f)
+    {
+        StartCoroutine(RespawnWithDelay(respawnPosition, delayTime));
+        IEnumerator RespawnWithDelay(Vector3 respawnPosition, float delayTime)
+        {
+            yield return new WaitForSeconds(delayTime);
+            transform.position = respawnPosition;
+        }
+    }
+    
     private IEnumerator RespawnWithDelay(Vector3 respawnPos)
     {
         // move camera to another driver after this one explodes
@@ -254,7 +300,14 @@ public class CarManager : MonoBehaviour
             currentExplosion = newExplosion;
         }
     }
+    
+    #endregion
 
+    #region Events
+    internal void OnStuck()
+    {
+        Respawn(true);
+    }
     /// <summary>
     /// 一圈结束事件
     /// </summary>
@@ -278,4 +331,6 @@ public class CarManager : MonoBehaviour
     {
 
     }
+    #endregion
+
 }

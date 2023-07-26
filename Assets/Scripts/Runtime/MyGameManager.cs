@@ -248,5 +248,6 @@ public class MyGameManager : MonoBehaviour
     internal MapPieceInfo[] GetMapPieceWayPointsObjects() { return FindObjectsOfType<MapPieceInfo>(); }
     internal CameraManager GetCameraManager() { return FindObjectOfType<CameraManager>(); }
     internal PlacementSystem GetPlacementSystem() { return FindObjectOfType<PlacementSystem>(); }
+    internal SaveSystem GetSaveSystem() { return FindObjectOfType<SaveSystem>(); }
     #endregion
 }

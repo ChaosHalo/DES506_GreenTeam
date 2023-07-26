@@ -22,19 +22,24 @@ public class PlacableObject : MonoBehaviour
     [SerializeField]
     private Material connectionMaterialPrefab;
     private Material connectionMaterialInstance;
-    private List<Material> originalMaterialInstance=new();
+    internal List<Material> originalMaterialInstance=new();
     private Renderer[] renderers;
 
     [SerializeField]
     internal bool canScale = true;
     [SerializeField]
     private float scaleSpeed = 0.005f;
-    [SerializeField]
     private bool isConnected = false;
+    public bool isConnectedToStart = false;
+    public bool isStartPiece = false;
+    internal bool hasCompletedChainCheck = false;
     internal bool GetConnectedStatus() { return isConnected; }
+    internal bool IsConnectedToStart() { return isConnectedToStart; }
 
     internal ObjectData.ObjectType objectType;
 
+    internal bool isSaved = false;
+    internal void SetIsSaved(bool b) { isSaved = b; }
     private bool isPlaced = false;
     private bool isDeleted = false;
     private float deleteAnimSpeed = 12.5f;
@@ -158,6 +163,31 @@ public class PlacableObject : MonoBehaviour
     {
         if (canModify == false)
             lockedIndicator.SetActive(true);
+    }
+
+    internal void BeginChainCheck()
+    {
+        ChainCheckAdjacent();
+    }
+
+    internal void ChainCheckAdjacent()
+    {
+        // don't check same piece twice
+        if (hasCompletedChainCheck == true)
+            return;
+        hasCompletedChainCheck = true;
+
+        // check if adjacent piece is start piece or connected to it
+        List<PlacableObject> adjacentObjects = autoRotate.GetAdjacentObjects();
+        foreach (PlacableObject adjacentObject in adjacentObjects)
+            if (adjacentObject != null)
+                if (adjacentObject.isStartPiece || adjacentObject.isConnectedToStart == true)
+                    isConnectedToStart = true;
+
+        // continue to chain to adjacent pieces
+        foreach (PlacableObject adjacentObject in adjacentObjects)
+            if (adjacentObject != null)
+                adjacentObject.ChainCheckAdjacent();
     }
 
     internal void UpdateConnectionState()

@@ -7,7 +7,9 @@ public class State_Build : IGameState
     private GameObject buildObjects = null;
     SaveMap saveMap;
 
-    public State_Build() { }
+    public State_Build()
+    {
+    }
 
     public void StartState()
     {
@@ -16,17 +18,18 @@ public class State_Build : IGameState
         if (buildObjects != null)
             buildObjects.SetActive(true);
 
+        MyGameManager.instance.GetCameraManager().ResetCamera();
+        MyGameManager.instance.SetShadowQuality(0);
         // assign refs
         saveMap = MyGameManager.instance.GetSaveMap();
 
         //MyGameManager.instance.GetMissionManager().CheckForCompletedMissions();
-        MyGameManager.instance.GetCameraManager().ResetCamera();
         //MyGameManager.instance.GetObjectPlacer().TriggerFaillAnimations();
-        MyGameManager.instance.SetShadowQuality(0);
     }
     public void EndState()
     {
         saveMap.OnSaveMap();
+        MyGameManager.instance.GetSaveSystem().SaveData();
 
         if (buildObjects != null)
             buildObjects.SetActive(false);

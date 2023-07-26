@@ -78,7 +78,8 @@ MonoBehaviour:
     type: 2}
   canScale: 1
   scaleSpeed: 100
-  isConnected: 0
+  isConnectedToStart: 0
+  isStartPiece: 0
   fallAnimSpeed: 12.5
   additionalObjects:
   - {fileID: 2453079135356771338}
@@ -107,6 +108,7 @@ MonoBehaviour:
   - {x: -1, y: 0, z: 0}
   connectionDistanceMulti: 1
   rayCastOrigin: {fileID: 4794172509423487732}
+  allAdjacentObjects: []
 --- !u!1 &332193253480114556
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658410400235927658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.44000003, y: 0.063, z: 0}
+  m_LocalPosition: {x: 0.338, y: 0.063, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -314,7 +316,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2422176737232136092}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.45999998, y: 0.063, z: 0}
+  m_LocalPosition: {x: -0.38, y: 0.063, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

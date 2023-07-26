@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -10,13 +12,13 @@ public class PlacementSystem : MonoBehaviour
     private InputManager inputManager;
 
     [SerializeField]
-    private Grid grid;
+    internal Grid grid;
 
     [SerializeField]
     private int gridSize = 10;
 
     [SerializeField]
-    private ObjectsDatabaseSO database;
+    internal ObjectsDatabaseSO database;
 
     [SerializeField]
     internal WorldgenDatabaseSO worldgenDatabase;
@@ -24,7 +26,7 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private GameObject gridVisualisation;
 
-    private GridData terrainData, trackData;
+    internal GridData terrainData, trackData;
 
     [SerializeField]
     private ObjectPlacer objectPlacer;
@@ -52,6 +54,7 @@ public class PlacementSystem : MonoBehaviour
     internal bool isGenerating = false;
 
     public Vector3 LastPlacedPosition;
+
 
 
     private void Start()
@@ -178,31 +181,5 @@ public class PlacementSystem : MonoBehaviour
         LastPlacedPosition = inputManager.mouseWorldPos;
 
         buildingState.UpdateState(newPreviewPosition, inputManager.isWithinPlacementBounds);
-    }
-
-
-
-
-
-
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
-
-    public void ResetLevel(bool resetCurrency = false)
-    {
-        if (objectPlacer.IsTrackAnimating() == false)
-        {
-            EndCurrentState();
-            GenerateWorld();
-            MyGameManager.instance.GetCameraManager().ResetCamera();
-
-            if(resetCurrency)
-            {
-                MyGameManager.instance.GetCurrencyManager().ResetCurrency();
-                MyGameManager.instance.missionManager.ResetMissions();
-            }
-        }
     }
 }
