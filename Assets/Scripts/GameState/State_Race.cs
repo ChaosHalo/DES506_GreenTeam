@@ -78,11 +78,11 @@ public class State_Race : IGameState
     }
     public void InitMap()
     {
-        // 随机打乱车辆出生位置
-        ShuffleList(raceManager.StartPositions);
-
         // 设置车辆出生点
         LoadStartPoints();
+
+        // 随机打乱车辆出生位置
+        ShuffleArray(raceManager.StartPositions);
 
         // 设置车辆初始朝向
         SetStartAngle();
@@ -95,17 +95,18 @@ public class State_Race : IGameState
 
     }
 
-    public static void ShuffleList<T>(T[] list)
+    public static void ShuffleArray<T>(T[] array)
     {
-        int n = list.Length;
+        int n = array.Length;
         while (n > 1)
         {
             n--;
             int k = Random.Range(0, n + 1);
-            T value = list[k];
-            list[k] = list[n];
-            list[n] = value;
+            T value = array[k];
+            array[k] = array[n];
+            array[n] = value;
         }
+        //Debug.Log("出生点已被打乱");
     }
     /// <summary>
     /// 启用所有车之间的碰撞
