@@ -222,14 +222,16 @@ public class ObjectPlacer : MonoBehaviour
         // check each piece in chain for connection to start
         foreach (PlacableObject obj in GetAllPlacableObjects())
         {
-            if (obj.IsConnectedToStart() == false)
-            {
-                Debug.Log("Not Connected To Start");
-                return false;
-            }
             if (obj.GetConnectedStatus() == false)
             {
+                MyGameManager.instance.GetUIManager().OnStartRacePressed(1);
                 Debug.Log("Pieces Not Connected");
+                return false;
+            }
+            else if (obj.IsConnectedToStart() == false)
+            {
+                MyGameManager.instance.GetUIManager().OnStartRacePressed(0);
+                Debug.Log("Not Connected To Start");
                 return false;
             }
         }

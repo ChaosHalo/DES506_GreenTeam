@@ -249,5 +249,6 @@ public class MyGameManager : MonoBehaviour
     internal CameraManager GetCameraManager() { return FindObjectOfType<CameraManager>(); }
     internal PlacementSystem GetPlacementSystem() { return FindObjectOfType<PlacementSystem>(); }
     internal SaveSystem GetSaveSystem() { return FindObjectOfType<SaveSystem>(); }
+    internal UIManager GetUIManager() { return FindObjectOfType<UIManager>(); }
     #endregion
 }

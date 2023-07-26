@@ -49,7 +49,7 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField]
     private bool gridVisualAlwaysOn = false;
 
-    internal IBuildingState buildingState;
+    public IBuildingState buildingState;
 
     internal bool isGenerating = false;
 

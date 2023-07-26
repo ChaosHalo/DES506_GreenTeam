@@ -15,8 +15,15 @@ public class UIManager : MonoBehaviour
 
     public TMP_Text currencyText;
 
+
+    [Header("Floating Currency")]
     public GameObject spentCurrencyPrefab;
     public GameObject spentCurrenyParent;
+    [Header("Floating Start Race")]
+    public GameObject startRacePrefab;
+    public GameObject startRaceParent;
+    [Header("Error Messages")]
+    public string[] errorMessages;
 
     internal void UpdateCurrency(int currency)
     {
@@ -29,5 +36,13 @@ public class UIManager : MonoBehaviour
         newObj.transform.SetParent(spentCurrenyParent.transform, false);
         newObj.transform.position = Input.mousePosition;
         newObj.GetComponentInChildren<FloatingCurrencyText>().SetupVariables(modificationAmount);
+    }
+
+    internal void OnStartRacePressed(int errorIndex)
+    {
+        GameObject newObj = Instantiate(startRacePrefab);
+        newObj.transform.SetParent(startRaceParent.transform, false);
+        newObj.transform.position = Input.mousePosition;
+        newObj.GetComponentInChildren<FloatingStartRaceText>().SetupVariables(errorMessages[errorIndex]);
     }
 }
