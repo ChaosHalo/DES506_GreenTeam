@@ -58,7 +58,8 @@ public class PerlinNoise : MonoBehaviour
         // obstacles (mountains)
         int difficulty = MyGameManager.instance.gameDifficulty;
         WorldgenData worldgenData = MyGameManager.instance.GetPlacementSystem().worldgenDatabase.worldgenData[difficulty];
-        for (int i = 0; i < worldgenData.mountainCount; i++)
+        int mountainCount = Mathf.Clamp(worldgenData.mountainCount, 0, 12);
+        for (int i = 0; i < mountainCount; i++)
             tileIDs[Random.Range(0, sizeX), Random.Range(0, sizeY)] = 7;
     }
 
