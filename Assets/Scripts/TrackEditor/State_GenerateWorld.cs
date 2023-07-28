@@ -226,6 +226,7 @@ public class State_GenerateWorld : IBuildingState
 
         objectPlacer.ClearAllObjects();
         PlaceObjects();
+        placementSystem.isGenerating = false;
         placementSystem.EndCurrentState();
     }
 
@@ -296,7 +297,7 @@ public class State_GenerateWorld : IBuildingState
             };
     }
 
-    public void EndState() 
+    public void EndState()
     {
         placementSystem.isGenerating = false;
         MyGameManager.instance.GetSaveSystem().SaveData();

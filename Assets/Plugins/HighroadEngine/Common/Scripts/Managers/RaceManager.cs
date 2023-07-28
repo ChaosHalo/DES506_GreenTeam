@@ -644,7 +644,9 @@ namespace MoreMountains.HighroadEngine
 
         public double GetRaceTime()
         {
-            return System.Math.Round(_currentGameTime, 2);
+            double rt = System.Math.Round(_currentGameTime, 2);
+            Debug.Log("RaceTime value: " + rt);
+            return rt;
         }
 
         /// <summary>

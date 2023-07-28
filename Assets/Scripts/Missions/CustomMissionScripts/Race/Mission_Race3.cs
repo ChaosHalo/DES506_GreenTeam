@@ -11,6 +11,7 @@ public class Mission_Race3 : Mission
     }
     public override bool IsGoalReached()
     {
+        Debug.Log("Target: " + int1 + " Final: " + goalDouble);
         return goalDouble > int1 ? true : false;
     }
     public override Mission.Difficulty GetDifficulty()
