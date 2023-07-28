@@ -27,7 +27,24 @@ public class FMODCarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RPM = (maxnRPM - minRPM) * solidController.NormalizedSpeed + minRPM;
-        StudioEventEmitter.SetParameter("RPM", RPM);
+        SetRPM((maxnRPM - minRPM) * solidController.NormalizedSpeed + minRPM);
+    }
+    public void SetRPM(float _RPM)
+    {
+        RPM = _RPM;
+        StudioEventEmitter.SetParameter("RPM", _RPM);
+    }
+    public void SetLoad(float _Load)
+    {
+        Load = _Load;
+        StudioEventEmitter.SetParameter("Load", _Load);
+    }
+    public void TurnOffSound()
+    {
+        SetLoad(0);
+    }
+    public void TurnOnSound()
+    {
+        SetLoad(-2000);
     }
 }

@@ -37,6 +37,7 @@ public class UpcomingUIManager : MonoBehaviour
     private int carIndex;
 
     private SoundManager soundManager;
+    private FMODManager fMODManager;
     private void OnEnable()
     {
         curCar = carInfoScriptableObjects[carIndex];
@@ -45,6 +46,7 @@ public class UpcomingUIManager : MonoBehaviour
     private void Start()
     {
         soundManager = FindObjectOfType<SoundManager>();
+        fMODManager = FindObjectOfType<FMODManager>();
     }
     private CarInfo GetCarInfo(CarInfoScriptableObject carInfoScriptableObject)
     {
@@ -110,11 +112,13 @@ public class UpcomingUIManager : MonoBehaviour
     public void TurnOnSFX()
     {
         soundManager.TurnOnSFX();
+        fMODManager.TurnOnAllCarEngineSound();
         SoundIcon.sprite = SoundOn;
     }
     public void TurOffSFX()
     {
         soundManager.TurnOffSFX();
+        fMODManager.TurnOffAllCarEngineSound();
         SoundIcon.sprite = SoundOff;
     }
     #endregion

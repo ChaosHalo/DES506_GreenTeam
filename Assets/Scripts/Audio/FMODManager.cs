@@ -5,7 +5,7 @@ using Cinemachine;
 public class FMODManager : MonoBehaviour
 {
     private CinemachineBrain cinemachineBrain;
-
+    private bool FMODOn = true;
     private void Start()
     {
         cinemachineBrain = FindObjectOfType<CinemachineBrain>();
@@ -29,6 +29,22 @@ public class FMODManager : MonoBehaviour
                 if (activeVirtualCamera.Follow == null) return;
                 transform.position = activeVirtualCamera.Follow.position;
             }
+        }
+    }
+    public void TurnOnAllCarEngineSound()
+    {
+        FMODCarController[] fMODCarControllers = FindObjectsOfType<FMODCarController>();
+        foreach(var i in fMODCarControllers)
+        {
+            i.TurnOnSound();
+        }
+    }
+    public void TurnOffAllCarEngineSound()
+    {
+        FMODCarController[] fMODCarControllers = FindObjectsOfType<FMODCarController>();
+        foreach (var i in fMODCarControllers)
+        {
+            i.TurnOffSound();
         }
     }
 }
