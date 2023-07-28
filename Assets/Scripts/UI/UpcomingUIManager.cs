@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using MoreMountains.HighroadEngine;
 public class UpcomingUIManager : MonoBehaviour
 {
     public List<CarInfoScriptableObject> carInfoScriptableObjects;
@@ -22,8 +23,15 @@ public class UpcomingUIManager : MonoBehaviour
     public GameObject InfoText;
     public TextMeshProUGUI RaceCounter;
 
+    [Header("Music")]
+    public Sprite MusicOn;
+    public Sprite MusicOff;
+    public Image MusicIcon;
+
     private CarInfoScriptableObject curCar;
     private int carIndex;
+
+    private SoundManager soundManager;
     private void OnEnable()
     {
         curCar = carInfoScriptableObjects[carIndex];
@@ -31,7 +39,7 @@ public class UpcomingUIManager : MonoBehaviour
     }
     private void Start()
     {
-        
+        soundManager = FindObjectOfType<SoundManager>();
     }
     private CarInfo GetCarInfo(CarInfoScriptableObject carInfoScriptableObject)
     {
@@ -72,5 +80,11 @@ public class UpcomingUIManager : MonoBehaviour
         }
         curCar = carInfoScriptableObjects[carIndex];
         UpdateCarInfo();
+    }
+    public void OnClickMusic()
+    {
+        soundManager.SwitchMusic();
+        if (soundManager.IsMusicPlaying()) MusicIcon.sprite = MusicOn;
+        else MusicIcon.sprite = MusicOff;
     }
 }

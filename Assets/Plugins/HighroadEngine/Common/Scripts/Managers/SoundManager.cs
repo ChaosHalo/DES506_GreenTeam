@@ -9,11 +9,12 @@ namespace MoreMountains.HighroadEngine
 	/// This persistent singleton handles sound playing
 	/// </summary>
 	public class SoundManager : MonoBehaviour
-	{	
-		/// true if the music is enabled	
+	{
+		public enum Type { Music, SFX};
+		/*/// true if the music is enabled	
 		public bool MusicOn=true;
 		/// true if the sound fx are enabled
-		public bool SfxOn=true;
+		public bool SfxOn=true;*/
 		/// the music volume
 		[Range(0,1)]
 		public float MusicVolume=0.3f;
@@ -22,26 +23,33 @@ namespace MoreMountains.HighroadEngine
 		public float SfxVolume=1f;
 
 	    protected AudioSource _backgroundMusic;
-		public List<GameObject> TempAudio = new();
-		/// <summary>
-		/// Plays a background music.
-		/// Only one background music can be active at a time.
-		/// </summary>
-		/// <param name="Clip">Your audio clip.</param>
-		public virtual void PlayBackgroundMusic(AudioSource Music)
+		private List<AudioSource> musics = new();
+
+        private void Start()
+        {
+            
+        }
+        /// <summary>
+        /// Plays a background music.
+        /// Only one background music can be active at a time.
+        /// </summary>
+        /// <param name="Clip">Your audio clip.</param>
+        public virtual void PlayBackgroundMusic(AudioSource Music)
 		{
+			// if(!musics.Contains(Music)) musics.Add(Music);
 			// if the music's been turned off, we do nothing and exit
-			if (!MusicOn)
-				return;
+			/*if (!MusicOn)
+				return;*/
 			// if we already had a background music playing, we stop it
-			if (_backgroundMusic!=null)
+
+			if (_backgroundMusic != null)
 			{
 				StopBackGroundMusic();
 			}
 			// we set the background music clip
-			_backgroundMusic=Music;
+			_backgroundMusic = Music;
 			// we set the music's volume
-			_backgroundMusic.volume=MusicVolume;
+			_backgroundMusic.volume = MusicVolume;
 			// we set the loop setting to true, the music will loop forever
 			_backgroundMusic.loop=true;
 			// we start playing the background music
@@ -55,8 +63,12 @@ namespace MoreMountains.HighroadEngine
 		{
 			if (_backgroundMusic != null)
 			{
-				_backgroundMusic.Stop();
-				Destroy(_backgroundMusic);
+				/*_backgroundMusic.Stop();
+				Destroy(_backgroundMusic);*/
+				foreach(AudioSource Music in musics)
+                {
+					Music.Stop();
+                }
 			}
 		}
 		
@@ -69,8 +81,8 @@ namespace MoreMountains.HighroadEngine
 		/// <param name="Volume">The volume of the sound.</param>
 		public virtual AudioSource PlaySound(AudioClip sfx, Vector3 location, Transform parent, bool shouldDestroyAfterPlay=true, bool pitchShift= false, float minDistance =1, float maxDistance=500)
 		{
-			if (!SfxOn)
-				return null;
+			/*if (!SfxOn)
+				return null;*/
 
             if (sfx == null)
                 return null;
@@ -120,8 +132,8 @@ namespace MoreMountains.HighroadEngine
 		/// <param name="Volume">The volume of the sound.</param>
 		public virtual AudioSource PlayLoop(AudioClip Sfx, Vector3 Location, Transform parent, float minDistance = 1, float maxDistance = 500)
 		{
-			if (!SfxOn)
-				return null;
+			/*if (!SfxOn)
+				return null;*/
 
 			if (Sfx == null)
 				return null;
@@ -158,6 +170,15 @@ namespace MoreMountains.HighroadEngine
 				return null;
 
             return clipList[Random.Range(0, clipList.Count)];
+        }
+		public void SwitchMusic()
+        {
+			if (_backgroundMusic.isPlaying) _backgroundMusic.Stop();
+			else _backgroundMusic.Play();
+		}
+		public bool IsMusicPlaying()
+        {
+			return _backgroundMusic.isPlaying;
         }
     }
 }
