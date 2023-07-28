@@ -5933,6 +5933,41 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 333723747078420751, guid: 799c779d9bb33b042869d74994138fff,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 333723747078420751, guid: 799c779d9bb33b042869d74994138fff,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 333723747078420751, guid: 799c779d9bb33b042869d74994138fff,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1012843926}
+    - target: {fileID: 333723747078420751, guid: 799c779d9bb33b042869d74994138fff,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 333723747078420751, guid: 799c779d9bb33b042869d74994138fff,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UpcomingUIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 333723747078420751, guid: 799c779d9bb33b042869d74994138fff,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 333723747078420751, guid: 799c779d9bb33b042869d74994138fff,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 333723747097363600, guid: 799c779d9bb33b042869d74994138fff,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -6353,6 +6388,23 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3088657054915131104, guid: 799c779d9bb33b042869d74994138fff,
+        type: 3}
+      propertyPath: MusicOn
+      value: 
+      objectReference: {fileID: 21300000, guid: a0f0f26260bb7ba43943c9298d908f5d,
+        type: 3}
+    - target: {fileID: 3088657054915131104, guid: 799c779d9bb33b042869d74994138fff,
+        type: 3}
+      propertyPath: MusicOff
+      value: 
+      objectReference: {fileID: 21300000, guid: 47bea2c5a20f807419b73a33660b51cf,
+        type: 3}
+    - target: {fileID: 3088657054915131104, guid: 799c779d9bb33b042869d74994138fff,
+        type: 3}
+      propertyPath: MusicIcon
+      value: 
+      objectReference: {fileID: 781432129}
     - target: {fileID: 3191535656316693888, guid: 799c779d9bb33b042869d74994138fff,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -8650,6 +8702,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 764886392}
   m_CullTransparentMesh: 1
+--- !u!114 &781432129 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 333723747078420750, guid: 799c779d9bb33b042869d74994138fff,
+    type: 3}
+  m_PrefabInstance: {fileID: 515150739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &789604404 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1706222580940346616, guid: 799c779d9bb33b042869d74994138fff,
@@ -10437,6 +10501,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 515150739}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1012843926 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3088657054915131104, guid: 799c779d9bb33b042869d74994138fff,
+    type: 3}
+  m_PrefabInstance: {fileID: 515150739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012843920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01eff592be8d0c2429e9a889366c2ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1014492623 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9035354694662618780, guid: 4d677237dc54f42469cb7666633ef8e5,
