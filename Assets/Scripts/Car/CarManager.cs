@@ -75,6 +75,7 @@ public class CarManager : MonoBehaviour
         Timer();
         CheckAirTime();
         BoundariesHandle();
+        MapOutOfBoundsProcessing();
     }
     
     private void OnEnable()
@@ -227,6 +228,10 @@ public class CarManager : MonoBehaviour
                 }
             }
         }
+    }
+    private void MapOutOfBoundsProcessing()
+    {
+        if (transform.position.y < 24) Respawn(false);
     }
     internal void Respawn(bool respawnWithExplosion)
     {
