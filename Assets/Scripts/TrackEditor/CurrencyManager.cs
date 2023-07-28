@@ -13,6 +13,10 @@ public class CurrencyManager : MonoBehaviour
 
     [SerializeField]
     private int currencyWin = 500;
+
+    [SerializeField]
+    private int currencySeason = 3000;
+    
     internal int GetWinCurrency() { return currencyWin; }
 
     [SerializeField]
@@ -72,6 +76,12 @@ public class CurrencyManager : MonoBehaviour
     internal void AddWinCurrency()
     {
         currencyCurrent += currencyWin;
+        uiManager.UpdateCurrency(currencyCurrent);
+    }
+
+    internal void AddSeasonCurrency()
+    {
+        currencyCurrent += (currencySeason - currencyWin);
         uiManager.UpdateCurrency(currencyCurrent);
     }
 

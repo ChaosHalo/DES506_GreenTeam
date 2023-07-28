@@ -226,6 +226,7 @@ public class MyGameManager : MonoBehaviour
             gameDifficulty = 2;
 
         missionManager.ResetMissions();
+        GetCurrencyManager().AddSeasonCurrency();
     }
     #region GET / SET
     internal StartPieceInfo GetStartPieceInfoObject()
