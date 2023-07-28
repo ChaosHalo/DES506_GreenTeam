@@ -25,10 +25,10 @@ public class RaceScreenUIManager : MonoBehaviour
     void Start()
     {
         timerText = TimerTextComponent.GetComponent<TextMeshProUGUI>();
-
+        Invoke(nameof(StartTimer), raceManager.StartGameCountDownTime - 1);
         if (raceManager != null)
         {
-            raceManager.StartRaceEvent.AddListener(StartTimer);
+            //raceManager.StartRaceEvent.AddListener(StartTimer);
             raceManager.EndRaceEvent.AddListener(StopTimer);
         }
         /*InitRacerInfos();
@@ -38,7 +38,7 @@ public class RaceScreenUIManager : MonoBehaviour
     {
         if (raceManager != null)
         {
-            raceManager.StartRaceEvent.RemoveListener(StartTimer);
+            //raceManager.StartRaceEvent.RemoveListener(StartTimer);
             raceManager.EndRaceEvent.RemoveListener(StopTimer);
         }
         StopTimer();
@@ -114,7 +114,7 @@ public class RaceScreenUIManager : MonoBehaviour
     #region Timer
     private void UpdateTimer()
     {
-        if (!runTimerFlag)
+        if (runTimerFlag)
         {
             timer += Time.deltaTime;
         }
