@@ -11,9 +11,12 @@ namespace MoreMountains.HighroadEngine
     public class BackgroundMusic : MonoBehaviour
     {
         /// the sound clip to play
-        public AudioClip SoundClip;
+        public AudioClip BuildClip;
+        public AudioClip RaceClip;
 
-        protected AudioSource _source;
+        protected AudioSource buildSource;
+        protected AudioSource raceSource;
+
         protected SoundManager _soundManager;
 
         /// <summary>
@@ -21,14 +24,6 @@ namespace MoreMountains.HighroadEngine
         /// </summary>
         public virtual void Start()
         {
-            _source = gameObject.AddComponent<AudioSource>() as AudioSource;
-            _source.playOnAwake = false;
-            _source.spatialBlend = 0;
-            _source.rolloffMode = AudioRolloffMode.Logarithmic;
-            _source.loop = true;
-
-            _source.clip = SoundClip;
-
             _soundManager = FindObjectOfType<SoundManager>();
 
             if (_soundManager == null)
@@ -36,8 +31,30 @@ namespace MoreMountains.HighroadEngine
                 Debug.LogWarning("BackgroundMusic need a SoundManager gameObject in the scene to play music. Please add one.");
                 return;
             }
+            PlayBuildSource();
+        }
+        public void PlayBuildSource()
+        {
+            buildSource = TryAddSource(buildSource, BuildClip);
+            _soundManager.PlayBackgroundMusic(buildSource);
+        }
+        public void PlayRaceSource()
+        {
+            raceSource = TryAddSource(raceSource, RaceClip);
+            _soundManager.PlayBackgroundMusic(raceSource);
+        }
 
-            _soundManager.PlayBackgroundMusic(_source);
+        protected AudioSource TryAddSource(AudioSource _source, AudioClip clip)
+        {
+            if (_source != null) return _source;
+            _source = gameObject.AddComponent<AudioSource>() as AudioSource;
+            _source.playOnAwake = false;
+            _source.spatialBlend = 0;
+            _source.rolloffMode = AudioRolloffMode.Logarithmic;
+            _source.loop = true;
+            _source.clip = clip;
+
+            return _source;
         }
     }
 }

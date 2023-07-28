@@ -71,7 +71,7 @@ public class CarInteraction : MonoBehaviour
                 // 在超车结束后，重置正在超车标志
                 StartCoroutine(ResetOvertakingFlag(overtakingForceVector));
 
-                Debug.Log(carManager.CarInfo.Name + "检测到前面有车 :" + hit.collider.GetComponent<CarManager>().CarInfo.Name + ",正在向" + direction + "超车");
+                //Debug.Log(carManager.CarInfo.Name + "检测到前面有车 :" + hit.collider.GetComponent<CarManager>().CarInfo.Name + ",正在向" + direction + "超车");
             }
         }
     }
@@ -92,7 +92,7 @@ public class CarInteraction : MonoBehaviour
         }
         
         isOvertaking = false;
-        Debug.Log(carManager.CarInfo.Name + "超车结束");
+        //Debug.Log(carManager.CarInfo.Name + "超车结束");
     }
     #endregion
 

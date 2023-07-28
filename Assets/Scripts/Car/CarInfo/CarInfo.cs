@@ -84,3 +84,9 @@ public class CarUIInfo
     [TextArea]
     public string Info;
 }
+[System.Serializable]
+public class CarAudioInfo
+{
+    public float MinRPM;
+    public float MaxRPM;
+}

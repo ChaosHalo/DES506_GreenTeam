@@ -7,6 +7,7 @@ public class CarInfoScriptableObject : ScriptableObject
 {
     public string CarName;
     public CarUIInfo CarUIInfo;
+    public CarAudioInfo CarAudioInfo;
     public List<CarInfo> CarInfos = new();
     public CarInfo GetCarInfo(int index)
     {

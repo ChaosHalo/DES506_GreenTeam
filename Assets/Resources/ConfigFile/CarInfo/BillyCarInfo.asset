@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: BillyCarInfo
   m_EditorClassIdentifier: 
   CarName: Billy
-  racerIcon: {fileID: 21300000, guid: f7adec1aabeff0744a040118afdddedf, type: 3}
   CarUIInfo:
     PlaceholderCarImage: {fileID: 21300000, guid: aecff1f4ad8a7944ba4305015cd31de5,
       type: 3}
@@ -27,6 +26,9 @@ MonoBehaviour:
       hometown, all his friends have turned up to create Team YEAH!. They say they
       heard what he was doing and just had to support him. Because that's what friends
       do.\r\n"
+  CarAudioInfo:
+    MinRPM: 1000
+    MaxRPM: 2000
   CarInfos:
   - <Name>k__BackingField: Billy
     <TopSpeed>k__BackingField: 6

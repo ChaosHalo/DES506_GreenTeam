@@ -1870,6 +1870,8 @@ GameObject:
   - component: {fileID: 4168305122019000497}
   - component: {fileID: 7609090298054076925}
   - component: {fileID: 8695152920237719079}
+  - component: {fileID: 3203560270199248912}
+  - component: {fileID: 1894155320760319944}
   m_Layer: 17
   m_Name: F1
   m_TagString: Car
@@ -1977,7 +1979,7 @@ MonoBehaviour:
   CenterOfMass: {x: 0, y: -1, z: 0}
   GroundDistance: 2
   OffroadPenaltyFactor: 1
-  CarGrip: 106.66667
+  CarGrip: 113.333336
   FullThrottleVelocity: 8.666667
   MinimalTurningSpeed: 1
   ForwardForceHeight: 0.5
@@ -2188,6 +2190,52 @@ MonoBehaviour:
   overtakingDistance: 15
   overtakingSpeedThreshold: 10
   overtakingForce: 30000
+  overtakingDuration: 3
+--- !u!114 &3203560270199248912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4056022515747808193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -60891611
+      Data2: 1158925987
+      Data3: 1560027011
+      Data4: -70199885
+    Path: event:/Engine Total F1
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1894155320760319944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4056022515747808193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2430fcd0eea5f3f4a85df5775eeb401f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RPM: 0
+  Load: 0
 --- !u!1 &4056077304818578723
 GameObject:
   m_ObjectHideFlags: 0

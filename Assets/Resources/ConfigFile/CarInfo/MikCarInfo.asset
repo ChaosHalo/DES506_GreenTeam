@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: MikCarInfo
   m_EditorClassIdentifier: 
   CarName: Mik
-  racerIcon: {fileID: 21300000, guid: 4093cbac40717ce4982fc46e94c97e91, type: 3}
   CarUIInfo:
     PlaceholderCarImage: {fileID: 21300000, guid: 075962e365bd0ce40b85fe3ac353b4d1,
       type: 3}
@@ -28,6 +27,9 @@ MonoBehaviour:
       to see Mik through. They\u2019ve been working together since the beginning,
       and have seen Mik through every major event. Together they will ensure Mik\u2019s
       reign will continue.\r\n"
+  CarAudioInfo:
+    MinRPM: 1000
+    MaxRPM: 2000
   CarInfos:
   - <Name>k__BackingField: Mik
     <TopSpeed>k__BackingField: 3

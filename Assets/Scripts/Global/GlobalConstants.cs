@@ -23,6 +23,9 @@ public static class GlobalConstants
 
     public const string CARMASKNAME = "Car";
     public const string CARTAGNAME = "Car";
+
+    public const float MINRPM = 1000;
+    public const float MAXRPM = 5000;
     #region CarName
     public const string BILLY = "Billy";
     public const string DARREN = "Darren";

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2501816523481424146}
   - component: {fileID: 2501816523481424147}
+  - component: {fileID: 1849354119}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2501816523481424147
 MonoBehaviour:
@@ -46,5 +47,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MusicOn: 1
   SfxOn: 1
-  MusicVolume: 0.3
+  MusicVolume: 1
   SfxVolume: 1
+  TempAudio: []
+--- !u!114 &1849354119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2501816523481424144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c3d6c2cf7754e428be20d02b4119d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuildClip: {fileID: 8300000, guid: 48b9742ee8f50e14fb978b0a6a7fd41b, type: 3}
+  RaceClip: {fileID: 8300000, guid: 6859b256c41dd1a4cbf2e091e6523a5a, type: 3}
