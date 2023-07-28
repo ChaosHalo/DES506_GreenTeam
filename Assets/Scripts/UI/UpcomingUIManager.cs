@@ -28,6 +28,11 @@ public class UpcomingUIManager : MonoBehaviour
     public Sprite MusicOff;
     public Image MusicIcon;
 
+    [Header("Sound")]
+    public Sprite SoundOn;
+    public Sprite SoundOff;
+    public Image SoundIcon;
+
     private CarInfoScriptableObject curCar;
     private int carIndex;
 
@@ -81,10 +86,36 @@ public class UpcomingUIManager : MonoBehaviour
         curCar = carInfoScriptableObjects[carIndex];
         UpdateCarInfo();
     }
+    #region Music & Sound
     public void OnClickMusic()
     {
-        soundManager.SwitchMusic();
-        if (soundManager.IsMusicPlaying()) MusicIcon.sprite = MusicOn;
-        else MusicIcon.sprite = MusicOff;
+        if (soundManager.IsMusicPlaying()) TurnOffMusic();
+        else TurnOnMusic();
     }
+    public void TurnOnMusic()
+    {
+        soundManager.TurnOnMusic();
+        MusicIcon.sprite = MusicOn;
+    }
+    public void TurnOffMusic()
+    {
+        soundManager.TurnOffMusic();
+        MusicIcon.sprite = MusicOff;
+    }
+    public void OnClickSFX()
+    {
+        if (soundManager.IsSFXPlaying()) TurOffSFX();
+        else TurnOnSFX();
+    }
+    public void TurnOnSFX()
+    {
+        soundManager.TurnOnSFX();
+        SoundIcon.sprite = SoundOn;
+    }
+    public void TurOffSFX()
+    {
+        soundManager.TurnOffSFX();
+        SoundIcon.sprite = SoundOff;
+    }
+    #endregion
 }

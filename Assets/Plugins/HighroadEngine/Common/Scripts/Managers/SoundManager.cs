@@ -2,7 +2,7 @@
 using System.Collections;
 using MoreMountains.Tools;
 using System.Collections.Generic;
-
+using System.Linq;
 namespace MoreMountains.HighroadEngine
 {	
 	/// <summary>
@@ -11,12 +11,12 @@ namespace MoreMountains.HighroadEngine
 	public class SoundManager : MonoBehaviour
 	{
 		public enum Type { Music, SFX};
-		/*/// true if the music is enabled	
-		public bool MusicOn=true;
-		/// true if the sound fx are enabled
-		public bool SfxOn=true;*/
-		/// the music volume
-		[Range(0,1)]
+        // true if the music is enabled	
+        private bool MusicOn = true;
+		// true if the sound fx are enabled
+		private bool SfxOn = true;
+        /// the music volume
+        [Range(0,1)]
 		public float MusicVolume=0.3f;
 		/// the sound fx volume
 		[Range(0,1)]
@@ -24,11 +24,13 @@ namespace MoreMountains.HighroadEngine
 
 	    protected AudioSource _backgroundMusic;
 		private List<AudioSource> musics = new();
-
+        [SerializeField]
+		private List<GameObject> sounds = new();
         private void Start()
         {
             
         }
+        #region Music
         /// <summary>
         /// Plays a background music.
         /// Only one background music can be active at a time.
@@ -49,12 +51,12 @@ namespace MoreMountains.HighroadEngine
 			// we set the background music clip
 			_backgroundMusic = Music;
 			// we set the music's volume
-			_backgroundMusic.volume = MusicVolume;
+			_backgroundMusic.volume = MusicOn ? MusicVolume : 0;
 			// we set the loop setting to true, the music will loop forever
-			_backgroundMusic.loop=true;
+			_backgroundMusic.loop = true;
 			// we start playing the background music
-			_backgroundMusic.Play();		
-		}	
+			_backgroundMusic.Play();
+		}
 
 		/// <summary>
 		/// Stops the background music.
@@ -65,30 +67,43 @@ namespace MoreMountains.HighroadEngine
 			{
 				/*_backgroundMusic.Stop();
 				Destroy(_backgroundMusic);*/
-				foreach(AudioSource Music in musics)
-                {
+				foreach (AudioSource Music in musics)
+				{
 					Music.Stop();
-                }
+				}
 			}
 		}
-		
-		/// <summary>
-		/// Plays a sound
-		/// </summary>
-		/// <returns>An audiosource</returns>
-		/// <param name="Sfx">The sound clip you want to play.</param>
-		/// <param name="Location">The location of the sound.</param>
-		/// <param name="Volume">The volume of the sound.</param>
-		public virtual AudioSource PlaySound(AudioClip sfx, Vector3 location, Transform parent, bool shouldDestroyAfterPlay=true, bool pitchShift= false, float minDistance =1, float maxDistance=500)
+		public void TurnOnMusic()
+		{
+			MusicOn = true;
+			_backgroundMusic.Play();
+		}
+		public void TurnOffMusic()
+		{
+			MusicOn = false;
+			_backgroundMusic.Stop();
+		}
+		public bool IsMusicPlaying() => MusicOn;
+        #endregion
+        /// <summary>
+        /// Plays a sound
+        /// </summary>
+        /// <returns>An audiosource</returns>
+        /// <param name="Sfx">The sound clip you want to play.</param>
+        /// <param name="Location">The location of the sound.</param>
+        /// <param name="Volume">The volume of the sound.</param>
+        public virtual AudioSource PlaySound(AudioClip sfx, Vector3 location, Transform parent, bool shouldDestroyAfterPlay=true, bool pitchShift= false, float minDistance =1, float maxDistance=500)
 		{
 			/*if (!SfxOn)
 				return null;*/
 
             if (sfx == null)
                 return null;
+			
+			// we create a temporary game object to host our audio source
+			GameObject temporaryAudioHost = new GameObject("TempAudio");
 
-            // we create a temporary game object to host our audio source
-            GameObject temporaryAudioHost = new GameObject("TempAudio");
+			sounds.Add(temporaryAudioHost);
 			// 设定父物体
 			temporaryAudioHost.transform.parent = parent;
 			// we set the temp audio's position
@@ -98,7 +113,7 @@ namespace MoreMountains.HighroadEngine
 			// we set that audio source clip to the one in paramaters
 			// audioSource.clip = sfx; 
 			// we set the audio source volume to the one in parameters
-			audioSource.volume = SfxVolume;
+			audioSource.volume = SfxOn ? SfxVolume : 0;
 			// 设定近大远小效果
 			audioSource.spatialBlend = 1;
             // set min/max distance
@@ -140,6 +155,8 @@ namespace MoreMountains.HighroadEngine
 
 			// we create a temporary game object to host our audio source
 			GameObject temporaryAudioHost = new GameObject("TempAudio");
+
+			sounds.Add(temporaryAudioHost);
 			// 设定父物体
 			temporaryAudioHost.transform.parent = parent;
 			// we set the temp audio's position
@@ -149,7 +166,7 @@ namespace MoreMountains.HighroadEngine
 			// we set that audio source clip to the one in paramaters
 			audioSource.clip = Sfx; 
 			// we set the audio source volume to the one in parameters
-			audioSource.volume = SfxVolume;
+			audioSource.volume = SfxOn ? SfxVolume : 0;
 			// we set it to loop
 			audioSource.loop=true;
 			// 设定近大远小效果
@@ -171,14 +188,24 @@ namespace MoreMountains.HighroadEngine
 
             return clipList[Random.Range(0, clipList.Count)];
         }
-		public void SwitchMusic()
+		public void TurnOnSFX()
         {
-			if (_backgroundMusic.isPlaying) _backgroundMusic.Stop();
-			else _backgroundMusic.Play();
-		}
-		public bool IsMusicPlaying()
-        {
-			return _backgroundMusic.isPlaying;
+			sounds = sounds.Where(p => p != null).ToList();
+			foreach(var sound in sounds)
+            {
+				sound.GetComponent<AudioSource>().volume = SfxVolume;
+            }
+			SfxOn = true;
         }
+		public void TurnOffSFX()
+        {
+			sounds = sounds.Where(p => p != null).ToList();
+			foreach (var sound in sounds)
+			{
+				sound.GetComponent<AudioSource>().volume = 0;
+			}
+			SfxOn = false;
+		}
+		public bool IsSFXPlaying() => SfxOn;
     }
 }
