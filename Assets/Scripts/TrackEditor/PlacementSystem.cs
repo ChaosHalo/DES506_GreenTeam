@@ -51,7 +51,7 @@ public class PlacementSystem : MonoBehaviour
 
     public IBuildingState buildingState;
 
-    internal bool isGenerating = false;
+    internal bool isGenerating = true;
 
     public Vector3 LastPlacedPosition;
 
@@ -77,6 +77,9 @@ public class PlacementSystem : MonoBehaviour
         if (isGenerating==true)
             return;
 
+        if (objectPlacer.IsTrackAnimating() == true)
+            return;
+
         EndCurrentState();
 
         if (gridVisualAlwaysOn == false)
@@ -91,6 +94,9 @@ public class PlacementSystem : MonoBehaviour
     public void StartRemoving()
     {
         if (isGenerating == true)
+            return;
+
+        if (objectPlacer.IsTrackAnimating() == true)
             return;
 
         EndCurrentState();
@@ -109,6 +115,9 @@ public class PlacementSystem : MonoBehaviour
         if (isGenerating == true)
             return;
 
+        if (objectPlacer.IsTrackAnimating() == true)
+            return;
+
         EndCurrentState();
 
         if (gridVisualAlwaysOn == false)
@@ -123,6 +132,9 @@ public class PlacementSystem : MonoBehaviour
     public void StartTerrain(int ID)
     {
         if (isGenerating == true)
+            return;
+
+        if (objectPlacer.IsTrackAnimating() == true)
             return;
 
         EndCurrentState();

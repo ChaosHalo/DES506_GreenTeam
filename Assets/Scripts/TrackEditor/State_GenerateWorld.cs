@@ -70,6 +70,7 @@ public class State_GenerateWorld : IBuildingState
         this.perlinNoise = perlinNoise;
         this.placementSystem = placementSystem;
 
+        placementSystem.isGenerating = true;
         MyGameManager.instance.SetShadowQuality(0);
         ReGenerate();
     }
@@ -112,7 +113,6 @@ public class State_GenerateWorld : IBuildingState
             allTerrainCounters.Add(id, 0);
         perlinNoise.BeginGenerate();
         GenerateTerrain();
-        placementSystem.isGenerating = false;
     }
 
     private void GenerateTerrain()
