@@ -6,9 +6,6 @@ using Missions;
 
 public class AllUIManager : MonoBehaviour
 {
-    [Header("Events")]
-    public MissionEvent onRaceEndTime;
-    public MissionEvent onRaceEndCarInfo;
     public void TryAgain()
     {
         EventsHandle();
@@ -23,9 +20,6 @@ public class AllUIManager : MonoBehaviour
     protected virtual void EventsHandle()
     {
         // events
-        double raceTime = MyGameManager.instance.GetRaceManager().GetRaceTime();
-        onRaceEndTime.Raise(this, raceTime);
-        onRaceEndCarInfo.Raise(MyGameManager.instance.GetCarInfoSerach(), null);
     }
     protected virtual void ChangeState()
     {

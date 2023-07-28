@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Missions;
 
 [System.Serializable]
 public struct MissionGrouping
@@ -15,6 +16,10 @@ public struct MissionGrouping
 
 public class MissionManager : MonoBehaviour
 {
+    [Header("Events")]
+    public MissionEvent onRaceEndTime;
+    public MissionEvent onRaceEndCarInfo;
+
     [Header("Mission Pool")]
     public List<MissionGrouping> missionPool = new List<MissionGrouping>();
 
@@ -122,6 +127,12 @@ public class MissionManager : MonoBehaviour
                 availableMissions.Add(item);
     }
 
+    public void HandleEndRaceEvents()
+    {
+        double raceTime = MyGameManager.instance.GetRaceManager().GetRaceTime();
+        onRaceEndTime.Raise(this, raceTime);
+        onRaceEndCarInfo.Raise(MyGameManager.instance.GetCarInfoSerach(), null);
+    }
 
 
 
