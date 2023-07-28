@@ -67,12 +67,16 @@ namespace MoreMountains.HighroadEngine
 		/// <param name="Sfx">The sound clip you want to play.</param>
 		/// <param name="Location">The location of the sound.</param>
 		/// <param name="Volume">The volume of the sound.</param>
-		public virtual AudioSource PlaySound(AudioClip sfx, Vector3 location, Transform parent, bool shouldDestroyAfterPlay=true)
+		public virtual AudioSource PlaySound(AudioClip sfx, Vector3 location, Transform parent, bool shouldDestroyAfterPlay=true, bool pitchShift= false, float minDistance =1, float maxDistance=500)
 		{
 			if (!SfxOn)
 				return null;
-			// we create a temporary game object to host our audio source
-			GameObject temporaryAudioHost = new GameObject("TempAudio");
+
+            if (sfx == null)
+                return null;
+
+            // we create a temporary game object to host our audio source
+            GameObject temporaryAudioHost = new GameObject("TempAudio");
 			// 设定父物体
 			temporaryAudioHost.transform.parent = parent;
 			// we set the temp audio's position
@@ -80,13 +84,24 @@ namespace MoreMountains.HighroadEngine
 			// we add an audio source to that host
 			AudioSource audioSource = temporaryAudioHost.AddComponent<AudioSource>() as AudioSource; 
 			// we set that audio source clip to the one in paramaters
-			audioSource.clip = sfx; 
+			// audioSource.clip = sfx; 
 			// we set the audio source volume to the one in parameters
 			audioSource.volume = SfxVolume;
 			// 设定近大远小效果
 			audioSource.spatialBlend = 1;
-			// we start playing the sound
-			audioSource.Play(); 
+            // set min/max distance
+			audioSource.rolloffMode=AudioRolloffMode.Linear;
+            audioSource.minDistance = minDistance;
+            audioSource.maxDistance = maxDistance;
+            // set pitch
+            audioSource.pitch = 1;
+            if (pitchShift == true)
+            {
+                float newPitch = Random.Range(0.5f, 1.5f);
+                audioSource.pitch = newPitch;
+            }
+            // we start playing the sound
+            audioSource.PlayOneShot(sfx); 
 			// we destroy the host after the clip has played
 			if (shouldDestroyAfterPlay)
 			{
@@ -103,10 +118,14 @@ namespace MoreMountains.HighroadEngine
 		/// <param name="Sfx">The sound clip you want to play.</param>
 		/// <param name="Location">The location of the sound.</param>
 		/// <param name="Volume">The volume of the sound.</param>
-		public virtual AudioSource PlayLoop(AudioClip Sfx, Vector3 Location, Transform parent)
+		public virtual AudioSource PlayLoop(AudioClip Sfx, Vector3 Location, Transform parent, float minDistance = 1, float maxDistance = 500)
 		{
 			if (!SfxOn)
 				return null;
+
+			if (Sfx == null)
+				return null;
+
 			// we create a temporary game object to host our audio source
 			GameObject temporaryAudioHost = new GameObject("TempAudio");
 			// 设定父物体
@@ -123,10 +142,22 @@ namespace MoreMountains.HighroadEngine
 			audioSource.loop=true;
 			// 设定近大远小效果
 			audioSource.spatialBlend = 1;
+            // set min/max distance
+            audioSource.rolloffMode = AudioRolloffMode.Linear;
+            audioSource.minDistance=minDistance;
+			audioSource.maxDistance=maxDistance;
 			// we start playing the sound
 			audioSource.Play(); 
 			// we return the audiosource reference
 			return audioSource;
-		}
-	}
+        }
+
+        public virtual AudioClip GetRandomClip(List<AudioClip> clipList)
+        {
+			if (clipList.Count == 0)
+				return null;
+
+            return clipList[Random.Range(0, clipList.Count)];
+        }
+    }
 }

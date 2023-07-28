@@ -126,7 +126,9 @@ public class SaveSystem : MonoBehaviour
                                                  (ObjectData.ObjectType)data.Value.objectType,
                                                  placementSystem.database.objectsData[data.Value.ID].trackType,
                                                  placementSystem.database.objectsData[data.Value.ID].terrainType,
-                                                 false);
+                                                 false,
+                                                 placementSystem.database,
+                                                 data.Value.ID);
         }
     }
 

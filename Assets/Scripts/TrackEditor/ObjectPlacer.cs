@@ -8,8 +8,9 @@ using UnityEditor;
 
 public class ObjectPlacer : MonoBehaviour
 {
-    [SerializeField]
-    public List<GameObject> placedObjects = new();
+    [SerializeField] private MoreMountains.HighroadEngine.SoundManager soundManager;
+    [SerializeField] private Transform audioSourceTransform;
+    [SerializeField] public List<GameObject> placedObjects = new();
 
     [Header("Events")]
     public MissionEvent onPlaceTrack;
@@ -23,7 +24,7 @@ public class ObjectPlacer : MonoBehaviour
     public MissionEvent onPlaceTerrainMountain;
     public MissionEvent OnSpendCurrency;
 
-    public int PlaceObject(GameObject prefab, Vector3 position, int rotationState, bool canModify, ObjectData.ObjectType objectType, ObjectData.TrackType trackType, ObjectData.TerrainType terrainType, bool placedByUser)
+    public int PlaceObject(GameObject prefab, Vector3 position, int rotationState, bool canModify, ObjectData.ObjectType objectType, ObjectData.TrackType trackType, ObjectData.TerrainType terrainType, bool placedByUser, ObjectsDatabaseSO database, int ID)
     {
         GameObject newObject = Instantiate(prefab);
         newObject.transform.position = position;
@@ -33,9 +34,13 @@ public class ObjectPlacer : MonoBehaviour
         placeableObject.objectType = objectType;
         placeableObject.objectPlacer = this;
         if (placeableObject.autoRotate)
+        {
             placeableObject.autoRotate.SetRotationState(rotationState, true);
+            placeableObject.autoRotate.placableObject = placeableObject;
+        }
         placeableObject.SetIsPlaced(true);
         placeableObject.isSaved = !placedByUser;
+        placeableObject.ID = ID;
         placedObjects.Add(newObject);
 
         int verticalOffset = 100;
@@ -43,6 +48,8 @@ public class ObjectPlacer : MonoBehaviour
         // EVENTS
         if (placedByUser == true)
         {
+            soundManager.PlaySound(soundManager.GetRandomClip(database.objectsData[ID].soundsPlace), audioSourceTransform.position, audioSourceTransform, true, true);
+           
             if (objectType == ObjectData.ObjectType.Track)
             {
                 onPlaceTrack.Raise();
@@ -96,7 +103,15 @@ public class ObjectPlacer : MonoBehaviour
         if (placedObjects.Count <= gameObjectIndex || placedObjects[gameObjectIndex] == null)
             return;
 
+
         PlacableObject placableObject = placedObjects[gameObjectIndex].GetComponentInChildren<PlacableObject>();
+
+        soundManager.PlaySound(soundManager.GetRandomClip(MyGameManager.instance.GetPlacementSystem().database.objectsData[placableObject.ID].soundsDelete),
+                               audioSourceTransform.position,
+                               audioSourceTransform,
+                               true,
+                               true);
+
         placableObject.OnDelete();
 
         if (doDelay == false)
@@ -150,6 +165,12 @@ public class ObjectPlacer : MonoBehaviour
         if (objectToRotate == null)
             return -1;
 
+        soundManager.PlaySound(soundManager.GetRandomClip(MyGameManager.instance.GetPlacementSystem().database.objectsData[objectToRotate.placableObject.ID].soundsRotate),
+                               audioSourceTransform.position,
+                               audioSourceTransform,
+                               true,
+                               true);
+
         int newState = objectToRotate.GetRotationState();
         newState++;
         if (newState > 3)
@@ -170,6 +191,12 @@ public class ObjectPlacer : MonoBehaviour
 
         if (objectToRotate == null)
             return;
+
+        soundManager.PlaySound(soundManager.GetRandomClip(MyGameManager.instance.GetPlacementSystem().database.objectsData[objectToRotate.placableObject.ID].soundsRotate),
+                               audioSourceTransform.position,
+                               audioSourceTransform,
+                               true,
+                               true);
 
         objectToRotate.SetRotationState(newState, false);
        // UpdateTrackConnections();

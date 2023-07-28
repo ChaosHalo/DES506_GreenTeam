@@ -39,8 +39,9 @@ public class State_GenerateWorld : IBuildingState
         public ObjectData.TrackType trackType;
         public ObjectData.TerrainType terrainType;
         public bool placedByUser;
+        public int ID;
 
-        public ObjectToPlace(GameObject prefab, Vector3 position, int rotationState, bool canModify, ObjectData.ObjectType objectType, ObjectData.TrackType trackType, ObjectData.TerrainType terrainType, bool placedByUser)
+        public ObjectToPlace(GameObject prefab, Vector3 position, int rotationState, bool canModify, ObjectData.ObjectType objectType, ObjectData.TrackType trackType, ObjectData.TerrainType terrainType, bool placedByUser, int ID)
         {
             this.prefab = prefab;
             this.position = position;
@@ -50,6 +51,7 @@ public class State_GenerateWorld : IBuildingState
             this.trackType = trackType;
             this.terrainType = terrainType;
             this.placedByUser = placedByUser;
+            this.ID = ID;
         }
     }
 
@@ -134,7 +136,7 @@ public class State_GenerateWorld : IBuildingState
                 allTerrainCounters[ID] += 1;
 
                 // place world object (index 3 = grass)
-                ObjectToPlace newObject = new ObjectToPlace(database.objectsData[ID].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, false);
+                ObjectToPlace newObject = new ObjectToPlace(database.objectsData[ID].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, false, ID);
                 allObjectsToPlace.Add(newObject);
 
                 // store unavailable positions
@@ -214,7 +216,7 @@ public class State_GenerateWorld : IBuildingState
             Vector3Int gridPosition = GetRandomPosition(halfX, halfY);
 
             // place world object (index 3 = grass)
-            ObjectToPlace newObject = new ObjectToPlace(database.objectsData[IDs[i]].Prefab, grid.CellToWorld(gridPosition), rotationState, false, ObjectData.ObjectType.Track, database.objectsData[IDs[i]].trackType, database.objectsData[IDs[i]].terrainType, false);
+            ObjectToPlace newObject = new ObjectToPlace(database.objectsData[IDs[i]].Prefab, grid.CellToWorld(gridPosition), rotationState, false, ObjectData.ObjectType.Track, database.objectsData[IDs[i]].trackType, database.objectsData[IDs[i]].terrainType, false, IDs[i]);
             allObjectsToPlace.Add(newObject);
 
             // place database object
@@ -230,7 +232,16 @@ public class State_GenerateWorld : IBuildingState
     private void PlaceObjects()
     {
         foreach (ObjectToPlace obj in allObjectsToPlace)
-            objectPlacer.PlaceObject(obj.prefab, obj.position, obj.rotationState, obj.canModify, obj.objectType, obj.trackType, obj.terrainType, obj.placedByUser);
+            objectPlacer.PlaceObject(obj.prefab,
+                                     obj.position,
+                                     obj.rotationState,
+                                     obj.canModify,
+                                     obj.objectType,
+                                     obj.trackType,
+                                     obj.terrainType,
+                                     obj.placedByUser,
+                                     database,
+                                     obj.ID);
     }
 
     private void GenerateUnusedPositions(int halfX, int halfY)
