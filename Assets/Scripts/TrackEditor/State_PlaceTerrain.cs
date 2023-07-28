@@ -80,6 +80,14 @@ public class State_PlaceTerrain : IBuildingState
             return;
         }
 
+        // check placement validity
+        bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
+        if (placementValidity == false || isWithinBounds == false)
+        {
+            placementSystem.EndCurrentState();
+            return;
+        }
+
         // check currency
         int cost = database.objectsData[selectedObjectIndex].cost;
         if (cost > 0)
@@ -89,14 +97,6 @@ public class State_PlaceTerrain : IBuildingState
                 placementSystem.EndCurrentState();
                 return;
             }
-        }
-
-        // check placement validity
-        bool placementValidity = CheckPlacementValidity(gridPosition, selectedObjectIndex);
-        if (placementValidity == false || isWithinBounds == false)
-        {
-            placementSystem.EndCurrentState();
-            return;
         }
 
         // handle action
