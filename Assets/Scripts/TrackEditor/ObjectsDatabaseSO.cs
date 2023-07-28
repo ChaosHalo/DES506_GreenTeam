@@ -53,4 +53,9 @@ public class ObjectData
     public int maximumGeneratedCount { get; private set; }
     [field: SerializeField]
     public int unlockCost { get; private set; }
+
+    [field: SerializeField] public List<AudioClip> soundsPlace{ get; private set; }
+    [field: SerializeField] public List<AudioClip> soundsAmbient{ get; private set; }
+    [field: SerializeField] public List<AudioClip> soundsRotate{ get; private set; }
+    [field: SerializeField] public List<AudioClip> soundsDelete{ get; private set; }
 }

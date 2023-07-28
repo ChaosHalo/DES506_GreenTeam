@@ -1,9 +1,14 @@
+using MoreMountains.HighroadEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TerrainObject : MonoBehaviour
 {
+    [Header("Components")]
+    private MoreMountains.HighroadEngine.SoundManager soundManager;
+    [SerializeField] private PlacableObject placableObject;
+
     [Header("Spawn Conditions")]
     [SerializeField] private int minCount = 3;
     [SerializeField] private int maxCount = 6;
@@ -25,6 +30,21 @@ public class TerrainObject : MonoBehaviour
     private List<GameObject> instantiatedObjects = new();
 
     int failCounter;
+
+    private void Start()
+    {
+        SetupSound();
+    }
+
+    private void SetupSound()
+    {
+        soundManager = FindObjectOfType<SoundManager>();
+        if (soundManager == null)
+            return;
+
+        AudioClip clipToPlay = soundManager.GetRandomClip(MyGameManager.instance.GetPlacementSystem().database.objectsData[placableObject.ID].soundsAmbient);
+        soundManager.PlayLoop(clipToPlay, transform.position, transform, 0, 150);
+    }
 
     public void GenerateObjects()
     {

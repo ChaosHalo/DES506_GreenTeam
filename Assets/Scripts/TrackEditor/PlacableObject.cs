@@ -50,6 +50,7 @@ public class PlacableObject : MonoBehaviour
     internal bool GetFallingStatus() { return isFallingAnim; }
     [SerializeField] private float fallAnimSpeed = 12.5f;
     internal int verticalOffset = 100;
+    internal int ID;
 
 
     // scale presets

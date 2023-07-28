@@ -115,7 +115,7 @@ public class State_PlaceTerrain : IBuildingState
         gameObjectIndex = selectedData.GetRepresentationIndex(gridPosition);
 
         // object to place index
-        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, true);
+        int index = objectPlacer.PlaceObject(database.objectsData[selectedObjectIndex].Prefab, grid.CellToWorld(gridPosition), 0, true, ObjectData.ObjectType.Terrain, database.objectsData[ID].trackType, database.objectsData[ID].terrainType, true, database, ID);
 
         // remove existing object from database
         if (existingData != null)
