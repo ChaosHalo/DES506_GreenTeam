@@ -22,7 +22,7 @@ public class UpcomingUIManager : MonoBehaviour
 
     public GameObject InfoText;
     public TextMeshProUGUI RaceCounter;
-
+    /*
     [Header("Music")]
     public Sprite MusicOn;
     public Sprite MusicOff;
@@ -32,20 +32,22 @@ public class UpcomingUIManager : MonoBehaviour
     public Sprite SoundOn;
     public Sprite SoundOff;
     public Image SoundIcon;
-
+    */
     private CarInfoScriptableObject curCar;
     private int carIndex;
 
-    private SoundManager soundManager;
+    //private SoundManager soundManager;
     private void OnEnable()
     {
         curCar = carInfoScriptableObjects[carIndex];
         UpdateCarInfo();
     }
+    /*
     private void Start()
     {
         soundManager = FindObjectOfType<SoundManager>();
     }
+    */
     private CarInfo GetCarInfo(CarInfoScriptableObject carInfoScriptableObject)
     {
         int seasonIndex = MyGameManager.instance.GameRound % MyGameManager.instance.Season;
@@ -87,6 +89,7 @@ public class UpcomingUIManager : MonoBehaviour
         UpdateCarInfo();
     }
     #region Music & Sound
+    /*
     public void OnClickMusic()
     {
         if (soundManager.IsMusicPlaying()) TurnOffMusic();
@@ -117,5 +120,6 @@ public class UpcomingUIManager : MonoBehaviour
         soundManager.TurnOffSFX();
         SoundIcon.sprite = SoundOff;
     }
+    */
     #endregion
 }
