@@ -22,15 +22,18 @@ public class RaceScreenUIManager : MonoBehaviour
     public Text ScoreText2;
     public List<GameObject> Ranks = new();
     // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        timerText = TimerTextComponent.GetComponent<TextMeshProUGUI>();
         Invoke(nameof(StartTimer), raceManager.StartGameCountDownTime - 1);
         if (raceManager != null)
         {
             //raceManager.StartRaceEvent.AddListener(StartTimer);
             raceManager.EndRaceEvent.AddListener(StopTimer);
         }
+    }
+    void Start()
+    {
+        timerText = TimerTextComponent.GetComponent<TextMeshProUGUI>();
         /*InitRacerInfos();
         InitCameraTracker();*/
     }

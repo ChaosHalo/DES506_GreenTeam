@@ -233,16 +233,21 @@ public class CarManager : MonoBehaviour
     {
         if (transform.position.y < 24) Respawn(false);
     }
+    /// <summary>
+    /// 复活在距离目targetPoint最近的复活点
+    /// </summary>
+    /// <param name="respawnWithExplosion"></param>
     internal void Respawn(bool respawnWithExplosion)
     {
         MapPieceInfo[] mapPieceInfos = FindObjectsOfType<MapPieceInfo>();
         Vector3 respawnPos = new Vector3(0, 0, 0);
         float minDis = float.MaxValue;
+        Vector3 targetAIWayPoint = GetComponent<VehicleAI>()._targetWaypoint;
         foreach(var i in mapPieceInfos)
         {
             foreach(var j in i.RespawnPoints)
             {
-                var tempDis = Vector3.Distance(transform.position, j.position);
+                var tempDis = Vector3.Distance(targetAIWayPoint, j.position);
                 if(tempDis < minDis)
                 {
                     minDis = tempDis;

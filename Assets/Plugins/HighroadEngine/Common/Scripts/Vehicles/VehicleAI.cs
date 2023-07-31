@@ -56,7 +56,8 @@ namespace MoreMountains.HighroadEngine
 		protected int _currentWaypoint;
 		protected float _direction = 0f;
 		protected float _acceleration = 0f;
-		protected Vector3 _targetWaypoint;
+        [HideInInspector]
+		public Vector3 _targetWaypoint;
 		protected RaceManager _raceManager;
 		protected SolidController _solidController;
 		protected float _targetAngleAbsolute;
