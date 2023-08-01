@@ -24,9 +24,10 @@ public class UnlockableButton : MonoBehaviour
 
     public void TryUnlock()
     {
+        /*
         if (cost == 0)
             return;
-
+        */
         if (currencyManager.CanAfford(cost))
             Unlock();
     }

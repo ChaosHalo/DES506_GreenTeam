@@ -20,7 +20,14 @@ public class GlobalUIElementsManager : MonoBehaviour
     public Image SoundIcon;
 
     private SoundManager soundManager;
+    private MissionManager missionManager;
 
+    [SerializeField]
+    protected GameObject tutorialPopUps;
+    /*
+    [SerializeField]
+    protected GameObject restartTutorialButton;
+    */
     [SerializeField]
     protected List<Button> buttonsList;
 
@@ -30,16 +37,9 @@ public class GlobalUIElementsManager : MonoBehaviour
     private void Start()
     {
         soundManager = FindObjectOfType<SoundManager>();
+        missionManager = FindObjectOfType<MissionManager>();
 
         //buttonsList = FindObjectsOfTypeAll(Button);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Debug.Log(buttonsList.Count);
-        }
     }
 
     #region Music & Sound
@@ -81,8 +81,29 @@ public class GlobalUIElementsManager : MonoBehaviour
         EnableAllButtons();
         DisableAllBackgrounds();
 
-    }
+        //If mission re-roll = 0, Set re-roll cost to 100
+        if (missionManager.rerollCount == 0)
+        {
+            missionManager.rerollCount = 1;
+            missionManager.rerollCostText.text = ((missionManager.rerollCount) * missionManager.rerollCost).ToString();
+        }
 
+        //Unlock curve piece (done in inspector)
+
+
+        tutorialPopUps.SetActive(false);
+        //restartTutorialButton.SetActive(true);
+    }
+    /*
+    public void RestartTutorial()
+    {
+        DisableAllButtons();
+        backgroundList[0].SetActive(true);
+
+        tutorialPopUps.SetActive(true);
+        restartTutorialButton.SetActive(false);
+    }
+    */
     public void EnableAllButtons()
     {
         foreach (Button button in buttonsList)
