@@ -31,10 +31,10 @@ public class MissionManager : MonoBehaviour
 
     [SerializeField] private List<MissionGrouping> availableMissions = new List<MissionGrouping>();
 
-    [SerializeField] private TMP_Text rerollCostText;
+    [SerializeField] public TMP_Text rerollCostText;
 
-    private int rerollCost = 100;
-    private int rerollCount = 0;
+    public int rerollCost = 100;
+    public int rerollCount = 0;
 
     private void Start()
     {
