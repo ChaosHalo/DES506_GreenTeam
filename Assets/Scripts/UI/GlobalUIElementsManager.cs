@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using MoreMountains.HighroadEngine;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class GlobalUIElementsManager : MonoBehaviour
 {
@@ -19,11 +21,28 @@ public class GlobalUIElementsManager : MonoBehaviour
 
     private SoundManager soundManager;
 
+    [SerializeField]
+    protected List<Button> buttonsList;
+
+    [SerializeField]
+    protected List<GameObject> backgroundList;
+
     private void Start()
     {
         soundManager = FindObjectOfType<SoundManager>();
+
+        //buttonsList = FindObjectsOfTypeAll(Button);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Debug.Log(buttonsList.Count);
+        }
+    }
+
+    #region Music & Sound
     public void OnClickMusic()
     {
         if (soundManager.IsMusicPlaying()) TurnOffMusic();
@@ -54,4 +73,38 @@ public class GlobalUIElementsManager : MonoBehaviour
         soundManager.TurnOffSFX();
         SoundIcon.sprite = SoundOff;
     }
+    #endregion
+
+    #region Tutorial
+    public void SkipTutorial()
+    {
+        EnableAllButtons();
+        DisableAllBackgrounds();
+
+    }
+
+    public void EnableAllButtons()
+    {
+        foreach (Button button in buttonsList)
+        {
+            button.enabled = true;
+        }
+    }
+
+    public void DisableAllButtons()
+    {
+        foreach (Button button in buttonsList)
+        {
+            button.enabled = false;
+        }
+    }
+
+    public void DisableAllBackgrounds()
+    {
+        foreach (GameObject background in backgroundList)
+        {
+            background.SetActive(false);
+        }
+    }
+    #endregion
 }
