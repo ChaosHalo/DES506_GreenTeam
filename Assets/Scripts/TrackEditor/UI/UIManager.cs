@@ -28,8 +28,9 @@ public class UIManager : MonoBehaviour
 
     internal void UpdateCurrency(int currency)
     {
-        foreach(var t in currencyText)
-        t.text = currency.ToString();
+        foreach (var t in currencyText)
+            if (t != null)
+                t.text = currency.ToString();
     }
 
     internal void OnCurrencyModified(int modificationAmount)
