@@ -149,10 +149,10 @@ namespace MoreMountains.HighroadEngine
 		/// <param name="Volume">The volume of the sound.</param>
 		public virtual AudioSource PlayLoop(AudioClip Sfx, Vector3 Location, Transform parent, float minDistance = 1, float maxDistance = 500, float volume=1)
 		{
-			/*if (!SfxOn)
-				return null;*/
+            if (!SfxOn)
+                return null;
 
-			if (Sfx == null)
+            if (Sfx == null)
 				return null;
 
 			// we create a temporary game object to host our audio source
