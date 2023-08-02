@@ -40,7 +40,7 @@ public class PlacableObject : MonoBehaviour
 
     internal bool isSaved = false;
     internal void SetIsSaved(bool b) { isSaved = b; }
-    private bool isPlaced = false;
+    internal bool isPlaced = false;
     private bool isDeleted = false;
     private float deleteAnimSpeed = 12.5f;
     private Vector3 placedPos;
