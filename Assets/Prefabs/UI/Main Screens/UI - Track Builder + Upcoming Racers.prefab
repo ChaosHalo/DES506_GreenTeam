@@ -9695,7 +9695,7 @@ RectTransform:
   - {fileID: 7301339836575878485}
   - {fileID: 188494094257182162}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -19429,6 +19429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3568465987167070093}
   - component: {fileID: 8610671740323623358}
+  - component: {fileID: 653759302148561252}
   m_Layer: 5
   m_Name: Upcoming Racers Screen
   m_TagString: Untagged
@@ -19563,6 +19564,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &653759302148561252
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4275056056692369932}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 243090c866736fb4e86a5d4eb7f72569, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4370175668932442826
 GameObject:
   m_ObjectHideFlags: 0
