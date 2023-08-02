@@ -42,8 +42,9 @@ public class TerrainObject : MonoBehaviour
         if (soundManager == null)
             return;
 
-        AudioClip clipToPlay = soundManager.GetRandomClip(MyGameManager.instance.GetPlacementSystem().database.objectsData[placableObject.ID].soundsAmbient);
-        soundManager.PlayLoop(clipToPlay, transform.position, transform, 0, 150);
+        ObjectData data = MyGameManager.instance.GetPlacementSystem().database.objectsData[placableObject.ID];
+        AudioClip clipToPlay = soundManager.GetRandomClip(data.soundsAmbient);
+        soundManager.PlayLoop(clipToPlay, transform.position, transform, 0, data.rangeAmbient, data.volumeAmbient);
     }
 
     public void GenerateObjects()

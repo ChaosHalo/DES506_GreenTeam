@@ -12,7 +12,7 @@ public class TrackTextureChanger : MonoBehaviour
 
     public PlacableObject placableObject;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         TerrainObject terrainObject = other.GetComponentInChildren<TerrainObject>();
         if (terrainObject == null)

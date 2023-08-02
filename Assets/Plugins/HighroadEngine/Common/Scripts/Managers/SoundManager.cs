@@ -92,7 +92,7 @@ namespace MoreMountains.HighroadEngine
         /// <param name="Sfx">The sound clip you want to play.</param>
         /// <param name="Location">The location of the sound.</param>
         /// <param name="Volume">The volume of the sound.</param>
-        public virtual AudioSource PlaySound(AudioClip sfx, Vector3 location, Transform parent, bool shouldDestroyAfterPlay=true, bool pitchShift= false, float minDistance =1, float maxDistance=500)
+        public virtual AudioSource PlaySound(AudioClip sfx, Vector3 location, Transform parent, bool shouldDestroyAfterPlay=true, bool pitchShift= false, float minDistance =1, float maxDistance=500, float volume =1)
 		{
 			/*if (!SfxOn)
 				return null;*/
@@ -113,7 +113,7 @@ namespace MoreMountains.HighroadEngine
 			// we set that audio source clip to the one in paramaters
 			// audioSource.clip = sfx; 
 			// we set the audio source volume to the one in parameters
-			audioSource.volume = SfxOn ? SfxVolume : 0;
+			audioSource.volume = SfxOn ? SfxVolume * volume : 0;
 			// 设定近大远小效果
 			audioSource.spatialBlend = 1;
             // set min/max distance
@@ -145,7 +145,7 @@ namespace MoreMountains.HighroadEngine
 		/// <param name="Sfx">The sound clip you want to play.</param>
 		/// <param name="Location">The location of the sound.</param>
 		/// <param name="Volume">The volume of the sound.</param>
-		public virtual AudioSource PlayLoop(AudioClip Sfx, Vector3 Location, Transform parent, float minDistance = 1, float maxDistance = 500)
+		public virtual AudioSource PlayLoop(AudioClip Sfx, Vector3 Location, Transform parent, float minDistance = 1, float maxDistance = 500, float volume=1)
 		{
 			/*if (!SfxOn)
 				return null;*/
@@ -164,11 +164,11 @@ namespace MoreMountains.HighroadEngine
 			// we add an audio source to that host
 			AudioSource audioSource = temporaryAudioHost.AddComponent<AudioSource>() as AudioSource; 
 			// we set that audio source clip to the one in paramaters
-			audioSource.clip = Sfx; 
-			// we set the audio source volume to the one in parameters
-			audioSource.volume = SfxOn ? SfxVolume : 0;
-			// we set it to loop
-			audioSource.loop=true;
+			audioSource.clip = Sfx;
+            // we set the audio source volume to the one in parameters
+            audioSource.volume = SfxOn ? SfxVolume * volume : 0;
+            // we set it to loop
+            audioSource.loop=true;
 			// 设定近大远小效果
 			audioSource.spatialBlend = 1;
             // set min/max distance

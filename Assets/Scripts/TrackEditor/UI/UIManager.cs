@@ -13,7 +13,8 @@ public class UIManager : MonoBehaviour
 
     public CustomToggle toggleTerrain;
 
-    public TMP_Text currencyText;
+    [Space(15)]
+    public List<TMP_Text> currencyText = new();
 
 
     [Header("Floating Currency")]
@@ -27,7 +28,9 @@ public class UIManager : MonoBehaviour
 
     internal void UpdateCurrency(int currency)
     {
-        currencyText.text = currency.ToString();
+        foreach (var t in currencyText)
+            if (t != null)
+                t.text = currency.ToString();
     }
 
     internal void OnCurrencyModified(int modificationAmount)

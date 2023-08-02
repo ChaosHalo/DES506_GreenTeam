@@ -38,8 +38,8 @@ public class MissionManager : MonoBehaviour
 
     private void Start()
     {
-        //update cost text i UI
-        rerollCostText.text = ((rerollCount) * rerollCost).ToString();
+        //update cost text in UI
+        UpdateRerollText();
     }
 
     public void InitialiseMissions()
@@ -83,7 +83,7 @@ public class MissionManager : MonoBehaviour
 
     public void RerollAllMissions()
     {
-        CurrencyManager currencyManager =MyGameManager.instance.GetCurrencyManager();
+        CurrencyManager currencyManager = MyGameManager.instance.GetCurrencyManager();
         int newCost = (rerollCount) * rerollCost;
 
         if (currencyManager.CanAfford(newCost))
@@ -98,21 +98,31 @@ public class MissionManager : MonoBehaviour
             // update variables
             rerollCount++;
 
-            
+
         }
 
         //update cost text in UI
-        rerollCostText.text = ((rerollCount) * rerollCost).ToString();
+        UpdateRerollText();
+    }
+
+    private void UpdateRerollText()
+    {
+        int cost = ((rerollCount) * rerollCost);
+        string costString = cost != 0 ? cost.ToString() : "FREE";
+        rerollCostText.text = costString;
     }
 
     internal void ResetMissions()
     {
-        rerollCount = 0;
+        rerollCount = 1;
         availableMissions.Clear();
         for (int i = 0; i < 3; i++)
             currentMissions[i] = null;
 
         InitialiseMissions();
+
+        //update cost text in UI
+        UpdateRerollText();
     }
 
     private void OnAddGrouping(int grouping)
