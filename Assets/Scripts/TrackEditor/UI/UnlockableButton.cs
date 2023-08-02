@@ -19,7 +19,8 @@ public class UnlockableButton : MonoBehaviour
     private void Start()
     {
         cost = database.objectsData[ID].unlockCost;
-        costText.text = cost.ToString();
+        string costString = cost != 0 ? cost.ToString() : "FREE";
+        costText.text = costString;
     }
 
     public void TryUnlock()

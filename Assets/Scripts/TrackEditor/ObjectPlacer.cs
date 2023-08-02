@@ -48,7 +48,7 @@ public class ObjectPlacer : MonoBehaviour
         // EVENTS
         if (placedByUser == true)
         {
-            soundManager.PlaySound(soundManager.GetRandomClip(database.objectsData[ID].soundsPlace), audioSourceTransform.position, audioSourceTransform, true, true);
+            soundManager.PlaySound(soundManager.GetRandomClip(database.objectsData[ID].soundsPlace), audioSourceTransform.position, audioSourceTransform, true, true, 1, 500, database.objectsData[ID].volumePlace);
            
             if (objectType == ObjectData.ObjectType.Track)
             {
@@ -110,7 +110,10 @@ public class ObjectPlacer : MonoBehaviour
                                audioSourceTransform.position,
                                audioSourceTransform,
                                true,
-                               true);
+                               true,
+                               1, 
+                               500,
+                               MyGameManager.instance.GetPlacementSystem().database.objectsData[placableObject.ID].volumeDelete);
 
         placableObject.OnDelete();
 
@@ -169,7 +172,10 @@ public class ObjectPlacer : MonoBehaviour
                                audioSourceTransform.position,
                                audioSourceTransform,
                                true,
-                               true);
+                               true,
+                               1, 
+                               500,
+                               MyGameManager.instance.GetPlacementSystem().database.objectsData[objectToRotate.placableObject.ID].volumeRotate);
 
         int newState = objectToRotate.GetRotationState();
         newState++;
@@ -196,7 +202,10 @@ public class ObjectPlacer : MonoBehaviour
                                audioSourceTransform.position,
                                audioSourceTransform,
                                true,
-                               true);
+                               true,
+                               1,
+                               500,
+                               MyGameManager.instance.GetPlacementSystem().database.objectsData[objectToRotate.placableObject.ID].volumeRotate);
 
         objectToRotate.SetRotationState(newState, false);
        // UpdateTrackConnections();

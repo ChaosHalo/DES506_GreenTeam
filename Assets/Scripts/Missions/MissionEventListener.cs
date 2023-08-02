@@ -9,16 +9,25 @@ public class CustomGameEvent : UnityEvent<Component, object> { }
 public class MissionEventListener : MonoBehaviour
 {
     public MissionEvent missionEvent;
+    public List<MissionEvent> missionEvents;
     public CustomGameEvent response;
 
     private void OnEnable()
     {
-        missionEvent.RegisterListener(this);
+        if (missionEvent != null)
+            missionEvent.RegisterListener(this);
+
+        foreach(var e in missionEvents)
+            e.RegisterListener(this);
     }
 
     private void OnDisable()
     {
-        missionEvent.UnregisterListener(this);
+        if (missionEvent != null)
+            missionEvent.UnregisterListener(this);
+
+        foreach (var e in missionEvents)
+            e.UnregisterListener(this);
     }
 
     public void OnEventRaised(Component sender = null, object data = null)
