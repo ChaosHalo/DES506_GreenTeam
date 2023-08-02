@@ -6326,6 +6326,18 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 799c779d9bb33b042869d74994138fff, type: 3}
+--- !u!114 &515150740 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1706222580940346616, guid: 799c779d9bb33b042869d74994138fff,
+    type: 3}
+  m_PrefabInstance: {fileID: 515150739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &515176306 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7323025140004371938, guid: 799c779d9bb33b042869d74994138fff,
@@ -7541,6 +7553,18 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 490bba6d09657904ea6e1b969e991a90, type: 3}
+--- !u!114 &584632920 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8727155678463492500, guid: 490bba6d09657904ea6e1b969e991a90,
+    type: 3}
+  m_PrefabInstance: {fileID: 584632919}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &584632921 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5886983802958094099, guid: 490bba6d09657904ea6e1b969e991a90,
@@ -16169,7 +16193,9 @@ MonoBehaviour:
   toggleButton_Remove: {fileID: 1804327222}
   toggleButton_Rotate: {fileID: 1108027048}
   toggleTerrain: {fileID: 0}
-  currencyText: []
+  currencyText:
+  - {fileID: 515150740}
+  - {fileID: 584632920}
   spentCurrencyPrefab: {fileID: 7109643688771930447, guid: f5024764987302746a97f9ddc8a17c6f,
     type: 3}
   spentCurrenyParent: {fileID: 2011701840}
