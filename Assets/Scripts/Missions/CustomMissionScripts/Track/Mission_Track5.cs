@@ -15,9 +15,14 @@ public class Mission_Track5 : Mission
     }
     public override bool IsGoalReached()
     {
+        return GetUniquePieceesCount() >= int1 ? true: false;
+    }
+
+    public int GetUniquePieceesCount()
+    {
         int typesUsed = 0;
 
-        if(varExtra1>0)
+        if (varExtra1 > 0)
             typesUsed++;
         if (varExtra2 > 0)
             typesUsed++;
@@ -28,7 +33,7 @@ public class Mission_Track5 : Mission
         if (varExtra5 > 0)
             typesUsed++;
 
-        return typesUsed >= int1 ? true: false;
+        return typesUsed;
     }
     public override Mission.Difficulty GetDifficulty()
     {
@@ -41,7 +46,7 @@ public class Mission_Track5 : Mission
     }
     public override string GetProgressString()
     {
-        int currentProgress = Mathf.Clamp(goalInt, 0, int1);
+        int currentProgress = Mathf.Clamp(GetUniquePieceesCount(), 0, int1);
         string finalColour = IsGoalReached() ? colourComplete : colourInProgress;
         return finalColour + "<b> (" + currentProgress + "/" + int1 + ")";
     }
