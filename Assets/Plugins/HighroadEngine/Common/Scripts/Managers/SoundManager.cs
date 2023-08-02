@@ -11,8 +11,10 @@ namespace MoreMountains.HighroadEngine
 	public class SoundManager : MonoBehaviour
 	{
 		public enum Type { Music, SFX};
-        // true if the music is enabled	
-        private bool MusicOn = true;
+		[SerializeField]
+		// true if the music is enabled	
+		private bool MusicOn = true;
+        [SerializeField]
 		// true if the sound fx are enabled
 		private bool SfxOn = true;
         /// the music volume
@@ -94,8 +96,8 @@ namespace MoreMountains.HighroadEngine
         /// <param name="Volume">The volume of the sound.</param>
         public virtual AudioSource PlaySound(AudioClip sfx, Vector3 location, Transform parent, bool shouldDestroyAfterPlay=true, bool pitchShift= false, float minDistance =1, float maxDistance=500)
 		{
-			/*if (!SfxOn)
-				return null;*/
+            if (!SfxOn)
+                return null;
 
             if (sfx == null)
                 return null;
@@ -109,15 +111,18 @@ namespace MoreMountains.HighroadEngine
 			// we set the temp audio's position
 			temporaryAudioHost.transform.position = location;
 			// we add an audio source to that host
-			AudioSource audioSource = temporaryAudioHost.AddComponent<AudioSource>() as AudioSource; 
+			AudioSource audioSource = temporaryAudioHost.AddComponent<AudioSource>() as AudioSource;
 			// we set that audio source clip to the one in paramaters
 			// audioSource.clip = sfx; 
 			// we set the audio source volume to the one in parameters
-			audioSource.volume = SfxOn ? SfxVolume : 0;
+			audioSource.volume = SfxVolume;
+
+			audioSource.mute = !SfxOn;
+			//audioSource.volume = 0;
 			// 设定近大远小效果
 			audioSource.spatialBlend = 1;
             // set min/max distance
-			audioSource.rolloffMode=AudioRolloffMode.Linear;
+			audioSource.rolloffMode = AudioRolloffMode.Linear;
             audioSource.minDistance = minDistance;
             audioSource.maxDistance = maxDistance;
             // set pitch
@@ -132,7 +137,7 @@ namespace MoreMountains.HighroadEngine
 			// we destroy the host after the clip has played
 			if (shouldDestroyAfterPlay)
 			{
-				Destroy(temporaryAudioHost, sfx.length);
+				//Destroy(temporaryAudioHost, sfx.length);
 			}
 			// we return the audiosource reference
 			return audioSource;
@@ -166,7 +171,9 @@ namespace MoreMountains.HighroadEngine
 			// we set that audio source clip to the one in paramaters
 			audioSource.clip = Sfx; 
 			// we set the audio source volume to the one in parameters
-			audioSource.volume = SfxOn ? SfxVolume : 0;
+			audioSource.volume = SfxVolume;
+
+			audioSource.mute = !SfxOn;
 			// we set it to loop
 			audioSource.loop=true;
 			// 设定近大远小效果
@@ -194,7 +201,8 @@ namespace MoreMountains.HighroadEngine
 			foreach(var sound in sounds)
             {
 				sound.GetComponent<AudioSource>().volume = SfxVolume;
-            }
+				sound.GetComponent<AudioSource>().mute = false;
+			}
 			SfxOn = true;
         }
 		public void TurnOffSFX()
@@ -203,6 +211,7 @@ namespace MoreMountains.HighroadEngine
 			foreach (var sound in sounds)
 			{
 				sound.GetComponent<AudioSource>().volume = 0;
+				sound.GetComponent<AudioSource>().mute = true;
 			}
 			SfxOn = false;
 		}

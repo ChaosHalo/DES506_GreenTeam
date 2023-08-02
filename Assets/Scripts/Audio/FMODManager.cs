@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-public class FMODManager : MonoBehaviour
+public class FMODManager : Singleton<FMODManager>
 {
+    public EngineSoundScriptableObject sound;
     private CinemachineBrain cinemachineBrain;
     private bool FMODOn = true;
     private void Start()
@@ -47,4 +48,5 @@ public class FMODManager : MonoBehaviour
             i.TurnOffSound();
         }
     }
+    public bool IsFMODOn() => FMODOn;
 }
