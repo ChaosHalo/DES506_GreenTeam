@@ -307,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8208a551c04a627459ba4e0a24ba39de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doChangeTexture: 1
   defaultMaterial: {fileID: 2100000, guid: 9ed63a497656b4f4d83ca4cd2b21f281, type: 2}
   sandMaterial: {fileID: 2100000, guid: cacc5539ad4fa3745bb6eac0bc716040, type: 2}
   snowMaterial: {fileID: 2100000, guid: d7a08d60a50d3444e87b6360f2b334fe, type: 2}
@@ -458,7 +459,7 @@ GameObject:
   - component: {fileID: 6230488790358735342}
   m_Layer: 0
   m_Name: HAND 2
-  m_TagString: ExplosionTag
+  m_TagString: ExplosionDeathTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -594,7 +595,7 @@ GameObject:
   - component: {fileID: 7354607980751080853}
   m_Layer: 0
   m_Name: HAND
-  m_TagString: ExplosionTag
+  m_TagString: ExplosionDeathTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
