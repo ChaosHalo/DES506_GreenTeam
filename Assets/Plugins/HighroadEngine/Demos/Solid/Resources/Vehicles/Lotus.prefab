@@ -2771,11 +2771,11 @@ MonoBehaviour:
   SteeringSpeed: 10000
   AutoForward: 0
   _finisherPosition: 0
-  EngineForce: 2444.4446
+  EngineForce: 2177.7778
   CenterOfMass: {x: 0, y: -1, z: 0}
   GroundDistance: 2
   OffroadPenaltyFactor: 1
-  CarGrip: 126.66667
+  CarGrip: 166.66667
   FullThrottleVelocity: 6
   MinimalTurningSpeed: 1
   ForwardForceHeight: 0.5
@@ -2901,6 +2901,7 @@ MonoBehaviour:
   SmallThrottle: 0.4
   OverrideSteringSpeed: 0
   SteeringSpeed: 8000
+  _targetWaypoint: {x: 0, y: 0, z: 0}
 --- !u!114 &4168620319936427301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3002,11 +3003,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -162514938
-      Data2: 1100362186
-      Data3: 1795852425
-      Data4: -860786000
-    Path: event:/Engine Total Sports
+      Data1: 555856445
+      Data2: 1322064751
+      Data3: 1049948312
+      Data4: 1244798950
+    Path: event:/Engine Sports
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -3032,6 +3033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RPM: 0
   Load: 0
+  ReversLoadLogic: 0
 --- !u!1 &4056184549773968879
 GameObject:
   m_ObjectHideFlags: 0
