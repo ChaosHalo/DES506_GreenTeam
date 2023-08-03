@@ -13,6 +13,12 @@ public class EndOfSeasonUIManager : AllUIManager
     public GameObject BestDriverTime;
     public GameObject WorstDriverTime;
 
+    [SerializeField]
+    public GameObject tutorialUISeason;
+
+    [SerializeField]
+    public GameObject tutorialUIEndOfSeason;
+
     private void Start()
     {
         /*UpdateBestDriverName();
@@ -22,6 +28,12 @@ public class EndOfSeasonUIManager : AllUIManager
     }
     private void OnEnable()
     {
+        if (tutorialUISeason.activeSelf)
+        {
+            tutorialUISeason.SetActive(false);
+            tutorialUIEndOfSeason.SetActive(true);
+        }
+
         UpdateMapScreenShots();
         UpdateBestDriverName();
         UpdateWorstDriverName();

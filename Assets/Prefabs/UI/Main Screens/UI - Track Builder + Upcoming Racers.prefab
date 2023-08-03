@@ -4464,6 +4464,9 @@ MonoBehaviour:
   upcomingRacersScreen: {fileID: 4275056056692369932}
   gameStateManager: {fileID: 0}
   trackButton: {fileID: 333723746007997851}
+  tutorialUIFinishTrack: {fileID: 0}
+  tutorialUIRaceScreen: {fileID: 0}
+  raceManager: {fileID: 0}
 --- !u!82 &2017765925895565307
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9695,7 +9698,7 @@ RectTransform:
   - {fileID: 7301339836575878485}
   - {fileID: 188494094257182162}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
