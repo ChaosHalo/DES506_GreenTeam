@@ -58,10 +58,10 @@ public class UpcomingUIManager : MonoBehaviour
     {
         racerIcon.sprite = allIcons[carIndex];
         CarName.GetComponent<TextMeshProUGUI>().text = GetCarInfo(curCar).Name;
-        TopSpeedSlider.value = GetCarInfo(curCar).TopSpeed;
-        AccelerationSlider.value = GetCarInfo(curCar).Acceleration;
-        HandlingSlider.value = GetCarInfo(curCar).Handling;
-        OffroadSlider.value = GetCarInfo(curCar).OffRoad;
+        TopSpeedSlider.value = GlobalConstants.MAX_LEVEL - GetCarInfo(curCar).TopSpeed;
+        AccelerationSlider.value = GlobalConstants.MAX_LEVEL - GetCarInfo(curCar).Acceleration;
+        HandlingSlider.value = GlobalConstants.MAX_LEVEL - GetCarInfo(curCar).Handling;
+        OffroadSlider.value = GlobalConstants.MAX_LEVEL - GetCarInfo(curCar).OffRoad;
         PlaceholderCarImage.sprite = curCar.CarUIInfo.PlaceholderCarImage;
         BackGroundImage.sprite = curCar.CarUIInfo.BackGroundImage;
         InfoText.GetComponent<TextMeshProUGUI>().text = curCar.CarUIInfo.Info;
