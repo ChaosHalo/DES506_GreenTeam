@@ -56,7 +56,13 @@ public class InputManager : MonoBehaviour
         fingerDownDuration += Time.deltaTime;
         //Debug.Log(mouseWorldPos + " ::::: " + gridWorldPos);
     }
-
+    internal bool IsPointerOverUIObject()
+    {
+        var eventData = new PointerEventData(EventSystem.current) { position = posMouseCur };
+        var results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+        return results.Count > 0;
+    }
 
     public bool IsPointerOverUI()
         => EventSystem.current.IsPointerOverGameObject();

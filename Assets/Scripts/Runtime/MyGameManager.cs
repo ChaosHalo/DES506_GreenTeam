@@ -8,6 +8,7 @@ using System;
 using Lovatto.MiniMap;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Rendering;
+using UnityEngine.EventSystems;
 /// <summary>
 /// 游戏主流程
 /// </summary>
@@ -50,6 +51,8 @@ public class MyGameManager : MonoBehaviour
     // singleton instance
     internal static MyGameManager instance;
 
+    public bool IsPointerOverUI = false;
+
     public CarInfoScriptableObject[] carInfoScriptableObjects;
     void Awake()
     {
@@ -83,7 +86,10 @@ public class MyGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameState != null)
+        // Check if there is a touch
+        IsPointerOverUI = GetInputManager().IsPointerOverUIObject();
+
+        if (gameState != null)
             gameState.UpdateState();
     }
 
@@ -253,5 +259,6 @@ public class MyGameManager : MonoBehaviour
     internal PlacementSystem GetPlacementSystem() { return FindObjectOfType<PlacementSystem>(); }
     internal SaveSystem GetSaveSystem() { return FindObjectOfType<SaveSystem>(); }
     internal UIManager GetUIManager() { return FindObjectOfType<UIManager>(); }
+    internal InputManager GetInputManager() { return FindObjectOfType<InputManager>(); }
     #endregion
 }
