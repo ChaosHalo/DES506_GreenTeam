@@ -23,6 +23,8 @@ public class ObjectPlacer : MonoBehaviour
     public MissionEvent onPlaceTerrainSea;
     public MissionEvent onPlaceTerrainMountain;
     public MissionEvent OnSpendCurrency;
+    public MissionEvent onDeleteObject;
+    public MissionEvent onRotateObject;
 
     public int PlaceObject(GameObject prefab, Vector3 position, int rotationState, bool canModify, ObjectData.ObjectType objectType, ObjectData.TrackType trackType, ObjectData.TerrainType terrainType, bool placedByUser, ObjectsDatabaseSO database, int ID)
     {
@@ -128,6 +130,8 @@ public class ObjectPlacer : MonoBehaviour
         StartCoroutine(DeleteAfterDelay(gameObjectIndex, 0.2f));
         if (placableObject.objectType == ObjectData.ObjectType.Terrain)
             StartCoroutine(DeleteAfterDelay(gameObjectIndex, 0));
+
+        onDeleteObject.Raise();
     }
 
     private IEnumerator DeleteAfterDelay(int index, float delay)
@@ -208,7 +212,8 @@ public class ObjectPlacer : MonoBehaviour
                                MyGameManager.instance.GetPlacementSystem().database.objectsData[objectToRotate.placableObject.ID].volumeRotate);
 
         objectToRotate.SetRotationState(newState, false);
-       // UpdateTrackConnections();
+        onRotateObject.Raise();
+        // UpdateTrackConnections();
     }
 
     internal void UpdateTrackConnections()

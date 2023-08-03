@@ -1856,7 +1856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3880834489433810995
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5686,6 +5686,8 @@ GameObject:
   - component: {fileID: 289620774902886277}
   - component: {fileID: 5377593607043121113}
   - component: {fileID: 3361607073638758243}
+  - component: {fileID: 4258153867744582035}
+  - component: {fileID: 2586835904377895544}
   m_Layer: 5
   m_Name: Tap a track to rotate bubble
   m_TagString: Untagged
@@ -5753,6 +5755,51 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4258153867744582035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2354201506277351703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5182fcee816955446b678a85d25e3e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToHide:
+  - {fileID: 2354201506277351703}
+  objectsToShow:
+  - {fileID: 580668517676501373}
+--- !u!114 &2586835904377895544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2354201506277351703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8f4e91a510d7147a292dcbeb8e53ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionEvent: {fileID: 11400000, guid: 51206612b1aa6d848979eb9c3d69e5de, type: 2}
+  missionEvents: []
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4258153867744582035}
+        m_TargetAssemblyTypeName: CustomTutorialButton, Assembly-CSharp
+        m_MethodName: OnCompleteAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2424090811377937691
 GameObject:
   m_ObjectHideFlags: 0
@@ -6588,7 +6635,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7052594197834026693
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10810,7 +10857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7832598755568604623
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11452,6 +11499,8 @@ GameObject:
   - component: {fileID: 3628178427710497126}
   - component: {fileID: 4855116327783334526}
   - component: {fileID: 4226610367401733112}
+  - component: {fileID: 3592366372795111440}
+  - component: {fileID: 2535891808284598730}
   m_Layer: 5
   m_Name: Tap and hold a terrain type to see its effects bubble
   m_TagString: Untagged
@@ -11519,6 +11568,51 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3592366372795111440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5262885749048728533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5182fcee816955446b678a85d25e3e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToHide:
+  - {fileID: 5262885749048728533}
+  objectsToShow:
+  - {fileID: 6375564258444504183}
+--- !u!114 &2535891808284598730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5262885749048728533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8f4e91a510d7147a292dcbeb8e53ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionEvent: {fileID: 11400000, guid: 1a067d0e41a20e548861c5002d0d9ffe, type: 2}
+  missionEvents: []
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3592366372795111440}
+        m_TargetAssemblyTypeName: CustomTutorialButton, Assembly-CSharp
+        m_MethodName: OnCompleteAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5279325178900722754
 GameObject:
   m_ObjectHideFlags: 0
@@ -13636,6 +13730,8 @@ GameObject:
   - component: {fileID: 146963254366350393}
   - component: {fileID: 5485878774250852142}
   - component: {fileID: 940125726149510022}
+  - component: {fileID: 5272107890106852202}
+  - component: {fileID: 8838231938480012214}
   m_Layer: 5
   m_Name: Drag and drop terrain bubble
   m_TagString: Untagged
@@ -13703,6 +13799,56 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5272107890106852202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375564258444504183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5182fcee816955446b678a85d25e3e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToHide:
+  - {fileID: 6375564258444504183}
+  objectsToShow:
+  - {fileID: 7835403924651300776}
+--- !u!114 &8838231938480012214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6375564258444504183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8f4e91a510d7147a292dcbeb8e53ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionEvent: {fileID: 0}
+  missionEvents:
+  - {fileID: 11400000, guid: e5dbf09440b351e4a8aab8dc1a171567, type: 2}
+  - {fileID: 11400000, guid: 02e4163e11a24b140a6aa51278d1f90b, type: 2}
+  - {fileID: 11400000, guid: 1016fb3fa7bb7b74c923cfa241ddd705, type: 2}
+  - {fileID: 11400000, guid: 78765ffa6881a30438b845a3f37c9887, type: 2}
+  - {fileID: 11400000, guid: 366b8206ecc8e71438b456238b56b709, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5272107890106852202}
+        m_TargetAssemblyTypeName: CustomTutorialButton, Assembly-CSharp
+        m_MethodName: OnCompleteAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6522863418668616318
 GameObject:
   m_ObjectHideFlags: 0
@@ -15495,7 +15641,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3962092627400707414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15664,7 +15810,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8147807984706777107
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16292,6 +16438,8 @@ GameObject:
   - component: {fileID: 6753994202898640954}
   - component: {fileID: 8927100950025853490}
   - component: {fileID: 8562570542360527789}
+  - component: {fileID: 4637001664726532457}
+  - component: {fileID: 8771275118640556696}
   m_Layer: 5
   m_Name: Tap a track to delete bubble
   m_TagString: Untagged
@@ -16359,6 +16507,51 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4637001664726532457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8072098825174301721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5182fcee816955446b678a85d25e3e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToHide:
+  - {fileID: 8072098825174301721}
+  objectsToShow:
+  - {fileID: 7787491938461047049}
+--- !u!114 &8771275118640556696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8072098825174301721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8f4e91a510d7147a292dcbeb8e53ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionEvent: {fileID: 11400000, guid: d19fcbacc8e778445a6a5c2cb6e70c7b, type: 2}
+  missionEvents: []
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4637001664726532457}
+        m_TargetAssemblyTypeName: CustomTutorialButton, Assembly-CSharp
+        m_MethodName: OnCompleteAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8084387885991428844
 GameObject:
   m_ObjectHideFlags: 0
@@ -20040,6 +20233,8 @@ GameObject:
   - component: {fileID: 6305368438475547293}
   - component: {fileID: 3929391013495901360}
   - component: {fileID: 5962162277511558759}
+  - component: {fileID: 1425497230158319377}
+  - component: {fileID: 1283639719443093998}
   m_Layer: 5
   m_Name: Drag and drop bubble
   m_TagString: Untagged
@@ -20107,6 +20302,51 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1425497230158319377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9102419097477520203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5182fcee816955446b678a85d25e3e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToHide:
+  - {fileID: 9102419097477520203}
+  objectsToShow:
+  - {fileID: 8236001158731609230}
+--- !u!114 &1283639719443093998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9102419097477520203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8f4e91a510d7147a292dcbeb8e53ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionEvent: {fileID: 11400000, guid: b352984376d458f48a1137db64335434, type: 2}
+  missionEvents: []
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1425497230158319377}
+        m_TargetAssemblyTypeName: CustomTutorialButton, Assembly-CSharp
+        m_MethodName: OnCompleteAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9147655169706504578
 GameObject:
   m_ObjectHideFlags: 0

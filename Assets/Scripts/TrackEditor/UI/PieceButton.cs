@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Missions;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,6 +21,7 @@ public class PieceButton : MonoBehaviour
 
     [SerializeField] private GameObject tooltipObject;
     [SerializeField] private TooltipDatabaseSO tooltipDatabase;
+    public MissionEvent onShowTooltip;
 
 
     private bool isTooltipVisible = false;
@@ -71,6 +73,17 @@ public class PieceButton : MonoBehaviour
         tooltipObject.SetActive(visible);
         textObject.text = tooltipDatabase.tooltipTexts[ID];
         curHoldDuration = 0;
+
+        if (visible == true)
+        {
+            StartCoroutine(TriggerEventAfterDelay());
+        }
+    }
+
+    private IEnumerator TriggerEventAfterDelay()
+    {
+        yield return new WaitForSeconds(1);
+        onShowTooltip.Raise();
     }
 
     public void OnTapDown()
