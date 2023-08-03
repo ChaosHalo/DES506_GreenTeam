@@ -106,6 +106,12 @@ namespace MoreMountains.HighroadEngine
         public delegate List<BaseController> OnUpdatePlayersListDelegate();
         public OnUpdatePlayersListDelegate OnUpdatePlayersList;
 
+        public bool tutorialCanStartRace = true;
+        [SerializeField]
+        public GameObject tutorialUIRaceScreen;
+        [SerializeField]
+        public GameObject tutorialUIRaceResults;
+
         public void ResetCurrentFinisherRank() => _currentFinisherRank = 1;
         /// <summary>
         /// We checks proper initialization of the RaceManager object
@@ -306,11 +312,15 @@ namespace MoreMountains.HighroadEngine
 
             UpdateNoPlayersCollisions();
 
-            // we disable players controls at start to let the race countdown runs
-            OnDisableControlForPlayers();
+            if (tutorialCanStartRace)
+            {
+                // we disable players controls at start to let the race countdown runs
+                OnDisableControlForPlayers();
 
-            // we start the race countdown
-            StartCoroutine(StartGameCountdownCoroutine());
+                // we start the race countdown
+                StartCoroutine(StartGameCountdownCoroutine());
+            }
+            
         }
 
         /// <summary>
@@ -507,6 +517,16 @@ namespace MoreMountains.HighroadEngine
         /// </summary>
         public virtual void Update()
         {
+            //Debug.Log(tutorialCanStartRace);
+            if (tutorialCanStartRace == false)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
+
             // if game is on
             if (_isPlaying)
             {
@@ -595,6 +615,12 @@ namespace MoreMountains.HighroadEngine
                                 _isPlaying = false;
                                 ShowFinalRanking(playersRank);
                                 EndRaceEvent?.Invoke();
+
+                                if (tutorialUIRaceScreen.activeSelf)
+                                {
+                                    tutorialUIRaceScreen.SetActive(false);
+                                    tutorialUIRaceResults.SetActive(true);
+                                }
                             }
                         }
 

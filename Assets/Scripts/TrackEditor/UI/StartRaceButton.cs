@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using MoreMountains.HighroadEngine;
 
 public class StartRaceButton : MonoBehaviour
 {
@@ -11,6 +12,15 @@ public class StartRaceButton : MonoBehaviour
     public GameObject upcomingRacersScreen;
     public GameStateManager gameStateManager;
     public Button trackButton;
+
+    [SerializeField]
+    public GameObject tutorialUIFinishTrack;
+
+    [SerializeField]
+    public GameObject tutorialUIRaceScreen;
+
+    [SerializeField]
+    public RaceManager raceManager;
 
     public void OnClick()
     {
@@ -48,5 +58,12 @@ public class StartRaceButton : MonoBehaviour
         upcomingRacersScreen.SetActive(true);
         //trackButton.onClick?.Invoke();
         gameStateManager.ChangeToState_Race();
+
+        if (tutorialUIFinishTrack.activeSelf == true)
+        {
+            raceManager.tutorialCanStartRace = false;
+            tutorialUIFinishTrack.SetActive(false);
+            tutorialUIRaceScreen.SetActive(true);
+        }
     }
 }

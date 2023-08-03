@@ -21,6 +21,8 @@ public class GlobalUIElementsManager : MonoBehaviour
 
     private SoundManager soundManager;
     private MissionManager missionManager;
+    [SerializeField]
+    private RaceManager raceManager;
 
     [SerializeField]
     protected GameObject tutorialPopUps;
@@ -38,6 +40,7 @@ public class GlobalUIElementsManager : MonoBehaviour
     {
         soundManager = FindObjectOfType<SoundManager>();
         missionManager = FindObjectOfType<MissionManager>();
+        //raceManager = FindObjectOfType<RaceManager>();
 
         //buttonsList = FindObjectsOfTypeAll(Button);
     }
@@ -126,6 +129,22 @@ public class GlobalUIElementsManager : MonoBehaviour
         {
             background.SetActive(false);
         }
+    }
+
+    public void DisableStartRace()
+    {
+        raceManager.tutorialCanStartRace = false;
+    }
+
+    public void EnableStartRace()
+    {
+        raceManager.tutorialCanStartRace = true;
+    }
+
+    public void TutorialStartRace()
+    {
+        EnableStartRace();
+        raceManager.ManagerStart();
     }
     #endregion
 }
