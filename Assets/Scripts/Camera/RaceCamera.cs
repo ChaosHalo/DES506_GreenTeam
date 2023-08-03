@@ -63,13 +63,27 @@ public class RaceCamera : MonoBehaviour
 
     private void FocusOnCar(string name)
     {
-        foreach (var carManager in availableCarManagers)
+        if (cameraType == Type.FOCUS)
         {
-            if (carManager.CarInfo.Name == name)
+            foreach (var carManager in availableCarManagers)
             {
-                currentTrackedCarManager = carManager;
-                RaceCameraManager.SetTarget(cameraCurrent, carManager.transform);
-                return;
+                if (carManager.CarInfo.Name == name)
+                {
+                    currentTrackedCarManager = carManager;
+                    RaceCameraManager.SetTarget(cameraCurrent, carManager.transform);
+                    return;
+                }
+            }
+        }
+        else if (cameraType == Type.ACTION)
+        {
+            foreach (var carManager in availableCarManagers)
+            {
+                if (carManager.CarInfo.Name == name)
+                {
+                    FocusOnCar_Action(carManager);
+                    return;
+                }
             }
         }
     }
@@ -194,7 +208,7 @@ public class RaceCamera : MonoBehaviour
     #region EditorStuff
     // editor function
     public void SwitchTarget_Editor(string name) => FocusOnCar(name);
-    public void CameraAction()
+    public void CameraAction(bool pickRandom)
     {
         if (availableCarManagers.Count <= 0)
             return;
@@ -207,10 +221,31 @@ public class RaceCamera : MonoBehaviour
         cameraCurrent.SetActive(false);
 
         cameraType = Type.ACTION;
+
+        if(pickRandom)
         FocusOnRandomCar_Action();
         // StartCoroutine(StartSwitchTargetCooldown());
         //cameraCurrent.SetActive(true);
         // SwitchCameraPreset(0);
+    }
+
+    public void ToggleCameraType()
+    {
+        switch (cameraType)
+        {
+            case Type.FOCUS:
+                {
+                    CameraAction(false);
+                    StartCoroutine(ActionFocusWithDelay(currentTrackedCarManager, 0));
+                }
+                break;
+            case Type.ACTION:
+                {
+                    CameraFocus();
+                    FocusOnCar(currentTrackedCarManager.CarInfo.Name);
+                }
+                break;
+        }
     }
 
     public void CameraFocus()
