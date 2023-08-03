@@ -56,6 +56,7 @@ public class Mission : ScriptableObject
     internal string name1;
     internal string name2;
     List<string> allNames = new List<string>() { "Peter", "Mik", "Felicia", "Billy" };
+    internal string defaultColor = "<color=#1D3A4D>";
 
     [Header("Goal Track Piece Type")]
     public ObjectData.TrackType trackType;
@@ -143,6 +144,29 @@ public class Mission : ScriptableObject
         }
 
         newCol.a = 0.5f;
+        return newCol;
+    }
+
+    public string GetNameColour(string name)
+    {
+        string newCol = defaultColor;
+
+        switch (name)
+        {
+            case "Peter":
+                newCol = "<color=#FF5749>";
+                break;
+            case "Mik":
+                newCol = "<color=#54B73E>";
+                break;
+            case "Felicia":
+                newCol = "<color=#6F93E9>";
+                break;
+            case "Billy":
+                newCol = "<color=#DEB24A>";
+                break;
+        }
+
         return newCol;
     }
 }

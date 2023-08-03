@@ -7,7 +7,7 @@ public class Mission_Race6 : Mission
 {
     public override string GetDescriptionText()
     {
-        return "Make <b>" + name1 + "</b> finish after <b>" + name2 + "</b>";
+        return "Make <b>" + GetNameColour(name1) + name1 + defaultColor + "</b> finish after <b>" + GetNameColour(name2) + name2 + defaultColor + "</b>";
     }
     public override bool IsGoalReached()
     {

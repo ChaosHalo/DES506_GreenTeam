@@ -9,7 +9,7 @@ public class Mission_Race1 : Mission
     {
         string ordinalString = GetOrdinalString(int1);
 
-        return "Make <b>" + name1 + "</b> finish <b>" + int1 + ordinalString +"</b>";
+        return "Make <b>" + GetNameColour(name1) + name1 + defaultColor + "</b> finish <b>" + int1 + ordinalString +"</b>";
     }
     public override bool IsGoalReached()
     {
