@@ -51,8 +51,6 @@ public class MyGameManager : MonoBehaviour
     // singleton instance
     internal static MyGameManager instance;
 
-    public bool IsPointerOverUI = false;
-
     public CarInfoScriptableObject[] carInfoScriptableObjects;
     void Awake()
     {
@@ -86,9 +84,6 @@ public class MyGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Check if there is a touch
-        IsPointerOverUI = GetInputManager().IsPointerOverUIObject();
-
         if (gameState != null)
             gameState.UpdateState();
     }

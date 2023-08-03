@@ -118,7 +118,7 @@ public class CameraManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (inputManager.IsPointerOverUI() == false)
+            if (inputManager.IsPointerOverUI == false)
             {
                 isMouseDown = true;
                 mouseDown = Input.mousePosition;
@@ -147,7 +147,7 @@ public class CameraManager : MonoBehaviour
 
     public void OnCameraPanTap()
     {
-        if (inputManager.IsPointerOverUI() == false)
+        if (inputManager.IsPointerOverUI == false)
         {
             anchorStartPos = anchor.transform.position;
         }

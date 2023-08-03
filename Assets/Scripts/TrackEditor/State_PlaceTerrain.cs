@@ -66,14 +66,8 @@ public class State_PlaceTerrain : IBuildingState
 
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
-        //// don't allow placement inside UI
-        //if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-        //{
-        //    placementSystem.EndCurrentState();
-        //    return;
-        //}
-
-        if (MyGameManager.instance.IsPointerOverUI == true)
+        // don't allow placement inside UI
+        if (MyGameManager.instance.GetInputManager().IsPointerOverUI == true)
         {
             placementSystem.EndCurrentState();
             return;
@@ -164,7 +158,7 @@ public class State_PlaceTerrain : IBuildingState
 
     public void UpdateState(Vector3 position, bool isWithinBounds)
     {
-        if (MyGameManager.instance.IsPointerOverUI == false)
+        if (MyGameManager.instance.GetInputManager().IsPointerOverUI == false)
         {
             if (spawnObjectOnce == true)
             {

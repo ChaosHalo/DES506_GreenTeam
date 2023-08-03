@@ -46,8 +46,12 @@ public class InputManager : MonoBehaviour
     private bool firstFingerLifted = false;
     private float fingerDownDuration = 0;
 
+    public bool IsPointerOverUI = false;
+
     private void Update()
     {
+        IsPointerOverUI = IsPointerOverUIObject();
+
         if (Application.platform == RuntimePlatform.Android || Application.isMobilePlatform)
             CheckAndroidInput();
         else
@@ -56,17 +60,13 @@ public class InputManager : MonoBehaviour
         fingerDownDuration += Time.deltaTime;
         //Debug.Log(mouseWorldPos + " ::::: " + gridWorldPos);
     }
-    internal bool IsPointerOverUIObject()
+    private bool IsPointerOverUIObject()
     {
         var eventData = new PointerEventData(EventSystem.current) { position = posMouseCur };
         var results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
         return results.Count > 0;
     }
-
-    public bool IsPointerOverUI()
-        => EventSystem.current.IsPointerOverGameObject();
-
 
     public Vector3 GetSelectedMapPosition()
     {
@@ -107,6 +107,9 @@ public class InputManager : MonoBehaviour
                 firstFingerLifted = false;
                 break;
         }
+
+        // Check if touch position is over UI
+        IsPointerOverUI = IsPointerOverUIObject();
     }
 
     private void HandleOneTouch(Touch touch)
@@ -174,6 +177,9 @@ public class InputManager : MonoBehaviour
             HandleClickHold();
 
         HandleScroll(Input.mouseScrollDelta.y);
+
+        // Check if touch position is over UI
+        IsPointerOverUI = IsPointerOverUIObject();
     }
     private void HandleClickDown()
     {

@@ -59,6 +59,12 @@ public class State_RotateTrack : IBuildingState
 
     public void OnAction(Vector3Int gridPosition, bool isWithinBounds)
     {
+        // don't allow action inside UI
+        if (MyGameManager.instance.GetInputManager().IsPointerOverUI == true)
+        {
+            return;
+        }
+
         // don't allow action if camera is panning
         if (inputManager.HasPanned())
             return;
