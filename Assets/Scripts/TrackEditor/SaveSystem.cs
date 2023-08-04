@@ -93,9 +93,6 @@ public class SaveSystem : MonoBehaviour
         placementSystem.trackData = newTrackData;
 
         // clear current objects
-        //foreach (GameObject obj in objectPlacer.placedObjects)
-        //    Destroy(obj);
-        //objectPlacer.placedObjects.Clear();
         objectPlacer.ClearAllObjects();
 
         // restore saved objects
