@@ -9,7 +9,7 @@ public class Mission_Race6 : Mission
     {
         string defaultTextColor = raceEnd ? defaultColor_Light : defaultColor_Dark;
 
-        return "Make <b>" + GetNameColour(name1) + name1 + defaultTextColor + "</b> finish after <b>" + GetNameColour(name2) + name2 + defaultTextColor + "</b>";
+        return "Make <b>" + GetNameColour(name1) + name1 + defaultTextColor + "</b> finish after <b>" + GetNameColour(name2) + name2 + defaultTextColor + "</b>" + defaultTextColor;
     }
     public override bool IsGoalReached()
     {

@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RaceCamera : MonoBehaviour
 {
@@ -17,7 +18,10 @@ public class RaceCamera : MonoBehaviour
 
     [SerializeField] private GameObject cameraFocus;
     [SerializeField] private GameObject cameraCurrent;
-    private GameObject cameraOld;
+
+    [SerializeField] private Image cameraToggleSpriteRenderer;
+    [SerializeField] private Sprite zoomedOutIcon;
+    [SerializeField] private Sprite zoomedInIcon;
 
     private void Update()
     {
@@ -81,13 +85,13 @@ public class RaceCamera : MonoBehaviour
             {
                 if (carManager.CarInfo.Name == name)
                 {
-                    FocusOnCar_Action(carManager);
+                    FocusOnCar_Action(carManager, true);
                     return;
                 }
             }
         }
     }
-    public void FocusOnCar_Action(CarManager car, float delay = 0, bool overrideCooldown=false)
+    public void FocusOnCar_Action(CarManager car, bool overrideCooldown=false)
     {
         // camera switch is on cooldown
         if (isSwitchCameraOnCooldown && overrideCooldown==false)
@@ -98,11 +102,12 @@ public class RaceCamera : MonoBehaviour
             return;
 
         // only switch if further than minimum distance
-        if (Vector3.Distance(car.gameObject.transform.position, currentTrackedCarManager.transform.position) < 30)
-            return;
+        if (overrideCooldown == false)
+            if (Vector3.Distance(car.gameObject.transform.position, currentTrackedCarManager.transform.position) < 30)
+                return;
 
         // switch camera to target and start cooldown
-        StartCoroutine(ActionFocusWithDelay(car, delay));
+        PerformActionFocus(car);
     }
 
     private void FocusOnRandomCar_Action()
@@ -117,7 +122,7 @@ public class RaceCamera : MonoBehaviour
         // focus on random new car
         CarManager newCar = allCars[Random.Range(0, allCars.Count)];
         Debug.Log("Focusing: " + newCar.CarInfo.Name);
-        FocusOnCar_Action(newCar, 0, true);
+        FocusOnCar_Action(newCar, true);
     }
 
     private List<CarManager> GetCurrentAvailableCars()
@@ -133,9 +138,8 @@ public class RaceCamera : MonoBehaviour
         return finalCars;
     }
 
-    private IEnumerator ActionFocusWithDelay(CarManager car, float delay)
+    private void PerformActionFocus(CarManager car)
     {
-        yield return new WaitForSeconds(delay);
         currentTrackedCarManager = car;
         CycleActionCamera(car.cameraAction);
         StartCoroutine(StartSwitchTargetCooldown());
@@ -200,7 +204,7 @@ public class RaceCamera : MonoBehaviour
             if (otherCars.Count > 1)
             {
                 otherCars.Remove(senderCar);
-                FocusOnCar_Action(otherCars[Random.Range(0, otherCars.Count)], 0);
+                FocusOnCar_Action(otherCars[Random.Range(0, otherCars.Count)]);
             }
         }
     }
@@ -216,6 +220,8 @@ public class RaceCamera : MonoBehaviour
         List<CarManager> allCars = GetCurrentAvailableCars();
         if (allCars.Count < 1)
             return;
+
+        cameraToggleSpriteRenderer.sprite = zoomedOutIcon;
 
         if(cameraType == Type.FOCUS)
         cameraCurrent.SetActive(false);
@@ -236,7 +242,7 @@ public class RaceCamera : MonoBehaviour
             case Type.FOCUS:
                 {
                     CameraAction(false);
-                    StartCoroutine(ActionFocusWithDelay(currentTrackedCarManager, 0));
+                    PerformActionFocus(currentTrackedCarManager);
                 }
                 break;
             case Type.ACTION:
@@ -250,6 +256,7 @@ public class RaceCamera : MonoBehaviour
 
     public void CameraFocus()
     {
+        cameraToggleSpriteRenderer.sprite = zoomedInIcon;
         cameraType = Type.FOCUS;
         cameraCurrent.SetActive(false);
         cameraCurrent = cameraFocus;

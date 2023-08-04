@@ -11,7 +11,7 @@ public class Mission_Race1 : Mission
 
         string defaultTextColor = raceEnd ? defaultColor_Light : defaultColor_Dark;
 
-        return "Make <b>" + GetNameColour(name1) + name1 + defaultTextColor + "</b> finish <b>" + int1 + ordinalString +"</b>";
+        return "Make <b>" + GetNameColour(name1) + name1 + defaultTextColor + "</b> finish <b>" + int1 + ordinalString +"</b>" + defaultTextColor;
     }
     public override bool IsGoalReached()
     {

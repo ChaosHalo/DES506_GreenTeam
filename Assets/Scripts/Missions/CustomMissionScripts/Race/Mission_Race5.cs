@@ -9,7 +9,7 @@ public class Mission_Race5 : Mission
     {
         string defaultTextColor = raceEnd ? defaultColor_Light : defaultColor_Dark;
 
-        return "Have at least <b>" + int1 + " seconds</b> gap between <b>" + GetNameColour(name1) + name1 + defaultTextColor + "</b> and <b>" + GetNameColour(name2) + name2 + "</b>";
+        return "Have at least <b>" + int1 + " seconds</b> gap between <b>" + GetNameColour(name1) + name1 + defaultTextColor + "</b> and <b>" + GetNameColour(name2) + name2 + "</b>" + defaultTextColor;
     }
     public override bool IsGoalReached()
     {
