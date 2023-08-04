@@ -77,8 +77,11 @@ public class RaceScreenUIManager : MonoBehaviour
 
         foreach (var i in CompletedRaceIcons)
         {
-            Image completedRaceIcon = i.GetComponentsInChildren<Image>()[1];
-            completedRaceIcon.enabled = false;
+            Image[] completedRaceIcons = i.GetComponentsInChildren<Image>();
+            Image carIcon = completedRaceIcons[0];
+            Image focus = completedRaceIcons[1];
+            focus.enabled = false;
+            carIcon.color = Color.white;
         }
     }
     private void InitFocusIcons()
@@ -95,7 +98,7 @@ public class RaceScreenUIManager : MonoBehaviour
     {
         foreach (var car in carManagers)
         {
-            if (car.HasFinishedRace())
+            if (car.IsFinished)
             {
                 Image[] images = CompletedRaceIconDics[car.CarInfo.Name].GetComponentsInChildren<Image>();
                 images[0].color = FinishColor;

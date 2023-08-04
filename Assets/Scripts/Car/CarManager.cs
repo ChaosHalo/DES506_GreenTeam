@@ -49,12 +49,13 @@ public class CarManager : MonoBehaviour
         return solidController.FinalRank > 0 ? true : false;
     }
 
+    public bool IsFinished;
     public float FinalTime;
     private bool IsTimerRunning;
     private bool twoLapFlag = false;
     private Car car
     {
-        get 
+        get
         {
             return new(MyGameManager.instance.FactorsBaseObject, CarInfo);
         }
@@ -77,7 +78,7 @@ public class CarManager : MonoBehaviour
         BoundariesHandle();
         MapOutOfBoundsProcessing();
     }
-    
+
     private void OnEnable()
     {
         vehicleAI = GetComponent<VehicleAI>();
@@ -104,8 +105,8 @@ public class CarManager : MonoBehaviour
             FocusCameraOnCar.Raise(this);
 
         // focus on this car when it is in the air
-       // if (airBorneDuration > minAirTime)
-           // MyGameManager.instance.raceCamera.SwitchTarget(CarInfo.Name, false, true);
+        // if (airBorneDuration > minAirTime)
+        // MyGameManager.instance.raceCamera.SwitchTarget(CarInfo.Name, false, true);
     }
     #region Init
     public void InitData()
@@ -146,7 +147,7 @@ public class CarManager : MonoBehaviour
     #region Timer
     private void StartTimer() => IsTimerRunning = false;
     private void StopTimer() => IsTimerRunning = true;
-    
+
     /// <summary>
     /// 计时器
     /// </summary>
@@ -208,12 +209,12 @@ public class CarManager : MonoBehaviour
     private void BoundariesHandle()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, BoundaryCheckRadio);
-        foreach(var i in colliders)
+        foreach (var i in colliders)
         {
             if (i.CompareTag(GlobalConstants.BOUNDARIES))
             {
                 TerrainObject terrainObject = i.GetComponentInParent<TerrainObject>();
-                if(terrainObject != null)
+                if (terrainObject != null)
                 {
                     switch (terrainObject.terrainType)
                     {
@@ -243,12 +244,12 @@ public class CarManager : MonoBehaviour
         Vector3 respawnPos = new Vector3(0, 0, 0);
         float minDis = float.MaxValue;
         Vector3 targetAIWayPoint = GetComponent<VehicleAI>()._targetWaypoint;
-        foreach(var i in mapPieceInfos)
+        foreach (var i in mapPieceInfos)
         {
-            foreach(var j in i.RespawnPoints)
+            foreach (var j in i.RespawnPoints)
             {
                 var tempDis = Vector3.Distance(targetAIWayPoint, j.position);
-                if(tempDis < minDis)
+                if (tempDis < minDis)
                 {
                     minDis = tempDis;
                     respawnPos = j.position;
@@ -271,7 +272,7 @@ public class CarManager : MonoBehaviour
             transform.position = respawnPosition;
         }
     }
-    
+
     private IEnumerator RespawnWithDelay(Vector3 respawnPos)
     {
         // move camera to another driver after this one explodes
@@ -310,7 +311,7 @@ public class CarManager : MonoBehaviour
             currentExplosion = newExplosion;
         }
     }
-    
+
     #endregion
 
     #region Events
@@ -326,6 +327,7 @@ public class CarManager : MonoBehaviour
         FinalTime = (Mathf.Round(oneLapTime * 1000) / 1000f);
         oneLapTime = 0;
         StopTimer();
+        IsFinished = true;
     }
     /// <summary>
     /// 运行完成事件
