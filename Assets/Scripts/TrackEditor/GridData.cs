@@ -152,7 +152,7 @@ public class PlacementData
     public Vector3Int originPosition;
     public int ID { get; private set; }
     public int objectType { get; private set; }
-    public int PlacedObjectIndex { get; private set; }
+    public int PlacedObjectIndex { get; set; }
     public int RotationState { get; private set; }
     public Vector2Int Size { get; private set; }
     public bool canModify { get; private set; }

@@ -93,9 +93,10 @@ public class SaveSystem : MonoBehaviour
         placementSystem.trackData = newTrackData;
 
         // clear current objects
-        foreach (GameObject obj in objectPlacer.placedObjects)
-            Destroy(obj);
-        objectPlacer.placedObjects.Clear();
+        //foreach (GameObject obj in objectPlacer.placedObjects)
+        //    Destroy(obj);
+        //objectPlacer.placedObjects.Clear();
+        objectPlacer.ClearAllObjects();
 
         // restore saved objects
         RestoreObjects(placementSystem.terrainData);
@@ -119,7 +120,7 @@ public class SaveSystem : MonoBehaviour
 
         foreach (var data in gridData.placedObjects)
         {
-            objectPlacer.PlaceObject(placementSystem.database.objectsData[data.Value.ID].Prefab,
+            int index = objectPlacer.PlaceObject(placementSystem.database.objectsData[data.Value.ID].Prefab,
                                                  placementSystem.grid.CellToWorld(data.Value.originPosition),
                                                  data.Value.RotationState,
                                                  data.Value.canModify,
@@ -129,6 +130,8 @@ public class SaveSystem : MonoBehaviour
                                                  false,
                                                  placementSystem.database,
                                                  data.Value.ID);
+
+            data.Value.PlacedObjectIndex = index;
         }
     }
 
