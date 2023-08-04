@@ -102,9 +102,9 @@ public class MyGameManager : MonoBehaviour
 #endif
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if(gameState!=null && gamestateNewScene == true)
+        if (gameState != null && gamestateNewScene == true)
         {
-            gamestateNewScene=false;
+            gamestateNewScene = false;
             gameState.StartState();
         }
     }
@@ -114,7 +114,7 @@ public class MyGameManager : MonoBehaviour
         gamestateNewScene = true;
 
         // clear old state
-        if(gameState !=null)
+        if (gameState != null)
         {
             gameState.EndState();
             gameState = null;
@@ -143,7 +143,7 @@ public class MyGameManager : MonoBehaviour
                 gameState.StartState();
 
         // debug print current state
-        Debug.Log("Changing state to: "+gameState);
+        Debug.Log("Changing state to: " + gameState);
     }
 
     public void OnContinuePress()
@@ -153,18 +153,18 @@ public class MyGameManager : MonoBehaviour
 
     private void InitManager()
     {
-        
+
     }
     public void SaveOneRoundRaceResultData()
     {
         List<OneCarRaceResultData> tempCarDatas = new();
         BaseController[] baseControllers = FindObjectsOfType<BaseController>();
-        foreach(var i in baseControllers)
+        foreach (var i in baseControllers)
         {
             tempCarDatas.Add(new OneCarRaceResultData(
                 i.GetComponent<CarManager>().CarInfo.Name,
                 i.FinalRank,
-                i.GetComponent<CarManager>().FinalTime));
+                i.GetComponent<CarManager>().FinalTime - 3));
         }
         AddRaceResult(new OneRoundRaceResultData(tempCarDatas));
     }
@@ -213,9 +213,9 @@ public class MyGameManager : MonoBehaviour
 
     public CarInfoScriptableObject GetCarInfoScriptableObjectByName(string carName)
     {
-        foreach(var i in carInfoScriptableObjects)
+        foreach (var i in carInfoScriptableObjects)
         {
-            if(i.CarName == carName) return i;
+            if (i.CarName == carName) return i;
         }
         return null;
     }
@@ -223,7 +223,7 @@ public class MyGameManager : MonoBehaviour
     public void IncreaseDifficulty()
     {
         gameDifficulty++;
-        if(gameDifficulty>2)
+        if (gameDifficulty > 2)
             gameDifficulty = 2;
 
         missionManager.ResetMissions();
