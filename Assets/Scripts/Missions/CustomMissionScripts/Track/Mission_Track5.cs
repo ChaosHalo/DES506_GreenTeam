@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Mission - Track5", menuName = "Missions/Track5", order = 5)]
 public class Mission_Track5 : Mission
 {
-    public override string GetDescriptionText()
+    public override string GetDescriptionText(bool raceEnd = false)
     {
         string pluralString = "types";
         if (int1 == 1)

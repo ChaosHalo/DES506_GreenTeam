@@ -5,9 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Mission - Race5", menuName = "Missions/Race5", order = 12)]
 public class Mission_Race5 : Mission
 {
-    public override string GetDescriptionText()
+    public override string GetDescriptionText(bool raceEnd = false)
     {
-        return "Have at least <b>" + int1 + " seconds</b> gap between <b>" + GetNameColour(name1) + name1 + defaultColor +"</b> and <b>" + GetNameColour(name2) + name2 + "</b>";
+        string defaultTextColor = raceEnd ? defaultColor_Light : defaultColor_Dark;
+
+        return "Have at least <b>" + int1 + " seconds</b> gap between <b>" + GetNameColour(name1) + name1 + defaultTextColor + "</b> and <b>" + GetNameColour(name2) + name2 + "</b>";
     }
     public override bool IsGoalReached()
     {

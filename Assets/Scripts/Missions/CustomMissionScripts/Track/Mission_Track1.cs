@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Mission - Track1", menuName = "Missions/Track1", order = 1)]
 public class Mission_Track1 : Mission
 {
-    public override string GetDescriptionText() 
+    public override string GetDescriptionText(bool raceEnd = false) 
     {
         return "Place <b>" + int1 + " "+ trackType.ToString() + "</b> track pieces";
     }

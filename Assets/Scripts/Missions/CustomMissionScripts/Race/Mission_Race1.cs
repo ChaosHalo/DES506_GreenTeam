@@ -5,11 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Mission - Race1", menuName = "Missions/Race1", order = 9)]
 public class Mission_Race1 : Mission
 {
-    public override string GetDescriptionText()
+    public override string GetDescriptionText(bool raceEnd = false)
     {
         string ordinalString = GetOrdinalString(int1);
 
-        return "Make <b>" + GetNameColour(name1) + name1 + defaultColor + "</b> finish <b>" + int1 + ordinalString +"</b>";
+        string defaultTextColor = raceEnd ? defaultColor_Light : defaultColor_Dark;
+
+        return "Make <b>" + GetNameColour(name1) + name1 + defaultTextColor + "</b> finish <b>" + int1 + ordinalString +"</b>";
     }
     public override bool IsGoalReached()
     {

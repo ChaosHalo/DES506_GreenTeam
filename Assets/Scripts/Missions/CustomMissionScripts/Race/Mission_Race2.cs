@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Mission - Race2", menuName = "Missions/Race2", order = 10)]
 public class Mission_Race2 : Mission
 {
-    public override string GetDescriptionText()
+    public override string GetDescriptionText(bool raceEnd = false)
     {
         return "Make the race last <b>less</b> than <b>" + int1 + " seconds</b>";
     }

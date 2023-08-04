@@ -19,7 +19,7 @@ public class Mission_Track7 : Mission
         description = GetDescriptionText();
         rewardCurrency = CalculateReward();
     }
-    public override string GetDescriptionText()
+    public override string GetDescriptionText(bool raceEnd = false)
     {
         return "Spend <b>less than " + int1 + "</b> currency this round";
     }

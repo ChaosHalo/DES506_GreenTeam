@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Mission - Track6", menuName = "Missions/Track6", order = 6)]
 public class Mission_Track6 : Mission
 {
-    public override string GetDescriptionText()
+    public override string GetDescriptionText(bool raceEnd = false)
     {
         return "Place the <b>" + terrainType.ToString() + "</b> terrain type";
     }

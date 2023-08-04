@@ -56,7 +56,8 @@ public class Mission : ScriptableObject
     internal string name1;
     internal string name2;
     List<string> allNames = new List<string>() { "Peter", "Mik", "Felicia", "Billy" };
-    internal string defaultColor = "<color=#1D3A4D>";
+    internal string defaultColor_Dark = "<color=#1D3A4D>";
+    internal string defaultColor_Light = "<color=#FFFFFF>";
 
     [Header("Goal Track Piece Type")]
     public ObjectData.TrackType trackType;
@@ -114,7 +115,7 @@ public class Mission : ScriptableObject
         return reward;
     }
 
-    public virtual string GetDescriptionText() { return "NONE"; }
+    public virtual string GetDescriptionText(bool raceEnd = false) { return "NONE"; }
     public virtual bool IsGoalReached() { return false; }
 
     public virtual string GetProgressString() 
@@ -149,7 +150,7 @@ public class Mission : ScriptableObject
 
     public string GetNameColour(string name)
     {
-        string newCol = defaultColor;
+        string newCol = defaultColor_Dark;
 
         switch (name)
         {

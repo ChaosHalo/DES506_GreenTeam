@@ -30,7 +30,7 @@ public class Mission_Race4 : Mission
         Debug.Log("Race Mission 4 randomisation occured");
     }
 
-    public override string GetDescriptionText()
+    public override string GetDescriptionText(bool raceEnd = false)
     {
         string ordinalString1 = GetOrdinalString(int2);
         string ordinalString2 = GetOrdinalString(int3);

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Mission - Track4", menuName = "Missions/Track4", order = 4)]
 public class Mission_Track4 : Mission
 {
-    public override string GetDescriptionText()
+    public override string GetDescriptionText(bool raceEnd = false)
     {
         return "Place <b>more</b> than <b>" + int1 + " track pieces</b> total";
     }

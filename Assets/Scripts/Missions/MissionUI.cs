@@ -82,7 +82,7 @@ public class MissionUI : MonoBehaviour
             {
                 Mission currentMission = missionManager.GetMission(i);
 
-                string missionDescription = currentMission.description;
+                string missionDescription = currentMission.GetDescriptionText(true);
                 completedMissionDescriptions.Add(missionDescription);
 
                 if (currentMission.IsGoalReached())
