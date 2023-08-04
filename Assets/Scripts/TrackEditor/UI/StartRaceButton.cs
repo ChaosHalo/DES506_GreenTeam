@@ -12,6 +12,7 @@ public class StartRaceButton : MonoBehaviour
     public GameObject upcomingRacersScreen;
     public GameStateManager gameStateManager;
     public Button trackButton;
+    public RaceCamera raceCamera;
 
     [SerializeField]
     public GameObject tutorialUIFinishTrack;
@@ -65,5 +66,7 @@ public class StartRaceButton : MonoBehaviour
             tutorialUIFinishTrack.SetActive(false);
             tutorialUIRaceScreen.SetActive(true);
         }
+
+        raceCamera.Editor_ForceAction();
     }
 }

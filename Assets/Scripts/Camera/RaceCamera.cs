@@ -25,7 +25,7 @@ public class RaceCamera : MonoBehaviour
 
     private void Update()
     {
-        if (cameraType == Type.ACTION)
+        //if (cameraType == Type.ACTION)
         {
             if (cameraCurrent == null)
                 if (availableCarManagers.Count > 0)
@@ -56,7 +56,17 @@ public class RaceCamera : MonoBehaviour
         if (currentTrackedCarManager != null)
             if (availableCarManagers.Count > 0)
                 if (currentTrackedCarManager.HasFinishedRace())
-                    FocusOnCar_Action(availableCarManagers[Random.Range(0, availableCarManagers.Count)]);
+                {
+                    if (cameraType == Type.ACTION)
+                    {
+                        FocusOnCar_Action(availableCarManagers[Random.Range(0, availableCarManagers.Count)]);
+                    }
+                    else if (cameraType == Type.FOCUS)
+                    {
+                        currentTrackedCarManager = availableCarManagers[0];
+                        RaceCameraManager.SetTarget(cameraCurrent, currentTrackedCarManager.transform);
+                    }
+                }
     }
 
     // switch to index camera preset in database
@@ -252,6 +262,12 @@ public class RaceCamera : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public void Editor_ForceAction()
+    {
+        CameraAction(false);
+        PerformActionFocus(currentTrackedCarManager);
     }
 
     public void CameraFocus()
