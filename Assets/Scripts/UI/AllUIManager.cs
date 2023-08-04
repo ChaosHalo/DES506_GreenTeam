@@ -9,8 +9,8 @@ public class AllUIManager : MonoBehaviour
     public void TryAgain()
     {
         EventsHandle();
-        ChangeState();
         WinCurrency();
+        ChangeState();
     }
     public void GameRoundIncrease()
     {
