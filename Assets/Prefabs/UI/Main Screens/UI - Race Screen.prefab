@@ -2795,6 +2795,7 @@ GameObject:
   - component: {fileID: 1548356209359682639}
   - component: {fileID: 3928257174417483582}
   - component: {fileID: 6185901454426528767}
+  - component: {fileID: 9126286013340395560}
   m_Layer: 5
   m_Name: UI - Race Screen
   m_TagString: Untagged
@@ -2823,7 +2824,7 @@ RectTransform:
   - {fileID: 1361884376124793766}
   - {fileID: 3978466764731295765}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3023,6 +3024,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &9126286013340395560
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548356209359682636}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b6e871395f8c3d746a56ddd99e71934f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1548356209409641829
 GameObject:
   m_ObjectHideFlags: 0
