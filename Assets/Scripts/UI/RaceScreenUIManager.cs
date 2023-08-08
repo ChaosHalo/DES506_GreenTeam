@@ -27,9 +27,20 @@ public class RaceScreenUIManager : MonoBehaviour
     public List<GameObject> Ranks = new();
     public List<GameObject> CompletedRaceIcons = new();
     public Color FinishColor;
+
+    [SerializeField] private Animator raceUIanimator;
+    [SerializeField] private GameObject tutorialUI;
     // Start is called before the first frame update
     private void OnEnable()
     {
+        if (tutorialUI.activeSelf)
+        {
+            raceUIanimator.enabled = false;
+        }
+        else if (tutorialUI.activeSelf == false)
+        {
+            raceUIanimator.enabled = true;
+        }
         Invoke(nameof(StartTimer), raceManager.StartGameCountDownTime - 1);
         if (raceManager != null)
         {
@@ -44,7 +55,6 @@ public class RaceScreenUIManager : MonoBehaviour
     {
         timerText = TimerTextComponent.GetComponent<TextMeshProUGUI>();
         cinemachineBrain = FindObjectOfType<CinemachineBrain>();
-
 
         /*InitRacerInfos();
         InitCameraTracker();*/

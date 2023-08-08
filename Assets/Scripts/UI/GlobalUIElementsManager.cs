@@ -83,6 +83,7 @@ public class GlobalUIElementsManager : MonoBehaviour
     {
         EnableAllButtons();
         DisableAllBackgrounds();
+        EnableStartRace();
 
         //If mission re-roll = 0, Set re-roll cost to 100
         if (missionManager.rerollCount == 0)

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2386,6 +2386,16 @@ PrefabInstance:
       propertyPath: ScoreText2
       value: 
       objectReference: {fileID: 243418412}
+    - target: {fileID: 3928257174417483582, guid: 6ec1805e96d8cf74c8c2c854805cfb1a,
+        type: 3}
+      propertyPath: tutorialUI
+      value: 
+      objectReference: {fileID: 2055100507}
+    - target: {fileID: 3928257174417483582, guid: 6ec1805e96d8cf74c8c2c854805cfb1a,
+        type: 3}
+      propertyPath: raceUIanimator
+      value: 
+      objectReference: {fileID: 1368202630}
     - target: {fileID: 4432741759857576879, guid: 6ec1805e96d8cf74c8c2c854805cfb1a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -11941,6 +11951,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 218698462}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1368202630 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9126286013340395560, guid: 6ec1805e96d8cf74c8c2c854805cfb1a,
+    type: 3}
+  m_PrefabInstance: {fileID: 218698462}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1386580577
 GameObject:
   m_ObjectHideFlags: 0
@@ -16298,6 +16314,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043205535}
   m_CullTransparentMesh: 1
+--- !u!1 &2055100507 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5683255445677373298, guid: 490bba6d09657904ea6e1b969e991a90,
+    type: 3}
+  m_PrefabInstance: {fileID: 584632919}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2060286853
 GameObject:
   m_ObjectHideFlags: 0
