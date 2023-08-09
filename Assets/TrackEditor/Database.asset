@@ -13,248 +13,308 @@ MonoBehaviour:
   m_Name: Database
   m_EditorClassIdentifier: 
   objectsData:
-  - <Name>k__BackingField: Corner
-    <ID>k__BackingField: 0
+  - <ID>k__BackingField: 0
+    <Name>k__BackingField: Corner
+    <Prefab>k__BackingField: {fileID: 3286709972593635821, guid: a0bca076632cc4bffb43431a39d55079,
+      type: 3}
     <Size>k__BackingField: {x: 1, y: 1}
+    <cost>k__BackingField: 100
+    <unlockCost>k__BackingField: 0
     objectType: 1
     trackType: 2
     terrainType: 0
-    <Prefab>k__BackingField: {fileID: 3286709972593635821, guid: a0bca076632cc4bffb43431a39d55079,
-      type: 3}
-    <cost>k__BackingField: 100
     <isBuildable>k__BackingField: 0
     <minimumGeneratedCount>k__BackingField: 0
     <maximumGeneratedCount>k__BackingField: 0
-    <unlockCost>k__BackingField: 0
     <soundsPlace>k__BackingField:
     - {fileID: 8300000, guid: 6c236d449a514b14f93d2293c6603a48, type: 3}
+    <volumePlace>k__BackingField: 0.6
     <soundsAmbient>k__BackingField: []
+    <volumeAmbient>k__BackingField: 0.3
+    <rangeAmbient>k__BackingField: 150
     <soundsRotate>k__BackingField:
     - {fileID: 8300000, guid: c07a101f4d72b0a46a85c1b88bbbb40b, type: 3}
     - {fileID: 8300000, guid: db87416293a51474dab10dfd5e26b6e8, type: 3}
+    <volumeRotate>k__BackingField: 0.3
     <soundsDelete>k__BackingField:
     - {fileID: 8300000, guid: f077ed06f7371d0418fb70c40e76c5f0, type: 3}
-  - <Name>k__BackingField: Straight
-    <ID>k__BackingField: 1
+    <volumeDelete>k__BackingField: 0.159
+  - <ID>k__BackingField: 1
+    <Name>k__BackingField: Straight
+    <Prefab>k__BackingField: {fileID: 861103128962426979, guid: 967698a14b6a647baadf51f5b97bde31,
+      type: 3}
     <Size>k__BackingField: {x: 1, y: 1}
+    <cost>k__BackingField: 100
+    <unlockCost>k__BackingField: 0
     objectType: 1
     trackType: 1
     terrainType: 0
-    <Prefab>k__BackingField: {fileID: 861103128962426979, guid: 967698a14b6a647baadf51f5b97bde31,
-      type: 3}
-    <cost>k__BackingField: 100
     <isBuildable>k__BackingField: 0
     <minimumGeneratedCount>k__BackingField: 0
     <maximumGeneratedCount>k__BackingField: 0
-    <unlockCost>k__BackingField: 0
     <soundsPlace>k__BackingField:
     - {fileID: 8300000, guid: 6c236d449a514b14f93d2293c6603a48, type: 3}
+    <volumePlace>k__BackingField: 0.6
     <soundsAmbient>k__BackingField: []
+    <volumeAmbient>k__BackingField: 1
+    <rangeAmbient>k__BackingField: 150
     <soundsRotate>k__BackingField:
     - {fileID: 8300000, guid: c07a101f4d72b0a46a85c1b88bbbb40b, type: 3}
     - {fileID: 8300000, guid: db87416293a51474dab10dfd5e26b6e8, type: 3}
+    <volumeRotate>k__BackingField: 0.3
     <soundsDelete>k__BackingField:
     - {fileID: 8300000, guid: f077ed06f7371d0418fb70c40e76c5f0, type: 3}
-  - <Name>k__BackingField: Loop
-    <ID>k__BackingField: 2
+    <volumeDelete>k__BackingField: 0.159
+  - <ID>k__BackingField: 2
+    <Name>k__BackingField: Loop
+    <Prefab>k__BackingField: {fileID: 5881164387090684799, guid: 251982d754e22c548a6d53250eea921d,
+      type: 3}
     <Size>k__BackingField: {x: 2, y: 1}
+    <cost>k__BackingField: 600
+    <unlockCost>k__BackingField: 0
     objectType: 1
     trackType: 3
     terrainType: 0
-    <Prefab>k__BackingField: {fileID: 5881164387090684799, guid: 251982d754e22c548a6d53250eea921d,
-      type: 3}
-    <cost>k__BackingField: 600
     <isBuildable>k__BackingField: 0
     <minimumGeneratedCount>k__BackingField: 0
     <maximumGeneratedCount>k__BackingField: 0
-    <unlockCost>k__BackingField: 0
     <soundsPlace>k__BackingField:
     - {fileID: 8300000, guid: 6c236d449a514b14f93d2293c6603a48, type: 3}
+    <volumePlace>k__BackingField: 0.6
     <soundsAmbient>k__BackingField: []
+    <volumeAmbient>k__BackingField: 1
+    <rangeAmbient>k__BackingField: 150
     <soundsRotate>k__BackingField:
     - {fileID: 8300000, guid: c07a101f4d72b0a46a85c1b88bbbb40b, type: 3}
     - {fileID: 8300000, guid: db87416293a51474dab10dfd5e26b6e8, type: 3}
+    <volumeRotate>k__BackingField: 0.3
     <soundsDelete>k__BackingField:
     - {fileID: 8300000, guid: f077ed06f7371d0418fb70c40e76c5f0, type: 3}
-  - <Name>k__BackingField: Grass
-    <ID>k__BackingField: 3
+    <volumeDelete>k__BackingField: 0.159
+  - <ID>k__BackingField: 3
+    <Name>k__BackingField: Grass
+    <Prefab>k__BackingField: {fileID: 8871858126275441045, guid: 1df2c3fb2622f664394fb67da5e11b88,
+      type: 3}
     <Size>k__BackingField: {x: 1, y: 1}
+    <cost>k__BackingField: 0
+    <unlockCost>k__BackingField: 0
     objectType: 0
     trackType: 0
     terrainType: 1
-    <Prefab>k__BackingField: {fileID: 8871858126275441045, guid: 1df2c3fb2622f664394fb67da5e11b88,
-      type: 3}
-    <cost>k__BackingField: 0
     <isBuildable>k__BackingField: 1
     <minimumGeneratedCount>k__BackingField: 15
     <maximumGeneratedCount>k__BackingField: 0
-    <unlockCost>k__BackingField: 0
     <soundsPlace>k__BackingField:
     - {fileID: 8300000, guid: 725d25becf3fe014683d76d3c385ea3f, type: 3}
+    <volumePlace>k__BackingField: 0.6
     <soundsAmbient>k__BackingField:
     - {fileID: 8300000, guid: 06b085881af297b4c93c4a3e0db5e806, type: 3}
     - {fileID: 8300000, guid: 4df129c2c0f96664b9ef621e2b7e354c, type: 3}
+    <volumeAmbient>k__BackingField: 0.3
+    <rangeAmbient>k__BackingField: 150
     <soundsRotate>k__BackingField: []
+    <volumeRotate>k__BackingField: 0.3
     <soundsDelete>k__BackingField: []
-  - <Name>k__BackingField: Desert
-    <ID>k__BackingField: 4
+    <volumeDelete>k__BackingField: 0.159
+  - <ID>k__BackingField: 4
+    <Name>k__BackingField: Desert
+    <Prefab>k__BackingField: {fileID: 2991273838011753040, guid: df9ecc54dfd1c0d4ea72a80f11532d8f,
+      type: 3}
     <Size>k__BackingField: {x: 1, y: 1}
+    <cost>k__BackingField: 200
+    <unlockCost>k__BackingField: 0
     objectType: 0
     trackType: 0
     terrainType: 2
-    <Prefab>k__BackingField: {fileID: 2991273838011753040, guid: df9ecc54dfd1c0d4ea72a80f11532d8f,
-      type: 3}
-    <cost>k__BackingField: 200
     <isBuildable>k__BackingField: 1
     <minimumGeneratedCount>k__BackingField: 15
     <maximumGeneratedCount>k__BackingField: 0
-    <unlockCost>k__BackingField: 0
     <soundsPlace>k__BackingField:
     - {fileID: 8300000, guid: c2ce02c05b57acc4180123456e2b8a30, type: 3}
+    <volumePlace>k__BackingField: 0.6
     <soundsAmbient>k__BackingField:
     - {fileID: 8300000, guid: 0bb9b6f8528a2624bbbbc3f63e8b7f83, type: 3}
     - {fileID: 8300000, guid: d862207994962964fb43a7f28a2e3095, type: 3}
+    <volumeAmbient>k__BackingField: 0.3
+    <rangeAmbient>k__BackingField: 150
     <soundsRotate>k__BackingField: []
+    <volumeRotate>k__BackingField: 1
     <soundsDelete>k__BackingField: []
-  - <Name>k__BackingField: Snow
-    <ID>k__BackingField: 5
+    <volumeDelete>k__BackingField: 0.159
+  - <ID>k__BackingField: 5
+    <Name>k__BackingField: Snow
+    <Prefab>k__BackingField: {fileID: 1342441954851378398, guid: e647a53baaf62254c862aacb3e278e77,
+      type: 3}
     <Size>k__BackingField: {x: 1, y: 1}
+    <cost>k__BackingField: 200
+    <unlockCost>k__BackingField: 0
     objectType: 0
     trackType: 0
     terrainType: 3
-    <Prefab>k__BackingField: {fileID: 1342441954851378398, guid: e647a53baaf62254c862aacb3e278e77,
-      type: 3}
-    <cost>k__BackingField: 200
     <isBuildable>k__BackingField: 1
     <minimumGeneratedCount>k__BackingField: 15
     <maximumGeneratedCount>k__BackingField: 0
-    <unlockCost>k__BackingField: 0
     <soundsPlace>k__BackingField:
     - {fileID: 8300000, guid: 280cd1d8947095640b274a24ee4a224e, type: 3}
+    <volumePlace>k__BackingField: 0.6
     <soundsAmbient>k__BackingField:
     - {fileID: 8300000, guid: 524cb019dd27ffb468158a1e744b265a, type: 3}
     - {fileID: 8300000, guid: 3f5bd78426e512d4f9b4b33836cc644e, type: 3}
+    <volumeAmbient>k__BackingField: 0.3
+    <rangeAmbient>k__BackingField: 150
     <soundsRotate>k__BackingField: []
+    <volumeRotate>k__BackingField: 1
     <soundsDelete>k__BackingField: []
-  - <Name>k__BackingField: Sea
-    <ID>k__BackingField: 6
+    <volumeDelete>k__BackingField: 0.159
+  - <ID>k__BackingField: 6
+    <Name>k__BackingField: Sea
+    <Prefab>k__BackingField: {fileID: 5457813455414454757, guid: fca5049fed26c8947adf7b2c74043399,
+      type: 3}
     <Size>k__BackingField: {x: 1, y: 1}
+    <cost>k__BackingField: 200
+    <unlockCost>k__BackingField: 0
     objectType: 0
     trackType: 0
     terrainType: 4
-    <Prefab>k__BackingField: {fileID: 5457813455414454757, guid: fca5049fed26c8947adf7b2c74043399,
-      type: 3}
-    <cost>k__BackingField: 200
     <isBuildable>k__BackingField: 1
     <minimumGeneratedCount>k__BackingField: 15
     <maximumGeneratedCount>k__BackingField: 0
-    <unlockCost>k__BackingField: 0
     <soundsPlace>k__BackingField:
     - {fileID: 8300000, guid: 63a149220961c5543be26112abb1727c, type: 3}
+    <volumePlace>k__BackingField: 0.6
     <soundsAmbient>k__BackingField:
     - {fileID: 8300000, guid: 2003aab06d82fb842a53772501f44761, type: 3}
     - {fileID: 8300000, guid: d433afd757710fd4c98f194551ca87e1, type: 3}
+    <volumeAmbient>k__BackingField: 0.3
+    <rangeAmbient>k__BackingField: 150
     <soundsRotate>k__BackingField: []
+    <volumeRotate>k__BackingField: 1
     <soundsDelete>k__BackingField: []
-  - <Name>k__BackingField: Mountain
-    <ID>k__BackingField: 7
+    <volumeDelete>k__BackingField: 0.159
+  - <ID>k__BackingField: 7
+    <Name>k__BackingField: Mountain
+    <Prefab>k__BackingField: {fileID: 7123743944829873930, guid: 86bff464b46c35e49bc178d69758f4cb,
+      type: 3}
     <Size>k__BackingField: {x: 1, y: 1}
+    <cost>k__BackingField: 200
+    <unlockCost>k__BackingField: 0
     objectType: 0
     trackType: 0
     terrainType: 5
-    <Prefab>k__BackingField: {fileID: 7123743944829873930, guid: 86bff464b46c35e49bc178d69758f4cb,
-      type: 3}
-    <cost>k__BackingField: 200
     <isBuildable>k__BackingField: 0
     <minimumGeneratedCount>k__BackingField: 0
     <maximumGeneratedCount>k__BackingField: 0
-    <unlockCost>k__BackingField: 0
     <soundsPlace>k__BackingField: []
+    <volumePlace>k__BackingField: 0.6
     <soundsAmbient>k__BackingField:
     - {fileID: 8300000, guid: 11d282861d68ebe458790b03a22d07f3, type: 3}
+    <volumeAmbient>k__BackingField: 1
+    <rangeAmbient>k__BackingField: 150
     <soundsRotate>k__BackingField: []
+    <volumeRotate>k__BackingField: 1
     <soundsDelete>k__BackingField: []
-  - <Name>k__BackingField: Start
-    <ID>k__BackingField: 8
-    <Size>k__BackingField: {x: 1, y: 1}
-    objectType: 1
-    trackType: 0
-    terrainType: 0
+    <volumeDelete>k__BackingField: 0.159
+  - <ID>k__BackingField: 8
+    <Name>k__BackingField: Start
     <Prefab>k__BackingField: {fileID: 8050192144663462378, guid: 2327fdc47f622400983898e02c4ab9ad,
       type: 3}
-    <cost>k__BackingField: 0
-    <isBuildable>k__BackingField: 0
-    <minimumGeneratedCount>k__BackingField: 0
-    <maximumGeneratedCount>k__BackingField: 0
-    <unlockCost>k__BackingField: 0
-    <soundsPlace>k__BackingField:
-    - {fileID: 8300000, guid: 6c236d449a514b14f93d2293c6603a48, type: 3}
-    <soundsAmbient>k__BackingField: []
-    <soundsRotate>k__BackingField:
-    - {fileID: 8300000, guid: c07a101f4d72b0a46a85c1b88bbbb40b, type: 3}
-    - {fileID: 8300000, guid: db87416293a51474dab10dfd5e26b6e8, type: 3}
-    <soundsDelete>k__BackingField:
-    - {fileID: 8300000, guid: f077ed06f7371d0418fb70c40e76c5f0, type: 3}
-  - <Name>k__BackingField: SwingingAxe
-    <ID>k__BackingField: 9
     <Size>k__BackingField: {x: 1, y: 1}
+    <cost>k__BackingField: 0
+    <unlockCost>k__BackingField: 0
     objectType: 1
     trackType: 0
     terrainType: 0
+    <isBuildable>k__BackingField: 0
+    <minimumGeneratedCount>k__BackingField: 0
+    <maximumGeneratedCount>k__BackingField: 0
+    <soundsPlace>k__BackingField:
+    - {fileID: 8300000, guid: 6c236d449a514b14f93d2293c6603a48, type: 3}
+    <volumePlace>k__BackingField: 0.6
+    <soundsAmbient>k__BackingField: []
+    <volumeAmbient>k__BackingField: 1
+    <rangeAmbient>k__BackingField: 150
+    <soundsRotate>k__BackingField:
+    - {fileID: 8300000, guid: c07a101f4d72b0a46a85c1b88bbbb40b, type: 3}
+    - {fileID: 8300000, guid: db87416293a51474dab10dfd5e26b6e8, type: 3}
+    <volumeRotate>k__BackingField: 0.3
+    <soundsDelete>k__BackingField:
+    - {fileID: 8300000, guid: f077ed06f7371d0418fb70c40e76c5f0, type: 3}
+    <volumeDelete>k__BackingField: 0.159
+  - <ID>k__BackingField: 9
+    <Name>k__BackingField: SwingingAxe
     <Prefab>k__BackingField: {fileID: 584784051048132122, guid: 23fd7f43197ed694fbdbb5d41027c1fa,
       type: 3}
-    <cost>k__BackingField: 300
-    <isBuildable>k__BackingField: 0
-    <minimumGeneratedCount>k__BackingField: 0
-    <maximumGeneratedCount>k__BackingField: 0
-    <unlockCost>k__BackingField: 1000
-    <soundsPlace>k__BackingField:
-    - {fileID: 8300000, guid: 6c236d449a514b14f93d2293c6603a48, type: 3}
-    <soundsAmbient>k__BackingField: []
-    <soundsRotate>k__BackingField:
-    - {fileID: 8300000, guid: c07a101f4d72b0a46a85c1b88bbbb40b, type: 3}
-    - {fileID: 8300000, guid: db87416293a51474dab10dfd5e26b6e8, type: 3}
-    <soundsDelete>k__BackingField:
-    - {fileID: 8300000, guid: f077ed06f7371d0418fb70c40e76c5f0, type: 3}
-  - <Name>k__BackingField: Hands
-    <ID>k__BackingField: 10
     <Size>k__BackingField: {x: 1, y: 1}
+    <cost>k__BackingField: 300
+    <unlockCost>k__BackingField: 1000
     objectType: 1
     trackType: 0
     terrainType: 0
+    <isBuildable>k__BackingField: 0
+    <minimumGeneratedCount>k__BackingField: 0
+    <maximumGeneratedCount>k__BackingField: 0
+    <soundsPlace>k__BackingField:
+    - {fileID: 8300000, guid: 6c236d449a514b14f93d2293c6603a48, type: 3}
+    <volumePlace>k__BackingField: 0.6
+    <soundsAmbient>k__BackingField: []
+    <volumeAmbient>k__BackingField: 1
+    <rangeAmbient>k__BackingField: 150
+    <soundsRotate>k__BackingField:
+    - {fileID: 8300000, guid: c07a101f4d72b0a46a85c1b88bbbb40b, type: 3}
+    - {fileID: 8300000, guid: db87416293a51474dab10dfd5e26b6e8, type: 3}
+    <volumeRotate>k__BackingField: 0.3
+    <soundsDelete>k__BackingField:
+    - {fileID: 8300000, guid: f077ed06f7371d0418fb70c40e76c5f0, type: 3}
+    <volumeDelete>k__BackingField: 0.159
+  - <ID>k__BackingField: 10
+    <Name>k__BackingField: Hands
     <Prefab>k__BackingField: {fileID: 8059092969700592713, guid: 11f7b7042d1a1ec4a8008eaf9a866572,
       type: 3}
-    <cost>k__BackingField: 300
-    <isBuildable>k__BackingField: 0
-    <minimumGeneratedCount>k__BackingField: 0
-    <maximumGeneratedCount>k__BackingField: 0
-    <unlockCost>k__BackingField: 1000
-    <soundsPlace>k__BackingField:
-    - {fileID: 8300000, guid: 6c236d449a514b14f93d2293c6603a48, type: 3}
-    <soundsAmbient>k__BackingField: []
-    <soundsRotate>k__BackingField:
-    - {fileID: 8300000, guid: c07a101f4d72b0a46a85c1b88bbbb40b, type: 3}
-    - {fileID: 8300000, guid: db87416293a51474dab10dfd5e26b6e8, type: 3}
-    <soundsDelete>k__BackingField:
-    - {fileID: 8300000, guid: f077ed06f7371d0418fb70c40e76c5f0, type: 3}
-  - <Name>k__BackingField: Spike
-    <ID>k__BackingField: 11
     <Size>k__BackingField: {x: 1, y: 1}
+    <cost>k__BackingField: 300
+    <unlockCost>k__BackingField: 1000
     objectType: 1
     trackType: 0
     terrainType: 0
-    <Prefab>k__BackingField: {fileID: 1488293411452306319, guid: e6cc706ffa1148847a735da8b78446cc,
-      type: 3}
-    <cost>k__BackingField: 300
     <isBuildable>k__BackingField: 0
     <minimumGeneratedCount>k__BackingField: 0
     <maximumGeneratedCount>k__BackingField: 0
-    <unlockCost>k__BackingField: 1000
     <soundsPlace>k__BackingField:
     - {fileID: 8300000, guid: 6c236d449a514b14f93d2293c6603a48, type: 3}
+    <volumePlace>k__BackingField: 0.6
     <soundsAmbient>k__BackingField: []
+    <volumeAmbient>k__BackingField: 1
+    <rangeAmbient>k__BackingField: 150
     <soundsRotate>k__BackingField:
     - {fileID: 8300000, guid: c07a101f4d72b0a46a85c1b88bbbb40b, type: 3}
     - {fileID: 8300000, guid: db87416293a51474dab10dfd5e26b6e8, type: 3}
+    <volumeRotate>k__BackingField: 0.3
     <soundsDelete>k__BackingField:
     - {fileID: 8300000, guid: f077ed06f7371d0418fb70c40e76c5f0, type: 3}
+    <volumeDelete>k__BackingField: 0.159
+  - <ID>k__BackingField: 11
+    <Name>k__BackingField: Spike
+    <Prefab>k__BackingField: {fileID: 1488293411452306319, guid: e6cc706ffa1148847a735da8b78446cc,
+      type: 3}
+    <Size>k__BackingField: {x: 1, y: 1}
+    <cost>k__BackingField: 300
+    <unlockCost>k__BackingField: 1000
+    objectType: 1
+    trackType: 0
+    terrainType: 0
+    <isBuildable>k__BackingField: 0
+    <minimumGeneratedCount>k__BackingField: 0
+    <maximumGeneratedCount>k__BackingField: 0
+    <soundsPlace>k__BackingField:
+    - {fileID: 8300000, guid: 6c236d449a514b14f93d2293c6603a48, type: 3}
+    <volumePlace>k__BackingField: 0.6
+    <soundsAmbient>k__BackingField: []
+    <volumeAmbient>k__BackingField: 1
+    <rangeAmbient>k__BackingField: 150
+    <soundsRotate>k__BackingField:
+    - {fileID: 8300000, guid: c07a101f4d72b0a46a85c1b88bbbb40b, type: 3}
+    - {fileID: 8300000, guid: db87416293a51474dab10dfd5e26b6e8, type: 3}
+    <volumeRotate>k__BackingField: 0.3
+    <soundsDelete>k__BackingField:
+    - {fileID: 8300000, guid: f077ed06f7371d0418fb70c40e76c5f0, type: 3}
+    <volumeDelete>k__BackingField: 0.159
