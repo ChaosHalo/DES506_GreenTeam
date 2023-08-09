@@ -10421,7 +10421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5959473470177587026
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13791,6 +13791,8 @@ GameObject:
   - component: {fileID: 6282909948067878822}
   - component: {fileID: 682409919659989281}
   - component: {fileID: 643559438957359354}
+  - component: {fileID: 6433980195867147263}
+  - component: {fileID: 1835297129880455899}
   m_Layer: 5
   m_Name: Pinch to zoom bubble
   m_TagString: Untagged
@@ -13858,6 +13860,51 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6433980195867147263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115019336526150838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5182fcee816955446b678a85d25e3e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToHide:
+  - {fileID: 6115019336526150838}
+  objectsToShow:
+  - {fileID: 9102419097477520203}
+--- !u!114 &1835297129880455899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6115019336526150838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8f4e91a510d7147a292dcbeb8e53ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionEvent: {fileID: 11400000, guid: 751a8a617dc7bc0409aa748d5710255a, type: 2}
+  missionEvents: []
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6433980195867147263}
+        m_TargetAssemblyTypeName: CustomTutorialButton, Assembly-CSharp
+        m_MethodName: OnCompleteAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6122290909794947378
 GameObject:
   m_ObjectHideFlags: 0
@@ -15668,7 +15715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1165044423949871132
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20803,6 +20850,8 @@ GameObject:
   - component: {fileID: 4658848149862460553}
   - component: {fileID: 3898407811687002318}
   - component: {fileID: 8719215138580416949}
+  - component: {fileID: 992433113535832278}
+  - component: {fileID: 2439232162366440756}
   m_Layer: 5
   m_Name: Move camera bubble
   m_TagString: Untagged
@@ -20870,6 +20919,51 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &992433113535832278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8900459944065926938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5182fcee816955446b678a85d25e3e13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsToHide:
+  - {fileID: 8900459944065926938}
+  objectsToShow:
+  - {fileID: 6115019336526150838}
+--- !u!114 &2439232162366440756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8900459944065926938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a8f4e91a510d7147a292dcbeb8e53ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  missionEvent: {fileID: 11400000, guid: b74a1ec88636a0246adb45eaa0dce924, type: 2}
+  missionEvents: []
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 992433113535832278}
+        m_TargetAssemblyTypeName: CustomTutorialButton, Assembly-CSharp
+        m_MethodName: OnCompleteAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9014322161579801853
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using Cinemachine;
+using Missions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,6 +41,11 @@ public class CameraManager : MonoBehaviour
     private bool isMouseDown = false;
     private Vector3 mouseDown;
 
+
+    [Header("Events")]
+    [SerializeField] private int minPanDistanceForEvent = 250;
+    public MissionEvent onPanCamera;
+    public MissionEvent onZoomCamera;
 
     private void Start()
     {
@@ -83,6 +89,9 @@ public class CameraManager : MonoBehaviour
             isZooming = true;
             cameraDistance = Mathf.Clamp((componentBase as CinemachineFramingTransposer).m_CameraDistance - offset * zoomSpeed, minZoom, maxZoom);
             ApplyZoomToCamera(cameraDistance);
+
+            // trigger camera zooming event
+            onZoomCamera.Raise();
         }
     }
 
@@ -111,6 +120,10 @@ public class CameraManager : MonoBehaviour
         anchorCurPos.x += mouseDistanceX * speed;
         anchorCurPos.z += mouseDistanceY * speed;
         ClampAndSetCameraPosition();
+
+        // trigger camera panning event
+        if (mouseDistanceX > minPanDistanceForEvent || mouseDistanceY > minPanDistanceForEvent)
+            onPanCamera.Raise();
     }
 
     internal void PanCameraWindows()
@@ -144,9 +157,11 @@ public class CameraManager : MonoBehaviour
             anchorCurPos.x += mouseDistanceX * speed;
             anchorCurPos.z += mouseDistanceY * speed;
             ClampAndSetCameraPosition();
+
+            // trigger camera panning event
+            if (mouseDistanceX > minPanDistanceForEvent || mouseDistanceY > minPanDistanceForEvent)
+                onPanCamera.Raise();
         }
-
-
     }
 
 

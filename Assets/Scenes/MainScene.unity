@@ -6372,6 +6372,9 @@ MonoBehaviour:
   panSpeed: 0.75
   minBounds: {x: -600, y: -300}
   maxBounds: {x: 600, y: 500}
+  minPanDistanceForEvent: 250
+  onPanCamera: {fileID: 11400000, guid: b74a1ec88636a0246adb45eaa0dce924, type: 2}
+  onZoomCamera: {fileID: 11400000, guid: 751a8a617dc7bc0409aa748d5710255a, type: 2}
 --- !u!1001 &584632919
 PrefabInstance:
   m_ObjectHideFlags: 0
