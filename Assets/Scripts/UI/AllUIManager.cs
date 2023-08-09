@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Missions;
-
+using Cinemachine;
 
 public class AllUIManager : MonoBehaviour
 {
     public void TryAgain()
     {
+        FindObjectOfType<CinemachineBrain>().m_UpdateMethod = CinemachineBrain.UpdateMethod.SmartUpdate;
+        FindObjectOfType<CinemachineBrain>().m_BlendUpdateMethod = CinemachineBrain.BrainUpdateMethod.LateUpdate;
         EventsHandle();
         WinCurrency();
         ChangeState();

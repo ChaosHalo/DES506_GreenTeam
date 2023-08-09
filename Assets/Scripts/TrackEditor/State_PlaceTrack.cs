@@ -119,7 +119,7 @@ public class State_PlaceTrack : IBuildingState
                                  database.objectsData[selectedObjectIndex].isBuildable,
                                  (int)database.objectsData[selectedObjectIndex].terrainType);
 
-        previewSystem.UpdatePreview(grid.CellToWorld(gridPosition), false);
+        previewSystem.UpdatePreview(grid.CellToWorld(gridPosition), grid.CellToWorld(gridPosition), false);
         placementSystem.EndCurrentState();
     }
 
@@ -141,7 +141,7 @@ public class State_PlaceTrack : IBuildingState
         return rotationState;
     }
 
-    public void UpdateState(Vector3 position, bool isWithinBounds)
+    public void UpdateState(Vector3 position, Vector3 indicatorPosition, bool isWithinBounds)
     {
         if (MyGameManager.instance.GetInputManager().IsPointerOverUI == false)
         {
@@ -155,8 +155,12 @@ public class State_PlaceTrack : IBuildingState
         bool placementValidity = false;
         if(isWithinBounds && currencyManager.CanAfford(database.objectsData[selectedObjectIndex].cost))
         {
-            placementValidity = CheckPlacementValidity(grid.WorldToCell(position), selectedObjectIndex);
+            Vector3 tempIndicatorPos = indicatorPosition;
+            tempIndicatorPos.x -= 50;
+            tempIndicatorPos.z -= 50;
+            tempIndicatorPos.y += 12.5f;
+            placementValidity = CheckPlacementValidity(grid.WorldToCell(tempIndicatorPos), selectedObjectIndex);
         }
-        previewSystem.UpdatePreview(position, placementValidity);
+        previewSystem.UpdatePreview(position, indicatorPosition, placementValidity);
     }
 }

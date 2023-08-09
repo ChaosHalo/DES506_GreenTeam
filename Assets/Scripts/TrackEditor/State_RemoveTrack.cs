@@ -103,7 +103,7 @@ public class State_RemoveTrack : IBuildingState
 
         // update preview
         Vector3 cellPosition = grid.CellToWorld(gridPosition);
-        previewSystem.UpdatePreview(cellPosition, CheckIfSelectionIsValid(gridPosition));
+        previewSystem.UpdatePreview(cellPosition, cellPosition, CheckIfSelectionIsValid(gridPosition));
 
         // cancel remove state if no objects are left to remove
         if (objectPlacer.AreObjectsAvailable() == false)
@@ -118,9 +118,9 @@ public class State_RemoveTrack : IBuildingState
         return !(trackData.CanPlaceObejctAt(gridPosition, Vector2Int.one, 0) && terrainData.CanPlaceObejctAt(gridPosition, Vector2Int.one, 0));
     }
 
-    public void UpdateState(Vector3 position, bool isWithinBounds)
+    public void UpdateState(Vector3 position, Vector3 indicatorPosition, bool isWithinBounds)
     {
         bool validity = CheckIfSelectionIsValid(grid.WorldToCell(position));
-        previewSystem.UpdatePreview(position, validity);
+        previewSystem.UpdatePreview(position, indicatorPosition, validity);
     }
 }

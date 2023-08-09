@@ -6,7 +6,10 @@ using UnityEngine.UI;
 
 public class RaceCamera : MonoBehaviour
 {
-    private float cameraSwitchCooldown = 0.2f;
+    [Header("Variables")]
+    [SerializeField] private float cameraSwitchCooldown = 3f;
+    [SerializeField] private bool autoCameraSwitchEnabled = true;
+
     private bool isSwitchCameraOnCooldown = false;
     private CarManager currentTrackedCarManager;
     public RaceCameraScripitObject RaceCameraScripitObject;
@@ -14,6 +17,7 @@ public class RaceCamera : MonoBehaviour
     public enum Type { ACTION, FOCUS };
     public Type cameraType;
 
+    [Header("Components")]
     [SerializeField] private List<CarManager> availableCarManagers = new();
 
     [SerializeField] private GameObject cameraFocus;
@@ -30,7 +34,7 @@ public class RaceCamera : MonoBehaviour
             if (cameraCurrent == null)
                 if (availableCarManagers.Count > 0)
                     cameraCurrent = availableCarManagers[0].cameraAction;
-            UpdateEligibleDCrivers();
+            UpdateEligibleDrivers();
         }
     }
 
@@ -46,7 +50,7 @@ public class RaceCamera : MonoBehaviour
                 currentTrackedCarManager = availableCarManagers[0];
     }
 
-    private void UpdateEligibleDCrivers()
+    private void UpdateEligibleDrivers()
     {
         // remove cars which have finished race
         if (availableCarManagers.Count > 0)
@@ -178,6 +182,9 @@ public class RaceCamera : MonoBehaviour
 
     public void Event_FocusOnCar(Component sender, object data)
     {
+        if (autoCameraSwitchEnabled == false)
+            return;
+
         if (cameraType == Type.FOCUS)
             return;
 

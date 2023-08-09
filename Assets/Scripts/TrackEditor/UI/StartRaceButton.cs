@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using MoreMountains.HighroadEngine;
+using Cinemachine;
 
 public class StartRaceButton : MonoBehaviour
 {
@@ -66,6 +67,10 @@ public class StartRaceButton : MonoBehaviour
             tutorialUIFinishTrack.SetActive(false);
             tutorialUIRaceScreen.SetActive(true);
         }
+
+
+        FindObjectOfType<CinemachineBrain>().m_UpdateMethod = CinemachineBrain.UpdateMethod.FixedUpdate;
+        FindObjectOfType<CinemachineBrain>().m_BlendUpdateMethod = CinemachineBrain.BrainUpdateMethod.FixedUpdate;
 
         raceCamera.Editor_ForceAction();
     }

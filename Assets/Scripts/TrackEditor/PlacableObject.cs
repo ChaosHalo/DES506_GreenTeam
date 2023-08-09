@@ -8,12 +8,15 @@ using UnityEngine;
 
 public class PlacableObject : MonoBehaviour
 {
+    [SerializeField] internal float indicatorYOffset = 0;
     [SerializeField]
     internal InputManager inputManager;
     [SerializeField]
     internal AutoRotate autoRotate;
     [SerializeField]
     private GameObject lockedIndicator;
+    [SerializeField]
+    internal GameObject placementIndicator;
     [SerializeField]
     private GameObject unconnectedIndicator;
     [SerializeField]

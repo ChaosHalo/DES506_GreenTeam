@@ -2,6 +2,7 @@ using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -22,6 +23,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float maxZoom;
     [SerializeField] private float startZoom;
     [SerializeField] float zoomSpeed = 1f;
+    [SerializeField] float panSpeed = 0.75f;
     [SerializeField] private Vector2 minBounds;
     [SerializeField] private Vector2 maxBounds;
 
@@ -37,6 +39,7 @@ public class CameraManager : MonoBehaviour
     // windows specific
     private bool isMouseDown = false;
     private Vector3 mouseDown;
+
 
     private void Start()
     {
@@ -95,19 +98,18 @@ public class CameraManager : MonoBehaviour
             return;
 
         anchorCurPos = anchorStartPos;
-        float panSpeed = Mathf.Sin(cameraDistance / maxZoom);
+        float scalingValue = Mathf.Clamp(Mathf.Sin(cameraDistance / maxZoom), 0.2f, 1);
+        float speed = panSpeed * scalingValue;
         float mouseDistanceX = inputManager.posMouseDown.x - inputManager.posMouseCur.x;
         float mouseDistanceY = inputManager.posMouseDown.y - inputManager.posMouseCur.y;
 
-        // limit max panning speed
-        panSpeed = Mathf.Clamp(panSpeed, 0f, 0.5f);
 
         // lower panning speed while zooming
-        if (isZooming && panSpeed > 0.2f)
-            panSpeed = 0.2f;
+        //if (isZooming && panSpeed > 0.2f)
+       // panSpeed = 0.1f;
 
-        anchorCurPos.x += mouseDistanceX * panSpeed;
-        anchorCurPos.z += mouseDistanceY * panSpeed;
+        anchorCurPos.x += mouseDistanceX * speed;
+        anchorCurPos.z += mouseDistanceY * speed;
         ClampAndSetCameraPosition();
     }
 
@@ -135,13 +137,16 @@ public class CameraManager : MonoBehaviour
 
         if (isMouseDown)
         {
-            float scalingValue = Mathf.Sin(cameraDistance / maxZoom);
+            float scalingValue = Mathf.Clamp(Mathf.Sin(cameraDistance / maxZoom), 0.2f, 1);
+            float speed = 0.75f * scalingValue;
             float mouseDistanceX = mouseDown.x - Input.mousePosition.x;
             float mouseDistanceY = mouseDown.y - Input.mousePosition.y;
-            anchorCurPos.x += mouseDistanceX * scalingValue;
-            anchorCurPos.z += mouseDistanceY * scalingValue;
+            anchorCurPos.x += mouseDistanceX * speed;
+            anchorCurPos.z += mouseDistanceY * speed;
             ClampAndSetCameraPosition();
         }
+
+
     }
 
 
@@ -159,7 +164,7 @@ public class CameraManager : MonoBehaviour
 
     private void ClampAndSetCameraPosition()
     {
-        float scalingX = 1f - Mathf.Sin(cameraDistance / maxZoom);
+        float scalingX = 1f - Mathf.Sin(cameraDistance / (maxZoom + 10));
         float scalingZ = cameraDistance / maxZoom;
         anchorCurPos.x = Mathf.Clamp(anchorCurPos.x, minBounds.x * scalingX, maxBounds.x * scalingX);
         anchorCurPos.z = Mathf.Clamp(anchorCurPos.z, minBounds.y * 1 - scalingZ, maxBounds.y * 1 - scalingZ);

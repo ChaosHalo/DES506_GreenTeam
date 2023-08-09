@@ -60,15 +60,24 @@ public class SaveSystem : MonoBehaviour
 
     public void LoadData()
     {
-        // check if world is still generating
-        if (MyGameManager.instance.GetPlacementSystem().buildingState != null)
+        if (MyGameManager.instance.GetPlacementSystem().isGenerating == true)
         {
-            if (MyGameManager.instance.GetPlacementSystem().buildingState.GetType() == typeof(State_GenerateWorld))
-            {
-                Debug.Log("World currently generating");
-                return;
-            }
+            Debug.Log("World currently generating");
+            return;
         }
+
+
+
+
+        // check if world is still generating
+        //if (MyGameManager.instance.GetPlacementSystem().buildingState != null)
+        //{
+        //    if (MyGameManager.instance.GetPlacementSystem().buildingState.GetType() == typeof(State_GenerateWorld))
+        //    {
+        //        Debug.Log("World currently generating");
+        //        return;
+        //    }
+        //}
 
         // check for track drop/delete/rotate animations
         if (MyGameManager.instance.GetObjectPlacer().IsTrackAnimating() == true)

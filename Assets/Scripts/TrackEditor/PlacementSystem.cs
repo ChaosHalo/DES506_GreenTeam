@@ -77,8 +77,8 @@ public class PlacementSystem : MonoBehaviour
         if (isGenerating==true)
             return;
 
-        if (objectPlacer.IsTrackAnimating() == true)
-            return;
+       // if (objectPlacer.IsTrackAnimating() == true)
+           // return;
 
         EndCurrentState();
 
@@ -134,8 +134,8 @@ public class PlacementSystem : MonoBehaviour
         if (isGenerating == true)
             return;
 
-        if (objectPlacer.IsTrackAnimating() == true)
-            return;
+       // if (objectPlacer.IsTrackAnimating() == true)
+        //    return;
 
         EndCurrentState();
 
@@ -189,9 +189,14 @@ public class PlacementSystem : MonoBehaviour
 
         // snap if over placable grid
         // do not snap if outside of placable grid
-        Vector3 newPreviewPosition = inputManager.isWithinPlacementBounds ? grid.CellToWorld(inputManager.gridCellPos) : mousePosition;
+        //Vector3 newPreviewPosition = inputManager.isWithinPlacementBounds ? grid.CellToWorld(inputManager.gridCellPos) : mousePosition;
+        Vector3 newPreviewPosition = grid.CellToWorld(inputManager.gridCellPos);
+        newPreviewPosition.x += 50;
+        newPreviewPosition.z += 50;
+        newPreviewPosition.y -= 12.5f;
+
         LastPlacedPosition = inputManager.mouseWorldPos;
 
-        buildingState.UpdateState(newPreviewPosition, inputManager.isWithinPlacementBounds);
+        buildingState.UpdateState(mousePosition, newPreviewPosition, inputManager.isWithinPlacementBounds);
     }
 }

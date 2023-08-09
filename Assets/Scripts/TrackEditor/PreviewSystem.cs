@@ -11,6 +11,8 @@ public class PreviewSystem : MonoBehaviour
 
     [SerializeField]
     private GameObject previewObject;
+    [SerializeField]
+    private PlacableObject previewObjectClass;
 
     [SerializeField]
     internal AutoRotate previewObjectRotation;
@@ -36,6 +38,7 @@ public class PreviewSystem : MonoBehaviour
 
         // set new preview indicator
         previewObject = Instantiate(prefab);
+        previewObjectClass = previewObject.GetComponentInChildren<PlacableObject>();
         previewObjectRotation = previewObject.GetComponentInChildren<AutoRotate>();
         PreparePreview(previewObject);
     }
@@ -52,6 +55,14 @@ public class PreviewSystem : MonoBehaviour
             }
             renderer.materials = materials;
         }
+
+        if(previewObjectClass != null)
+        {
+            if(previewObjectClass.placementIndicator != null)
+            {
+                previewObjectClass.placementIndicator.gameObject.SetActive(true);
+            }
+        }
     }
 
     public void StopShowingPreview()
@@ -60,26 +71,41 @@ public class PreviewSystem : MonoBehaviour
         if (previewObject == null)
             return;
 
+        previewObjectClass = null;
+
         Destroy(previewObject);
     }
 
-    public void UpdatePreview(Vector3 position, bool validity)
+    public void UpdatePreview(Vector3 objectPosition, Vector3 indicatorPosition, bool validity)
     {
         // check valid
         if (previewObject == null)
             return;
 
-        // position
-        previewObject.transform.position = new Vector3(position.x,
-                                                       position.y + previewYOffset,
-                                                       position.z);
+        // object position
+        previewObject.transform.position = new Vector3(objectPosition.x,
+                                                       objectPosition.y + previewYOffset,
+                                                       objectPosition.z);
+
+        // preview indicator positon
+        if (previewObjectClass != null)
+        {
+            if (previewObjectClass.placementIndicator != null)
+            {
+                previewObjectClass.placementIndicator.transform.position = new Vector3(indicatorPosition.x,
+                                                               indicatorPosition.y + previewYOffset + previewObjectClass.indicatorYOffset,
+                                                               indicatorPosition.z);
+            }
+        }
+
+
         ApplyFeedbackToPreview(validity);
     }
 
     private void ApplyFeedbackToPreview(bool validity)
     {
         // colour
-        Color c = validity ? Color.grey : Color.red;
+        Color c = validity ? Color.white : Color.red;
         c.a = 0.5f;
         previewMaterialInstance.color = c;
     }
