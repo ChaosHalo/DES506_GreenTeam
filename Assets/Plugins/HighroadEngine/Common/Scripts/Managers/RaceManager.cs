@@ -113,6 +113,13 @@ namespace MoreMountains.HighroadEngine
         public GameObject tutorialUIRaceResults;
 
         public void ResetCurrentFinisherRank() => _currentFinisherRank = 1;
+
+        public struct MissionInfo
+        {
+            public float TotalWinCurrency;
+            public int TotalCompletedMissionNum;
+        }
+        public List<MissionInfo> MissionInfos = new();
         /// <summary>
         /// We checks proper initialization of the RaceManager object
         /// </summary>

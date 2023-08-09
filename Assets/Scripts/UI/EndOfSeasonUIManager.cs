@@ -19,6 +19,8 @@ public class EndOfSeasonUIManager : AllUIManager
     [SerializeField]
     public GameObject tutorialUIEndOfSeason;
 
+    public TMP_Text MissionsCompleted;
+    public TMP_Text TotalMoneyEarned;
     private void Start()
     {
         /*UpdateBestDriverName();
@@ -39,6 +41,7 @@ public class EndOfSeasonUIManager : AllUIManager
         UpdateWorstDriverName();
         UpdateBestDriverTime();
         UpdateWorstDriverTime();
+        UpdateMissionInfo();
     }
     #region WorstAndBestDriverHandle
     private List<OneRoundRaceResultData> GetSeasonRoundData()
@@ -126,6 +129,20 @@ public class EndOfSeasonUIManager : AllUIManager
         }
         screenshot.ScreenShots.Clear();
     }
-    
+
     #endregion
+    
+    private void UpdateMissionInfo()
+    {
+        List< MyGameManager.MissionInfo> missions = MyGameManager.instance.MissionInfos;  
+        int totalMoney = 0;
+        int totalMission = 0;
+        for(int i = missions.Count - MyGameManager.instance.Season; i < missions.Count; i++)
+        {
+            totalMoney += missions[i].TotalWinCurrency;
+            totalMission += missions[i].TotalCompletedMissionNum;
+        }
+        TotalMoneyEarned.text = "Total money earned: " + totalMoney;
+        MissionsCompleted.text = "Missions completed: " + totalMission;
+    }
 }

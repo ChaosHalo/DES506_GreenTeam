@@ -34,6 +34,13 @@ public class MyGameManager : MonoBehaviour
     /// 当前赛季值
     /// </summary>
     public int CurSeason => GameRound / Season;
+    [System.Serializable]
+    public struct MissionInfo
+    {
+        public int TotalWinCurrency;
+        public int TotalCompletedMissionNum;
+    }
+    public List<MissionInfo> MissionInfos = new();
     // build / race scene objects
     [SerializeField] internal GameObject buildObjects;
     [SerializeField] internal GameObject raceObjects;

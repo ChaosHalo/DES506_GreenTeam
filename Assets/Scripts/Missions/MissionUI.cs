@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -75,7 +75,7 @@ public class MissionUI : MonoBehaviour
         List<string> missionRewards = new List<string>();
         List<bool> completedStatus = new List<bool>();
         int totalReward = 0;
-
+        int missionCompletedNum = 0;
         for (int i = 0; i < 3; i++)
         {
             if (missionManager.HasMission(i))
@@ -91,6 +91,7 @@ public class MissionUI : MonoBehaviour
                     totalReward += currentMission.rewardCurrency;
                     completedStatus.Add(true);
                     missionRewards.Add(currentMission.rewardCurrency.ToString());
+                    missionCompletedNum++;
                 }
                 else
                 {
@@ -100,9 +101,17 @@ public class MissionUI : MonoBehaviour
             }
         }
 
+        UpdateMissionInfo(missionCompletedNum, totalReward);
         UpdateMissionStatusUIElements(raceResultsUI, completedMissionDescriptions, missionRewards, completedStatus, totalReward);
     }
 
+    private void UpdateMissionInfo(int missionCompletedNum, int totalReward)
+    {
+        MyGameManager.MissionInfo missionInfo;
+        missionInfo.TotalCompletedMissionNum = missionCompletedNum;
+        missionInfo.TotalWinCurrency = totalReward;
+        MyGameManager.instance.MissionInfos.Add(missionInfo);
+    }
     private void HandleCompletedMission(Mission mission, int index)
     {
         Debug.Log("Completed Mission: " + mission.description);
