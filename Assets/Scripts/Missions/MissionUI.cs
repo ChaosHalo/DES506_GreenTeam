@@ -101,7 +101,7 @@ public class MissionUI : MonoBehaviour
             }
         }
 
-        UpdateMissionInfo(missionCompletedNum, totalReward);
+        UpdateMissionInfo(missionCompletedNum, totalReward + currencyManager.GetWinCurrency());
         UpdateMissionStatusUIElements(raceResultsUI, completedMissionDescriptions, missionRewards, completedStatus, totalReward);
     }
 
