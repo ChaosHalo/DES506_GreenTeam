@@ -36,6 +36,9 @@ public class GlobalUIElementsManager : MonoBehaviour
     [SerializeField]
     protected List<GameObject> backgroundList;
 
+    [SerializeField]
+    protected GameObject enableTutorialMenuButton;
+
     private void Start()
     {
         soundManager = FindObjectOfType<SoundManager>();
@@ -97,6 +100,7 @@ public class GlobalUIElementsManager : MonoBehaviour
 
         tutorialPopUps.SetActive(false);
         //restartTutorialButton.SetActive(true);
+        enableTutorialMenuButton.SetActive(true);
     }
     /*
     public void RestartTutorial()
