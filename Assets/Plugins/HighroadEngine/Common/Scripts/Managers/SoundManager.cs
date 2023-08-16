@@ -23,6 +23,9 @@ namespace MoreMountains.HighroadEngine
 		/// the sound fx volume
 		[Range(0,1)]
 		public float SfxVolume=1f;
+        /// UI sounds volume
+        [Range(0, 1)]
+        public float uiVolume = 0.4f;
 
         [SerializeField] private AudioSource tempSource;
 	    protected AudioSource _backgroundMusic;
@@ -222,7 +225,7 @@ namespace MoreMountains.HighroadEngine
             if (clip == null)
                 return;
 
-             float volume = SfxOn ? 0.4f * SfxVolume : 0;
+             float volume = SfxOn ? uiVolume * SfxVolume : 0;
 
 			tempSource.PlayOneShot(clip, volume);
         }
