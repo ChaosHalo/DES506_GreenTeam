@@ -1,4 +1,4 @@
-package com.DES506_GreenTeam.DES506_GreenTeam_Game;
+package com.GreenTeam.AutoTrackRacers;
 import com.unity3d.player.UnityPlayerActivity;
 import android.os.Bundle;
 import android.os.Build;
