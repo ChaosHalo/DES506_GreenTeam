@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 333723745734794672}
   - component: {fileID: 333723745734794673}
   - component: {fileID: 333723745734794678}
+  - component: {fileID: 1141260795}
   m_Layer: 5
   m_Name: soundButton
   m_TagString: Untagged
@@ -133,6 +134,102 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!82 &1141260795
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333723745734794676}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e5a7df6ef80a2f146a86c6db574a3d59, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.4
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &333723747078420749
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +242,7 @@ GameObject:
   - component: {fileID: 333723747078420745}
   - component: {fileID: 333723747078420750}
   - component: {fileID: 333723747078420751}
+  - component: {fileID: 83408192}
   m_Layer: 5
   m_Name: musicButton
   m_TagString: Untagged
@@ -266,6 +364,102 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!82 &83408192
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333723747078420749}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e5a7df6ef80a2f146a86c6db574a3d59, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.4
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &333723747756791984
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +498,7 @@ RectTransform:
   - {fileID: 333723745734794679}
   - {fileID: 8556814419385012116}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -421,7 +615,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  enableTutorialMenuButton: {fileID: 0}
+  enableTutorialMenuButton: {fileID: 1723025937485885793}
 --- !u!1 &429688134289622283
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,7 +1000,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.9770508, y: 0.9884033}
+  m_AnchoredPosition: {x: 1.9771729, y: 0.9884033}
   m_SizeDelta: {x: -138.3922, y: -112.691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1579635465590347269
@@ -1238,7 +1432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.9770508, y: 0.9884033}
+  m_AnchoredPosition: {x: 1.9771729, y: 0.9884033}
   m_SizeDelta: {x: -138.3922, y: -112.691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8478751807080918715
@@ -1592,7 +1786,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 204.43, y: 0}
+  m_AnchoredPosition: {x: 204.43, y: -0.00012207031}
   m_SizeDelta: {x: -643.71, y: -173.6984}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1880505456128770678
@@ -1808,7 +2002,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -270.6704, y: -49.69}
+  m_AnchoredPosition: {x: -270.6704, y: -49.68994}
   m_SizeDelta: {x: 76.6225, y: 76.623}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4467275045497054811
@@ -1944,7 +2138,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.9770508, y: 0.9884033}
+  m_AnchoredPosition: {x: 1.9771729, y: 0.9884033}
   m_SizeDelta: {x: -138.3922, y: -112.691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3034594710857461311
@@ -2165,7 +2359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.9770508, y: 0.9884033}
+  m_AnchoredPosition: {x: 1.9771729, y: 0.9884033}
   m_SizeDelta: {x: -138.3922, y: -112.691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1578675865971893289
@@ -2969,7 +3163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.9770508, y: 0.9884033}
+  m_AnchoredPosition: {x: 1.9771729, y: 0.9884033}
   m_SizeDelta: {x: -138.3922, y: -112.691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7504246497008304877
@@ -3529,7 +3723,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 211.69629, y: -60}
+  m_AnchoredPosition: {x: 237.76514, y: -82.295}
   m_SizeDelta: {x: 400, y: 110}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5937161842349241433
@@ -4181,7 +4375,7 @@ MonoBehaviour:
     them on the track panel.
 
     Move the camera by holding and dragging on the
-    screen. Pinch to zoom in or out.
+    screen. Use mouse wheel to zoom in or out.
 
 '
   m_isRightToLeft: 0
@@ -4691,7 +4885,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -104.69}
+  m_AnchoredPosition: {x: 13.700073, y: -104.69}
   m_SizeDelta: {x: -760.924, y: -533.855}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7837093656686331988
@@ -6713,7 +6907,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.9770508, y: 0.9884033}
+  m_AnchoredPosition: {x: 1.9771729, y: 0.9884033}
   m_SizeDelta: {x: -138.3922, y: -112.691}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3391280797203355483
@@ -7142,7 +7336,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -20.344727, y: 7.2564697}
   m_SizeDelta: {x: 1679.1047, y: 956.3033}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1673960902424487815
@@ -8391,16 +8585,126 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 333723747756791996}
     m_Modifications:
+    - target: {fileID: 628540577805350501, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 628540577805350501, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 628540577805350501, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_Target
+      value: 
+      objectReference: {fileID: 1723025937485885793}
+    - target: {fileID: 628540577805350501, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 628540577805350501, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 628540577805350501, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 628540577805350501, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 628540577805350501, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1091254769798496800, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 73637192}
+    - target: {fileID: 1443646454009680014, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443646454009680014, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443646454009680014, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443646454009680014, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: FocusOnStartPiece
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443646454009680014, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: CameraManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443646454009680014, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835297129880455899, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835297129880455899, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835297129880455899, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835297129880455899, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: FocusOnStartPiece
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835297129880455899, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CameraManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835297129880455899, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835297129880455899, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3251318354446138916, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 73637192}
+    - target: {fileID: 3610889475991665707, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
+        type: 3}
+      propertyPath: m_text
+      value: Scroll to zoom
+      objectReference: {fileID: 0}
     - target: {fileID: 3899181667809160700, guid: 8ba89243a1a2f394ebe4a9fa4b611eb1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

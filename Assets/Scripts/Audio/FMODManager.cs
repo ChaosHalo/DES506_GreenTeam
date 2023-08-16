@@ -35,7 +35,7 @@ public class FMODManager : Singleton<FMODManager>
     public void TurnOnAllCarEngineSound()
     {
         FMODCarController[] fMODCarControllers = FindObjectsOfType<FMODCarController>();
-        foreach(var i in fMODCarControllers)
+        foreach (var i in fMODCarControllers)
         {
             i.TurnOnSound();
         }
