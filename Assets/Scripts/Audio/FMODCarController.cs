@@ -71,7 +71,7 @@ public class FMODCarController : MonoBehaviour
     {
         Load = _Load;
         StudioEventEmitter.SetParameter("Load", _Load);
-        UnityEngine.Debug.Log("Load" + _Load);
+        UnityEngine.Debug.Log("Load" + Load);
     }
     public void TurnOffSound()
     {
