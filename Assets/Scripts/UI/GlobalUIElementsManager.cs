@@ -73,11 +73,13 @@ public class GlobalUIElementsManager : MonoBehaviour
     {
         soundManager.TurnOnSFX();
         SoundIcon.sprite = SoundOn;
+        FMODManager.instance.TurnOnAllCarEngineSound();
     }
     public void TurOffSFX()
     {
         soundManager.TurnOffSFX();
         SoundIcon.sprite = SoundOff;
+        FMODManager.instance.TurnOffAllCarEngineSound();
     }
     #endregion
 
