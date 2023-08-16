@@ -6949,7 +6949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anchor: {fileID: 356758123}
-  cameraDefault: {fileID: 0}
+  cameraDefault: {fileID: 1444816078}
   cameraTemporary: {fileID: 0}
   inputManager: {fileID: 807530367}
   placementSystem: {fileID: 907506413}
@@ -6959,9 +6959,9 @@ MonoBehaviour:
   startZoom: 500
   zoomSpeed: 1
   panSpeed: 0.75
-  minBounds: {x: -600, y: -300}
-  maxBounds: {x: 600, y: 500}
-  minPanDistanceForEvent: 250
+  minBounds: {x: -1000, y: -300}
+  maxBounds: {x: 1000, y: 500}
+  minPanDistanceForEvent: 125
   onPanCamera: {fileID: 11400000, guid: b74a1ec88636a0246adb45eaa0dce924, type: 2}
   onZoomCamera: {fileID: 11400000, guid: 751a8a617dc7bc0409aa748d5710255a, type: 2}
 --- !u!1001 &584632919
@@ -7485,6 +7485,46 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[7].m_Target
       value: 
       objectReference: {fileID: 907506413}
+    - target: {fileID: 2627427942985155168, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2627427942985155168, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2627427942985155168, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 584168194}
+    - target: {fileID: 2627427942985155168, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2627427942985155168, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: FocusOnStartPiece
+      objectReference: {fileID: 0}
+    - target: {fileID: 2627427942985155168, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CameraManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2627427942985155168, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2627427942985155168, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2638747512882879151, guid: 490bba6d09657904ea6e1b969e991a90,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -7540,6 +7580,46 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1280811596}
+    - target: {fileID: 2956307499948349493, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956307499948349493, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956307499948349493, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 584168194}
+    - target: {fileID: 2956307499948349493, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956307499948349493, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: FocusOnStartPiece
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956307499948349493, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: CameraManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956307499948349493, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2956307499948349493, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3623510561595799269, guid: 490bba6d09657904ea6e1b969e991a90,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -19257,37 +19337,37 @@ PrefabInstance:
     - target: {fileID: 553749669658102853, guid: 2eeae40d36cb3a8479e3b56180f17b84,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -194.83443
+      value: 0.000030720843
       objectReference: {fileID: 0}
     - target: {fileID: 553749669658102853, guid: 2eeae40d36cb3a8479e3b56180f17b84,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 99.621346
+      value: 267.13205
       objectReference: {fileID: 0}
     - target: {fileID: 553749669658102853, guid: 2eeae40d36cb3a8479e3b56180f17b84,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 136.72554
+      value: -267.132
       objectReference: {fileID: 0}
     - target: {fileID: 553749669658102853, guid: 2eeae40d36cb3a8479e3b56180f17b84,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 0.9238795
       objectReference: {fileID: 0}
     - target: {fileID: 553749669658102853, guid: 2eeae40d36cb3a8479e3b56180f17b84,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.38268343
+      value: 0.38268352
       objectReference: {fileID: 0}
     - target: {fileID: 553749669658102853, guid: 2eeae40d36cb3a8479e3b56180f17b84,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000949949
+      value: -0.00000006689787
       objectReference: {fileID: 0}
     - target: {fileID: 553749669658102853, guid: 2eeae40d36cb3a8479e3b56180f17b84,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000003958121
+      value: 0.000000027710014
       objectReference: {fileID: 0}
     - target: {fileID: 553749669658102853, guid: 2eeae40d36cb3a8479e3b56180f17b84,
         type: 3}
@@ -19321,8 +19401,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 553749669658102858, guid: 2eeae40d36cb3a8479e3b56180f17b84,
         type: 3}
+      propertyPath: field of view
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 553749669658102858, guid: 2eeae40d36cb3a8479e3b56180f17b84,
+        type: 3}
       propertyPath: far clip plane
-      value: 300
+      value: 850
+      objectReference: {fileID: 0}
+    - target: {fileID: 553749669658102858, guid: 2eeae40d36cb3a8479e3b56180f17b84,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 553749669658102858, guid: 2eeae40d36cb3a8479e3b56180f17b84,
+        type: 3}
+      propertyPath: orthographic size
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1424778528252545318, guid: 2eeae40d36cb3a8479e3b56180f17b84,
         type: 3}
