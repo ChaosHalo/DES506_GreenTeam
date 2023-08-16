@@ -10,14 +10,12 @@ using UnityEngine.EventSystems;
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject anchor;
-    [SerializeField]
-    private InputManager inputManager;
-    [SerializeField]
-    private PlacementSystem placementSystem;
-    [SerializeField]
-    private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private GameObject anchor;
+    [SerializeField] private GameObject cameraDefault;
+    [SerializeField] internal GameObject cameraTemporary;
+    [SerializeField] private InputManager inputManager;
+    [SerializeField] private PlacementSystem placementSystem;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
     private CinemachineComponentBase componentBase;
 
     [SerializeField] private float minZoom;
