@@ -330,6 +330,10 @@ public class MissionManager : MonoBehaviour
                         if (data is int)
                         {
                             currentMissions[i].goalInt += (int)data;
+
+                            // do not go into negative number from refunding
+                            if (currentMissions[i].goalInt < 0)
+                                currentMissions[i].goalInt = 0;
                         }
                     }
                 }
