@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using System.Linq.Expressions;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -195,5 +196,22 @@ public class CameraManager : MonoBehaviour
             virtualCamera.transform.position = camPos;
             anchor.transform.position = anchorOriginalPos;
         }
+    }
+
+
+
+    public void FocusOnStartPiece(bool focus)
+    {
+        StartCoroutine(WaitBeforeMoveCamera(focus));
+    }
+
+    private IEnumerator WaitBeforeMoveCamera(bool focus)
+    {
+        float delay = 0;
+        delay = focus ? 0.5f : 0;
+        yield return new WaitForSeconds(delay);
+
+        cameraDefault.SetActive(!focus);
+        cameraTemporary.SetActive(focus);
     }
 }
