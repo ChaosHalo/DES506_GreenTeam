@@ -11,7 +11,7 @@ namespace MoreMountains.HighroadEngine
 		[Header("Sounds")]
 		public AudioClip EngineSound;
 		public AudioClip CrashSound;
-		[Range(0.1f,10f)]
+		[Range(0.01f,10f)]
 		/// Sound volume of the engine
 		public float EngineVolume = 0.5f;
 		[Range(0f,5f)]
