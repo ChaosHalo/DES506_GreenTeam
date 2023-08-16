@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Diagnostics;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
@@ -16,10 +17,10 @@ public class FMODCarController : MonoBehaviour
     public float Load;
     /*private float minRPM => carManager.CarInfoScriptableObject.CarAudioInfo.MinRPM;
     private float maxnRPM => carManager.CarInfoScriptableObject.CarAudioInfo.MaxRPM;*/
-    private float minRPM;
-    private float maxRPM;
-    private float minLoad;
-    private float maxLoad;
+    private float minRPM => engineSound.rPM.Min;
+    private float maxRPM => engineSound.rPM.Max;
+    private float minLoad => engineSound.load.Min;
+    private float maxLoad => engineSound.load.Max;
 
     private bool enableSoundUpdate = true;
     public bool ReversLoadLogic = true;
@@ -33,11 +34,6 @@ public class FMODCarController : MonoBehaviour
         solidController = GetComponent<SolidController>();
         StudioEventEmitter = GetComponent<StudioEventEmitter>();
         carManager = GetComponent<CarManager>();
-
-        minRPM = engineSound.rPM.Min;
-        maxRPM = engineSound.rPM.Max;
-        minLoad = engineSound.load.Min;
-        maxLoad = engineSound.load.Max;
 
         InitData();
     }
@@ -75,6 +71,7 @@ public class FMODCarController : MonoBehaviour
     {
         Load = _Load;
         StudioEventEmitter.SetParameter("Load", _Load);
+        UnityEngine.Debug.Log("Load" + _Load);
     }
     public void TurnOffSound()
     {
