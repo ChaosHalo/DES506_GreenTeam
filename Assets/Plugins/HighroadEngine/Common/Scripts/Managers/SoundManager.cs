@@ -24,6 +24,7 @@ namespace MoreMountains.HighroadEngine
 		[Range(0,1)]
 		public float SfxVolume=1f;
 
+        [SerializeField] private AudioSource tempSource;
 	    protected AudioSource _backgroundMusic;
 		private List<AudioSource> musics = new();
         [SerializeField]
@@ -211,5 +212,19 @@ namespace MoreMountains.HighroadEngine
 			SfxOn = false;
 		}
 		public bool IsSFXPlaying() => SfxOn;
+
+
+		public virtual void CustomPlayOneShot(AudioClip clip)
+        {
+            if (!SfxOn)
+                return;
+
+            if (clip == null)
+                return;
+
+             float volume = SfxOn ? 0.4f * SfxVolume : 0;
+
+			tempSource.PlayOneShot(clip, volume);
+        }
     }
 }
