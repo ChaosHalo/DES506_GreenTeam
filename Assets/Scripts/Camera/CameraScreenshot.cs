@@ -34,7 +34,7 @@ public class CameraScreenshot : MonoBehaviour
         mainCamera.Render();
 
         // 将RenderTexture转换为Texture2D
-        Texture2D screenshot = new Texture2D(width, height, TextureFormat.RG16, false);
+        Texture2D screenshot = new Texture2D(width, height, TextureFormat.RGB565, false);
         RenderTexture.active = renderTexture;
         screenshot.ReadPixels(new Rect(0, 0, width, height), 0, 0);
         screenshot.Apply();
