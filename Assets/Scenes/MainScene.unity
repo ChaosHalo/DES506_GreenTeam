@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7206,6 +7206,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
       objectReference: {fileID: 486571256}
+    - target: {fileID: 1086003130173011088, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: m_text
+      value: Pinch to zoom
+      objectReference: {fileID: 0}
     - target: {fileID: 1469116420856395958, guid: 490bba6d09657904ea6e1b969e991a90,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -7596,6 +7601,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
       objectReference: {fileID: 122983098}
+    - target: {fileID: 7952474414645380325, guid: 490bba6d09657904ea6e1b969e991a90,
+        type: 3}
+      propertyPath: m_text
+      value: 'Drag and drop track pieces from the track panel (at the bottom of the
+        screen) onto the grid to create your track. You may only start the race once
+        all track pieces are connected to the start / finish line.
+
+        Special
+        track pieces are initially locked, but you can spend money to unlock them
+        by tapping them on the track panel.
+
+        Move the camera by holding and
+        dragging on the screen. Pinch to zoom in or out.
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 8052111493762709974, guid: 490bba6d09657904ea6e1b969e991a90,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
