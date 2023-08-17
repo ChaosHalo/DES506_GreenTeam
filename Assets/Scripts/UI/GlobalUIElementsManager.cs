@@ -39,6 +39,9 @@ public class GlobalUIElementsManager : MonoBehaviour
     [SerializeField]
     protected GameObject enableTutorialMenuButton;
 
+    [SerializeField]
+    protected GameObject quitMenu;
+
     private void Start()
     {
         soundManager = FindObjectOfType<SoundManager>();
@@ -46,6 +49,19 @@ public class GlobalUIElementsManager : MonoBehaviour
         //raceManager = FindObjectOfType<RaceManager>();
 
         //buttonsList = FindObjectsOfTypeAll(Button);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            quitMenu.SetActive(true);
+        }
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     #region Music & Sound
