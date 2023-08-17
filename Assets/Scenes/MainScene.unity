@@ -2567,7 +2567,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6185901454426528767, guid: 6ec1805e96d8cf74c8c2c854805cfb1a, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ec1805e96d8cf74c8c2c854805cfb1a, type: 3}
 --- !u!114 &218698463 stripped
@@ -6581,6 +6582,9 @@ PrefabInstance:
     - {fileID: 4904700911400446453, guid: 799c779d9bb33b042869d74994138fff, type: 3}
     - {fileID: 2017765925895565307, guid: 799c779d9bb33b042869d74994138fff, type: 3}
     - {fileID: 1554950039949196638, guid: 799c779d9bb33b042869d74994138fff, type: 3}
+    - {fileID: 967597509584603648, guid: 799c779d9bb33b042869d74994138fff, type: 3}
+    - {fileID: 1854889854158213795, guid: 799c779d9bb33b042869d74994138fff, type: 3}
+    - {fileID: 8610671740323623358, guid: 799c779d9bb33b042869d74994138fff, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 799c779d9bb33b042869d74994138fff, type: 3}
 --- !u!114 &515150740 stripped
@@ -8206,7 +8210,7 @@ AudioSource:
   m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -11411,7 +11415,7 @@ AudioSource:
   m_Volume: 0.4
   m_Pitch: 0.9
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -12141,7 +12145,7 @@ AudioSource:
   m_Volume: 0.25
   m_Pitch: 1.1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -12784,7 +12788,7 @@ AudioSource:
   m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -14367,7 +14371,7 @@ AudioSource:
   m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -14981,7 +14985,7 @@ AudioSource:
   m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -16388,6 +16392,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1136061644010191403, guid: 4d677237dc54f42469cb7666633ef8e5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1136061644320220568, guid: 4d677237dc54f42469cb7666633ef8e5,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -16756,7 +16765,7 @@ AudioSource:
   m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -16852,7 +16861,7 @@ AudioSource:
   m_Volume: 0.4
   m_Pitch: 1.1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -16948,7 +16957,7 @@ AudioSource:
   m_Volume: 0.4
   m_Pitch: 1.2
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -17400,7 +17409,7 @@ AudioSource:
   m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128

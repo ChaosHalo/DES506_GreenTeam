@@ -1,3 +1,4 @@
+using MoreMountains.HighroadEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,7 +22,9 @@ public class FloatingCurrencyText : MonoBehaviour
     void Start()
     {
         Invoke("DeleteAfterDelay", 1);
-        moneyClipsSource.PlayOneShot(moneyClips[UnityEngine.Random.Range(0, moneyClips.Count)]);
+
+        AudioClip clip = moneyClips[UnityEngine.Random.Range(0, moneyClips.Count)];
+        FindObjectOfType<SoundManager>().CustomPlayOneShot(clip);
     }
 
     // Update is called once per frame
