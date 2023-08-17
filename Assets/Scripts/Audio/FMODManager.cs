@@ -32,6 +32,18 @@ public class FMODManager : Singleton<FMODManager>
             }
         }
     }
+    public void SetOnTheMuscleCar()
+    {
+        CarManager[] carManagers = FindObjectsOfType<CarManager>();
+        foreach (var i in carManagers)
+        {
+            if (i.CarInfo.Name == GlobalConstants.BILLY)
+            {
+                Debug.Log("muscle");
+                transform.position = i.transform.position;
+            }
+        }
+    }
     public void TurnOnAllCarEngineSound()
     {
         FMODCarController[] fMODCarControllers = FindObjectsOfType<FMODCarController>();
