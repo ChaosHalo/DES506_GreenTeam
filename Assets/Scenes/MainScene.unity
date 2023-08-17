@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4134,6 +4134,16 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1989774088}
     m_Modifications:
+    - target: {fileID: 4770536325964753719, guid: e4a83a38e6d46154b9ae668288f86366,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.76862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 4770536325969919481, guid: e4a83a38e6d46154b9ae668288f86366,
+        type: 3}
+      propertyPath: orthographic size
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 4770536325970406619, guid: e4a83a38e6d46154b9ae668288f86366,
         type: 3}
       propertyPath: m_RootOrder
@@ -4142,7 +4152,7 @@ PrefabInstance:
     - target: {fileID: 4770536325970406619, guid: e4a83a38e6d46154b9ae668288f86366,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 4770536325970406619, guid: e4a83a38e6d46154b9ae668288f86366,
         type: 3}
@@ -4152,7 +4162,7 @@ PrefabInstance:
     - target: {fileID: 4770536325970406619, guid: e4a83a38e6d46154b9ae668288f86366,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4770536325970406619, guid: e4a83a38e6d46154b9ae668288f86366,
         type: 3}
@@ -4193,6 +4203,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MiniMap [Global Mode] [Rectangle]
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360808297281828110, guid: e4a83a38e6d46154b9ae668288f86366,
+        type: 3}
+      propertyPath: MaxZoom
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360808297281828110, guid: e4a83a38e6d46154b9ae668288f86366,
+        type: 3}
+      propertyPath: MinZoom
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360808297281828110, guid: e4a83a38e6d46154b9ae668288f86366,
+        type: 3}
+      propertyPath: ShowAreaGrid
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360808297281828110, guid: e4a83a38e6d46154b9ae668288f86366,
+        type: 3}
+      propertyPath: AllowMapMarks
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360808297281828110, guid: e4a83a38e6d46154b9ae668288f86366,
+        type: 3}
+      propertyPath: DefaultHeight
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360808297281828110, guid: e4a83a38e6d46154b9ae668288f86366,
+        type: 3}
+      propertyPath: CanDragMiniMap
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8360808297281828110, guid: e4a83a38e6d46154b9ae668288f86366,
+        type: 3}
+      propertyPath: fullScreenMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
