@@ -33,7 +33,7 @@ public class RaceCamera : MonoBehaviour
         {
             if (cameraCurrent == null)
                 if (availableCarManagers.Count > 0)
-                    cameraCurrent = availableCarManagers[0].cameraAction;
+                    cameraCurrent = availableCarManagers[Random.Range(0, availableCarManagers.Count)].cameraAction;
             UpdateEligibleDrivers();
         }
     }
@@ -47,7 +47,7 @@ public class RaceCamera : MonoBehaviour
         // setup current tracked car manager
         if (currentTrackedCarManager == null)
             if (availableCarManagers.Count > 0)
-                currentTrackedCarManager = availableCarManagers[0];
+                currentTrackedCarManager = availableCarManagers[Random.Range(0, availableCarManagers.Count)];
     }
 
     private void UpdateEligibleDrivers()
