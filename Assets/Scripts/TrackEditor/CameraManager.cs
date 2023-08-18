@@ -207,10 +207,18 @@ public class CameraManager : MonoBehaviour
 
     private IEnumerator WaitBeforeMoveCamera(bool focus)
     {
+        // reset main camera
+        if (!focus)
+        {
+            ResetCamera();
+        }
+
+        // delay before focusing on start piece
         float delay = 0;
         delay = focus ? 0.5f : 0;
         yield return new WaitForSeconds(delay);
 
+        // toggle cameras
         cameraDefault.SetActive(!focus);
         cameraTemporary.SetActive(focus);
     }
