@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Missions;
 using Cinemachine;
+using MoreMountains.HighroadEngine;
 
 public class AllUIManager : MonoBehaviour
 {
@@ -31,7 +32,9 @@ public class AllUIManager : MonoBehaviour
     protected virtual void WinCurrency()
     {
         // win currency
+        Debug.Log("Adding Win Currency");
         MyGameManager.instance.GetCurrencyManager().AddWinCurrency();
+        MyGameManager.instance.GetSaveSystem().SaveData();
     }
     
 }

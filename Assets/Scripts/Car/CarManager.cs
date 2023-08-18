@@ -309,6 +309,12 @@ public class CarManager : MonoBehaviour
             GameObject newExplosion = Instantiate(explosionPrefab);
             newExplosion.transform.position = transform.position;
             currentExplosion = newExplosion;
+
+            SoundManager soundManager = FindObjectOfType<SoundManager>();
+            if(soundManager != null)
+            {
+                soundManager.PlayExplosionSound(transform);
+            }
         }
     }
 

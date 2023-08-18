@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Missions;
+using MoreMountains.HighroadEngine;
+using MoreMountains.Tools;
 
 public class CurrencyManager : MonoBehaviour
 {

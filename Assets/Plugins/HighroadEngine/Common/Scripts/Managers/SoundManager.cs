@@ -28,6 +28,8 @@ namespace MoreMountains.HighroadEngine
         public float uiVolume = 0.4f;
 
         [SerializeField] private AudioSource tempSource;
+        [SerializeField] private AudioClip explodeClip;
+        [SerializeField] private AudioClip moneyClip;
 	    protected AudioSource _backgroundMusic;
 		private List<AudioSource> musics = new();
         [SerializeField]
@@ -228,6 +230,18 @@ namespace MoreMountains.HighroadEngine
              float volume = SfxOn ? uiVolume * SfxVolume : 0;
 
 			tempSource.PlayOneShot(clip, volume);
+        }
+
+
+		public void PlayExplosionSound(Transform parent)
+		{
+			PlaySound(explodeClip, parent.transform.position, parent, true);
+		}
+
+        public void PlayCurrencySound(Transform parent)
+        {
+			Debug.Log("moneyyyyyyyy");
+            PlaySound(moneyClip, parent.transform.position, parent.transform, true);
         }
     }
 }
